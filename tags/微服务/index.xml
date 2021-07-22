@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>微服务 on Wallis</title>
-    <link>https://Shaper-fox.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+    <link>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
     <description>Recent content in 微服务 on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Sep 2020 22:19:05 +0000</lastBuildDate><atom:link href="https://Shaper-fox.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Sep 2020 22:19:05 +0000</lastBuildDate><atom:link href="https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>了解微服务架构</title>
-      <link>https://Shaper-fox.github.io/post/microservices-structure/</link>
+      <link>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/microservices-structure/</link>
       <pubDate>Fri, 25 Sep 2020 22:19:05 +0000</pubDate>
       
-      <guid>https://Shaper-fox.github.io/post/microservices-structure/</guid>
+      <guid>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/microservices-structure/</guid>
       <description>P1 - 什么是微服务架构？ Loosely Coupled （松耦合） Service Oriented architecture（基于SOA架构） with bounded Context（有界上下文，局部状态；每个团队可以管理</description>
     </item>
     
