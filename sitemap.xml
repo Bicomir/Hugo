@@ -1,484 +1,484 @@
-<?xml-stylesheet type="text/xsl" href="https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://bomir.top/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/docker-storage/</loc>
+    <loc>https://bomir.top/post/docker-storage/</loc>
     <lastmod>2021-02-12T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/base-redis-distributedlock/</loc>
+    <loc>https://bomir.top/post/base-redis-distributedlock/</loc>
     <lastmod>2021-01-12T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/</loc>
+    <loc>https://bomir.top/categories/</loc>
     <lastmod>2021-02-12T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/docker/</loc>
+    <loc>https://bomir.top/categories/docker/</loc>
     <lastmod>2021-02-12T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/docker/</loc>
+    <loc>https://bomir.top/tags/docker/</loc>
     <lastmod>2021-02-12T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/</loc>
+    <loc>https://bomir.top/post/</loc>
     <lastmod>2021-02-12T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/</loc>
+    <loc>https://bomir.top/tags/</loc>
     <lastmod>2021-02-12T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/</loc>
+    <loc>https://bomir.top/</loc>
     <lastmod>2021-02-12T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/nosql/</loc>
+    <loc>https://bomir.top/categories/nosql/</loc>
     <lastmod>2021-01-12T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/redis/</loc>
+    <loc>https://bomir.top/tags/redis/</loc>
     <lastmod>2021-01-12T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/docker-basic/</loc>
+    <loc>https://bomir.top/post/docker-basic/</loc>
     <lastmod>2021-01-08T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/common-design-pattern-five-constructionmode/</loc>
+    <loc>https://bomir.top/post/common-design-pattern-five-constructionmode/</loc>
     <lastmod>2020-10-15T20:51:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>https://bomir.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2020-10-15T20:51:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>https://bomir.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2020-10-15T20:51:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/redis-basic1/</loc>
+    <loc>https://bomir.top/post/redis-basic1/</loc>
     <lastmod>2020-10-12T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/microservices-structure/</loc>
+    <loc>https://bomir.top/post/microservices-structure/</loc>
     <lastmod>2020-09-25T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+    <loc>https://bomir.top/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2020-09-25T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+    <loc>https://bomir.top/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2020-09-25T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/mysql/</loc>
+    <loc>https://bomir.top/tags/mysql/</loc>
     <lastmod>2020-07-12T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/mysql/</loc>
+    <loc>https://bomir.top/categories/mysql/</loc>
     <lastmod>2020-07-12T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/mysql-ehancement/</loc>
+    <loc>https://bomir.top/post/mysql-ehancement/</loc>
     <lastmod>2020-07-12T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/.netcore/</loc>
+    <loc>https://bomir.top/tags/.netcore/</loc>
     <lastmod>2020-06-28T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/netcore-garbagecollection/</loc>
+    <loc>https://bomir.top/post/netcore-garbagecollection/</loc>
     <lastmod>2020-06-28T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/c#/</loc>
+    <loc>https://bomir.top/categories/c#/</loc>
     <lastmod>2020-06-28T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/net-core-program_class/</loc>
+    <loc>https://bomir.top/post/net-core-program_class/</loc>
     <lastmod>2020-05-25T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/net-core-startup_class/</loc>
+    <loc>https://bomir.top/post/net-core-startup_class/</loc>
     <lastmod>2020-05-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/redis-basic0/</loc>
+    <loc>https://bomir.top/post/redis-basic0/</loc>
     <lastmod>2020-05-12T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/postman/</loc>
+    <loc>https://bomir.top/tags/postman/</loc>
     <lastmod>2019-09-11T22:01:57+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/postman-learning/</loc>
+    <loc>https://bomir.top/post/postman-learning/</loc>
     <lastmod>2019-09-11T22:01:57+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/tools/</loc>
+    <loc>https://bomir.top/categories/tools/</loc>
     <lastmod>2019-09-11T22:01:57+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/http/</loc>
+    <loc>https://bomir.top/tags/http/</loc>
     <lastmod>2019-08-26T22:29:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/http%E5%8D%8F%E8%AE%AE/</loc>
+    <loc>https://bomir.top/categories/http%E5%8D%8F%E8%AE%AE/</loc>
     <lastmod>2019-08-26T22:29:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/full-know-cookie-session-token/</loc>
+    <loc>https://bomir.top/post/full-know-cookie-session-token/</loc>
     <lastmod>2019-08-26T22:29:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/csharp-basic/</loc>
+    <loc>https://bomir.top/post/csharp-basic/</loc>
     <lastmod>2019-08-24T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/csharp/</loc>
+    <loc>https://bomir.top/tags/csharp/</loc>
     <lastmod>2019-08-24T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/rest-api-test/</loc>
+    <loc>https://bomir.top/post/rest-api-test/</loc>
     <lastmod>2019-08-20T22:48:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/restful/</loc>
+    <loc>https://bomir.top/categories/restful/</loc>
     <lastmod>2019-08-20T22:48:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/restful-api/</loc>
+    <loc>https://bomir.top/tags/restful-api/</loc>
     <lastmod>2019-08-20T22:48:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/fiddler/</loc>
+    <loc>https://bomir.top/tags/fiddler/</loc>
     <lastmod>2019-08-17T21:03:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/fiddler-tool/</loc>
+    <loc>https://bomir.top/post/fiddler-tool/</loc>
     <lastmod>2019-08-17T21:03:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/http/</loc>
+    <loc>https://bomir.top/post/http/</loc>
     <lastmod>2019-08-17T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/python/</loc>
+    <loc>https://bomir.top/categories/python/</loc>
     <lastmod>2019-08-08T14:45:16+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/python-common-questions/</loc>
+    <loc>https://bomir.top/post/python-common-questions/</loc>
     <lastmod>2019-08-08T14:45:16+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <loc>https://bomir.top/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2019-08-08T14:45:16+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/tornado/</loc>
+    <loc>https://bomir.top/tags/tornado/</loc>
     <lastmod>2019-07-03T17:51:08+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/basic-tornado/</loc>
+    <loc>https://bomir.top/post/basic-tornado/</loc>
     <lastmod>2019-07-03T17:51:08+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/web-server/</loc>
+    <loc>https://bomir.top/tags/web-server/</loc>
     <lastmod>2019-03-18T19:21:41+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/web-servers-choose/</loc>
+    <loc>https://bomir.top/post/web-servers-choose/</loc>
     <lastmod>2019-03-18T19:21:41+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/scrapy-simple-learning/</loc>
+    <loc>https://bomir.top/post/scrapy-simple-learning/</loc>
     <lastmod>2019-01-12T14:45:16+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/spider/</loc>
+    <loc>https://bomir.top/tags/spider/</loc>
     <lastmod>2019-01-12T14:45:16+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/python-multithread/</loc>
+    <loc>https://bomir.top/post/python-multithread/</loc>
     <lastmod>2018-10-16T14:45:16+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <loc>https://bomir.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
     <lastmod>2018-10-16T14:45:16+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/machine-learning/</loc>
+    <loc>https://bomir.top/categories/machine-learning/</loc>
     <lastmod>2018-08-15T22:02:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/ml/</loc>
+    <loc>https://bomir.top/tags/ml/</loc>
     <lastmod>2018-08-15T22:02:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/machine-learning-start/</loc>
+    <loc>https://bomir.top/post/machine-learning-start/</loc>
     <lastmod>2018-08-15T22:02:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/%E5%89%8D%E7%AB%AF/</loc>
+    <loc>https://bomir.top/tags/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2018-05-06T17:17:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/%E5%89%8D%E7%AB%AF/</loc>
+    <loc>https://bomir.top/categories/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2018-05-06T17:17:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/frount-end-300/</loc>
+    <loc>https://bomir.top/post/frount-end-300/</loc>
     <lastmod>2018-05-06T17:17:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/frount-end-others/</loc>
+    <loc>https://bomir.top/post/frount-end-others/</loc>
     <lastmod>2018-05-06T17:17:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/frount-end-materials/</loc>
+    <loc>https://bomir.top/post/frount-end-materials/</loc>
     <lastmod>2018-05-06T17:17:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/frount-end-share/</loc>
+    <loc>https://bomir.top/post/frount-end-share/</loc>
     <lastmod>2018-05-06T17:17:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/git/</loc>
+    <loc>https://bomir.top/categories/git/</loc>
     <lastmod>2017-10-17T22:01:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/git/</loc>
+    <loc>https://bomir.top/tags/git/</loc>
     <lastmod>2017-10-17T22:01:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/git-start/</loc>
+    <loc>https://bomir.top/post/git-start/</loc>
     <lastmod>2017-10-17T22:01:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/markdown/</loc>
+    <loc>https://bomir.top/tags/markdown/</loc>
     <lastmod>2017-05-08T10:49:51+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/categories/markdown/</loc>
+    <loc>https://bomir.top/categories/markdown/</loc>
     <lastmod>2017-05-08T10:49:51+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/markdown-start1/</loc>
+    <loc>https://bomir.top/post/markdown-start1/</loc>
     <lastmod>2017-05-08T10:49:51+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/markdown-0/</loc>
+    <loc>https://bomir.top/post/markdown-0/</loc>
     <lastmod>2017-04-26T17:17:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/about/</loc>
+    <loc>https://bomir.top/about/</loc>
     <lastmod>2017-02-28T21:41:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

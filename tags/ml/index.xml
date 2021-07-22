@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ML on Wallis</title>
-    <link>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/ml/</link>
+    <link>https://bomir.top/tags/ml/</link>
     <description>Recent content in ML on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 15 Aug 2018 22:02:14 +0000</lastBuildDate><atom:link href="https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/ml/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Aug 2018 22:02:14 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/ml/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>初识机器学习</title>
-      <link>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/machine-learning-start/</link>
+      <link>https://bomir.top/post/machine-learning-start/</link>
       <pubDate>Wed, 15 Aug 2018 22:02:14 +0000</pubDate>
       
-      <guid>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/machine-learning-start/</guid>
+      <guid>https://bomir.top/post/machine-learning-start/</guid>
       <description>什么是机器学习 什么是机器学习？ 机器学习指的是计算机对历史数据进行统计分析，找出规律，建立模型，最关键的是可以对未来不确定性场景进行判断和决策</description>
     </item>
     

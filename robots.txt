@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/sitemap.xml
+Sitemap: https://bomir.top/sitemap.xml

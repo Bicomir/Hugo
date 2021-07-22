@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>面试题 on Wallis</title>
-    <link>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+    <link>https://bomir.top/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
     <description>Recent content in 面试题 on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 08 Aug 2019 14:45:16 +0000</lastBuildDate><atom:link href="https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Aug 2019 14:45:16 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python常见题</title>
-      <link>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/python-common-questions/</link>
+      <link>https://bomir.top/post/python-common-questions/</link>
       <pubDate>Thu, 08 Aug 2019 14:45:16 +0000</pubDate>
       
-      <guid>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/python-common-questions/</guid>
+      <guid>https://bomir.top/post/python-common-questions/</guid>
       <description>(1)Python常见面试题1 1.Python是如何进行内存管理的？ 三个方面来回答这个问题； ①对象的引用计数机制 ②垃圾回收机制 ③内存池机制 (</description>
     </item>
     

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>多线程 on Wallis</title>
-    <link>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+    <link>https://bomir.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
     <description>Recent content in 多线程 on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 16 Oct 2018 14:45:16 +0000</lastBuildDate><atom:link href="https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Oct 2018 14:45:16 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python多线程</title>
-      <link>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/python-multithread/</link>
+      <link>https://bomir.top/post/python-multithread/</link>
       <pubDate>Tue, 16 Oct 2018 14:45:16 +0000</pubDate>
       
-      <guid>https://serverless-page-bucket-xms0bu21-1254266754.cos-website.ap-guangzhou.myqcloud.com/post/python-multithread/</guid>
+      <guid>https://bomir.top/post/python-multithread/</guid>
       <description>Python多线程 同步和异步概念和区别 ​ 我们经常会看到同步、异步、阻塞、非阻塞四种调用方式以及它们的组合。那同步和异步的概念和区别又是什么呢</description>
     </item>
     
