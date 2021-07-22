@@ -163,64 +163,6 @@
 
 
   
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
-
-  
 
   
 
@@ -469,40 +411,40 @@
 <p>子类方法的访问级别不能低于父类相应方法的访问级别（public，package，protected， private），不能缩小被重写方法的访问权限；</p>
 <p>方法体不同。</p>
 <p><em><strong>重写格式：</strong></em></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#a61717;background-color:#e3d2d2">父类中：</span> 
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="err">父类中：</span> 
 
-<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">virtual</span> <span style="color:#000;font-weight:bold">void</span> myMethod()
+<span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">myMethod</span><span class="p">()</span>
 
-{ 
-  <span style="color:#998;font-style:italic">// *********
-</span><span style="color:#998;font-style:italic"></span>} 
+<span class="p">{</span> 
+  <span class="c1">// *********
+</span><span class="c1"></span><span class="p">}</span> 
 
-<span style="color:#a61717;background-color:#e3d2d2">子类中：</span> 
+<span class="err">子类中：</span> 
 
-<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">override</span> <span style="color:#000;font-weight:bold">void</span> myMethod() 
+<span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="n">myMethod</span><span class="p">()</span> 
 
-{ 
-  <span style="color:#998;font-style:italic">// *********
-</span><span style="color:#998;font-style:italic"></span>} 
+<span class="p">{</span> 
+  <span class="c1">// *********
+</span><span class="c1"></span><span class="p">}</span> 
 </code></pre></td></tr></table>
 </div>
 </div><p>重写以后，用父类对象和子类对象访问myMethod()方法，结果都是访问在子类中重新定义的方法，父类的方法相当于被覆盖掉了。</p>
@@ -524,196 +466,196 @@
 <p>​		 为研究Lambda表达式，新建一个SimpleLambdaExpression的控制台应用程序。现在，考虑泛型List<!-- raw HTML omitted -->类型的FindAll()方法，此方法需要System.Predicate<!-- raw HTML omitted -->的泛型委托，它用于包装任何接受类型为T的输入参数并且返回布尔值的方法。在Program类型中增加一个方法，叫做TraditionalDelegateSyntax()，它与System.Predicate</p>
 <p><!-- raw HTML omitted -->类型交互，找出整数List<!-- raw HTML omitted -->中的偶数。</p>
 <p><strong>case1: 使用传统委托方式</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">using</span> <span style="color:#555">System</span>;
-<span style="color:#000;font-weight:bold">using</span> <span style="color:#555">System.Collections.Generic</span>;
-<span style="color:#000;font-weight:bold">using</span> <span style="color:#555">System.Linq</span>;
-<span style="color:#000;font-weight:bold">using</span> <span style="color:#555">System.Text</span>;
-<span style="color:#000;font-weight:bold">using</span> <span style="color:#555">System.Threading.Tasks</span>;
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
 
-<span style="color:#000;font-weight:bold">namespace</span> <span style="color:#555">SimpleLambdaExpression</span>
-{
-    <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Program</span>
-    {
-        <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> Main(<span style="color:#458;font-weight:bold">string</span>[] args)
-        {
-            Console.WriteLine(<span style="color:#d14">&#34;**** Fun With Lambdas ****&#34;</span>);
-            TraditionalDelegateSyntax();
-            Console.ReadLine();
-        }
+<span class="k">namespace</span> <span class="nn">SimpleLambdaExpression</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;**** Fun With Lambdas ****&#34;</span><span class="p">);</span>
+            <span class="n">TraditionalDelegateSyntax</span><span class="p">();</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+        <span class="p">}</span>
 
-        <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> TraditionalDelegateSyntax()
-        {
-            <span style="color:#998;font-style:italic">// 创建整数列表
-</span><span style="color:#998;font-style:italic"></span>            List&lt;<span style="color:#458;font-weight:bold">int</span>&gt; list = <span style="color:#000;font-weight:bold">new</span> List&lt;<span style="color:#458;font-weight:bold">int</span>&gt;();
-            list.AddRange(<span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>[] {<span style="color:#099">20</span>, <span style="color:#099">1</span>, <span style="color:#099">4</span>, <span style="color:#099">8</span>, <span style="color:#099">9</span> , <span style="color:#099">44</span> });
+        <span class="k">static</span> <span class="k">void</span> <span class="n">TraditionalDelegateSyntax</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="c1">// 创建整数列表
+</span><span class="c1"></span>            <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+            <span class="n">list</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">[]</span> <span class="p">{</span><span class="m">20</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">9</span> <span class="p">,</span> <span class="m">44</span> <span class="p">});</span>
 
-            <span style="color:#998;font-style:italic">// 使用传统委托语法调用FindAll()
-</span><span style="color:#998;font-style:italic"></span>            Predicate&lt;<span style="color:#458;font-weight:bold">int</span>&gt; callback = <span style="color:#000;font-weight:bold">new</span> Predicate&lt;<span style="color:#458;font-weight:bold">int</span>&gt;(IsEvenNumber);
-            List&lt;<span style="color:#458;font-weight:bold">int</span>&gt; evenNumbers = list.FindAll(callback);
+            <span class="c1">// 使用传统委托语法调用FindAll()
+</span><span class="c1"></span>            <span class="n">Predicate</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">callback</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Predicate</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;(</span><span class="n">IsEvenNumber</span><span class="p">);</span>
+            <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">evenNumbers</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">FindAll</span><span class="p">(</span><span class="n">callback</span><span class="p">);</span>
 
-            Console.WriteLine(<span style="color:#d14">&#34;Here are your even numbers:&#34;</span>);
-            <span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#458;font-weight:bold">int</span> evenNumber <span style="color:#000;font-weight:bold">in</span> evenNumbers)
-            {
-                Console.Write(<span style="color:#d14">&#34;{0} \t&#34;</span>, evenNumber);
-            }
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Here are your even numbers:&#34;</span><span class="p">);</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">evenNumber</span> <span class="k">in</span> <span class="n">evenNumbers</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;{0} \t&#34;</span><span class="p">,</span> <span class="n">evenNumber</span><span class="p">);</span>
+            <span class="p">}</span>
 
-            Console.WriteLine();
-        }
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+        <span class="p">}</span>
 
-        <span style="color:#998;font-style:italic">// Predicate&lt;&gt;委托的目标
-</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">bool</span> IsEvenNumber(<span style="color:#458;font-weight:bold">int</span> i)
-        {
-            <span style="color:#998;font-style:italic">// 这是一个偶数吗？
-</span><span style="color:#998;font-style:italic"></span>            <span style="color:#000;font-weight:bold">return</span> (i % <span style="color:#099">2</span>) == <span style="color:#099">0</span>;
-        }
-    }
-}
+        <span class="c1">// Predicate&lt;&gt;委托的目标
+</span><span class="c1"></span>        <span class="k">static</span> <span class="kt">bool</span> <span class="n">IsEvenNumber</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 这是一个偶数吗？
+</span><span class="c1"></span>            <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="p">%</span> <span class="m">2</span><span class="p">)</span> <span class="p">==</span> <span class="m">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
 </code></pre></td></tr></table>
 </div>
 </div><p>分析：以上代码可以按预期工作，但IsEvenNumber()方法只会在有限的环境中被调用，而且，如果调用FindAll()，就需要完整的方法定义。但如果用匿名方法来代替，代码就简洁许多。考虑下面Program类型的新方法。</p>
 <p><strong>Case2: Program类型的新方法</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> AnonymousMethodSyntax()
-{
-    <span style="color:#998;font-style:italic">// 建立整数列表
-</span><span style="color:#998;font-style:italic"></span>    List&lt;<span style="color:#458;font-weight:bold">int</span>&gt; list = <span style="color:#000;font-weight:bold">new</span> List&lt;<span style="color:#458;font-weight:bold">int</span>&gt;();
-    list.AddRange(<span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>[] { <span style="color:#099">20</span>, <span style="color:#099">1</span>, <span style="color:#099">4</span>, <span style="color:#099">8</span>, <span style="color:#099">9</span>, <span style="color:#099">44</span> });
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">AnonymousMethodSyntax</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 建立整数列表
+</span><span class="c1"></span>    <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+    <span class="n">list</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">[]</span> <span class="p">{</span> <span class="m">20</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">44</span> <span class="p">});</span>
 
-    <span style="color:#998;font-style:italic">// 现在使用匿名方法
-</span><span style="color:#998;font-style:italic"></span>    List&lt;<span style="color:#458;font-weight:bold">int</span>&gt; evenNumbers = list.FindAll(<span style="color:#000;font-weight:bold">delegate</span>(<span style="color:#458;font-weight:bold">int</span> i) { <span style="color:#000;font-weight:bold">return</span> (i % <span style="color:#099">2</span>) == <span style="color:#099">0</span>; });
-    Console.WriteLine(<span style="color:#d14">&#34;Here are your even numbers:&#34;</span>);
-    <span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#458;font-weight:bold">int</span> evenNumber <span style="color:#000;font-weight:bold">in</span> evenNumbers)
-    {
-        Console.Write(<span style="color:#d14">&#34;{0} \t&#34;</span>, evenNumber);
-    }
+    <span class="c1">// 现在使用匿名方法
+</span><span class="c1"></span>    <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">evenNumbers</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">FindAll</span><span class="p">(</span><span class="k">delegate</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="p">%</span> <span class="m">2</span><span class="p">)</span> <span class="p">==</span> <span class="m">0</span><span class="p">;</span> <span class="p">});</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Here are your even numbers:&#34;</span><span class="p">);</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">evenNumber</span> <span class="k">in</span> <span class="n">evenNumbers</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;{0} \t&#34;</span><span class="p">,</span> <span class="n">evenNumber</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    Console.WriteLine();
-}
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>分析：以上的代码并不是首先创建一个Predicate<!-- raw HTML omitted -->委托类型，然后再编写一个独立方法，而是使用了一个匿名方法。这个方向是正确的，但是仍然需要使用关键字delegate（或者是一个强类型的Predicate<!-- raw HTML omitted -->），而且还需要保证输入参数是百分百匹配的。我们认为这样的，定义匿名方法的代码还是有些冗长。可以使用Lambda表达式进一步来简化方法FindAll()的调用，使用新的语法时，底层的委托语法将会消失得无影无踪，请看下面的代码：</p>
 <p><strong>Case3：Lambda表达式</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#">  <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> LambdaExpessionSyntax()
-  {
-      <span style="color:#998;font-style:italic">// 建立整数列表
-</span><span style="color:#998;font-style:italic"></span>      List&lt;<span style="color:#458;font-weight:bold">int</span>&gt; list = <span style="color:#000;font-weight:bold">new</span> List&lt;<span style="color:#458;font-weight:bold">int</span>&gt;();
-      list.AddRange(<span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>[] { <span style="color:#099">20</span>, <span style="color:#099">1</span>, <span style="color:#099">4</span>, <span style="color:#099">8</span>, <span style="color:#099">9</span>, <span style="color:#099">44</span> });
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#">  <span class="k">static</span> <span class="k">void</span> <span class="n">LambdaExpessionSyntax</span><span class="p">()</span>
+  <span class="p">{</span>
+      <span class="c1">// 建立整数列表
+</span><span class="c1"></span>      <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+      <span class="n">list</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">[]</span> <span class="p">{</span> <span class="m">20</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">44</span> <span class="p">});</span>
 
-      <span style="color:#998;font-style:italic">// 现在使用Lambda表达式
-</span><span style="color:#998;font-style:italic"></span>      List&lt;<span style="color:#458;font-weight:bold">int</span>&gt; evenNumbers = list.FindAll(i =&gt; (i % <span style="color:#099">2</span> == <span style="color:#099">0</span>));
-      <span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#458;font-weight:bold">int</span> evenNumber <span style="color:#000;font-weight:bold">in</span> evenNumbers)
-      {
-          Console.Write(<span style="color:#d14">&#34;{0} \t&#34;</span>, evenNumber);
-      }
+      <span class="c1">// 现在使用Lambda表达式
+</span><span class="c1"></span>      <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">evenNumbers</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">FindAll</span><span class="p">(</span><span class="n">i</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="n">i</span> <span class="p">%</span> <span class="m">2</span> <span class="p">==</span> <span class="m">0</span><span class="p">));</span>
+      <span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">evenNumber</span> <span class="k">in</span> <span class="n">evenNumbers</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;{0} \t&#34;</span><span class="p">,</span> <span class="n">evenNumber</span><span class="p">);</span>
+      <span class="p">}</span>
 
-      Console.WriteLine();
-  }
+      <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+  <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>我们将奇怪的语句传递给FindAll方法中，这些语句也就是Lambda表达式，这时候不需要用Predicate<!-- raw HTML omitted -->（或关键字delegate），而只用一个简单的lambda表达式即可。</p>
 <p>在深入Lambda表达式之前，我们需要知道Lambda可以应用于任何匿名方法可以应用的场景，而且比匿名方法更节省编码时间。但实际上，C#编译器只是把表达式翻译成使用委托Predicate<!-- raw HTML omitted -->的普通匿名方法而已（可以使用isdasm.exe和reflector.ex进行验证），如下面的代码：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#998;font-style:italic">// Lambda表达式
-</span><span style="color:#998;font-style:italic"></span> List&lt;<span style="color:#458;font-weight:bold">int</span>&gt; evenNumbers = list.FindAll(i =&gt; (i % <span style="color:#099">2</span> == <span style="color:#099">0</span>));
-<span style="color:#a61717;background-color:#e3d2d2">被编译进下面的</span>C<span style="color:#a61717;background-color:#e3d2d2">#代码：</span>
-<span style="color:#998;font-style:italic">// 变成了匿名方法
-</span><span style="color:#998;font-style:italic"></span>List&lt;<span style="color:#458;font-weight:bold">int</span>&gt; evenNumbers = list.FindAll(<span style="color:#000;font-weight:bold">delegate</span>(<span style="color:#458;font-weight:bold">int</span> i) { <span style="color:#000;font-weight:bold">return</span> (i % <span style="color:#099">2</span>) == <span style="color:#099">0</span>; });
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// Lambda表达式
+</span><span class="c1"></span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">evenNumbers</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">FindAll</span><span class="p">(</span><span class="n">i</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="n">i</span> <span class="p">%</span> <span class="m">2</span> <span class="p">==</span> <span class="m">0</span><span class="p">));</span>
+<span class="err">被编译进下面的</span><span class="n">C</span><span class="err">#代码：</span>
+<span class="c1">// 变成了匿名方法
+</span><span class="c1"></span><span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">evenNumbers</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">FindAll</span><span class="p">(</span><span class="k">delegate</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="p">%</span> <span class="m">2</span><span class="p">)</span> <span class="p">==</span> <span class="m">0</span><span class="p">;</span> <span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="剖析lambda表达式">剖析Lambda表达式</h3>
@@ -728,493 +670,493 @@
 <p><code>List&lt;int&gt; evenNumbers = list.FindAll((i) =&gt; (i % 2 == 0));</code></p>
 <h3 id="多语句处理参数">多语句处理参数</h3>
 <p>我们第一个Lambda表达式是一个求布尔类型值语句，但是我们知道很多委托目标需要执行多条代码执行，C#允许使用一系列的代码语句来定义Lambda表达式。当表达式必须使用多行代码处理参数时，你可以使用花括号限定范围。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> LambdaExpressionSyntax()
- {
-     <span style="color:#998;font-style:italic">// 创建整数列表
-</span><span style="color:#998;font-style:italic"></span>     List&lt;<span style="color:#458;font-weight:bold">int</span>&gt; list = <span style="color:#000;font-weight:bold">new</span> List&lt;<span style="color:#458;font-weight:bold">int</span>&gt;();
-     list.AddRange(<span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>[] { <span style="color:#099">20</span>, <span style="color:#099">1</span>, <span style="color:#099">4</span>, <span style="color:#099">8</span>, <span style="color:#099">9</span>, <span style="color:#099">44</span> });
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"> <span class="k">static</span> <span class="k">void</span> <span class="n">LambdaExpressionSyntax</span><span class="p">()</span>
+ <span class="p">{</span>
+     <span class="c1">// 创建整数列表
+</span><span class="c1"></span>     <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+     <span class="n">list</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">[]</span> <span class="p">{</span> <span class="m">20</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">44</span> <span class="p">});</span>
 
-     <span style="color:#998;font-style:italic">// 现在使用语句块来编写Lambda表达式
-</span><span style="color:#998;font-style:italic"></span>     List&lt;<span style="color:#458;font-weight:bold">int</span>&gt; evenNumbers = list.FindAll((i) =&gt;{
-         Console.WriteLine(<span style="color:#d14">&#34;value of i is currently: {0}&#34;</span>,i);
-         <span style="color:#458;font-weight:bold">bool</span> isEven = ((i % <span style="color:#099">2</span>) == <span style="color:#099">0</span>);
-         <span style="color:#000;font-weight:bold">return</span> isEven;
-     });
-     Console.WriteLine(<span style="color:#d14">&#34;Here are your even numbers:&#34;</span>);
-     <span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#458;font-weight:bold">int</span> evenNumber <span style="color:#000;font-weight:bold">in</span> evenNumbers)
-     {
-         Console.Write(<span style="color:#d14">&#34;{0} \t&#34;</span>, evenNumber);
-     }
- }
+     <span class="c1">// 现在使用语句块来编写Lambda表达式
+</span><span class="c1"></span>     <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">evenNumbers</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">FindAll</span><span class="p">((</span><span class="n">i</span><span class="p">)</span> <span class="p">=&gt;{</span>
+         <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;value of i is currently: {0}&#34;</span><span class="p">,</span><span class="n">i</span><span class="p">);</span>
+         <span class="kt">bool</span> <span class="n">isEven</span> <span class="p">=</span> <span class="p">((</span><span class="n">i</span> <span class="p">%</span> <span class="m">2</span><span class="p">)</span> <span class="p">==</span> <span class="m">0</span><span class="p">);</span>
+         <span class="k">return</span> <span class="n">isEven</span><span class="p">;</span>
+     <span class="p">});</span>
+     <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Here are your even numbers:&#34;</span><span class="p">);</span>
+     <span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">evenNumber</span> <span class="k">in</span> <span class="n">evenNumbers</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;{0} \t&#34;</span><span class="p">,</span> <span class="n">evenNumber</span><span class="p">);</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="使用lambda表达式重写cardelegate示例">使用Lambda表达式重写CarDelegate示例</h3>
 <p>推荐使用Lambda表达式是因为它为我们提供了一种简单明了的方式进行匿名函数的定义（由此间接地简化了关于委托的编码操作），以Lambda表达式重写CarDelegate示例，以下展示项目的Program类的简化版本，它使用传统的委托语法响应每一个回调：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> Main(<span style="color:#458;font-weight:bold">string</span>[] args)
-{
-    Console.WriteLine(<span style="color:#d14">&#34;**** More Fun With Lambdas ****&#34;</span>);
-    <span style="color:#998;font-style:italic">// 创建一个car对象
-</span><span style="color:#998;font-style:italic"></span>    Car c1 = <span style="color:#000;font-weight:bold">new</span> Car(<span style="color:#d14">&#34;SlugBug&#34;</span>, <span style="color:#099">100</span>, <span style="color:#099">10</span>);
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;**** More Fun With Lambdas ****&#34;</span><span class="p">);</span>
+    <span class="c1">// 创建一个car对象
+</span><span class="c1"></span>    <span class="n">Car</span> <span class="n">c1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Car</span><span class="p">(</span><span class="s">&#34;SlugBug&#34;</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">10</span><span class="p">);</span>
 
-    <span style="color:#998;font-style:italic">// 传统的委托语法
-</span><span style="color:#998;font-style:italic"></span>    c1.OnAboutToBlow(<span style="color:#000;font-weight:bold">new</span> Car.AboutToBlow(CarAboutToBlow));
-    c1.OnExploded(<span style="color:#000;font-weight:bold">new</span> Car.Exploded(CarExploded));
+    <span class="c1">// 传统的委托语法
+</span><span class="c1"></span>    <span class="n">c1</span><span class="p">.</span><span class="n">OnAboutToBlow</span><span class="p">(</span><span class="k">new</span> <span class="n">Car</span><span class="p">.</span><span class="n">AboutToBlow</span><span class="p">(</span><span class="n">CarAboutToBlow</span><span class="p">));</span>
+    <span class="n">c1</span><span class="p">.</span><span class="n">OnExploded</span><span class="p">(</span><span class="k">new</span> <span class="n">Car</span><span class="p">.</span><span class="n">Exploded</span><span class="p">(</span><span class="n">CarExploded</span><span class="p">));</span>
 
-    <span style="color:#998;font-style:italic">// 加速（将会激发事件）
-</span><span style="color:#998;font-style:italic"></span>    Console.WriteLine(<span style="color:#d14">&#34;\n **** Speeding Up ****&#34;</span>);
-    <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i = <span style="color:#099">0</span>; i &lt; <span style="color:#099">6</span>; i++)
-        c1.SpeedUp(<span style="color:#099">20</span>);
-    Console.ReadLine();
-}
+    <span class="c1">// 加速（将会激发事件）
+</span><span class="c1"></span>    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;\n **** Speeding Up ****&#34;</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">6</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+        <span class="n">c1</span><span class="p">.</span><span class="n">SpeedUp</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+<span class="p">}</span>
 
-<span style="color:#998;font-style:italic">// 委托目标
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> CarAboutToBlow(<span style="color:#458;font-weight:bold">string</span> msg)
-{
-    Console.WriteLine(msg);
-}
+<span class="c1">// 委托目标
+</span><span class="c1"></span><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CarAboutToBlow</span><span class="p">(</span><span class="kt">string</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> CarExploded(<span style="color:#458;font-weight:bold">string</span> msg)
-{
-    Console.WriteLine(msg);
-}
+<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CarExploded</span><span class="p">(</span><span class="kt">string</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<span class="p">}</span>
 
 </code></pre></td></tr></table>
 </div>
 </div><p>用匿名方法重新写的Main();</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> Main(<span style="color:#458;font-weight:bold">string</span>[] args)
-{
-    Console.WriteLine(<span style="color:#d14">&#34;**** More Fun With Lambdas ****&#34;</span>);
-    <span style="color:#998;font-style:italic">// 创建一个car对象
-</span><span style="color:#998;font-style:italic"></span>    Car c1 = <span style="color:#000;font-weight:bold">new</span> Car(<span style="color:#d14">&#34;SlugBug&#34;</span>, <span style="color:#099">100</span>, <span style="color:#099">10</span>);
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;**** More Fun With Lambdas ****&#34;</span><span class="p">);</span>
+    <span class="c1">// 创建一个car对象
+</span><span class="c1"></span>    <span class="n">Car</span> <span class="n">c1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Car</span><span class="p">(</span><span class="s">&#34;SlugBug&#34;</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">10</span><span class="p">);</span>
 
-    <span style="color:#998;font-style:italic">// 现在使用匿名方法
-</span><span style="color:#998;font-style:italic"></span>    c1.OnAboutToBlow(<span style="color:#000;font-weight:bold">delegate</span>(<span style="color:#458;font-weight:bold">string</span> msg){ Console.WriteLine(msg);});
-    c1.OnExploded(<span style="color:#000;font-weight:bold">delegate</span>(<span style="color:#458;font-weight:bold">string</span> msg){ Console.WriteLine(msg);});
+    <span class="c1">// 现在使用匿名方法
+</span><span class="c1"></span>    <span class="n">c1</span><span class="p">.</span><span class="n">OnAboutToBlow</span><span class="p">(</span><span class="k">delegate</span><span class="p">(</span><span class="kt">string</span> <span class="n">msg</span><span class="p">){</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">msg</span><span class="p">);});</span>
+    <span class="n">c1</span><span class="p">.</span><span class="n">OnExploded</span><span class="p">(</span><span class="k">delegate</span><span class="p">(</span><span class="kt">string</span> <span class="n">msg</span><span class="p">){</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">msg</span><span class="p">);});</span>
 
-    <span style="color:#998;font-style:italic">// 加速（将会激发事件）
-</span><span style="color:#998;font-style:italic"></span>    Console.WriteLine(<span style="color:#d14">&#34;\n **** Speeding Up ****&#34;</span>);
-    <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i = <span style="color:#099">0</span>; i &lt; <span style="color:#099">6</span>; i++)
-        c1.SpeedUp(<span style="color:#099">20</span>);
-    Console.ReadLine();
-}
+    <span class="c1">// 加速（将会激发事件）
+</span><span class="c1"></span>    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;\n **** Speeding Up ****&#34;</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">6</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+        <span class="n">c1</span><span class="p">.</span><span class="n">SpeedUp</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>用Lambda表达式重写Main();</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> Main(<span style="color:#458;font-weight:bold">string</span>[] args)
-{
-    Console.WriteLine(<span style="color:#d14">&#34;**** More Fun With Lambdas ****&#34;</span>);
-    <span style="color:#998;font-style:italic">// 创建一个car对象
-</span><span style="color:#998;font-style:italic"></span>    Car c1 = <span style="color:#000;font-weight:bold">new</span> Car(<span style="color:#d14">&#34;SlugBug&#34;</span>, <span style="color:#099">100</span>, <span style="color:#099">10</span>);
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;**** More Fun With Lambdas ****&#34;</span><span class="p">);</span>
+    <span class="c1">// 创建一个car对象
+</span><span class="c1"></span>    <span class="n">Car</span> <span class="n">c1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Car</span><span class="p">(</span><span class="s">&#34;SlugBug&#34;</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">10</span><span class="p">);</span>
 
-    <span style="color:#998;font-style:italic">// 现在使用匿名方法
-</span><span style="color:#998;font-style:italic"></span>    c1.OnAboutToBlow(msg =&gt; { Console.WriteLine(msg);});
-    c1.OnExploded(msg =&gt; { Console.WriteLine(msg);});
+    <span class="c1">// 现在使用匿名方法
+</span><span class="c1"></span>    <span class="n">c1</span><span class="p">.</span><span class="n">OnAboutToBlow</span><span class="p">(</span><span class="n">msg</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">msg</span><span class="p">);});</span>
+    <span class="n">c1</span><span class="p">.</span><span class="n">OnExploded</span><span class="p">(</span><span class="n">msg</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">msg</span><span class="p">);});</span>
 
-    <span style="color:#998;font-style:italic">// 加速（将会激发事件）
-</span><span style="color:#998;font-style:italic"></span>    Console.WriteLine(<span style="color:#d14">&#34;\n **** Speeding Up ****&#34;</span>);
-    <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i = <span style="color:#099">0</span>; i &lt; <span style="color:#099">6</span>; i++)
-        c1.SpeedUp(<span style="color:#099">20</span>);
-    Console.ReadLine();
-}
+    <span class="c1">// 加速（将会激发事件）
+</span><span class="c1"></span>    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;\n **** Speeding Up ****&#34;</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">6</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+        <span class="n">c1</span><span class="p">.</span><span class="n">SpeedUp</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="含有多个或零个参数的lambda表达式">含有多个（或零个）参数的Lambda表达式</h3>
 <p>以上都是编写的Lambda表达式都只含有一个参数，实际上，Lambda表达式可以处理多个参数或者不提供任何参数，我们创建一个LambdaExpressionMultiplePrams来说明问题。假设SimpleMath有以下更新：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">SimpleMath</span>
-{
-    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">delegate</span> <span style="color:#000;font-weight:bold">void</span> MathMessage(<span style="color:#458;font-weight:bold">string</span> msg, <span style="color:#458;font-weight:bold">int</span> result);
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">SimpleMath</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="n">MathMessage</span><span class="p">(</span><span class="kt">string</span> <span class="n">msg</span><span class="p">,</span> <span class="kt">int</span> <span class="n">result</span><span class="p">);</span>
 
-    <span style="color:#000;font-weight:bold">private</span> MathMessage mmDelegate;
+    <span class="k">private</span> <span class="n">MathMessage</span> <span class="n">mmDelegate</span><span class="p">;</span>
 
-    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">delegate</span> <span style="color:#458;font-weight:bold">string</span> VerySimpleDelegate();
+    <span class="k">public</span> <span class="k">delegate</span> <span class="kt">string</span> <span class="n">VerySimpleDelegate</span><span class="p">();</span>
 
 
-    <span style="color:#998;font-style:italic">// 处理多个参数的Lambda
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">void</span> SetMathHandler(MathMessage target)
-    {
-        mmDelegate = target;
-    }
+    <span class="c1">// 处理多个参数的Lambda
+</span><span class="c1"></span>    <span class="k">public</span> <span class="k">void</span> <span class="n">SetMathHandler</span><span class="p">(</span><span class="n">MathMessage</span> <span class="n">target</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">mmDelegate</span> <span class="p">=</span> <span class="n">target</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">void</span> Add(<span style="color:#458;font-weight:bold">int</span> x, <span style="color:#458;font-weight:bold">int</span> y)
-    {
-        <span style="color:#000;font-weight:bold">if</span> (mmDelegate != <span style="color:#000;font-weight:bold">null</span>)
-        {
-            mmDelegate.Invoke(<span style="color:#d14">&#34;Adding has complete!&#34;</span>, x + y);
-        }
+    <span class="k">public</span> <span class="k">void</span> <span class="n">Add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mmDelegate</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">mmDelegate</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="s">&#34;Adding has complete!&#34;</span><span class="p">,</span> <span class="n">x</span> <span class="p">+</span> <span class="n">y</span><span class="p">);</span>
+        <span class="p">}</span>
 
-    }
+    <span class="p">}</span>
 
-    <span style="color:#998;font-style:italic">// 处理0个参数的Lambda
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">void</span> SetZeroHandler()
-    {
-        VerySimpleDelegate v = <span style="color:#000;font-weight:bold">new</span> VerySimpleDelegate(() =&gt; { <span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">&#34;Enjoy your string&#34;</span>; });
-        Console.WriteLine(v.Invoke());
-    }
+    <span class="c1">// 处理0个参数的Lambda
+</span><span class="c1"></span>    <span class="k">public</span> <span class="k">void</span> <span class="n">SetZeroHandler</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">VerySimpleDelegate</span> <span class="n">v</span> <span class="p">=</span> <span class="k">new</span> <span class="n">VerySimpleDelegate</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;Enjoy your string&#34;</span><span class="p">;</span> <span class="p">});</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">Invoke</span><span class="p">());</span>
+    <span class="p">}</span>
 
-}
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>我们可以看到，委托MathMessage需要两个参数，使用Lambda表达式的Main如下所示：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> Main(<span style="color:#458;font-weight:bold">string</span>[] args)
- {
-     <span style="color:#998;font-style:italic">// 使用Lambda表达式来注册委托
-</span><span style="color:#998;font-style:italic"></span>     SimpleMath m = <span style="color:#000;font-weight:bold">new</span> SimpleMath();
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+ <span class="p">{</span>
+     <span class="c1">// 使用Lambda表达式来注册委托
+</span><span class="c1"></span>     <span class="n">SimpleMath</span> <span class="n">m</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SimpleMath</span><span class="p">();</span>
 
-     m.SetMathHandler((msg, result) =&gt;
-     {
-         Console.WriteLine(<span style="color:#d14">&#34;Message: {0},Result: {1}&#34;</span>, msg, result);
-     });
+     <span class="n">m</span><span class="p">.</span><span class="n">SetMathHandler</span><span class="p">((</span><span class="n">msg</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span> <span class="p">=&gt;</span>
+     <span class="p">{</span>
+         <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Message: {0},Result: {1}&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+     <span class="p">});</span>
 
-     <span style="color:#998;font-style:italic">// 执行Lambda表达式
-</span><span style="color:#998;font-style:italic"></span>     m.Add(<span style="color:#099">100</span>, <span style="color:#099">10</span>);
-     m.SetZeroHandler();
+     <span class="c1">// 执行Lambda表达式
+</span><span class="c1"></span>     <span class="n">m</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">10</span><span class="p">);</span>
+     <span class="n">m</span><span class="p">.</span><span class="n">SetZeroHandler</span><span class="p">();</span>
      
-     Console.ReadLine();
- }
+     <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+ <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>​		这旨在让我们理解Lambda表达式的整体角色和它是如何以“函数方式”，匿名方法和委托状态共同工作的，尽管需要一些时间来适应新的Lambda表达式（=&gt;）,不过要始终记住Lambda表达式可简化为：Arguments ToProcess =&gt; StatementsToProcessThem 的简单形式，并且在LINQ编程模型中使用了许多Lambda表达式来简化代码。</p>
 <h2 id="可空表达式-">可空表达式 ？</h2>
 <h3 id="单问号-"><strong>单问号 ？</strong></h3>
 <p>?: 单问号用于对 int,double,bool 等无法直接赋值为 null 的数据类型进行 null 的赋值，意思是这个数据类型是 NullAble 类型的。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#458;font-weight:bold">int?</span> i = <span style="color:#099">3</span> 
-<span style="color:#a61717;background-color:#e3d2d2">等同于</span>
-Nullable&lt;<span style="color:#458;font-weight:bold">int</span>&gt; i = <span style="color:#000;font-weight:bold">new</span> Nullable&lt;<span style="color:#458;font-weight:bold">int</span>&gt;(<span style="color:#099">3</span>);
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="kt">int?</span> <span class="n">i</span> <span class="p">=</span> <span class="m">3</span> 
+<span class="err">等同于</span>
+<span class="n">Nullable</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">i</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Nullable</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;(</span><span class="m">3</span><span class="p">);</span>
 
-<span style="color:#458;font-weight:bold">int</span> i; <span style="color:#998;font-style:italic">//默认值0
-</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">int?</span> ii; <span style="color:#998;font-style:italic">//默认值null
+<span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="c1">//默认值0
+</span><span class="c1"></span><span class="kt">int?</span> <span class="n">ii</span><span class="p">;</span> <span class="c1">//默认值null
 </span></code></pre></td></tr></table>
 </div>
 </div><p>在此表达式出现之前，当我们得到一个对象并想使用这个对象，需判断该对象是否为null，否则使用对象时就会抛出<code>NullReferenceException</code> 异常（<strong>未将对象引用设置到对象的实例</strong>），如下例：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> Main(<span style="color:#458;font-weight:bold">string</span>[] args)
-{
-    <span style="color:#458;font-weight:bold">var</span> user = GetUser(<span style="color:#099">1</span>);
-    <span style="color:#000;font-weight:bold">if</span>(user == <span style="color:#000;font-weight:bold">null</span>)
-    {
-        <span style="color:#998;font-style:italic">//这里可以自定义
-</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">throw</span> <span style="color:#000;font-weight:bold">new</span> NullReferenceException(<span style="color:#d14">&#34;指定的用户没有找到&#34;</span>);
-    }
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">user</span> <span class="p">=</span> <span class="n">GetUser</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">user</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//这里可以自定义
+</span><span class="c1"></span>        <span class="k">throw</span> <span class="k">new</span> <span class="n">NullReferenceException</span><span class="p">(</span><span class="s">&#34;指定的用户没有找到&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    <span style="color:#998;font-style:italic">//当 user 对象不是 null 时，我们才可以这样
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">var</span> name = user.Name;
-    <span style="color:#458;font-weight:bold">var</span> password = user.Password;
-}
+    <span class="c1">//当 user 对象不是 null 时，我们才可以这样
+</span><span class="c1"></span>    <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="n">user</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+    <span class="kt">var</span> <span class="n">password</span> <span class="p">=</span> <span class="n">user</span><span class="p">.</span><span class="n">Password</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>现在使用可空表达式(?.)，作用就是当对象为null时，就不去访问后面点的对象，如下代码:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> Main(<span style="color:#458;font-weight:bold">string</span> [] args)
-{
-    <span style="color:#458;font-weight:bold">var</span> user = GetUser(<span style="color:#099">1</span>);
-    <span style="color:#458;font-weight:bold">var</span> name = user?.Name;
-    <span style="color:#458;font-weight:bold">var</span> password = user?.PassWord;
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span> <span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">user</span> <span class="p">=</span> <span class="n">GetUser</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="n">user</span><span class="p">?.</span><span class="n">Name</span><span class="p">;</span>
+    <span class="kt">var</span> <span class="n">password</span> <span class="p">=</span> <span class="n">user</span><span class="p">?.</span><span class="n">PassWord</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>?.表达式将声明对象转换成了可为空类型</strong></p>
 <p>上面的代码时字符串，那如果时int类型又会是怎样？</p>
 <p><code>int? age = user?.Age;</code></p>
 <p>数据类型后面加一个问号，表示该类型可以是 null。你可以通过该对象的 <code>HasValue</code> 属性做一个判断，表示该对象有值，然后再使用该对象的 <code>Value</code> 属性获取到值。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#458;font-weight:bold">int?</span> age = user?.Age;
-<span style="color:#000;font-weight:bold">if</span>(age.HasValue)
-{
-	Console.Write(age.<span style="color:#000;font-weight:bold">value</span>);    
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="kt">int?</span> <span class="n">age</span> <span class="p">=</span> <span class="n">user</span><span class="p">?.</span><span class="n">Age</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">age</span><span class="p">.</span><span class="n">HasValue</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">age</span><span class="p">.</span><span class="k">value</span><span class="p">);</span>    
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>再举一个例子：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">event</span> EventHandler OnEventChange; <span style="color:#998;font-style:italic">// 声明一个事件
-</span><span style="color:#998;font-style:italic">//...中间忽略
-</span><span style="color:#998;font-style:italic"></span>
-<span style="color:#998;font-style:italic">//不使用可空表达式时
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">if</span>(OnEventChange != <span style="color:#000;font-weight:bold">null</span>) <span style="color:#998;font-style:italic">// 判断该时间是否被订阅
-</span><span style="color:#998;font-style:italic"></span>{
-    OnEventChange();
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">event</span> <span class="n">EventHandler</span> <span class="n">OnEventChange</span><span class="p">;</span> <span class="c1">// 声明一个事件
+</span><span class="c1">//...中间忽略
+</span><span class="c1"></span>
+<span class="c1">//不使用可空表达式时
+</span><span class="c1"></span><span class="k">if</span><span class="p">(</span><span class="n">OnEventChange</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="c1">// 判断该时间是否被订阅
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">OnEventChange</span><span class="p">();</span>
+<span class="p">}</span>
 
-<span style="color:#998;font-style:italic">//使用可空表达式
-</span><span style="color:#998;font-style:italic"></span>OnEventChange?.Invoke();
+<span class="c1">//使用可空表达式
+</span><span class="c1"></span><span class="n">OnEventChange</span><span class="p">?.</span><span class="n">Invoke</span><span class="p">();</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>总结：</strong></p>
 <p>很明显可空表达式减少了一层判断，明显减少了我们的代码量，也提高了我们的效率。但是需要我们选择性使用，不要滥用。</p>
 <h3 id="双问号-"><strong>双问号 ??</strong></h3>
 <p>??: 双问号??可用于在判断一个变量在为null时返回一个指定的值， 具体来讲，??叫做null合并运算符，如果此运算符的左操作数不为 null，则此运算符将返回左操作数；否则返回右操作数。可以用来给变量设置默认值。特别提醒： 记住和空有关的时候，才要去用?? 。如果不会有空的判断，就别用了。因为这个是空的合并运算符。也有人说??是？：的语法糖而已，但是实际上？？进行了很大改进，能够更好的支持表达式。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">using</span> <span style="color:#555">System</span>;
-<span style="color:#000;font-weight:bold">namespace</span> <span style="color:#555">CalculatorApplication</span>
-{
-   <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">NullablesAtShow</span>
-   {
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="nn">CalculatorApplication</span>
+<span class="p">{</span>
+   <span class="k">class</span> <span class="nc">NullablesAtShow</span>
+   <span class="p">{</span>
          
-      <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">void</span> Main(<span style="color:#458;font-weight:bold">string</span>[] args)
-      {      
-         <span style="color:#458;font-weight:bold">double?</span> num1 = <span style="color:#000;font-weight:bold">null</span>;
-         <span style="color:#458;font-weight:bold">double?</span> num2 = <span style="color:#099">3.14157</span>;
-         <span style="color:#458;font-weight:bold">double</span> num3;
-         num3 = num1 ?? <span style="color:#099">5.34</span>;      <span style="color:#998;font-style:italic">// num1 如果为空值则返回 5.34
-</span><span style="color:#998;font-style:italic"></span>         Console.WriteLine(<span style="color:#d14">&#34;num3 的值： {0}&#34;</span>, num3);
-         num3 = num2 ?? <span style="color:#099">5.34</span>;
-         Console.WriteLine(<span style="color:#d14">&#34;num3 的值： {0}&#34;</span>, num3);  <span style="color:#998;font-style:italic">// 返回3.14157
-</span><span style="color:#998;font-style:italic"></span>         Console.ReadLine();
-      }
-   }
-}
+      <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+      <span class="p">{</span>      
+         <span class="kt">double?</span> <span class="n">num1</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+         <span class="kt">double?</span> <span class="n">num2</span> <span class="p">=</span> <span class="m">3.14157</span><span class="p">;</span>
+         <span class="kt">double</span> <span class="n">num3</span><span class="p">;</span>
+         <span class="n">num3</span> <span class="p">=</span> <span class="n">num1</span> <span class="p">??</span> <span class="m">5.34</span><span class="p">;</span>      <span class="c1">// num1 如果为空值则返回 5.34
+</span><span class="c1"></span>         <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;num3 的值： {0}&#34;</span><span class="p">,</span> <span class="n">num3</span><span class="p">);</span>
+         <span class="n">num3</span> <span class="p">=</span> <span class="n">num2</span> <span class="p">??</span> <span class="m">5.34</span><span class="p">;</span>
+         <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;num3 的值： {0}&#34;</span><span class="p">,</span> <span class="n">num3</span><span class="p">);</span>  <span class="c1">// 返回3.14157
+</span><span class="c1"></span>         <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>还有这个例子：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#998;font-style:italic">// 用??
-</span><span style="color:#998;font-style:italic"></span>Func&lt;<span style="color:#458;font-weight:bold">string</span>&gt; f = () =&gt; GetName() ?? <span style="color:#d14">&#34;test2&#34;</span>;
-<span style="color:#998;font-style:italic">// 不用两个??，写条件表达式
-</span><span style="color:#998;font-style:italic"></span>Func&lt;<span style="color:#458;font-weight:bold">string</span>&gt; f1 = () =&gt;
-{
-    <span style="color:#458;font-weight:bold">var</span> temp = GetName();
-    <span style="color:#000;font-weight:bold">return</span> temp != <span style="color:#000;font-weight:bold">null</span> ? GetName():<span style="color:#d14">&#34;test2&#34;</span>;
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// 用??
+</span><span class="c1"></span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">f</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">GetName</span><span class="p">()</span> <span class="p">??</span> <span class="s">&#34;test2&#34;</span><span class="p">;</span>
+<span class="c1">// 不用两个??，写条件表达式
+</span><span class="c1"></span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">f1</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">temp</span> <span class="p">=</span> <span class="n">GetName</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">temp</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">?</span> <span class="n">GetName</span><span class="p">():</span><span class="s">&#34;test2&#34;</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>实际上，??在复合情形中，更好用。</p>
@@ -1227,22 +1169,22 @@ Nullable&lt;<span style="color:#458;font-weight:bold">int</span>&gt; i = <span s
 <p>声明一个nullable类型（可空类型）的语法如下：</p>
 <p><code>&lt;data_type&gt; ? &lt;variable_name&gt; = null;</code></p>
 <p>下面的示例展示可空数据类型的用法：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#458;font-weight:bold">int?</span> num1 = <span style="color:#000;font-weight:bold">null</span>;
-<span style="color:#458;font-weight:bold">int?</span> num2 = <span style="color:#099">45</span>;
-<span style="color:#458;font-weight:bold">double?</span> num3 = <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">double?</span>();
-<span style="color:#458;font-weight:bold">double?</span> num4 = <span style="color:#099">3.14157</span>;
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="kt">int?</span> <span class="n">num1</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="kt">int?</span> <span class="n">num2</span> <span class="p">=</span> <span class="m">45</span><span class="p">;</span>
+<span class="kt">double?</span> <span class="n">num3</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">double?</span><span class="p">();</span>
+<span class="kt">double?</span> <span class="n">num4</span> <span class="p">=</span> <span class="m">3.14157</span><span class="p">;</span>
 
-<span style="color:#458;font-weight:bold">bool?</span> boolval = <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">bool?</span>(); <span style="color:#998;font-style:italic">// 空的布尔值
+<span class="kt">bool?</span> <span class="n">boolval</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">bool?</span><span class="p">();</span> <span class="c1">// 空的布尔值
 </span></code></pre></td></tr></table>
 </div>
 </div><h2 id="正则表达式">正则表达式</h2>
@@ -1251,66 +1193,66 @@ Nullable&lt;<span style="color:#458;font-weight:bold">int</span>&gt; i = <span s
 <h2 id="partial-class基础">partial class基础</h2>
 <p>C# 2.0就可以将类，结构或接口的定义分拆到两个或多个源文件中，在类声明前添加partial关键字即可。</p>
 <p>例如：下面的PartialTest类</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">PartialTest</span>
-{
-　　<span style="color:#458;font-weight:bold">string</span> Str_FieldTest; 
-　　<span style="color:#458;font-weight:bold">int</span> Int_FieldTest; 
-　　<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">void</span> DoTest() 
-　　{ 
-　　　　Debug.Print(<span style="color:#d14">&#34;Test&#34;</span>); 
-　　}
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">PartialTest</span>
+<span class="p">{</span>
+　　<span class="kt">string</span> <span class="n">Str_FieldTest</span><span class="p">;</span> 
+　　<span class="kt">int</span> <span class="n">Int_FieldTest</span><span class="p">;</span> 
+　　<span class="k">public</span> <span class="k">void</span> <span class="n">DoTest</span><span class="p">()</span> 
+　　<span class="p">{</span> 
+　　　　<span class="n">Debug</span><span class="p">.</span><span class="n">Print</span><span class="p">(</span><span class="s">&#34;Test&#34;</span><span class="p">);</span> 
+　　<span class="p">}</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>可在不同的源文件中拆写成下面形式：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">partial</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">PartialTest</span>
-{
-    <span style="color:#458;font-weight:bold">string</span> Str_FieldTest;
-    <span style="color:#458;font-weight:bold">int</span> Int_FieldTest;
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">partial</span> <span class="k">class</span> <span class="nc">PartialTest</span>
+<span class="p">{</span>
+    <span class="kt">string</span> <span class="n">Str_FieldTest</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">Int_FieldTest</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>另一个文件中写：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">partial</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">PartialTest</span>
-{
-    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">void</span> DoTest()
-    {
-    Debug.Print(<span style="color:#d14">&#34;Test&#34;</span>);
-    }
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">partial</span> <span class="k">class</span> <span class="nc">PartialTest</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="n">DoTest</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="n">Debug</span><span class="p">.</span><span class="n">Print</span><span class="p">(</span><span class="s">&#34;Test&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -1334,32 +1276,32 @@ Nullable&lt;<span style="color:#458;font-weight:bold">int</span>&gt; i = <span s
 <li>在某一分部定义中声明的任何类、结构或接口成员可供所有其他部分使用；</li>
 <li>嵌套类型可以是分部的，即使它们所嵌套于的类型本身并不是分部的也如此。如下所示：</li>
 </ol>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Container</span>
-{
-    <span style="color:#000;font-weight:bold">partial</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Nested</span>
-    {
-        <span style="color:#000;font-weight:bold">void</span> Test1();
-    }
-    <span style="color:#000;font-weight:bold">partial</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Nested</span>
-    {
-        <span style="color:#000;font-weight:bold">void</span> Test2();
-    }
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">Container</span>
+<span class="p">{</span>
+    <span class="k">partial</span> <span class="k">class</span> <span class="nc">Nested</span>
+    <span class="p">{</span>
+        <span class="k">void</span> <span class="n">Test1</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">partial</span> <span class="k">class</span> <span class="nc">Nested</span>
+    <span class="p">{</span>
+        <span class="k">void</span> <span class="n">Test2</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -1368,14 +1310,14 @@ Nullable&lt;<span style="color:#458;font-weight:bold">int</span>&gt; i = <span s
 <ol>
 <li>要作为同一类型的各个部分的所有分部类型定义都必须使用partial 进行修饰。如下所示：</li>
 </ol>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">partial</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">A</span> { }
-<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">A</span> { } <span style="color:#998;font-style:italic">// Error, must also be marked partial
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">A</span> <span class="p">{</span> <span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">A</span> <span class="p">{</span> <span class="p">}</span> <span class="c1">// Error, must also be marked partial
 </span></code></pre></td></tr></table>
 </div>
 </div><ol>
@@ -1623,12 +1565,6 @@ Nullable&lt;<span style="color:#458;font-weight:bold">int</span>&gt; i = <span s
 
 
 
-
-  
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
 
 
 

@@ -69,7 +69,7 @@
 <meta itemprop="name" content="HTTP">
 <meta itemprop="description" content="网络 HTTP 条件 GET 使用的方法？ ​ 客户端向服务器发送一个包询问是否在上一次访问网站的时间后是否更改了页面，如果服务器没有更新，显然不需要把整个网页传"><meta itemprop="datePublished" content="2019-08-17T18:56:34+00:00" />
 <meta itemprop="dateModified" content="2019-08-17T18:56:34+00:00" />
-<meta itemprop="wordCount" content="582">
+<meta itemprop="wordCount" content="594">
 <meta itemprop="keywords" content="http," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="HTTP"/>
 <meta name="twitter:description" content="网络 HTTP 条件 GET 使用的方法？ ​ 客户端向服务器发送一个包询问是否在上一次访问网站的时间后是否更改了页面，如果服务器没有更新，显然不需要把整个网页传"/>
@@ -161,64 +161,6 @@
   </ul>
 </nav>
 
-
-  
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
 
   
 
@@ -344,7 +286,7 @@
             <a href="https://bomir.top/categories/http%E5%8D%8F%E8%AE%AE/"> HTTP协议 </a>
             
           </div>
-        <span class="more-meta"> 约 582 字 </span>
+        <span class="more-meta"> 约 594 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -376,13 +318,35 @@
 <p>​	客户端向服务器发送一个包询问是否在上一次访问网站的时间后是否更改了页面，如果服务器没有更新，显然不需要把整个网页传给客户端，客户端只要使用本地缓存即可，如果服务器对照客户端给出的时间已经更新了客户端请求的网页，则发送这个更新了的网页给用户。</p>
 <p>​	下面是一个具体的发送接受报文示例：</p>
 <p>​	客户端发送请求：</p>
-<pre><code>GET / HTTP/1.1  
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">GET / HTTP/1.1  
 Host: www.sina.com.cn:80  
 If-Modified-Since:Thu, 4 Feb 2010 20:39:13 GMT  
 Connection: Close
-</code></pre><pre><code>第一次请求时，服务器端返回请求数据，之后的请求，服务器根据请求中的 If-Modified-Since 字段判断响应文件没有更新，如果没有更新，服务器返回一个 304 Not Modified响应，告诉浏览器请求的资源在浏览器上没有更新，可以使用已缓存的上次获取的文件
+</code></pre></td></tr></table>
+</div>
+</div><pre><code>第一次请求时，服务器端返回请求数据，之后的请求，服务器根据请求中的 If-Modified-Since 字段判断响应文件没有更新，如果没有更新，服务器返回一个 304 Not Modified响应，告诉浏览器请求的资源在浏览器上没有更新，可以使用已缓存的上次获取的文件
 </code></pre>
-<pre><code>HTTP/1.0 304 Not Modified  
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">HTTP/1.0 304 Not Modified  
 Date: Thu, 04 Feb 2010 12:38:41 GMT  
 Content-Type: text/html  
 Expires: Thu, 04 Feb 2010 12:39:41 GMT  
@@ -390,7 +354,9 @@ Last-Modified: Thu, 04 Feb 2010 12:29:04 GMT
 Age: 28  
 X-Cache: HIT from sy32-21.sina.com.cn  
 Connection: close 
-</code></pre><h2 id="cdn">CDN</h2>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="cdn">CDN</h2>
 <p>​	CDN的全称是Content Delivery Network，即内容分发网络，是指一种通过互联网互相连接的电脑网络系统，利用最靠近每位用户的服务器，更快、更可靠地将音乐、图片、视频、应用程序及其他文件发送给用户，来提供高性能、可扩展性及低成本的网络内容传递给用户</p>
 <p>​	内容分发网络节点会在多个地点，多个不同的网络上摆放。这些节点之间会动态的互相传输内容，对用户的下载行为最优化，并借此减少内容供应者所需要的带宽成本，改善用户的下载速度，提高系统的稳定性。</p>
 <p>内容分发网络所需要的节点数量随着需求而不同，依照所需要服务的对象大小，有可能有数万台服务器;</p>
@@ -594,12 +560,6 @@ Connection: close
 
 
 
-
-  
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
 
 
 

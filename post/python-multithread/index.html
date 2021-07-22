@@ -163,64 +163,6 @@
 
 
   
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
-
-  
 
   
 
@@ -456,56 +398,56 @@
 <p>​	而且，主线程应当作为一个好的管理者，它要了解每个线程都要做些什么事，线程都需要什么数据和参数，以及在线程结束的时候，它们都提供了什么结果。这样，主线程就可以把各个线程的结果组合成一个有意义的最后结果。</p>
 <p>​	实际上Python提供了几个用于多线程编程的模块，包括thread,threading和Queue等。thread和threading模块允许程序员创建和管理线程。thread模块提供了基本的线程和锁的支持，而threading提供了更高级别，功能更强的线程管理功能。Queue模块允许用户创建一个用于多个线程之间共享数据的队列数据结构。</p>
 <h5 id="没有线程支持的情况">没有线程支持的情况</h5>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic"># -*- coding:utf-8 -*-</span>
-<span style="color:#998;font-style:italic">#onethr.py</span>
-<span style="color:#998;font-style:italic">#!/usr/bin/env python</span>
-<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">time</span> <span style="color:#000;font-weight:bold">import</span> sleep,ctime
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*-</span>
+<span class="c1">#onethr.py</span>
+<span class="c1">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span><span class="n">ctime</span>
 
-<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">loop0</span>():
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;start loop0 at:&#39;</span>,ctime())
-    sleep(<span style="color:#099">4</span>)
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;loop0 done at:&#39;</span>,ctime())
+<span class="k">def</span> <span class="nf">loop0</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop0 at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop0 done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
 
-<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">loop1</span>():
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;start loop1 at:&#39;</span>, ctime())
-    sleep(<span style="color:#099">2</span>)
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;loop1 done at:&#39;</span>, ctime())
+<span class="k">def</span> <span class="nf">loop1</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop1 at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop1 done at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
 
-<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">main</span>():
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;starting at:&#39;</span>, ctime())
-    loop0()
-    loop1()
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;all done at:&#39;</span>,ctime())
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;starting at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
+    <span class="n">loop0</span><span class="p">()</span>
+    <span class="n">loop1</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;all done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
 
-<span style="color:#000;font-weight:bold">if</span> __name__ <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;__main__&#34;</span>:
-    main()
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>​	我们会使用time.sleep()函数来演示线程是怎样工作的。time.sleep()需要一个浮点型参数，来指定&quot;睡眠&quot;的时间(单位秒)。这就意味着，程序的运行会被挂起指定的时间。</p>
@@ -569,60 +511,60 @@
 <p>​	start_new_thread()函数式thread模块的一个关键函数，它的语法与内建的apply()函数完全一样，其参数为:函数，函数的参数以及可选的关键字参数。不同的是，函数不是在主线程里运行，而是产生一个新的线程来运行这个函数。</p>
 <p>​	这里我们执行的是和onethr.py中一样的循环，不同的是，这一次我们使用的是thread模块提供的多线程的机制。两个循环并发的执行（显然，短的那个先结束）。总的运行时间为最慢的那个线程的运行时间，而不是所有线程的运行时间之和。</p>
 <p>​</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic"># -*- coding:utf-8 -*-</span>
-<span style="color:#998;font-style:italic">#!/usr/bin/env python</span>
-<span style="color:#998;font-style:italic">#mtsleep1.py</span>
-<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">thread</span>  <span style="color:#998;font-style:italic">#需要python2环境</span>
-<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">time</span> <span style="color:#000;font-weight:bold">import</span> sleep,ctime
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*-</span>
+<span class="c1">#!/usr/bin/env python</span>
+<span class="c1">#mtsleep1.py</span>
+<span class="kn">import</span> <span class="nn">thread</span>  <span class="c1">#需要python2环境</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span><span class="n">ctime</span>
 
-<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">loop0</span>():
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;start loop0 at:&#39;</span>,ctime())
-    sleep(<span style="color:#099">4</span>)
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;loop0 done at:&#39;</span>,ctime())
+<span class="k">def</span> <span class="nf">loop0</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop0 at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop0 done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
 
-<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">loop1</span>():
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;start loop1 at:&#39;</span>, ctime())
-    sleep(<span style="color:#099">2</span>)
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;loop1 done at:&#39;</span>, ctime())
+<span class="k">def</span> <span class="nf">loop1</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop1 at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop1 done at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
 
-<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">main</span>():
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;starting at:&#39;</span>, ctime())
-    thread<span style="color:#000;font-weight:bold">.</span>start_new_thread(loop0,())
-    thread<span style="color:#000;font-weight:bold">.</span>start_new_thread(loop1,())
-    sleep(<span style="color:#099">6</span>)
-    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;all done at:&#39;</span>,ctime())
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;starting at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
+    <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">loop0</span><span class="p">,())</span>
+    <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">loop1</span><span class="p">,())</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;all done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
 
-<span style="color:#000;font-weight:bold">if</span> __name__ <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;__main__&#34;</span>:
-    main()
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>​	这个程序的输出与之前的输出大不相同，之前是运行了6,7秒，而现在则是4秒，是最长的循环的运行时间和其它代码的时间之和。睡眠4秒和睡眠2秒是并发执行的，这样就使得总的运行时间被缩短了。loop1在loop0前面就结束了，而且程序多了一个sleep(6)的函数调用。为什么要加入sleep(6)，这是因为如果没有让主线程停下来，那主线程就会运行下一条语句，显示&quot;all done&quot;，然后就关闭了运行着的loop0()和loop1()的两个线程，退出了。</p>
@@ -852,12 +794,6 @@
 
 
 
-
-  
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
 
 
 

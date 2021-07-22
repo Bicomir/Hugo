@@ -69,7 +69,7 @@
 <meta itemprop="name" content="git入门">
 <meta itemprop="description" content="Git入门 Git介绍 ​ 版本控制。 牛X的互联网，牛X的大神们都在用 完整的版本控制功能，解决多人协作的问题 提高开发效率 程序员的必备技能，务必学习"><meta itemprop="datePublished" content="2017-10-17T22:01:14+00:00" />
 <meta itemprop="dateModified" content="2017-10-17T22:01:14+00:00" />
-<meta itemprop="wordCount" content="1600">
+<meta itemprop="wordCount" content="1809">
 <meta itemprop="keywords" content="git," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="git入门"/>
 <meta name="twitter:description" content="Git入门 Git介绍 ​ 版本控制。 牛X的互联网，牛X的大神们都在用 完整的版本控制功能，解决多人协作的问题 提高开发效率 程序员的必备技能，务必学习"/>
@@ -161,64 +161,6 @@
   </ul>
 </nav>
 
-
-  
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
 
   
 
@@ -344,7 +286,7 @@
             <a href="https://bomir.top/categories/git/"> Git </a>
             
           </div>
-        <span class="more-meta"> 约 1600 字 </span>
+        <span class="more-meta"> 约 1809 字 </span>
           <span class="more-meta"> 预计阅读 4 分钟 </span>
 
         
@@ -415,16 +357,194 @@
 <h2 id="git工作流">Git工作流</h2>
 <p>​	工作区&ndash;&gt;暂存区&ndash;&gt;版本库</p>
 <p>​	假设有这么个故事是这样展开的，有个程序员刚去上班，每天产品经理会给他布置任务，任务以bash demo命名。</p>
-<pre><code class="language-Git" data-lang="Git"># 1.第一天产品经理bash demo任务完成
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 1.第一天产品经理bash demo任务完成
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git status
 On branch master
 Untracked files:
-  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+  (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)
 
         bash_demo.txt
 
-nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+nothing added to commit but untracked files present (use &#34;git add&#34; to track)
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git add bash_demo.txt
 
@@ -432,13 +552,13 @@ wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git status
 On branch master
 Changes to be committed:
-  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
 
         new file:   bash_demo.txt
 
 
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git commit -m &quot;bash 1st commit&quot;
+$ git commit -m &#34;bash 1st commit&#34;
 [master 9adb6ec] bash 1st commit
  1 file changed, 1 insertion(+)
  create mode 100644 bash_demo.txt
@@ -453,12 +573,12 @@ wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git status
 On branch master
 Changes not staged for commit:
-  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
+  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
 
         modified:   bash_demo.txt
 
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
 
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git add bash_demo.txt
@@ -468,7 +588,7 @@ wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git status
 On branch master
 Changes to be committed:
-  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
         modified:   bash_demo.txt
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git reset HEAD bash_demo.txt
@@ -479,12 +599,12 @@ wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git status
 On branch master
 Changes not staged for commit:
-  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
+  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
 
         modified:   bash_demo.txt
 
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
 
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git checkout -- bash_demo.txt
@@ -498,12 +618,12 @@ wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git status
 On branch master
 Changes not staged for commit:
-  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
+  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
 
         modified:   bash_demo.txt
 
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
 
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git add bash_demo.txt
@@ -512,13 +632,13 @@ wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git status
 On branch master
 Changes to be committed:
-  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
 
         modified:   bash_demo.txt
 
 
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git commit -m &quot;2nd commit&quot;
+$ git commit -m &#34;2nd commit&#34;
 [master 1111222] 2nd commit
  1 file changed, 2 insertions(+), 1 deletion(-)
 
@@ -549,7 +669,7 @@ Date:   Mon Jul 8 19:43:06 2019 +0800
 
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git rests --hard
-git: 'rests' is not a git command. See 'git --help'.
+git: &#39;rests&#39; is not a git command. See &#39;git --help&#39;.
 
 The most similar command is
         reset
@@ -564,7 +684,7 @@ nothing to commit, working tree clean
 # 第三天，被产品经理告知，bash demo这个需求不需要，要求删除。
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git rm bash_demo.txt
-rm 'bash_demo.txt'
+rm &#39;bash_demo.txt&#39;
 
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ ls -a
@@ -574,13 +694,13 @@ wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git status
 On branch master
 Changes to be committed:
-  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
 
         deleted:    bash_demo.txt
 
 
 wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git commit -m &quot;delete bash_demo&quot;
+$ git commit -m &#34;delete bash_demo&#34;
 [master 311da2e] delete bash_demo
  1 file changed, 1 deletion(-)
  delete mode 100644 bash_demo.txt
@@ -589,7 +709,9 @@ wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
 $ git status
 On branch master
 nothing to commit, working tree clean
-</code></pre><p><img src="http://m.qpic.cn/psb?/V11LBpl80UoTHW/3Wnao1ErGHjLwJhR6csmZnFDUGFWlTJD7TVNEJCE15w!/b/dL8AAAAAAAAA&amp;bo=xQKjAQAAAAADB0c!&amp;rf=viewer_4" alt=""></p>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://m.qpic.cn/psb?/V11LBpl80UoTHW/3Wnao1ErGHjLwJhR6csmZnFDUGFWlTJD7TVNEJCE15w!/b/dL8AAAAAAAAA&amp;bo=xQKjAQAAAAADB0c!&amp;rf=viewer_4" alt=""></p>
 <h2 id="本地与远程仓库">本地与远程仓库</h2>
 <h4 id="远程仓库">远程仓库</h4>
 <p>​	我所熟知的远程仓库国外有GitHub、Bitbucket、GitLab,Azure Devops,国内有Coding，实际开发中国内或国外看场景都有可能用的到，不管仓库是什么，大体上差不多，在这里以熟知的GitHub为例。</p>
@@ -606,21 +728,41 @@ nothing to commit, working tree clean
 <p>​	方便团队协作开发，就是把远端的代码复制一份到本地。</p>
 <p><code>git clone git@github.com:tylerdemo/demo4.git</code></p>
 <h2 id="标签管理">标签管理</h2>
-<pre><code class="language-Git" data-lang="Git"># 查看所有标签
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 查看所有标签
 git tag
 
 # 创建标签
 git tag name
 
 # 指定提交信息
-git tag -a name -m &quot;comment&quot;
+git tag -a name -m &#34;comment&#34;
 
 # 删除标签
 git tag -d name
 
 # 标签发布
 git push origin name
-</code></pre><p>​	<code>git tag -&gt; git push</code>,以向远端仓库推送一个标签V1.0.1为例，命令如下:</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>​	<code>git tag -&gt; git push</code>,以向远端仓库推送一个标签V1.0.1为例，命令如下:</p>
 <p>​	<code>git tag</code></p>
 <p>​	<code>git tag v1.0.1</code></p>
 <p>​	<code>git tag</code></p>
@@ -630,28 +772,55 @@ git push origin name
 <p>创建自己的分支，既安全又不影响工作。</p>
 <p><code>git branch -&gt; git cheakout -&gt; git merge</code></p>
 <p><img src="http://m.qpic.cn/psb?/V11LBpl80UoTHW/MSfht2iCZOQzjRGvE2Lu2wGNShY2.qwvMTwHQZ7OWUg!/b/dLgAAAAAAAAA&amp;bo=OQN3AQAAAAADB24!&amp;rf=viewer_4" alt=""></p>
-<pre><code># 第一次任务
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 第一次任务
 git init
 git status
-echo &quot;first branch demo&quot; &gt;&gt; branch.txt
+echo &#34;first branch demo&#34; &gt;&gt; branch.txt
 git status
 git add branch.txt
-git commit -m &quot;first branch commit&quot;
+git commit -m &#34;first branch commit&#34;
 git status
 # 需要创建分支
 git branch feature_x   # 创建分支
 git branch # 查看当前分支
 git cheakout feature_x # 切换分支
-echo &quot;new feature add&quot; &gt;&gt; branch.txt
+echo &#34;new feature add&#34; &gt;&gt; branch.txt
 git add branch,txt
-git commit -m &quot;new feature add&quot;
+git commit -m &#34;new feature add&#34;
 git status
 # 新代码合并到master分支上
 git cheakout master
 git merge feature_x
 cat branch.txt
 git branch -d feature_x # 删除分支
-</code></pre><p>​	建议平时为提高开发效率使用source tree,高级的一些用法用命令行。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>​	建议平时为提高开发效率使用source tree,高级的一些用法用命令行。</p>
 <p>​	在这里，只是记录了常见的git命令，实际上高级玩家的玩法会复杂的多，后期再逐步积累吧，</p>
 
     </div>
@@ -853,12 +1022,6 @@ git branch -d feature_x # 删除分支
 
 
 
-
-  
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
 
 
 

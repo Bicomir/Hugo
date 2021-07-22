@@ -163,64 +163,6 @@
 
 
   
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
-
-  
 
   
 
@@ -453,56 +395,56 @@
 <p>②浅拷贝：创建一个新的对象，但它包含的是对原始对象中包含项的引用（如果用引用的方式修改其中一个对象，另外一个也会修改改变）{1,完全切片方法；2，工厂函数，如list()；3，copy模块的copy()函数}</p>
 <p>③深拷贝：创建一个新的对象，并且递归的复制它所包含的对象（修改其中一个，另外一个不会改变）{copy模块的deep.deepcopy()函数}</p>
 <p>下面举例说明:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">copy</span>
-a <span style="color:#000;font-weight:bold">=</span> [<span style="color:#099">1</span>,<span style="color:#099">2</span>,<span style="color:#099">3</span>,<span style="color:#099">4</span>,[<span style="color:#d14">&#39;a&#39;</span>,<span style="color:#d14">&#39;b&#39;</span>]]
-b <span style="color:#000;font-weight:bold">=</span> a <span style="color:#998;font-style:italic">#引用，除非直接给a重新赋值，否则a变则b变，b变则a变</span>
-c <span style="color:#000;font-weight:bold">=</span> copy<span style="color:#000;font-weight:bold">.</span>copy(a)
-<span style="color:#998;font-style:italic">#浅拷贝，只会拷贝父对象， 不会拷贝父对象中的子对象，所以若a的子对象变则c 变,但是父对象变c不会变</span>
-d <span style="color:#000;font-weight:bold">=</span> copy<span style="color:#000;font-weight:bold">.</span>deepcopy(a) <span style="color:#998;font-style:italic">#深拷贝，完全拷贝，完全独立于原对象，a变它也不变</span>
-a<span style="color:#000;font-weight:bold">.</span>append(<span style="color:#099">5</span>) <span style="color:#998;font-style:italic">#改变父对象</span>
-a[<span style="color:#099">4</span>]<span style="color:#000;font-weight:bold">.</span>append(<span style="color:#d14">&#39;c&#39;</span>) <span style="color:#998;font-style:italic">#改变父对象中的 [&#39;a&#39;, &#39;b&#39;]子对象</span>
-<span style="color:#0086b3">print</span>(a) <span style="color:#998;font-style:italic">#a = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;],5]</span>
-<span style="color:#0086b3">print</span>(b) <span style="color:#998;font-style:italic">#b = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;],5]</span>
-<span style="color:#0086b3">print</span>(c) <span style="color:#998;font-style:italic">#c = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]]</span>
-<span style="color:#0086b3">print</span>(d) <span style="color:#998;font-style:italic">#d = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;]]</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="c1">#引用，除非直接给a重新赋值，否则a变则b变，b变则a变</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="c1">#浅拷贝，只会拷贝父对象， 不会拷贝父对象中的子对象，所以若a的子对象变则c 变,但是父对象变c不会变</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#深拷贝，完全拷贝，完全独立于原对象，a变它也不变</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">#改变父对象</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="c1">#改变父对象中的 [&#39;a&#39;, &#39;b&#39;]子对象</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#a = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;],5]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1">#b = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;],5]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1">#c = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1">#d = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;]]</span>
 
 
-<span style="color:#d14">&#39;&#39;&#39;
-</span><span style="color:#d14">再谈一下=，copy和deepcopy,浅拷贝和深拷贝.
-</span><span style="color:#d14">应该这样来说copy是浅拷贝，oringin如果改变，那么copy就随之改变。
-</span><span style="color:#d14">而deepcopy并没有变，更加我们对复制的直觉定义。
-</span><span style="color:#d14">原理上解释:
-</span><span style="color:#d14">Python 存储变量的方法跟其他 OOP 语言不同。它与其说是把值赋给变量，不如说是给变量建立了一个到具体值的 reference。
-</span><span style="color:#d14">参考链接:https://blog.csdn.net/qq_32907349/article/details/52190796
-</span><span style="color:#d14">&#39;&#39;&#39;</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">再谈一下=，copy和deepcopy,浅拷贝和深拷贝.
+</span><span class="s1">应该这样来说copy是浅拷贝，oringin如果改变，那么copy就随之改变。
+</span><span class="s1">而deepcopy并没有变，更加我们对复制的直觉定义。
+</span><span class="s1">原理上解释:
+</span><span class="s1">Python 存储变量的方法跟其他 OOP 语言不同。它与其说是把值赋给变量，不如说是给变量建立了一个到具体值的 reference。
+</span><span class="s1">参考链接:https://blog.csdn.net/qq_32907349/article/details/52190796
+</span><span class="s1">&#39;&#39;&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>7.介绍一下except的用法和作用？</strong></p>
@@ -569,48 +511,48 @@ a[<span style="color:#099">4</span>]<span style="color:#000;font-weight:bold">.<
 <p><strong>10.如何用Python来进行查询和替换一个文本字符串？</strong></p>
 <p>答：可以使用re模块的sub()函数和subn()函数来进行查询和替换。</p>
 <p>格式:sub(replacement, string[,count=0])（replacement是被替换成的文本，string是需要被替换的文本，count是一个可选参数，指最大被替换的数量）</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#555">re</span>
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> p <span style="color:#000;font-weight:bold">=</span> re<span style="color:#000;font-weight:bold">.</span>compile(<span style="color:#d14">&#39;blue|white|red&#39;</span>)
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#0086b3">print</span>(p<span style="color:#000;font-weight:bold">.</span>sub(<span style="color:#d14">&#39;color&#39;</span>,<span style="color:#d14">&#39;blue socks and red shoes&#39;</span>))
-color socks <span style="color:#000;font-weight:bold">and</span> color shoes
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#0086b3">print</span>(p<span style="color:#000;font-weight:bold">.</span>sub(<span style="color:#d14">&#39;color&#39;</span>,<span style="color:#d14">&#39;blue socks and red shoes&#39;</span>,count <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>))
-color socks <span style="color:#000;font-weight:bold">and</span> red shoes
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> 
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">re</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;blue|white|red&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span><span class="s1">&#39;blue socks and red shoes&#39;</span><span class="p">))</span>
+<span class="n">color</span> <span class="n">socks</span> <span class="ow">and</span> <span class="n">color</span> <span class="n">shoes</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span><span class="s1">&#39;blue socks and red shoes&#39;</span><span class="p">,</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">color</span> <span class="n">socks</span> <span class="ow">and</span> <span class="n">red</span> <span class="n">shoes</span>
+<span class="o">&gt;&gt;&gt;</span> 
 </code></pre></td></tr></table>
 </div>
 </div><p>subn()方法执行的效果跟sub()一样，不过它会返回一个二维数组，包括替换后的新字符串和总共替换的数量。</p>
 <p>11.Python里面match()和search()的区别？</p>
 <p>答：re模块中match(pattern,string[,flags])，检查string的开头是否与pattern匹配。</p>
 <p>re模块中re.search(pattern,string[,flags]),，在string搜索pattern的第一个搜索值。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#0086b3">print</span>(re<span style="color:#000;font-weight:bold">.</span>match(<span style="color:#d14">&#39;super&#39;</span>,<span style="color:#d14">&#39;superstition&#39;</span>)<span style="color:#000;font-weight:bold">.</span>span())
-(<span style="color:#099">0</span>, <span style="color:#099">5</span>)
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#0086b3">print</span>(re<span style="color:#000;font-weight:bold">.</span>search(<span style="color:#d14">&#39;super&#39;</span>,<span style="color:#d14">&#39; insuperable&#39;</span>)<span style="color:#000;font-weight:bold">.</span>span())
-(<span style="color:#099">3</span>, <span style="color:#099">8</span>)
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#0086b3">print</span>(re<span style="color:#000;font-weight:bold">.</span>search(<span style="color:#d14">&#39;super&#39;</span>,<span style="color:#d14">&#39;insuperable&#39;</span>)<span style="color:#000;font-weight:bold">.</span>span())
-(<span style="color:#099">2</span>, <span style="color:#099">7</span>)
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;super&#39;</span><span class="p">,</span><span class="s1">&#39;superstition&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+<span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;super&#39;</span><span class="p">,</span><span class="s1">&#39; insuperable&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;super&#39;</span><span class="p">,</span><span class="s1">&#39;insuperable&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>12.用python匹配HTML tag的时候，&lt;.*&gt;和&lt;.*?&gt;有什么区别？</strong></p>
@@ -644,28 +586,28 @@ color socks <span style="color:#000;font-weight:bold">and</span> red shoes
 <p>双引号:s5 =  “Let’ s go”</p>
 <p>s6 = ‘I realy like“python”!’</p>
 <p>这就是单引号和双引号都可以表示字符串的原因了。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> s4 <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;Let</span><span style="color:#d14">\&#39;</span><span style="color:#d14">s  go&#39;</span>
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> s4
-<span style="color:#d14">&#34;Let&#39;s  go&#34;</span>
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> s5 <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Let&#39; s go&#34;</span>
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> s5
-<span style="color:#d14">&#34;Let&#39; s go&#34;</span>
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> s6 <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;I really like &#34;python&#34; !&#39;</span>
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> s6
-<span style="color:#d14">&#39;I really like &#34;python&#34; !&#39;</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">s4</span> <span class="o">=</span> <span class="s1">&#39;Let</span><span class="se">\&#39;</span><span class="s1">s  go&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s4</span>
+<span class="s2">&#34;Let&#39;s  go&#34;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s5</span> <span class="o">=</span> <span class="s2">&#34;Let&#39; s go&#34;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s5</span>
+<span class="s2">&#34;Let&#39; s go&#34;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s6</span> <span class="o">=</span> <span class="s1">&#39;I really like &#34;python&#34; !&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s6</span>
+<span class="s1">&#39;I really like &#34;python&#34; !&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="2python常见面试题2">(2)Python常见面试题2</h4>
@@ -726,60 +668,60 @@ color socks <span style="color:#000;font-weight:bold">and</span> red shoes
 <p>一个包含许多Python代码的文件夹是一个包。一个包可以包含模块和子文件夹。</p>
 <h4 id="3python常见面试题3">(3)Python常见面试题3</h4>
 <p><strong>1.补充缺失的代码</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">print_directory_contents</span>(sPath):
-    <span style="color:#d14">&#34;&#34;&#34;
-</span><span style="color:#d14">    1.这个函数接受文件夹的名称作为输入参数
-</span><span style="color:#d14">    2.返回该文件夹中的路径
-</span><span style="color:#d14">    3.以及其包含文件夹中文件的路径
-</span><span style="color:#d14">    &#34;&#34;&#34;</span>
-    <span style="color:#998;font-style:italic"># 补充代码</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">print_directory_contents</span><span class="p">(</span><span class="n">sPath</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    1.这个函数接受文件夹的名称作为输入参数
+</span><span class="s2">    2.返回该文件夹中的路径
+</span><span class="s2">    3.以及其包含文件夹中文件的路径
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># 补充代码</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic"># -*- coding:utf-8 -*-</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*-</span>
 
-<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">os</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
-<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">print_directory_contents</span>(sPath):
-    <span style="color:#000;font-weight:bold">for</span> sChild <span style="color:#000;font-weight:bold">in</span> os<span style="color:#000;font-weight:bold">.</span>listdir(sPath):
-        sChildPath <span style="color:#000;font-weight:bold">=</span> os<span style="color:#000;font-weight:bold">.</span>path<span style="color:#000;font-weight:bold">.</span>join(sPath,sChild)
-        <span style="color:#000;font-weight:bold">if</span> os<span style="color:#000;font-weight:bold">.</span>path<span style="color:#000;font-weight:bold">.</span>isdir(sChildPath):
-            print_directory_contents(sChildPath)
-        <span style="color:#000;font-weight:bold">else</span>:
-            <span style="color:#0086b3">print</span>(sChildPath)
+<span class="k">def</span> <span class="nf">print_directory_contents</span><span class="p">(</span><span class="n">sPath</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">sChild</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">sPath</span><span class="p">):</span>
+        <span class="n">sChildPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sPath</span><span class="p">,</span><span class="n">sChild</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">sChildPath</span><span class="p">):</span>
+            <span class="n">print_directory_contents</span><span class="p">(</span><span class="n">sChildPath</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">sChildPath</span><span class="p">)</span>
 
 
-<span style="color:#000;font-weight:bold">if</span> __name__ <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;__main__&#34;</span>:
-    print_directory_contents(<span style="color:#d14">&#34;E:\TestWork&#34;</span>)
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">print_directory_contents</span><span class="p">(</span><span class="s2">&#34;E:\TestWork&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>特别要注意以下几个点:</p>
@@ -792,24 +734,24 @@ color socks <span style="color:#000;font-weight:bold">and</span> red shoes
 <li>坚持KISS原则！保持简单，不过脑子就能懂！(保持简单易懂)</li>
 </ul>
 <p><strong>2.阅读下列代码，写出A0，A1至An的最终值</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A0 <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">dict</span>(<span style="color:#0086b3">zip</span>((<span style="color:#d14">&#39;a&#39;</span>,<span style="color:#d14">&#39;b&#39;</span>,<span style="color:#d14">&#39;c&#39;</span>,<span style="color:#d14">&#39;d&#39;</span>,<span style="color:#d14">&#39;e&#39;</span>),(<span style="color:#099">1</span>,<span style="color:#099">2</span>,<span style="color:#099">3</span>,<span style="color:#099">4</span>,<span style="color:#099">5</span>)))
-A1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">range</span>(<span style="color:#099">10</span>)
-A2 <span style="color:#000;font-weight:bold">=</span> [i <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> A1 <span style="color:#000;font-weight:bold">if</span> i <span style="color:#000;font-weight:bold">in</span> A0]
-A3 <span style="color:#000;font-weight:bold">=</span> [A0[s] <span style="color:#000;font-weight:bold">for</span> s <span style="color:#000;font-weight:bold">in</span> A0]
-A4 <span style="color:#000;font-weight:bold">=</span> [i <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> A1 <span style="color:#000;font-weight:bold">if</span> i <span style="color:#000;font-weight:bold">in</span> A3]
-A5 <span style="color:#000;font-weight:bold">=</span> [i:i<span style="color:#000;font-weight:bold">*</span>i <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> A1]
-A6 <span style="color:#000;font-weight:bold">=</span> [[i,i<span style="color:#000;font-weight:bold">*</span>i] <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> A1]
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">A0</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">((</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)))</span>
+<span class="n">A1</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A0</span><span class="p">]</span>
+<span class="n">A3</span> <span class="o">=</span> <span class="p">[</span><span class="n">A0</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">A0</span><span class="p">]</span>
+<span class="n">A4</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A3</span><span class="p">]</span>
+<span class="n">A5</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span><span class="p">]</span>
+<span class="n">A6</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span><span class="p">]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>答案:</p>
@@ -829,26 +771,26 @@ A6 <span style="color:#000;font-weight:bold">=</span> [[i,i<span style="color:#0
 <p><em><strong>为什么要有版本控制呢？</strong></em></p>
 <p>因为没有版本控制的代码，就像没有杯子的coffee。有时候我们需要写一些一次性的、可以随手扔掉的脚本，这种情况下不作版本控制没关系。但是面对的是大量的代码，使用版本控制系统是有利的。版本控制能够帮你追踪谁对代码库做了什么操作；发现新引入的什么bug;管理你的软件的不同版本和发行版；在团队成员中分享源代码；部署及其他自动化处理。它能让你回滚到出现问题之前的版本，还有很多优良版本的控制功能。</p>
 <p><strong>5.下面代码会输出什么？</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">f</span>(x,l<span style="color:#000;font-weight:bold">=</span>[]):
-    <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">range</span>(x):
-        l<span style="color:#000;font-weight:bold">.</span>append(i<span style="color:#000;font-weight:bold">*</span>i)
-    <span style="color:#0086b3">print</span> l
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">l</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="n">l</span>
 
-f(<span style="color:#099">2</span>)
-f(<span style="color:#099">3</span>,[<span style="color:#099">3</span>,<span style="color:#099">2</span>,<span style="color:#099">1</span>])
-f(<span style="color:#099">3</span>)
+<span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>答案:</p>
@@ -862,54 +804,54 @@ f(<span style="color:#099">3</span>)
 <p>(2)第二个函数调用在一块新的内存中创建了新的列表。l这时指向了新生成的列表。之后再往新列表中添加0,1,4.</p>
 <p>(3)第三个函数调用有些奇怪，它使用了之前内存地址中存储的旧列表。这就是为什么它的前两个元素是0和1了。</p>
 <p>改写成下面的代码运行下或许尝试着理解哈：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> l_mem <span style="color:#000;font-weight:bold">=</span> []
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> l <span style="color:#000;font-weight:bold">=</span> l_mem
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> l
-[]
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">range</span>(<span style="color:#099">2</span>):
-	l<span style="color:#000;font-weight:bold">.</span>append(i<span style="color:#000;font-weight:bold">*</span>i)
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">l_mem</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="n">l_mem</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
+<span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+	<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
 
     
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> l
-[<span style="color:#099">0</span>, <span style="color:#099">1</span>]
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> l <span style="color:#000;font-weight:bold">=</span> [<span style="color:#099">3</span>,<span style="color:#099">2</span>,<span style="color:#099">1</span>]
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">range</span>(<span style="color:#099">3</span>):
-	l<span style="color:#000;font-weight:bold">.</span>append(i<span style="color:#000;font-weight:bold">*</span>i)
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+	<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
 
 	
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> l
-[<span style="color:#099">3</span>, <span style="color:#099">2</span>, <span style="color:#099">1</span>, <span style="color:#099">0</span>, <span style="color:#099">1</span>, <span style="color:#099">4</span>]
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> l <span style="color:#000;font-weight:bold">=</span> l_mem
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> l
-[<span style="color:#099">0</span>, <span style="color:#099">1</span>]
-<span style="color:#000;font-weight:bold">&gt;&gt;&gt;</span> l_mem
-[<span style="color:#099">0</span>, <span style="color:#099">1</span>]
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="n">l_mem</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l_mem</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>6.&ldquo;猴子补丁&rdquo;(monkey patching)指的是什么？这种做法好吗？</strong></p>
@@ -921,42 +863,42 @@ f(<span style="color:#099">3</span>)
 <p>2.在不修改第三方代码的情况下增加原来不支持的功能</p>
 <p>3.在运行时为内存中的对象增加patch而不是在磁盘的源代码中增加</p>
 <p>举一比较实用的例子：很多代码用到import json，后来发现ujson性能更高，如果觉得把每个文件的import json改换成import ujson as json的成本较高，或者说想测试一下用ujson替换json是否符合预期，只需要在入口加上:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic"># main.py</span>
-<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">json</span>
-<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">ujson</span>
-<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">monkey_patch_json</span>():
-    json<span style="color:#000;font-weight:bold">.</span>__name <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;ujson&#39;</span>
-    json<span style="color:#000;font-weight:bold">.</span>dumps <span style="color:#000;font-weight:bold">=</span> ujson<span style="color:#000;font-weight:bold">.</span>dumps
-    json<span style="color:#000;font-weight:bold">.</span>loads <span style="color:#000;font-weight:bold">=</span> ujson<span style="color:#000;font-weight:bold">.</span>loads
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># main.py</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">ujson</span>
+<span class="k">def</span> <span class="nf">monkey_patch_json</span><span class="p">():</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">__name</span> <span class="o">=</span> <span class="s1">&#39;ujson&#39;</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dumps</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">dumps</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">loads</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">loads</span>
 
-monkey_patch_json()
-<span style="color:#0086b3">print</span> <span style="color:#d14">&#39;main.py&#39;</span>,json<span style="color:#000;font-weight:bold">.</span>__name__
-<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">sub</span>
+<span class="n">monkey_patch_json</span><span class="p">()</span>
+<span class="nb">print</span> <span class="s1">&#39;main.py&#39;</span><span class="p">,</span><span class="n">json</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="kn">import</span> <span class="nn">sub</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">json</span>
-<span style="color:#0086b3">print</span> <span style="color:#d14">&#39;sub.py&#39;</span>,json__name__
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<span class="nb">print</span> <span class="s1">&#39;sub.py&#39;</span><span class="p">,</span><span class="n">json__name__</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>运行main.py可以看到的都是输出&rsquo;ujson',说明后面impor的json是被patch了的。</p>
@@ -1171,12 +1113,6 @@ monkey_patch_json()
 
 
 
-
-  
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
 
 
 

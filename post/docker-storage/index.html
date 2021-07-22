@@ -69,7 +69,7 @@
 <meta itemprop="name" content="Docker底层原理介绍">
 <meta itemprop="description" content="docker底层原理介绍 namespace和cgroup的简单理解 namespace:类似于编程语言的的命名空间 controll groups ： controll （system res"><meta itemprop="datePublished" content="2021-02-12T21:19:05+00:00" />
 <meta itemprop="dateModified" content="2021-02-12T21:19:05+00:00" />
-<meta itemprop="wordCount" content="6831">
+<meta itemprop="wordCount" content="6844">
 <meta itemprop="keywords" content="docker," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker底层原理介绍"/>
 <meta name="twitter:description" content="docker底层原理介绍 namespace和cgroup的简单理解 namespace:类似于编程语言的的命名空间 controll groups ： controll （system res"/>
@@ -161,64 +161,6 @@
   </ul>
 </nav>
 
-
-  
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
 
   
 
@@ -344,7 +286,7 @@
             <a href="https://bomir.top/categories/docker/"> Docker </a>
             
           </div>
-        <span class="more-meta"> 约 6831 字 </span>
+        <span class="more-meta"> 约 6844 字 </span>
           <span class="more-meta"> 预计阅读 14 分钟 </span>
 
         
@@ -531,160 +473,160 @@
 <p>题主用的jenkins, 我也用jenkins来展开这个实验吧；</p>
 <h3 id="dockers安装部署jenkins">Dockers安装部署Jenkins</h3>
 <h4 id="查看docker的jenkins镜像版本"><strong>查看docker的jenkins镜像版本</strong></h4>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bomir@morn:~$ docker search jenkins
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">bomir@morn:~$ docker search jenkins
 NAME                                    DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-jenkins                                 Official Jenkins Docker image                   <span style="color:#099">5245</span>      <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>       
-jenkins/jenkins                         The leading open <span style="color:#0086b3">source</span> automation server       <span style="color:#099">2599</span>                 
-jenkinsci/blueocean                     https://jenkins.io/projects/blueocean           <span style="color:#099">628</span>                  
-jenkinsci/jenkins                       Jenkins Continuous Integration and Delivery …   <span style="color:#099">390</span>                  
-jenkins/jnlp-slave                      a Jenkins agent which can connect to Jenkins…   <span style="color:#099">146</span>                  <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-jenkinsci/jnlp-slave                    A Jenkins slave using JNLP to establish conn…   <span style="color:#099">133</span>                  <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-jenkinsci/slave                         Base Jenkins slave docker image                 <span style="color:#099">67</span>                   <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-jenkins/slave                           base image <span style="color:#000;font-weight:bold">for</span> a Jenkins Agent, which includ…   <span style="color:#099">47</span>                   <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-jenkinsci/ssh-slave                     A Jenkins SSH Slave docker image                <span style="color:#099">44</span>                   <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-jenkins/ssh-slave                       A Jenkins slave using SSH to establish conne…   <span style="color:#099">37</span>                   <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-cloudbees/jenkins-enterprise            CloudBees Jenkins Enterprise <span style="color:#000;font-weight:bold">(</span>Rolling releas…   <span style="color:#099">34</span>                   <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-h1kkan/jenkins-docker                   🤖 Extended Jenkins docker image, bundled wi…    <span style="color:#099">29</span>                   
-xmartlabs/jenkins-android               Jenkins image <span style="color:#000;font-weight:bold">for</span> Android development.          <span style="color:#099">28</span>                   <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-openshift/jenkins-2-centos7             A Centos7 based Jenkins v2.x image <span style="color:#000;font-weight:bold">for</span> use w…   <span style="color:#099">23</span>                   
-cloudbees/jenkins-operations-center     CloudBees Jenkins Operation Center <span style="color:#000;font-weight:bold">(</span>Rolling …   <span style="color:#099">14</span>                   <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-jenkins/ssh-agent                       Docker image <span style="color:#000;font-weight:bold">for</span> Jenkins agents connected ov…   <span style="color:#099">11</span>                   
-openshift/jenkins-slave-maven-centos7   A Jenkins slave image with OpenJDK 1.8 and M…   <span style="color:#099">11</span>                   
-openshift/jenkins-slave-base-centos7    A Jenkins slave base image. DEPRECATED: see …   <span style="color:#099">7</span>                    
-trion/jenkins-docker-client             Jenkins CI server with docker client            <span style="color:#099">6</span>                    <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-publicisworldwide/jenkins-slave         Jenkins Slave based on Oracle Linux             <span style="color:#099">5</span>                    <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-openshift/jenkins-1-centos7             DEPRECATED: A Centos7 based Jenkins v1.x ima…   <span style="color:#099">4</span>                    
-ansibleplaybookbundle/jenkins-apb       An APB which deploys Jenkins CI                 <span style="color:#099">1</span>                    <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-amazeeio/jenkins-slave                  A jenkins slave that connects to a master vi…   <span style="color:#099">0</span>                    <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-mashape/jenkins                         Just a jenkins image with the AWS cli added …   <span style="color:#099">0</span>                    <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
-jameseckersall/jenkins                  docker-jenkins <span style="color:#000;font-weight:bold">(</span>based on openshift jenkins 2…   <span style="color:#099">0</span>                    <span style="color:#000;font-weight:bold">[</span>OK<span style="color:#000;font-weight:bold">]</span>
+jenkins                                 Official Jenkins Docker image                   <span class="m">5245</span>      <span class="o">[</span>OK<span class="o">]</span>       
+jenkins/jenkins                         The leading open <span class="nb">source</span> automation server       <span class="m">2599</span>                 
+jenkinsci/blueocean                     https://jenkins.io/projects/blueocean           <span class="m">628</span>                  
+jenkinsci/jenkins                       Jenkins Continuous Integration and Delivery …   <span class="m">390</span>                  
+jenkins/jnlp-slave                      a Jenkins agent which can connect to Jenkins…   <span class="m">146</span>                  <span class="o">[</span>OK<span class="o">]</span>
+jenkinsci/jnlp-slave                    A Jenkins slave using JNLP to establish conn…   <span class="m">133</span>                  <span class="o">[</span>OK<span class="o">]</span>
+jenkinsci/slave                         Base Jenkins slave docker image                 <span class="m">67</span>                   <span class="o">[</span>OK<span class="o">]</span>
+jenkins/slave                           base image <span class="k">for</span> a Jenkins Agent, which includ…   <span class="m">47</span>                   <span class="o">[</span>OK<span class="o">]</span>
+jenkinsci/ssh-slave                     A Jenkins SSH Slave docker image                <span class="m">44</span>                   <span class="o">[</span>OK<span class="o">]</span>
+jenkins/ssh-slave                       A Jenkins slave using SSH to establish conne…   <span class="m">37</span>                   <span class="o">[</span>OK<span class="o">]</span>
+cloudbees/jenkins-enterprise            CloudBees Jenkins Enterprise <span class="o">(</span>Rolling releas…   <span class="m">34</span>                   <span class="o">[</span>OK<span class="o">]</span>
+h1kkan/jenkins-docker                   🤖 Extended Jenkins docker image, bundled wi…    <span class="m">29</span>                   
+xmartlabs/jenkins-android               Jenkins image <span class="k">for</span> Android development.          <span class="m">28</span>                   <span class="o">[</span>OK<span class="o">]</span>
+openshift/jenkins-2-centos7             A Centos7 based Jenkins v2.x image <span class="k">for</span> use w…   <span class="m">23</span>                   
+cloudbees/jenkins-operations-center     CloudBees Jenkins Operation Center <span class="o">(</span>Rolling …   <span class="m">14</span>                   <span class="o">[</span>OK<span class="o">]</span>
+jenkins/ssh-agent                       Docker image <span class="k">for</span> Jenkins agents connected ov…   <span class="m">11</span>                   
+openshift/jenkins-slave-maven-centos7   A Jenkins slave image with OpenJDK 1.8 and M…   <span class="m">11</span>                   
+openshift/jenkins-slave-base-centos7    A Jenkins slave base image. DEPRECATED: see …   <span class="m">7</span>                    
+trion/jenkins-docker-client             Jenkins CI server with docker client            <span class="m">6</span>                    <span class="o">[</span>OK<span class="o">]</span>
+publicisworldwide/jenkins-slave         Jenkins Slave based on Oracle Linux             <span class="m">5</span>                    <span class="o">[</span>OK<span class="o">]</span>
+openshift/jenkins-1-centos7             DEPRECATED: A Centos7 based Jenkins v1.x ima…   <span class="m">4</span>                    
+ansibleplaybookbundle/jenkins-apb       An APB which deploys Jenkins CI                 <span class="m">1</span>                    <span class="o">[</span>OK<span class="o">]</span>
+amazeeio/jenkins-slave                  A jenkins slave that connects to a master vi…   <span class="m">0</span>                    <span class="o">[</span>OK<span class="o">]</span>
+mashape/jenkins                         Just a jenkins image with the AWS cli added …   <span class="m">0</span>                    <span class="o">[</span>OK<span class="o">]</span>
+jameseckersall/jenkins                  docker-jenkins <span class="o">(</span>based on openshift jenkins 2…   <span class="m">0</span>                    <span class="o">[</span>OK<span class="o">]</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="远程拉取镜像"><strong>远程拉取镜像</strong></h4>
 <p>不标注tag代表是获取最新的；</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bomir@morn:~$ docker pull jenkins
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">bomir@morn:~$ docker pull jenkins
 Using default tag: latest
 latest: Pulling from library/jenkins
-55cbf04beb70: Pull <span style="color:#0086b3">complete</span> 
-1607093a898c: Pull <span style="color:#0086b3">complete</span> 
-9a8ea045c926: Pull <span style="color:#0086b3">complete</span> 
-d4eee24d4dac: Pull <span style="color:#0086b3">complete</span> 
-c58988e753d7: Pull <span style="color:#0086b3">complete</span> 
-794a04897db9: Pull <span style="color:#0086b3">complete</span> 
-70fcfa476f73: Pull <span style="color:#0086b3">complete</span> 
-0539c80a02be: Pull <span style="color:#0086b3">complete</span> 
-54fefc6dcf80: Pull <span style="color:#0086b3">complete</span> 
-911bc90e47a8: Pull <span style="color:#0086b3">complete</span> 
-38430d93efed: Pull <span style="color:#0086b3">complete</span> 
-7e46ccda148a: Pull <span style="color:#0086b3">complete</span> 
-c0cbcb5ac747: Pull <span style="color:#0086b3">complete</span> 
-35ade7a86a8e: Pull <span style="color:#0086b3">complete</span> 
-aa433a6a56b1: Pull <span style="color:#0086b3">complete</span> 
-841c1dd38d62: Pull <span style="color:#0086b3">complete</span> 
-b865dcb08714: Pull <span style="color:#0086b3">complete</span> 
-5a3779030005: Pull <span style="color:#0086b3">complete</span> 
-12b47c68955c: Pull <span style="color:#0086b3">complete</span> 
-1322ea3e7bfd: Pull <span style="color:#0086b3">complete</span> 
+55cbf04beb70: Pull <span class="nb">complete</span> 
+1607093a898c: Pull <span class="nb">complete</span> 
+9a8ea045c926: Pull <span class="nb">complete</span> 
+d4eee24d4dac: Pull <span class="nb">complete</span> 
+c58988e753d7: Pull <span class="nb">complete</span> 
+794a04897db9: Pull <span class="nb">complete</span> 
+70fcfa476f73: Pull <span class="nb">complete</span> 
+0539c80a02be: Pull <span class="nb">complete</span> 
+54fefc6dcf80: Pull <span class="nb">complete</span> 
+911bc90e47a8: Pull <span class="nb">complete</span> 
+38430d93efed: Pull <span class="nb">complete</span> 
+7e46ccda148a: Pull <span class="nb">complete</span> 
+c0cbcb5ac747: Pull <span class="nb">complete</span> 
+35ade7a86a8e: Pull <span class="nb">complete</span> 
+aa433a6a56b1: Pull <span class="nb">complete</span> 
+841c1dd38d62: Pull <span class="nb">complete</span> 
+b865dcb08714: Pull <span class="nb">complete</span> 
+5a3779030005: Pull <span class="nb">complete</span> 
+12b47c68955c: Pull <span class="nb">complete</span> 
+1322ea3e7bfd: Pull <span class="nb">complete</span> 
 Digest: sha256:eeb4850eb65f2d92500e421b430ed1ec58a7ac909e91f518926e02473904f668
-Status: Downloaded newer image <span style="color:#000;font-weight:bold">for</span> jenkins:latest
+Status: Downloaded newer image <span class="k">for</span> jenkins:latest
 docker.io/library/jenkins:latest
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="创建挂载目录">创建挂载目录</h4>
 <p>挂载目录用于映射jenkins的jenkins_home的配置文件等信息;</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">
-<span style="color:#998;font-style:italic"># 挂载目录放在home下</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+<span class="c1"># 挂载目录放在home下</span>
 bomir@morn:~$ sudo mkdir /home/jenkins
-<span style="color:#000;font-weight:bold">[</span>sudo<span style="color:#000;font-weight:bold">]</span> password <span style="color:#000;font-weight:bold">for</span> bomir: 
+<span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> bomir: 
 
-<span style="color:#998;font-style:italic"># 该目录需要设置权限， 否则启动容器会报权限错误</span>
+<span class="c1"># 该目录需要设置权限， 否则启动容器会报权限错误</span>
 bomir@morn:~$ sudo chown -R 1000:1000 /home/jenkins/
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="启动容器">启动容器</h4>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#998;font-style:italic"># 运行镜像启动命令</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 运行镜像启动命令</span>
 
-docker run -p 8000:8000 -p 50000:50000 -v /home/jenkins:/var/jenkins_home --name jenkins --restart always --privileged<span style="color:#000;font-weight:bold">=</span><span style="color:#0086b3">true</span>  -u root jenkins
+docker run -p 8000:8000 -p 50000:50000 -v /home/jenkins:/var/jenkins_home --name jenkins --restart always --privileged<span class="o">=</span><span class="nb">true</span>  -u root jenkins
 
 </code></pre></td></tr></table>
 </div>
@@ -697,18 +639,18 @@ docker run -p 8000:8000 -p 50000:50000 -v /home/jenkins:/var/jenkins_home --name
 <p><strong>-p 50000:50000 : 如果您在其他机器上设置了一个或多个基于JNLP的Jenkins代理程序，而这些代理程序又与 jenkinsci/blueocean 容器交互（充当“主”Jenkins服务器，或者简称为“Jenkins主”）， 则这是必需的。默认情况下，基于JNLP的Jenkins代理通过TCP端口50000与Jenkins主站进行通信。</strong></p>
 </blockquote>
 <p><strong>首先修改hudson.model.UpdateCenter.xml配置文件</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">默认路径
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">默认路径
 
 http://updates.jenkins-ci.org/update-center.json
 
@@ -718,111 +660,128 @@ http://mirror.xmission.com/jenkins/updates/update-center.json
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>完成后修改 /updates/default.json 配置文件</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">默认路径
-<span style="color:#d14">&#34;connectionCheckUrl&#34;</span>:<span style="color:#d14">&#34;http://www.google.com/&#34;</span> 
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">默认路径
+<span class="s2">&#34;connectionCheckUrl&#34;</span>:<span class="s2">&#34;http://www.google.com/&#34;</span> 
 改为路径
-<span style="color:#d14">&#34;connectionCheckUrl&#34;</span>:<span style="color:#d14">&#34;http://www.baidu.com/&#34;</span>
+<span class="s2">&#34;connectionCheckUrl&#34;</span>:<span class="s2">&#34;http://www.baidu.com/&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><a href="https://imgtu.com/i/WU4wXd"><img src="https://z3.ax1x.com/2021/07/21/WU4wXd.png" alt="WU4wXd.png"></a></p>
 <h3 id="实验过程">实验过程</h3>
 <h4 id="查看容器的id">查看容器的id</h4>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bomir@morn:~$ docker ps
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">bomir@morn:~$ docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED             STATUS          PORTS                                                                                                NAMES
-ba5b4722fb02   jenkins   <span style="color:#d14">&#34;/bin/tini -- /usr/l…&#34;</span>   About an hour ago   Up <span style="color:#099">55</span> minutes   0.0.0.0:8000-&gt;8000/tcp, :::8000-&gt;8000/tcp, 0.0.0.0:50000-&gt;50000/tcp, :::50000-&gt;50000/tcp, 8080/tcp   jenkins
+ba5b4722fb02   jenkins   <span class="s2">&#34;/bin/tini -- /usr/l…&#34;</span>   About an hour ago   Up <span class="m">55</span> minutes   0.0.0.0:8000-&gt;8000/tcp, :::8000-&gt;8000/tcp, 0.0.0.0:50000-&gt;50000/tcp, :::50000-&gt;50000/tcp, 8080/tcp   jenkins
 </code></pre></td></tr></table>
 </div>
 </div><p>可以看到容器的id是ba5b4722fb02；</p>
 <h4 id="查看镜像的id"><strong>查看镜像的id</strong></h4>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bomir@morn:~$ docker images
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">bomir@morn:~$ docker images
 REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
-zzyy/centos   latest    98330358de77   <span style="color:#099">9</span> days ago      209MB
-nginx         latest    4cdc5dd7eaad   <span style="color:#099">2</span> weeks ago     133MB
-tomcat        latest    36ef696ea43d   <span style="color:#099">2</span> weeks ago     667MB
-redis         5.0       aec43d10ed3b   <span style="color:#099">3</span> weeks ago     98.4MB
-redis         latest    08502081bff6   <span style="color:#099">3</span> weeks ago     105MB
-mysql         5.6       e1aa75e199d7   <span style="color:#099">3</span> weeks ago     303MB
-hello-world   latest    d1165f221234   <span style="color:#099">4</span> months ago    13.3kB
-centos        latest    300e315adb2f   <span style="color:#099">7</span> months ago    209MB
-redis         6.0.4     36304d3b4540   <span style="color:#099">13</span> months ago   104MB
-jenkins       latest    cd14cecfdb3a   <span style="color:#099">3</span> years ago     696MB
+zzyy/centos   latest    98330358de77   <span class="m">9</span> days ago      209MB
+nginx         latest    4cdc5dd7eaad   <span class="m">2</span> weeks ago     133MB
+tomcat        latest    36ef696ea43d   <span class="m">2</span> weeks ago     667MB
+redis         5.0       aec43d10ed3b   <span class="m">3</span> weeks ago     98.4MB
+redis         latest    08502081bff6   <span class="m">3</span> weeks ago     105MB
+mysql         5.6       e1aa75e199d7   <span class="m">3</span> weeks ago     303MB
+hello-world   latest    d1165f221234   <span class="m">4</span> months ago    13.3kB
+centos        latest    300e315adb2f   <span class="m">7</span> months ago    209MB
+redis         6.0.4     36304d3b4540   <span class="m">13</span> months ago   104MB
+jenkins       latest    cd14cecfdb3a   <span class="m">3</span> years ago     696MB
 
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="查看镜像文件元数据">查看镜像文件元数据</h4>
 <h5 id="image-layer">image layer</h5>
 <p><strong>a.到 /var/lib/docker/image/overlay2/imagedb/content/sha256 目录下找到对应镜像文件的元数据(这里是用Step3找到的镜像ID)，cat该文件，并找到rootfs部分的diff_ids</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@morn:/var/lib/docker/image/overlay2/imagedb/content/sha256# cat cd14cecfdb3a657ba7d05bea026e7ac8b9abafc6e5c66253ab327c7211fa6281 | python3 -m json.tool | grep rootfs -A <span style="color:#099">50</span>
-    <span style="color:#d14">&#34;rootfs&#34;</span>: <span style="color:#000;font-weight:bold">{</span>
-        <span style="color:#d14">&#34;type&#34;</span>: <span style="color:#d14">&#34;layers&#34;</span>,
-        <span style="color:#d14">&#34;diff_ids&#34;</span>: <span style="color:#000;font-weight:bold">[</span>
-            <span style="color:#d14">&#34;sha256:3b10514a95bec77489a57d6e2fbfddb7ddfdb643907470ce5de0f1b05c603706&#34;</span>,
-            <span style="color:#d14">&#34;sha256:719d45669b35360e3ca0d53d159c42ca9985eb925a6b28ac38d0ded39a1314e8&#34;</span>,
-            <span style="color:#d14">&#34;sha256:ce6466f43b110e66d7d3a72600262a1f1b015d9a64aad5f133f081868d4825fc&#34;</span>,
-            <span style="color:#d14">&#34;sha256:fa0c3f992cbd10a0569ed212414b50f1c35d97521f7e4a9e55a9abcf47ca77e2&#34;</span>,
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">root@morn:/var/lib/docker/image/overlay2/imagedb/content/sha256# cat cd14cecfdb3a657ba7d05bea026e7ac8b9abafc6e5c66253ab327c7211fa6281 <span class="p">|</span> python3 -m json.tool <span class="p">|</span> grep rootfs -A <span class="m">50</span>
+    <span class="s2">&#34;rootfs&#34;</span>: <span class="o">{</span>
+        <span class="s2">&#34;type&#34;</span>: <span class="s2">&#34;layers&#34;</span>,
+        <span class="s2">&#34;diff_ids&#34;</span>: <span class="o">[</span>
+            <span class="s2">&#34;sha256:3b10514a95bec77489a57d6e2fbfddb7ddfdb643907470ce5de0f1b05c603706&#34;</span>,
+            <span class="s2">&#34;sha256:719d45669b35360e3ca0d53d159c42ca9985eb925a6b28ac38d0ded39a1314e8&#34;</span>,
+            <span class="s2">&#34;sha256:ce6466f43b110e66d7d3a72600262a1f1b015d9a64aad5f133f081868d4825fc&#34;</span>,
+            <span class="s2">&#34;sha256:fa0c3f992cbd10a0569ed212414b50f1c35d97521f7e4a9e55a9abcf47ca77e2&#34;</span>,
  
  ...   // 中间省略掉
-            <span style="color:#d14">&#34;sha256:0577e068c587d352efe5dd72477ae6927626840d167fbbf59e17241b8f50a127&#34;</span>
-        <span style="color:#000;font-weight:bold">]</span>
-    <span style="color:#000;font-weight:bold">}</span>
-<span style="color:#000;font-weight:bold">}</span>
+            <span class="s2">&#34;sha256:0577e068c587d352efe5dd72477ae6927626840d167fbbf59e17241b8f50a127&#34;</span>
+        <span class="o">]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 
 </code></pre></td></tr></table>
 </div>
 </div><p>这里一共有20层，我将中间的一些层去掉了，但是不妨碍分析。最上面的3b10514a95bec774&hellip;是Image的layer层的底层，那既然找到了diff_id，我们再去看下layer层的实现:</p>
 <p><strong>b.在/var/lib/docker/image/overlay2/layerdb/sha256目录下去查看layer信息(sha256目录保存的是可读层的信息，mount目录保存的读写层的信息)</strong></p>
-<pre><code>root@morn:/var/lib/docker/image/overlay2/layerdb/sha256# ls -la
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">root@morn:/var/lib/docker/image/overlay2/layerdb/sha256# ls -la
 total 268
 drwxr-xr-x 65 root root 12288 Jul 21 10:30 .
 drwx------  5 root root  4096 Jul  9 21:31 ..
@@ -835,17 +794,19 @@ drwx------  2 root root  4096 Jul 13 22:07 35266b37f23fb2e4e3973c2e073adc021324b
 drwx------  2 root root  4096 Jul 21 10:29 3b10514a95bec77489a57d6e2fbfddb7ddfdb643907470ce5de0f1b05c603706
 drwx------  2 root root  4096 Jul  9 23:55
 ...
-</code></pre><p>可以看到， 这里只能找到3b10514a95bec7&hellip;这个image的底层， 其他的layer在这个目录下都找不到，这是为什么呢？</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到， 这里只能找到3b10514a95bec7&hellip;这个image的底层， 其他的layer在这个目录下都找不到，这是为什么呢？</p>
 <p>这是由于Docker使用了chainID来保存layer，计算公式是：chainID=sha256sum(H(chainID) diffid),其中如果是最底层layer，那么其chainID=diff_id。所以在sha256目录下，我们只会看到Image的最底层layer，而看不到其他的layer。 <strong>（sha256下的目录是以chainID命名的，而不是以diff_id命名的，所以需要转换一下）</strong></p>
 <p><strong>c.计算3b10514a95bec7&hellip;的下一层的chainID</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@morn:/var/lib/docker/image/overlay2/layerdb/sha256# <span style="color:#0086b3">echo</span> -n <span style="color:#d14">&#34;sha256:3b10514a95bec77489a57d6e2fbfddb7ddfdb643907470ce5de0f1b05c603706 sha256:719d45669b35360e3ca0d53d159c42ca9985eb925a6b28ac38d0ded39a1314e8&#34;</span> | sha256sum
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">root@morn:/var/lib/docker/image/overlay2/layerdb/sha256# <span class="nb">echo</span> -n <span class="s2">&#34;sha256:3b10514a95bec77489a57d6e2fbfddb7ddfdb643907470ce5de0f1b05c603706 sha256:719d45669b35360e3ca0d53d159c42ca9985eb925a6b28ac38d0ded39a1314e8&#34;</span> <span class="p">|</span> sha256sum
 4a495dbc04bd205c728297a08cf203988e91caeafe4b21fcad94c893a53d96dc
 
 </code></pre></td></tr></table>
@@ -854,65 +815,65 @@ drwx------  2 root root  4096 Jul  9 23:55
 <p><a href="https://imgtu.com/i/WaPoh8"><img src="https://z3.ax1x.com/2021/07/21/WaPoh8.png" alt="WaPoh8.png"></a></p>
 <p>d.<strong>Image目录下的layerdb目录中保存的是元数据，那么我们需要到overlay2目录中去找到对应的真实目录，那么这个之间的映射关系是怎么得到的呢？</strong></p>
 <p>这个时候cache-id就排上用场了，我们可以打印出该chainID的cache-id,并到overlay2目录中去找**（dockr会创建/var/lib/docker/{存储引擎名称}老保存实际的数据）**</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#998;font-style:italic"># 到最底层3b10514a95bec7...中打印cache-id</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 到最底层3b10514a95bec7...中打印cache-id</span>
 root@morn:/var/lib/docker/image/overlay2/layerdb/sha256/3b10514a95bec77489a57d6e2fbfddb7ddfdb643907470ce5de0f1b05c603706# cat cache-id
 ba567e2e707034d5443383bc1d8bae7688e1918e1cd66eabfe2213100677d2f4root@morn:/var/lib/docker/image/overlay2/layerdb/sha256/3b10514a95bec77489a57d6e2fbfddb7ddfdb643907470ce5de
 
 
-<span style="color:#998;font-style:italic">#到/var/lib/dockr/overlay2中找到对应的目录</span>
-root@morn:/var/lib/docker/overlay2# ls -la | grep ba567e2e
-drwx-----x   <span style="color:#099">3</span> root root  <span style="color:#099">4096</span> Jul <span style="color:#099">21</span> 10:29 ba567e2e707034d5443383bc1d8bae7688e1918e1cd66eabfe2213100677d2f4
+<span class="c1">#到/var/lib/dockr/overlay2中找到对应的目录</span>
+root@morn:/var/lib/docker/overlay2# ls -la <span class="p">|</span> grep ba567e2e
+drwx-----x   <span class="m">3</span> root root  <span class="m">4096</span> Jul <span class="m">21</span> 10:29 ba567e2e707034d5443383bc1d8bae7688e1918e1cd66eabfe2213100677d2f4
 
 </code></pre></td></tr></table>
 </div>
 </div><p>可以看到已经找到对应的目录了，该目录中记录了所有的diff;</p>
 <p>e.<strong>在Step2中找到的容器ID的元数据其实是保存在/var/lib/docker/image/overlay2/layerdb/mount/目录下</strong></p>
 <p>该目录保存的是docker的容器读写层。这其实也对应了docker的存储实现机制，镜像都是只读层，当运行一个容器时，会产生一个容器层，该层即是读写层。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@morn:/var/lib/docker/image/overlay2/layerdb/mounts# ls -la | grep ba5b4
-drwxr-xr-x  <span style="color:#099">2</span> root root <span style="color:#099">4096</span> Jul <span style="color:#099">21</span> 10:46 ba5b4722fb0209f5201b0ba83d2dc139be545fd50d45bccb127de5d20a687183
-root@morn:/var/lib/docker/image/overlay2/layerdb/mounts# <span style="color:#0086b3">pwd</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">root@morn:/var/lib/docker/image/overlay2/layerdb/mounts# ls -la <span class="p">|</span> grep ba5b4
+drwxr-xr-x  <span class="m">2</span> root root <span class="m">4096</span> Jul <span class="m">21</span> 10:46 ba5b4722fb0209f5201b0ba83d2dc139be545fd50d45bccb127de5d20a687183
+root@morn:/var/lib/docker/image/overlay2/layerdb/mounts# <span class="nb">pwd</span>
 /var/lib/docker/image/overlay2/layerdb/mounts
 
 </code></pre></td></tr></table>
 </div>
 </div><p>查看该目录下的文件：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@morn:/var/lib/docker/image/overlay2/layerdb/mounts/ba5b4722fb0209f5201b0ba83d2dc139be545fd50d45bccb127de5d20a687183# ls -l
-total <span style="color:#099">12</span>
--rw-r--r-- <span style="color:#099">1</span> root root <span style="color:#099">69</span> Jul <span style="color:#099">21</span> 10:46 init-id
--rw-r--r-- <span style="color:#099">1</span> root root <span style="color:#099">64</span> Jul <span style="color:#099">21</span> 10:46 mount-id
--rw-r--r-- <span style="color:#099">1</span> root root <span style="color:#099">71</span> Jul <span style="color:#099">21</span> 10:46 parent
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">root@morn:/var/lib/docker/image/overlay2/layerdb/mounts/ba5b4722fb0209f5201b0ba83d2dc139be545fd50d45bccb127de5d20a687183# ls -l
+total <span class="m">12</span>
+-rw-r--r-- <span class="m">1</span> root root <span class="m">69</span> Jul <span class="m">21</span> 10:46 init-id
+-rw-r--r-- <span class="m">1</span> root root <span class="m">64</span> Jul <span class="m">21</span> 10:46 mount-id
+-rw-r--r-- <span class="m">1</span> root root <span class="m">71</span> Jul <span class="m">21</span> 10:46 parent
 
 </code></pre></td></tr></table>
 </div>
@@ -1134,12 +1095,6 @@ total <span style="color:#099">12</span>
 
 
 
-
-  
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
 
 
 

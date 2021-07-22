@@ -69,7 +69,7 @@
 <meta itemprop="name" content="web服务器纵览">
 <meta itemprop="description" content="web框架概览 1）网络框架及MVC架构 ​ MVC是软件工程中的一种软件架构设计模式，MVC把web应用系统分为如下3个基本部分：模型、视图、控"><meta itemprop="datePublished" content="2019-03-18T19:21:41+00:00" />
 <meta itemprop="dateModified" content="2019-03-18T19:21:41+00:00" />
-<meta itemprop="wordCount" content="5036">
+<meta itemprop="wordCount" content="5037">
 <meta itemprop="keywords" content="web server," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="web服务器纵览"/>
 <meta name="twitter:description" content="web框架概览 1）网络框架及MVC架构 ​ MVC是软件工程中的一种软件架构设计模式，MVC把web应用系统分为如下3个基本部分：模型、视图、控"/>
@@ -161,64 +161,6 @@
   </ul>
 </nav>
 
-
-  
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
 
   
 
@@ -344,7 +286,7 @@
             <a href="https://bomir.top/categories/python/"> Python </a>
             
           </div>
-        <span class="more-meta"> 约 5036 字 </span>
+        <span class="more-meta"> 约 5037 字 </span>
           <span class="more-meta"> 预计阅读 11 分钟 </span>
 
         
@@ -439,202 +381,202 @@
 <p><code>sudo service nginx restart</code></p>
 <p><strong>2) Nginx配置文件</strong></p>
 <p>​	Nginx安装后会以默认方式启动，在开发调试的过程中可能需要调整Nginx的运行参数，这些运行参数会通过全局配置文件(nginx.conf)和站点配置文件(sites-enabled)进行设置，对全局配置文件(/etc/nginx/nginx.conf)中的关键可设置参数解析如下：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">user www-data;								 <span style="color:#998;font-style:italic">##定义运行Nginx的用户</span>
-worker_processes 4;							 <span style="color:#998;font-style:italic">##Nginx进程数，应设置与系统CPU数量相等的数值</span>
-worker_rlimit_nofile 65535;                  <span style="color:#998;font-style:italic">##每个Nginx进程可以打开的最大文件数</span>
-events<span style="color:#000;font-weight:bold">{</span>
-    worker_connections 768;                  <span style="color:#998;font-style:italic">##每个Nginx进程允许的最大客户端连接数</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">user www-data<span class="p">;</span>								 <span class="c1">##定义运行Nginx的用户</span>
+worker_processes 4<span class="p">;</span>							 <span class="c1">##Nginx进程数，应设置与系统CPU数量相等的数值</span>
+worker_rlimit_nofile 65535<span class="p">;</span>                  <span class="c1">##每个Nginx进程可以打开的最大文件数</span>
+events<span class="o">{</span>
+    worker_connections 768<span class="p">;</span>                  <span class="c1">##每个Nginx进程允许的最大客户端连接数</span>
     
-    <span style="color:#998;font-style:italic">#在Nginx接到一个新连接通知后调用accept()来接受尽量多的连接</span>
-    multi_accept off;
-<span style="color:#000;font-weight:bold">}</span>
-http<span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#998;font-style:italic">##</span>
-    <span style="color:#998;font-style:italic"># Basic Settings</span>
-    <span style="color:#998;font-style:italic">##</span>
-    sendfile on;							  <span style="color:#998;font-style:italic">##是否允许文件上传</span>
-    client_header_buffer_size 32K;			  <span style="color:#998;font-style:italic">##上传文件大小限制</span>
-    tcp_nopush on;							  <span style="color:#998;font-style:italic">##防止网络拥塞</span>
-    tcp_nodelay on;                           <span style="color:#998;font-style:italic">##防止网络拥塞</span>
-    keepalive_timeout 65;					  <span style="color:#998;font-style:italic">##允许客户端长连接最大秒数</span>
+    <span class="c1">#在Nginx接到一个新连接通知后调用accept()来接受尽量多的连接</span>
+    multi_accept off<span class="p">;</span>
+<span class="o">}</span>
+http<span class="o">{</span>
+    <span class="c1">##</span>
+    <span class="c1"># Basic Settings</span>
+    <span class="c1">##</span>
+    sendfile on<span class="p">;</span>							  <span class="c1">##是否允许文件上传</span>
+    client_header_buffer_size 32K<span class="p">;</span>			  <span class="c1">##上传文件大小限制</span>
+    tcp_nopush on<span class="p">;</span>							  <span class="c1">##防止网络拥塞</span>
+    tcp_nodelay on<span class="p">;</span>                           <span class="c1">##防止网络拥塞</span>
+    keepalive_timeout 65<span class="p">;</span>					  <span class="c1">##允许客户端长连接最大秒数</span>
     
-    <span style="color:#998;font-style:italic">##Nginx散列表大小。本值越大，占用的内存空间越大，但路由速度很快</span>
-    types_hash_max_size 2048;
+    <span class="c1">##Nginx散列表大小。本值越大，占用的内存空间越大，但路由速度很快</span>
+    types_hash_max_size 2048<span class="p">;</span>
     
-    access_log /var/log/nginx/access.log;	  <span style="color:#998;font-style:italic">##访问日志文件路径名</span>
-    error_log  /var/log/nginx/error.log;      <span style="color:#998;font-style:italic">##错误日志文件路径名</span>
+    access_log /var/log/nginx/access.log<span class="p">;</span>	  <span class="c1">##访问日志文件路径名</span>
+    error_log  /var/log/nginx/error.log<span class="p">;</span>      <span class="c1">##错误日志文件路径名</span>
     
-    <span style="color:#998;font-style:italic">## 如下两条用include命令加载站点配置文件</span>
-    include /etc/nginx/conf.d/*.conf;
-    include /etc/ngigx/sites-enabled/*; 
-<span style="color:#000;font-weight:bold">}</span>
+    <span class="c1">## 如下两条用include命令加载站点配置文件</span>
+    include /etc/nginx/conf.d/*.conf<span class="p">;</span>
+    include /etc/ngigx/sites-enabled/*<span class="p">;</span> 
+<span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>​	在每个Nginx服务器中可以运行多个Web站点。每个站点的配置通过站点配置文件设置。每个站点应该以一个单独的配置文件存放在/etc/nginx/sites-enabled目录中，默认站点的配置文件名为/etc/nginx/sites-default，对其中关键内容的解析如下：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">server<span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#998;font-style:italic">##配置站点监听的端口</span>
-    listen 80;
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">server<span class="o">{</span>
+    <span class="c1">##配置站点监听的端口</span>
+    listen 80<span class="p">;</span>
     
-    root /usr/share/nginx/html;				  <span style="color:#998;font-style:italic">##配置HTTP根页面目录</span>
-    index index.html index.htm;				  <span style="color:#998;font-style:italic">##配置HTTP根目录中的默认页面</span>
+    root /usr/share/nginx/html<span class="p">;</span>				  <span class="c1">##配置HTTP根页面目录</span>
+    index index.html index.htm<span class="p">;</span>				  <span class="c1">##配置HTTP根目录中的默认页面</span>
     
-    <span style="color:#998;font-style:italic">#站点监听的IP地址，默认的localhost只可用于本机访问，一般需要将其更改为真实IP</span>
-    sever_name localhost;
+    <span class="c1">#站点监听的IP地址，默认的localhost只可用于本机访问，一般需要将其更改为真实IP</span>
+    sever_name localhost<span class="p">;</span>
     
-    <span style="color:#998;font-style:italic">##location用于配置URL的转发接口</span>
-    location /user/<span style="color:#000;font-weight:bold">{</span>
-        <span style="color:#998;font-style:italic">##此处配置http://server_name/user/的转发地址</span>
-        proxy_pass http://127.0.0.1:8080;
-    <span style="color:#000;font-weight:bold">}</span>
+    <span class="c1">##location用于配置URL的转发接口</span>
+    location /user/<span class="o">{</span>
+        <span class="c1">##此处配置http://server_name/user/的转发地址</span>
+        proxy_pass http://127.0.0.1:8080<span class="p">;</span>
+    <span class="o">}</span>
     
-    <span style="color:#998;font-style:italic">#错误页面配置，如下配置定义HTTP 404错误的显示页面 /404.html</span>
-    error_page <span style="color:#099">404</span> /404.html;
-<span style="color:#000;font-weight:bold">}</span>
+    <span class="c1">#错误页面配置，如下配置定义HTTP 404错误的显示页面 /404.html</span>
+    error_page <span class="m">404</span> /404.html<span class="p">;</span>
+<span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>3) 安装uWSGI及配置</strong></p>
 <p>​	uWSGI是WSGI在Linux中的一种实现，这样开发者无需自己编写WSGI Server。使用pip命令可以直接安装uWSGI。</p>
 <p><code>pip install uwsgi</code></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">wjq@Ubuntu:~/TornadoWork/tornado_0/temp/cha5$ uwsgi --http-socket :9090 --plugin python --wsgi-file webapp.py
-open<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;./python_plugin.so&#34;</span><span style="color:#000;font-weight:bold">)</span>: No such file or directory <span style="color:#000;font-weight:bold">[</span>core/utils.c line 3724<span style="color:#000;font-weight:bold">]</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">wjq@Ubuntu:~/TornadoWork/tornado_0/temp/cha5$ uwsgi --http-socket :9090 --plugin python --wsgi-file webapp.py
+open<span class="o">(</span><span class="s2">&#34;./python_plugin.so&#34;</span><span class="o">)</span>: No such file or directory <span class="o">[</span>core/utils.c line 3724<span class="o">]</span>
 !!! UNABLE to load uWSGI plugin: ./python_plugin.so: cannot open shared object file: No such file or directory !!!
-*** Starting uWSGI 2.0.18 <span style="color:#000;font-weight:bold">(</span>64bit<span style="color:#000;font-weight:bold">)</span> on <span style="color:#000;font-weight:bold">[</span>Sat Mar <span style="color:#099">16</span> 11:23:32 2019<span style="color:#000;font-weight:bold">]</span> ***
-compiled with version: 4.8.4 on <span style="color:#099">16</span> March <span style="color:#099">2019</span> 02:33:42
-os: Linux-4.4.0-124-generic <span style="color:#998;font-style:italic">#148~14.04.1-Ubuntu SMP Thu May 3 07:26:53 UTC 2018</span>
+*** Starting uWSGI 2.0.18 <span class="o">(</span>64bit<span class="o">)</span> on <span class="o">[</span>Sat Mar <span class="m">16</span> 11:23:32 2019<span class="o">]</span> ***
+compiled with version: 4.8.4 on <span class="m">16</span> March <span class="m">2019</span> 02:33:42
+os: Linux-4.4.0-124-generic <span class="c1">#148~14.04.1-Ubuntu SMP Thu May 3 07:26:53 UTC 2018</span>
 nodename: Ubuntu
 machine: x86_64
 clock source: unix
-detected number of CPU cores: <span style="color:#099">2</span>
+detected number of CPU cores: <span class="m">2</span>
 current working directory: /home/wjq/TornadoWork/tornado_0/temp/cha5
 detected binary path: /usr/local/bin/uwsgi
 !!! no internal routing support, rebuild with pcre support !!!
 *** WARNING: you are running uWSGI without its master process manager ***
-your processes number limit is <span style="color:#099">11929</span>
-your memory page size is <span style="color:#099">4096</span> bytes
-detected max file descriptor number: <span style="color:#099">1024</span>
+your processes number limit is <span class="m">11929</span>
+your memory page size is <span class="m">4096</span> bytes
+detected max file descriptor number: <span class="m">1024</span>
 lock engine: pthread robust mutexes
-thunder lock: disabled <span style="color:#000;font-weight:bold">(</span>you can <span style="color:#0086b3">enable</span> it with --thunder-lock<span style="color:#000;font-weight:bold">)</span>
-uwsgi socket <span style="color:#099">0</span> bound to TCP address :9090 fd <span style="color:#099">3</span>
-Python version: 2.7.12 <span style="color:#000;font-weight:bold">(</span>default, Jul <span style="color:#099">18</span> 2016, 15:07:05<span style="color:#000;font-weight:bold">)</span>  <span style="color:#000;font-weight:bold">[</span>GCC 4.8.4<span style="color:#000;font-weight:bold">]</span>
-*** Python threads support is disabled. You can <span style="color:#0086b3">enable</span> it with --enable-threads ***
+thunder lock: disabled <span class="o">(</span>you can <span class="nb">enable</span> it with --thunder-lock<span class="o">)</span>
+uwsgi socket <span class="m">0</span> bound to TCP address :9090 fd <span class="m">3</span>
+Python version: 2.7.12 <span class="o">(</span>default, Jul <span class="m">18</span> 2016, 15:07:05<span class="o">)</span>  <span class="o">[</span>GCC 4.8.4<span class="o">]</span>
+*** Python threads support is disabled. You can <span class="nb">enable</span> it with --enable-threads ***
 Python main interpreter initialized at 0x1a33880
-your server socket listen backlog is limited to <span style="color:#099">100</span> connections
-your mercy <span style="color:#000;font-weight:bold">for</span> graceful operations on workers is <span style="color:#099">60</span> seconds
-mapped <span style="color:#099">72920</span> bytes <span style="color:#000;font-weight:bold">(</span><span style="color:#099">71</span> KB<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">for</span> <span style="color:#099">1</span> cores
+your server socket listen backlog is limited to <span class="m">100</span> connections
+your mercy <span class="k">for</span> graceful operations on workers is <span class="m">60</span> seconds
+mapped <span class="m">72920</span> bytes <span class="o">(</span><span class="m">71</span> KB<span class="o">)</span> <span class="k">for</span> <span class="m">1</span> cores
 *** Operational MODE: single process ***
-WSGI app <span style="color:#099">0</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#008080">mountpoint</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;&#39;</span><span style="color:#000;font-weight:bold">)</span> ready in <span style="color:#099">0</span> seconds on interpreter 0x1a33880 pid: <span style="color:#099">4554</span> <span style="color:#000;font-weight:bold">(</span>default app<span style="color:#000;font-weight:bold">)</span>
+WSGI app <span class="m">0</span> <span class="o">(</span><span class="nv">mountpoint</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="o">)</span> ready in <span class="m">0</span> seconds on interpreter 0x1a33880 pid: <span class="m">4554</span> <span class="o">(</span>default app<span class="o">)</span>
 *** uWSGI is running in multiple interpreter mode ***
-spawned uWSGI worker <span style="color:#099">1</span> <span style="color:#000;font-weight:bold">(</span>and the only<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">(</span>pid: 4554, cores: 1<span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000;font-weight:bold">[</span>pid: 4554|app: 0|req: 1/1<span style="color:#000;font-weight:bold">]</span> 59.68.29.48 <span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#099">32</span> vars in <span style="color:#099">590</span> bytes<span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">[</span>Sat Mar <span style="color:#099">16</span> 11:47:29 2019<span style="color:#000;font-weight:bold">]</span> GET / <span style="color:#000;font-weight:bold">=</span>&gt; generated <span style="color:#099">20</span> bytes in <span style="color:#099">0</span> msecs <span style="color:#000;font-weight:bold">(</span>HTTP/1.1 200<span style="color:#000;font-weight:bold">)</span> <span style="color:#099">1</span> headers in <span style="color:#099">43</span> bytes <span style="color:#000;font-weight:bold">(</span><span style="color:#099">0</span> switches on core 0<span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000;font-weight:bold">[</span>pid: 4554|app: 0|req: 2/2<span style="color:#000;font-weight:bold">]</span> 59.68.29.48 <span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#099">32</span> vars in <span style="color:#099">571</span> bytes<span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">[</span>Sat Mar <span style="color:#099">16</span> 11:47:30 2019<span style="color:#000;font-weight:bold">]</span> GET /favicon.ico <span style="color:#000;font-weight:bold">=</span>&gt; generated <span style="color:#099">20</span> bytes in <span style="color:#099">0</span> msecs <span style="color:#000;font-weight:bold">(</span>HTTP/1.1 200<span style="color:#000;font-weight:bold">)</span> <span style="color:#099">1</span> headers in <span style="color:#099">43</span> bytes <span style="color:#000;font-weight:bold">(</span><span style="color:#099">0</span> switches on core 0<span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000;font-weight:bold">[</span>pid: 4554|app: 0|req: 3/3<span style="color:#000;font-weight:bold">]</span> 59.68.29.48 <span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#099">32</span> vars in <span style="color:#099">571</span> bytes<span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">[</span>Sat Mar <span style="color:#099">16</span> 11:47:38 2019<span style="color:#000;font-weight:bold">]</span> GET /favicon.ico <span style="color:#000;font-weight:bold">=</span>&gt; generated <span style="color:#099">20</span> bytes in <span style="color:#099">0</span> msecs <span style="color:#000;font-weight:bold">(</span>HTTP/1.1 200<span style="color:#000;font-weight:bold">)</span> <span style="color:#099">1</span> headers in <span style="color:#099">43</span> bytes <span style="color:#000;font-weight:bold">(</span><span style="color:#099">0</span> switches on core 0<span style="color:#000;font-weight:bold">)</span>
+spawned uWSGI worker <span class="m">1</span> <span class="o">(</span>and the only<span class="o">)</span> <span class="o">(</span>pid: 4554, cores: 1<span class="o">)</span>
+<span class="o">[</span>pid: 4554<span class="p">|</span>app: 0<span class="p">|</span>req: 1/1<span class="o">]</span> 59.68.29.48 <span class="o">()</span> <span class="o">{</span><span class="m">32</span> vars in <span class="m">590</span> bytes<span class="o">}</span> <span class="o">[</span>Sat Mar <span class="m">16</span> 11:47:29 2019<span class="o">]</span> GET / <span class="o">=</span>&gt; generated <span class="m">20</span> bytes in <span class="m">0</span> msecs <span class="o">(</span>HTTP/1.1 200<span class="o">)</span> <span class="m">1</span> headers in <span class="m">43</span> bytes <span class="o">(</span><span class="m">0</span> switches on core 0<span class="o">)</span>
+<span class="o">[</span>pid: 4554<span class="p">|</span>app: 0<span class="p">|</span>req: 2/2<span class="o">]</span> 59.68.29.48 <span class="o">()</span> <span class="o">{</span><span class="m">32</span> vars in <span class="m">571</span> bytes<span class="o">}</span> <span class="o">[</span>Sat Mar <span class="m">16</span> 11:47:30 2019<span class="o">]</span> GET /favicon.ico <span class="o">=</span>&gt; generated <span class="m">20</span> bytes in <span class="m">0</span> msecs <span class="o">(</span>HTTP/1.1 200<span class="o">)</span> <span class="m">1</span> headers in <span class="m">43</span> bytes <span class="o">(</span><span class="m">0</span> switches on core 0<span class="o">)</span>
+<span class="o">[</span>pid: 4554<span class="p">|</span>app: 0<span class="p">|</span>req: 3/3<span class="o">]</span> 59.68.29.48 <span class="o">()</span> <span class="o">{</span><span class="m">32</span> vars in <span class="m">571</span> bytes<span class="o">}</span> <span class="o">[</span>Sat Mar <span class="m">16</span> 11:47:38 2019<span class="o">]</span> GET /favicon.ico <span class="o">=</span>&gt; generated <span class="m">20</span> bytes in <span class="m">0</span> msecs <span class="o">(</span>HTTP/1.1 200<span class="o">)</span> <span class="m">1</span> headers in <span class="m">43</span> bytes <span class="o">(</span><span class="m">0</span> switches on core 0<span class="o">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>​         <code>uwsgi --http-socket :9090 --plugin python --wsgi-file webapp.py</code></p>
 <p>​	启动时用-http参数指定了监听端口，用&ndash;wsgi-file指定了服务端的程序名。如上所示，uWSGI在启动的过程中会输出系统的一些环境信息：服务器名、进程数限制、服务器硬件配置、最大文件句柄数等。除了在uWSGI 启动命令行提供配置参数，uWSGI 还允许通过一个配置文件设置这些配置参数，比如可以编写如下配置文件，保存在文件名uwsgi.ini中：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#000;font-weight:bold">[</span>uwsgi<span style="color:#000;font-weight:bold">]</span>
-<span style="color:#008080">http</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">9090</span>
-wsgi-file <span style="color:#000;font-weight:bold">=</span> webapp.py
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>uwsgi<span class="o">]</span>
+<span class="nv">http</span> <span class="o">=</span> <span class="m">9090</span>
+wsgi-file <span class="o">=</span> webapp.py
 </code></pre></td></tr></table>
 </div>
 </div><p>​	启动uWSGI时直接指定配置文件即可。</p>
@@ -658,65 +600,65 @@ wsgi-file <span style="color:#000;font-weight:bold">=</span> webapp.py
 <p>举例，如下配置文件用于以Socket方式启动一个uWSGI服务器，并配置了进程和线程数。</p>
 </li>
 </ul>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#000;font-weight:bold">[</span>uwsgi<span style="color:#000;font-weight:bold">]</span>
-<span style="color:#008080">socket</span> <span style="color:#000;font-weight:bold">=</span> 127.0.0.1: <span style="color:#099">3011</span>
-wsgi-file <span style="color:#000;font-weight:bold">=</span> webapp.py
-<span style="color:#008080">processes</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">4</span>
-<span style="color:#008080">threads</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">3</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>uwsgi<span class="o">]</span>
+<span class="nv">socket</span> <span class="o">=</span> 127.0.0.1: <span class="m">3011</span>
+wsgi-file <span class="o">=</span> webapp.py
+<span class="nv">processes</span> <span class="o">=</span> <span class="m">4</span>
+<span class="nv">threads</span> <span class="o">=</span> <span class="m">3</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>4) 集成Nginx与uWSGI</strong></p>
 <p>​	直接通过在站点配置文件中为location配置uwsgi_pass,即可将Nginx与uWSGI集成，建立一个基于Nginx+Python的正式站点。针对如下uWSGI接口有：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#000;font-weight:bold">[</span>uwsgi<span style="color:#000;font-weight:bold">]</span>
-<span style="color:#008080">socket</span> <span style="color:#000;font-weight:bold">=</span> 127.0.0.1： <span style="color:#099">3011</span>
-<span style="color:#008080">wsgi_file</span> <span style="color:#000;font-weight:bold">=</span> webapp.py
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>uwsgi<span class="o">]</span>
+<span class="nv">socket</span> <span class="o">=</span> 127.0.0.1： <span class="m">3011</span>
+<span class="nv">wsgi_file</span> <span class="o">=</span> webapp.py
 </code></pre></td></tr></table>
 </div>
 </div><p>​	Nginx的站点配置文件为：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">server<span style="color:#000;font-weight:bold">{</span>
-    listen 80;
-<span style="color:#000;font-weight:bold">}</span>
-<span style="color:#998;font-style:italic">## 此处改为服务器的真实IP</span>
-	server_name 121.12.134.11;
-location /<span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#998;font-style:italic">## 此处IP与Port配置必须与uwsgi接口中参数相同</span>
-    uwsgi_pass http://127.0.0.1:3011;
-<span style="color:#000;font-weight:bold">}</span>
-<span style="color:#d14">&#39;&#39;&#39;
-</span><span style="color:#d14">可以为一个uWSGI配置多个Nginx Server和location，这样就可以实现多域名访问同一个python程序。
-</span><span style="color:#d14">&#39;&#39;&#39;</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">server<span class="o">{</span>
+    listen 80<span class="p">;</span>
+<span class="o">}</span>
+<span class="c1">## 此处改为服务器的真实IP</span>
+	server_name 121.12.134.11<span class="p">;</span>
+location /<span class="o">{</span>
+    <span class="c1">## 此处IP与Port配置必须与uwsgi接口中参数相同</span>
+    uwsgi_pass http://127.0.0.1:3011<span class="p">;</span>
+<span class="o">}</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">可以为一个uWSGI配置多个Nginx Server和location，这样就可以实现多域名访问同一个python程序。
+</span><span class="s1">&#39;&#39;&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="建立安全的https网站">建立安全的HTTPS网站</h3>
@@ -731,14 +673,14 @@ location /<span style="color:#000;font-weight:bold">{</span>
 <p>​       如下记录在Ubuntu 14.04.5 LTS (GNU/Linux 4.4.0-124-generic x86_64)下使用OpenSSL的方法，以及Nginx在Linux下的证书配置方式。类似Linux其他发行版、Windows方法类似。</p>
 <p>​      <strong>1）在服务器中安装OpenSSL工具包</strong></p>
 <p>​	通过如下两条命令安装OpenSSL：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#998;font-style:italic">#sudo apt-get install openssl</span>
-<span style="color:#998;font-style:italic">#sudo apt-get install libssl-dev </span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#sudo apt-get install openssl</span>
+<span class="c1">#sudo apt-get install libssl-dev </span>
 </code></pre></td></tr></table>
 </div>
 </div><pre><code>命令运行成功后，OpenSSL命令和配置文件将被安装到Linux系统目录中。
@@ -750,66 +692,73 @@ location /<span style="color:#000;font-weight:bold">{</span>
 <li>
 <p>配置文件：/usr/lib/ssl/*。</p>
 <p><strong>2）生成SSL密钥和证书</strong></p>
-<pre><code>通过如下步骤生成CA证书ca.crt、服务器密钥文件server.key和服务器证书server.crt:
-</code></pre></li>
-</ul>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#998;font-style:italic">#生成CA密钥</span>
-openssl genrsa -out ca.key <span style="color:#099">2048</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">通过如下步骤生成CA证书ca.crt、服务器密钥文件server.key和服务器证书server.crt:
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#生成CA密钥</span>
+openssl genrsa -out ca.key <span class="m">2048</span>
 
-<span style="color:#998;font-style:italic">#生成CA证书，days参数以天为单位设置证书的有效期。在本过程中会要求输入证书的所在地、公司名、站点名等</span>
-openssl req -x509 -new -nodes -key ca.key -days <span style="color:#099">365</span> -out ca.crt
+<span class="c1">#生成CA证书，days参数以天为单位设置证书的有效期。在本过程中会要求输入证书的所在地、公司名、站点名等</span>
+openssl req -x509 -new -nodes -key ca.key -days <span class="m">365</span> -out ca.crt
 
-<span style="color:#998;font-style:italic">#生成服务器证书RSA的密钥对</span>
-openssl genrsa -out server.key <span style="color:#099">2048</span>
+<span class="c1">#生成服务器证书RSA的密钥对</span>
+openssl genrsa -out server.key <span class="m">2048</span>
 
-<span style="color:#998;font-style:italic">#生成服务器端证书ca.crt</span>
-openssl x509 -req -in server.csr -CA ca.crt -CAKey ca.key -CAcreateserial -out server.crt -days <span style="color:#099">365</span>
+<span class="c1">#生成服务器端证书ca.crt</span>
+openssl x509 -req -in server.csr -CA ca.crt -CAKey ca.key -CAcreateserial -out server.crt -days <span class="m">365</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>​	上述命令生成服务器端证书时，需要在Common Name(CN)字段中如实输入站点的访问地址。即设若要访问www.abc.com进行访问，则必须定义CN=www.abc.com；如果通过IP地址访问，则需设置CN为具体的IP地址。</p>
 <p>​        <strong>3）配置Nginx HTTPS服务器</strong></p>
 <p>​	在站点配置文件/etc/nginx/sites-enabled/default中添加如下server段，可以定义一个基于HTTPS的接口，该接口的服务器端程序仍旧为uWSGI接口127.0.0.1:3011。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">server<span style="color:#000;font-weight:bold">{</span>
-    listen					443;			<span style="color:#998;font-style:italic">#HTTPS服务端口</span>
-    server_name				0.0.0.0;	    <span style="color:#998;font-style:italic">#本机上的所有IP地址</span>
-    ssl						on;					<span style="color:#998;font-style:italic">#</span>
-    ssl_certificate			/etc/nginx/ssl/server.crt;
-    ssl_certificate_key		/etc/nginx/ssl/server.key;
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">server<span class="o">{</span>
+    listen					443<span class="p">;</span>			<span class="c1">#HTTPS服务端口</span>
+    server_name				0.0.0.0<span class="p">;</span>	    <span class="c1">#本机上的所有IP地址</span>
+    ssl						on<span class="p">;</span>					<span class="c1">#</span>
+    ssl_certificate			/etc/nginx/ssl/server.crt<span class="p">;</span>
+    ssl_certificate_key		/etc/nginx/ssl/server.key<span class="p">;</span>
 
-location <span style="color:#d14">\ </span><span style="color:#000;font-weight:bold">{</span>
-    uwsgi_pass http://127.0.0.1:3011;
-	<span style="color:#000;font-weight:bold">}</span>
-<span style="color:#000;font-weight:bold">}</span>
+location <span class="se">\ </span><span class="o">{</span>
+    uwsgi_pass http://127.0.0.1:3011<span class="p">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>​	其中需要注意的参数ssl_certificate和ssl_certificate_key需要分别指定生成的服务器证书和服务器密钥的全路径文件名。到此，我们就可以使用浏览器访问服务器的443端口进行HTTPS加密通信了。</p>
@@ -1013,12 +962,6 @@ location <span style="color:#d14">\ </span><span style="color:#000;font-weight:b
 
 
 
-
-  
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
 
 
 

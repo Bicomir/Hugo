@@ -163,64 +163,6 @@
 
 
   
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
-
-  
 
   
 
@@ -471,48 +413,48 @@
 <p>2）明确目标</p>
 <p>分析网站特征，以及要抓取的数据。</p>
 <p>在items.py中；</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">scrapy</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scrapy</span>
 
-<span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">DoubanItem</span>(scrapy<span style="color:#000;font-weight:bold">.</span>Item):
-    <span style="color:#998;font-style:italic"># define the fields for your item here like:</span>
-    <span style="color:#998;font-style:italic"># name = scrapy.Field()</span>
+<span class="k">class</span> <span class="nc">DoubanItem</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Item</span><span class="p">):</span>
+    <span class="c1"># define the fields for your item here like:</span>
+    <span class="c1"># name = scrapy.Field()</span>
     
-    <span style="color:#998;font-style:italic"># 序号</span>
-    serial_number <span style="color:#000;font-weight:bold">=</span> scrapy<span style="color:#000;font-weight:bold">.</span>Field()
-    <span style="color:#998;font-style:italic"># 电影的名称</span>
-    movie_name <span style="color:#000;font-weight:bold">=</span> scrapy<span style="color:#000;font-weight:bold">.</span>Field()
-    <span style="color:#998;font-style:italic"># 电影的介绍</span>
-    introduce <span style="color:#000;font-weight:bold">=</span> scrapy<span style="color:#000;font-weight:bold">.</span>Field()
-    <span style="color:#998;font-style:italic"># 电影的星级</span>
-    star <span style="color:#000;font-weight:bold">=</span> scrapy<span style="color:#000;font-weight:bold">.</span>Field()
-    <span style="color:#998;font-style:italic"># 电影的评论数</span>
-    evaluate <span style="color:#000;font-weight:bold">=</span> scrapy<span style="color:#000;font-weight:bold">.</span>Field()
-    <span style="color:#998;font-style:italic"># 电影的描述</span>
-    describe <span style="color:#000;font-weight:bold">=</span> scrapy<span style="color:#000;font-weight:bold">.</span>Field()
+    <span class="c1"># 序号</span>
+    <span class="n">serial_number</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+    <span class="c1"># 电影的名称</span>
+    <span class="n">movie_name</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+    <span class="c1"># 电影的介绍</span>
+    <span class="n">introduce</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+    <span class="c1"># 电影的星级</span>
+    <span class="n">star</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+    <span class="c1"># 电影的评论数</span>
+    <span class="n">evaluate</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+    <span class="c1"># 电影的描述</span>
+    <span class="n">describe</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
     
     
 </code></pre></td></tr></table>
@@ -520,100 +462,100 @@
 </div><p>3）制作爬虫</p>
 <p>进行爬虫的spider的编写</p>
 <p>douban_spider.py</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic"># -*- coding:utf-8 -*-</span>
-<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">scrapy</span>
-<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">douban.items</span> <span style="color:#000;font-weight:bold">import</span> DoubanItem
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">scrapy</span>
+<span class="kn">from</span> <span class="nn">douban.items</span> <span class="kn">import</span> <span class="n">DoubanItem</span>
 
-<span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">DoubanSpiderSpider</span>(scrapy<span style="color:#000;font-weight:bold">.</span>Spider):
-    name <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;douban_spider&#39;</span>  <span style="color:#998;font-style:italic"># 爬虫名(不能和项目名重复)</span>
-    allowed_domains <span style="color:#000;font-weight:bold">=</span> [<span style="color:#d14">&#39;movie.douban.com&#39;</span>]  <span style="color:#998;font-style:italic"># 允许抓取域名</span>
-    start_urls <span style="color:#000;font-weight:bold">=</span> [<span style="color:#d14">&#39;http://movie.douban.com/top250&#39;</span>]  <span style="color:#998;font-style:italic"># 入口url,扔到调度器里面去</span>
+<span class="k">class</span> <span class="nc">DoubanSpiderSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;douban_spider&#39;</span>  <span class="c1"># 爬虫名(不能和项目名重复)</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;movie.douban.com&#39;</span><span class="p">]</span>  <span class="c1"># 允许抓取域名</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://movie.douban.com/top250&#39;</span><span class="p">]</span>  <span class="c1"># 入口url,扔到调度器里面去</span>
 
-    <span style="color:#998;font-style:italic"># 默认的解析方法</span>
-    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">parse</span>(<span style="color:#999">self</span>, response):
-        <span style="color:#998;font-style:italic"># 循环电影的条目</span>
-        movie_list <span style="color:#000;font-weight:bold">=</span> response<span style="color:#000;font-weight:bold">.</span>xpath(<span style="color:#d14">&#34;//div[@class=&#39;article&#39;]//ol[@class=&#39;grid_view&#39;]/li&#34;</span>)
-        <span style="color:#000;font-weight:bold">for</span> i_item <span style="color:#000;font-weight:bold">in</span> movie_list:
-            <span style="color:#998;font-style:italic"># print(i_item)</span>
-            douban_item <span style="color:#000;font-weight:bold">=</span> DoubanItem()
+    <span class="c1"># 默认的解析方法</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="c1"># 循环电影的条目</span>
+        <span class="n">movie_list</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;//div[@class=&#39;article&#39;]//ol[@class=&#39;grid_view&#39;]/li&#34;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i_item</span> <span class="ow">in</span> <span class="n">movie_list</span><span class="p">:</span>
+            <span class="c1"># print(i_item)</span>
+            <span class="n">douban_item</span> <span class="o">=</span> <span class="n">DoubanItem</span><span class="p">()</span>
 
-            <span style="color:#998;font-style:italic"># 写详细的xpath,进行数据的解析</span>
-            douban_item[<span style="color:#d14">&#39;serial_number&#39;</span>] <span style="color:#000;font-weight:bold">=</span> i_item<span style="color:#000;font-weight:bold">.</span>xpath(<span style="color:#d14">&#34;.//div[@class=&#39;item&#39;]//em//text()&#34;</span>)<span style="color:#000;font-weight:bold">.</span>extract_first()
-            douban_item[<span style="color:#d14">&#39;movie_name&#39;</span>] <span style="color:#000;font-weight:bold">=</span> i_item<span style="color:#000;font-weight:bold">.</span>xpath(<span style="color:#d14">&#34;.//div[@class=&#39;info&#39;]/div[@class=&#39;hd&#39;]/a/span[1]/text()&#34;</span>)<span style="color:#000;font-weight:bold">.</span>extract_first()
-            content <span style="color:#000;font-weight:bold">=</span> i_item<span style="color:#000;font-weight:bold">.</span>xpath(<span style="color:#d14">&#34;.//div[@class=&#39;info&#39;]/div[@class=&#39;bd&#39;]/p[1]/text()&#34;</span>)<span style="color:#000;font-weight:bold">.</span>extract()
+            <span class="c1"># 写详细的xpath,进行数据的解析</span>
+            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;serial_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;item&#39;]//em//text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
+            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;movie_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;info&#39;]/div[@class=&#39;hd&#39;]/a/span[1]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;info&#39;]/div[@class=&#39;bd&#39;]/p[1]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
 
-            <span style="color:#998;font-style:italic"># 多行数据的处理</span>
-            <span style="color:#000;font-weight:bold">for</span> i_content <span style="color:#000;font-weight:bold">in</span> content:
-                content_s <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;&#34;</span><span style="color:#000;font-weight:bold">.</span>join(i_content<span style="color:#000;font-weight:bold">.</span>split())
-                douban_item[<span style="color:#d14">&#39;introduce&#39;</span>] <span style="color:#000;font-weight:bold">=</span> content_s
+            <span class="c1"># 多行数据的处理</span>
+            <span class="k">for</span> <span class="n">i_content</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+                <span class="n">content_s</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i_content</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+                <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;introduce&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_s</span>
 
-            douban_item[<span style="color:#d14">&#39;star&#39;</span>] <span style="color:#000;font-weight:bold">=</span> i_item<span style="color:#000;font-weight:bold">.</span>xpath(<span style="color:#d14">&#34;.//span[@class=&#39;rating_num&#39;]/text()&#34;</span>)<span style="color:#000;font-weight:bold">.</span>extract_first()
-            douban_item[<span style="color:#d14">&#39;evaluate&#39;</span>] <span style="color:#000;font-weight:bold">=</span> i_item<span style="color:#000;font-weight:bold">.</span>xpath(<span style="color:#d14">&#34;.//div[@class=&#39;star&#39;]//span[4]/text()&#34;</span>)<span style="color:#000;font-weight:bold">.</span>extract_first()
-            douban_item[<span style="color:#d14">&#39;describe&#39;</span>] <span style="color:#000;font-weight:bold">=</span> i_item<span style="color:#000;font-weight:bold">.</span>xpath(<span style="color:#d14">&#34;.//p[@class=&#39;quote&#39;]/span/text()&#34;</span>)<span style="color:#000;font-weight:bold">.</span>extract_first()
+            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;star&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//span[@class=&#39;rating_num&#39;]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
+            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;star&#39;]//span[4]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
+            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;describe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//p[@class=&#39;quote&#39;]/span/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
 
-            <span style="color:#000;font-weight:bold">yield</span> douban_item  <span style="color:#998;font-style:italic">#把数据yield到管道里面去</span>
+            <span class="k">yield</span> <span class="n">douban_item</span>  <span class="c1">#把数据yield到管道里面去</span>
 
-        <span style="color:#998;font-style:italic"># 解析下一页规则，取得是后页的xpath</span>
-        next_link <span style="color:#000;font-weight:bold">=</span> response<span style="color:#000;font-weight:bold">.</span>xpath(<span style="color:#d14">&#34;//span[@class=&#39;next&#39;]/link/@href&#34;</span>)<span style="color:#000;font-weight:bold">.</span>extract()
-        <span style="color:#000;font-weight:bold">if</span> next_link:
-            next_link <span style="color:#000;font-weight:bold">=</span> next_link[<span style="color:#099">0</span>]
-            <span style="color:#000;font-weight:bold">yield</span> scrapy<span style="color:#000;font-weight:bold">.</span>Request(<span style="color:#d14">&#34;https://movie.douban.com/top250&#34;</span><span style="color:#000;font-weight:bold">+</span>next_link,callback<span style="color:#000;font-weight:bold">=</span><span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>parse)
+        <span class="c1"># 解析下一页规则，取得是后页的xpath</span>
+        <span class="n">next_link</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;//span[@class=&#39;next&#39;]/link/@href&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">next_link</span><span class="p">:</span>
+            <span class="n">next_link</span> <span class="o">=</span> <span class="n">next_link</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">yield</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s2">&#34;https://movie.douban.com/top250&#34;</span><span class="o">+</span><span class="n">next_link</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>启动scrapy爬虫</strong></p>
 <p>scrapy crawl douban_spider</p>
 <p>安装sqlite3,加入sqlite3,重新编译安装python3</p>
 <p>在pycharm里面做一个启动程序:在main.py</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">scrapy</span> <span style="color:#000;font-weight:bold">import</span> cmdline
-cmdline<span style="color:#000;font-weight:bold">.</span>execute(<span style="color:#d14">&#39;scrapy crawl douban_spider&#39;</span>)
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">scrapy</span> <span class="kn">import</span> <span class="n">cmdline</span>
+<span class="n">cmdline</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;scrapy crawl douban_spider&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div>
@@ -816,12 +758,6 @@ cmdline<span style="color:#000;font-weight:bold">.</span>execute(<span style="co
 
 
 
-
-  
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
 
 
 

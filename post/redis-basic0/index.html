@@ -69,7 +69,7 @@
 <meta itemprop="name" content="redis快速入门">
 <meta itemprop="description" content="String类型数据的扩展操作 业务场景一 大型企业级应用中，分表操作是基本操作，使用多张表存储同类型数据，但是对应的主键id必须保证统一性，不"><meta itemprop="datePublished" content="2020-05-12T22:19:05+00:00" />
 <meta itemprop="dateModified" content="2020-05-12T22:19:05+00:00" />
-<meta itemprop="wordCount" content="4522">
+<meta itemprop="wordCount" content="4540">
 <meta itemprop="keywords" content="redis," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="redis快速入门"/>
 <meta name="twitter:description" content="String类型数据的扩展操作 业务场景一 大型企业级应用中，分表操作是基本操作，使用多张表存储同类型数据，但是对应的主键id必须保证统一性，不"/>
@@ -161,64 +161,6 @@
   </ul>
 </nav>
 
-
-  
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
 
   
 
@@ -344,7 +286,7 @@
             <a href="https://bomir.top/categories/nosql/"> Nosql </a>
             
           </div>
-        <span class="more-meta"> 约 4522 字 </span>
+        <span class="more-meta"> 约 4540 字 </span>
           <span class="more-meta"> 预计阅读 10 分钟 </span>
 
         
@@ -416,15 +358,32 @@
 <ul>
 <li>设置数值数据增加指定范围的值</li>
 </ul>
-<pre><code>incr key
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">incr key
 incrby key increment
 incrbyfloat key increment
-</code></pre><ul>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>设置数值数据减少指定范围的值</li>
 </ul>
-<pre><code class="language-redis" data-lang="redis">decr key
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">decr key
 decrby key increment
-</code></pre><p><strong>string作为数值操作</strong></p>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>string作为数值操作</strong></p>
 <ul>
 <li>
 <p>string在redis内部存储默认就是一个字符串，当遇到增减类操作incr， decr时就会转成数值型进行计算;</p>
@@ -455,9 +414,17 @@ decrby key increment
 <ul>
 <li>设置数据具有指定的生命周期</li>
 </ul>
-<pre><code>setex key seconds value
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">setex key seconds value
 psetex key milliseconds value
-</code></pre><p>秒， 毫秒</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>秒， 毫秒</p>
 <blockquote>
 <p>127.0.0.1:6379&gt; setex tel 10 1
 OK
@@ -546,55 +513,55 @@ OK
 <p><code>hdel key field1 [field2]</code></p>
 </li>
 </ul>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; hset user name zhangsan
-<span style="color:#000;font-weight:bold">(</span>integer<span style="color:#000;font-weight:bold">)</span> <span style="color:#099">1</span>
-127.0.0.1:6379&gt; hset user age <span style="color:#099">38</span>
-<span style="color:#000;font-weight:bold">(</span>integer<span style="color:#000;font-weight:bold">)</span> <span style="color:#099">1</span>
-127.0.0.1:6379&gt; hset user weight <span style="color:#099">80</span>
-<span style="color:#000;font-weight:bold">(</span>integer<span style="color:#000;font-weight:bold">)</span> <span style="color:#099">1</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; hset user name zhangsan
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+127.0.0.1:6379&gt; hset user age <span class="m">38</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+127.0.0.1:6379&gt; hset user weight <span class="m">80</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
 127.0.0.1:6379&gt; hgetall user
-1<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;name&#34;</span>
-2<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;zhangsan&#34;</span>
-3<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;age&#34;</span>
-4<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;38&#34;</span>
-5<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;weight&#34;</span>
-6<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;80&#34;</span>
+1<span class="o">)</span> <span class="s2">&#34;name&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;zhangsan&#34;</span>
+3<span class="o">)</span> <span class="s2">&#34;age&#34;</span>
+4<span class="o">)</span> <span class="s2">&#34;38&#34;</span>
+5<span class="o">)</span> <span class="s2">&#34;weight&#34;</span>
+6<span class="o">)</span> <span class="s2">&#34;80&#34;</span>
 127.0.0.1:6379&gt; hget user name
-<span style="color:#d14">&#34;zhangsan&#34;</span>
+<span class="s2">&#34;zhangsan&#34;</span>
 127.0.0.1:6379&gt; hdel user weight
-<span style="color:#000;font-weight:bold">(</span>integer<span style="color:#000;font-weight:bold">)</span> <span style="color:#099">1</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
 127.0.0.1:6379&gt; hgetall user
-1<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;name&#34;</span>
-2<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;zhangsan&#34;</span>
-3<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;age&#34;</span>
-4<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;38&#34;</span>
+1<span class="o">)</span> <span class="s2">&#34;name&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;zhangsan&#34;</span>
+3<span class="o">)</span> <span class="s2">&#34;age&#34;</span>
+4<span class="o">)</span> <span class="s2">&#34;38&#34;</span>
 127.0.0.1:6379&gt;   
 </code></pre></td></tr></table>
 </div>
@@ -620,26 +587,26 @@ OK
 <ul>
 <li>获取哈希表中所有的字段名或字段值</li>
 </ul>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">hkeys key
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">hkeys key
 hvals key
 </code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>设置指定字段的数值数据增加指定范围的值</li>
 </ul>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">hincrby key field increment
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">hincrby key field increment
 hincrbyfloat key field increment
 </code></pre></td></tr></table>
 </div>
@@ -775,24 +742,59 @@ hincrbyfloat key field increment
 <ul>
 <li>添加数据</li>
 </ul>
-<pre><code>sadd key member1 [member2]
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sadd key member1 [member2]
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>获取全部数据</li>
 </ul>
-<pre><code class="language-redis" data-lang="redis">smembers key
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">smembers key
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>删除数据</li>
 </ul>
-<pre><code class="language-redi" data-lang="redi">srem key member1 [member2]
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">srem key member1 [member2]
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>获取集合数据总量</li>
 </ul>
-<pre><code class="language-redis" data-lang="redis">scard key
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">scard key
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>判断集合中是否包含指定数据</li>
 </ul>
-<pre><code>sismember key member
-</code></pre><h3 id="set类型数据扩展操作">Set类型数据扩展操作</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sismember key member
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="set类型数据扩展操作">Set类型数据扩展操作</h3>
 <p><strong>业务场景</strong></p>
 <p>每位用户首次使用今日头条时会设置3项爱好的内容， 但是后期为了增加用户的活跃度、兴趣点，必须让用户对其他信息类别逐渐产生兴趣，增加客户留存度， 如何实现？</p>
 <p><strong>业务分析</strong></p>
@@ -887,32 +889,62 @@ hincrbyfloat key field increment
 <ul>
 <li>添加数据</li>
 </ul>
-<pre><code>zadd key score1 member1 [score2 member2]
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">zadd key score1 member1 [score2 member2]
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>获取全部数据</li>
 </ul>
-<pre><code class="language-redis" data-lang="redis">zrange key start stop [WITHSCORES]
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">zrange key start stop [WITHSCORES]
 zrevrange key start stop [WITHSCORES]
-</code></pre><ul>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>删除数据</li>
 </ul>
-<pre><code class="language-redi" data-lang="redi">zrem key member [member...]
-</code></pre><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">zrem key member [member...]
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>按条件获取数据</li>
 </ul>
-<pre><code>zrangebyscore key min max [WITHSCOES] [LIMIT]
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">zrangebyscore key min max [WITHSCOES] [LIMIT]
 zreverangebyscore key min max [WITHSCOES]
-</code></pre><ul>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>条件删除数据</li>
 </ul>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#">zremrangebyrank key start stop
-zremrangebyscore key min max
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">zremrangebyrank</span> <span class="n">key</span> <span class="n">start</span> <span class="n">stop</span>
+<span class="n">zremrangebyscore</span> <span class="n">key</span> <span class="n">min</span> <span class="n">max</span>
 </code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -923,27 +955,27 @@ zremrangebyscore key min max
 <ul>
 <li>
 <p>获取集合数据总量</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">zcard key
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">zcard key
 zcount key min max
 </code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
 <p>集合交，并操作</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">zinterstore destination numkeys key <span style="color:#000;font-weight:bold">[</span>key ...<span style="color:#000;font-weight:bold">]</span>
-zunionstore destination numkeys key <span style="color:#000;font-weight:bold">[</span>key ...<span style="color:#000;font-weight:bold">]</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">zinterstore destination numkeys key <span class="o">[</span>key ...<span class="o">]</span>
+zunionstore destination numkeys key <span class="o">[</span>key ...<span class="o">]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><img src="http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcWp5.5BzlMKZ4kOlHNpSPlqZpOX454xj1DbSGVlxyCuFS2qeaWgQtV4o*j6VyzGojl8n8uT*4F4f1xPdMOxWYmU!/b&amp;bo=cgKMAQAAAAADJ*8!&amp;rf=viewer_4" alt="1616419839622"></p>
@@ -961,26 +993,26 @@ zunionstore destination numkeys key <span style="color:#000;font-weight:bold">[<
 <ul>
 <li>获取数据对应的索引(排名)</li>
 </ul>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">zrank key member
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">zrank key member
 zrevrank key member
 </code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>score值获取与修改</li>
 </ul>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">zscore key member
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">zscore key member
 zincrby key increment member
 </code></pre></td></tr></table>
 </div>
@@ -1213,12 +1245,6 @@ zincrby key increment member
 
 
 
-
-  
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
 
 
 

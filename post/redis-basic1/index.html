@@ -163,64 +163,6 @@
 
 
   
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
-
-  
 
   
 
@@ -386,171 +328,171 @@
     <div class="post-content">
       <h2 id="redisconf详解">Redis.conf详解</h2>
 <p>1.配置文件 unit单位对大小写不敏感；</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#998;font-style:italic"># 1) The server is not binding explicitly to a set of addresses using the</span>
-<span style="color:#998;font-style:italic">#    &#34;bind&#34; directive.</span>
-<span style="color:#998;font-style:italic"># 2) No password is configured.</span>
-<span style="color:#998;font-style:italic">#</span>
-<span style="color:#998;font-style:italic"># The server only accepts connections from clients connecting from the</span>
-<span style="color:#998;font-style:italic"># IPv4 and IPv6 loopback addresses 127.0.0.1 and ::1, and from Unix domain</span>
-<span style="color:#998;font-style:italic"># sockets.</span>
-<span style="color:#998;font-style:italic">#</span>
-<span style="color:#998;font-style:italic"># By default protected mode is enabled. You should disable it only if</span>
-<span style="color:#998;font-style:italic"># you are sure you want clients from other hosts to connect to Redis</span>
-<span style="color:#998;font-style:italic"># even if no authentication is configured, nor a specific set of interfaces</span>
-<span style="color:#998;font-style:italic"># are explicitly listed using the &#34;bind&#34; directive.</span>
-<span style="color:#998;font-style:italic"># protected-mode yes</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 1) The server is not binding explicitly to a set of addresses using the</span>
+<span class="c1">#    &#34;bind&#34; directive.</span>
+<span class="c1"># 2) No password is configured.</span>
+<span class="c1">#</span>
+<span class="c1"># The server only accepts connections from clients connecting from the</span>
+<span class="c1"># IPv4 and IPv6 loopback addresses 127.0.0.1 and ::1, and from Unix domain</span>
+<span class="c1"># sockets.</span>
+<span class="c1">#</span>
+<span class="c1"># By default protected mode is enabled. You should disable it only if</span>
+<span class="c1"># you are sure you want clients from other hosts to connect to Redis</span>
+<span class="c1"># even if no authentication is configured, nor a specific set of interfaces</span>
+<span class="c1"># are explicitly listed using the &#34;bind&#34; directive.</span>
+<span class="c1"># protected-mode yes</span>
 protected-mode no
-<span style="color:#998;font-style:italic"># Accept connections on the specified port, default is 6379 (IANA #815344).</span>
-<span style="color:#998;font-style:italic"># If port 0 is specified Redis will not listen on a TCP socket.</span>
-port <span style="color:#099">6379</span>
+<span class="c1"># Accept connections on the specified port, default is 6379 (IANA #815344).</span>
+<span class="c1"># If port 0 is specified Redis will not listen on a TCP socket.</span>
+port <span class="m">6379</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">// 配置文件中， 一些配置项说明
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">// 配置文件中， 一些配置项说明
 
-<span style="color:#0086b3">bind</span> 127.0.0.1   <span style="color:#998;font-style:italic"># 绑定的ip</span>
-protected-mode yes  <span style="color:#998;font-style:italic"># 保护模式</span>
-port <span style="color:#099">6379</span>  <span style="color:#998;font-style:italic"># 端口设置</span>
+<span class="nb">bind</span> 127.0.0.1   <span class="c1"># 绑定的ip</span>
+protected-mode yes  <span class="c1"># 保护模式</span>
+port <span class="m">6379</span>  <span class="c1"># 端口设置</span>
 
-daemonize yes  <span style="color:#998;font-style:italic"># 以守护进程的方式运行，默认是no, 我们需要自己的开启为yes</span>
-pidfile /var/run/redis_6379_pid   <span style="color:#998;font-style:italic"># 如果是以后台方式运行， 我们就需要指定一个pid文件</span>
+daemonize yes  <span class="c1"># 以守护进程的方式运行，默认是no, 我们需要自己的开启为yes</span>
+pidfile /var/run/redis_6379_pid   <span class="c1"># 如果是以后台方式运行， 我们就需要指定一个pid文件</span>
 
-<span style="color:#998;font-style:italic"># 日志</span>
-<span style="color:#998;font-style:italic"># Specify the server verbosity level.</span>
-<span style="color:#998;font-style:italic"># This can be one of:</span>
-<span style="color:#998;font-style:italic"># debug (a lot of information, useful for development/testing)</span>
-<span style="color:#998;font-style:italic"># verbose (many rarely useful info, but not a mess like the debug level)</span>
-<span style="color:#998;font-style:italic"># notice (moderately verbose, what you want in production probably)</span>
-<span style="color:#998;font-style:italic"># warning (only very important / critical messages are logged)</span>
+<span class="c1"># 日志</span>
+<span class="c1"># Specify the server verbosity level.</span>
+<span class="c1"># This can be one of:</span>
+<span class="c1"># debug (a lot of information, useful for development/testing)</span>
+<span class="c1"># verbose (many rarely useful info, but not a mess like the debug level)</span>
+<span class="c1"># notice (moderately verbose, what you want in production probably)</span>
+<span class="c1"># warning (only very important / critical messages are logged)</span>
 loglevel notice
-logfile /var/log/redis/redis-server.log  <span style="color:#998;font-style:italic"># 日志文件位置名</span>
+logfile /var/log/redis/redis-server.log  <span class="c1"># 日志文件位置名</span>
 
-<span style="color:#998;font-style:italic"># Set the number of databases. The default database is DB 0, you can select</span>
-<span style="color:#998;font-style:italic"># a different one on a per-connection basis using SELECT &lt;dbid&gt; where</span>
-<span style="color:#998;font-style:italic"># dbid is a number between 0 and &#39;databases&#39;-1</span>
-databases <span style="color:#099">16</span>
-always-show-logo yes  <span style="color:#998;font-style:italic"># 是否总是显示logo</span>
+<span class="c1"># Set the number of databases. The default database is DB 0, you can select</span>
+<span class="c1"># a different one on a per-connection basis using SELECT &lt;dbid&gt; where</span>
+<span class="c1"># dbid is a number between 0 and &#39;databases&#39;-1</span>
+databases <span class="m">16</span>
+always-show-logo yes  <span class="c1"># 是否总是显示logo</span>
 
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>快照</strong></p>
 <p>持久化， 在规定的时间内，执行了多少次的操作，则会持久化到文件.rdb, .aof, redis是内存数据库， 如果没有持久化，那么数据是断电即失的；</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#998;font-style:italic"># 如果900s内， 如果至少有一个1 key进行了修改， 我们即进行持久化操作；</span>
-save <span style="color:#099">900</span> <span style="color:#099">1</span>
-<span style="color:#998;font-style:italic"># 如果300s内， 如果至少有一个10 key进行了修改， 我们即进行持久化操作；</span>
-save <span style="color:#099">300</span> <span style="color:#099">10</span>
-<span style="color:#998;font-style:italic"># 如果60s内， 如果至少有一个10000 key进行了修改， 我们即进行持久化操作；</span>
-save <span style="color:#099">60</span> <span style="color:#099">10000</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 如果900s内， 如果至少有一个1 key进行了修改， 我们即进行持久化操作；</span>
+save <span class="m">900</span> <span class="m">1</span>
+<span class="c1"># 如果300s内， 如果至少有一个10 key进行了修改， 我们即进行持久化操作；</span>
+save <span class="m">300</span> <span class="m">10</span>
+<span class="c1"># 如果60s内， 如果至少有一个10000 key进行了修改， 我们即进行持久化操作；</span>
+save <span class="m">60</span> <span class="m">10000</span>
 
-<span style="color:#998;font-style:italic"># 之后持久化，可以自己定义；</span>
-stop-writes-on-bgsave-error yes  <span style="color:#998;font-style:italic"># 如果持久化出错，是否还需要继续工作</span>
+<span class="c1"># 之后持久化，可以自己定义；</span>
+stop-writes-on-bgsave-error yes  <span class="c1"># 如果持久化出错，是否还需要继续工作</span>
 
-rdbcompression yes <span style="color:#998;font-style:italic"># 是否压缩rdb文件，需要消耗一些cpu资源</span>
-rdbchecksum yes  <span style="color:#998;font-style:italic"># 保存rdb文件的时候，进行错误的检查校验</span>
-dir ./  <span style="color:#998;font-style:italic"># rdb 文件保存的目录</span>
+rdbcompression yes <span class="c1"># 是否压缩rdb文件，需要消耗一些cpu资源</span>
+rdbchecksum yes  <span class="c1"># 保存rdb文件的时候，进行错误的检查校验</span>
+dir ./  <span class="c1"># rdb 文件保存的目录</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>Replication 复制</strong></p>
 <p><strong>Security</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">config <span style="color:#0086b3">set</span> reqiurepass
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">config <span class="nb">set</span> reqiurepass
 
 config get reqiurepass
 
-auth <span style="color:#099">123456</span>
+auth <span class="m">123456</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>限制Clients</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">maxclients <span style="color:#099">10000</span>  <span style="color:#998;font-style:italic"># 设置能连接上redis的最大客户端的数量</span>
-maxmemory &lt;bytes&gt; <span style="color:#998;font-style:italic"># redis配置最大的内存容量</span>
-axmemory-policy noeviction  <span style="color:#998;font-style:italic"># 内存达到上限之后的处理策略</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">maxclients <span class="m">10000</span>  <span class="c1"># 设置能连接上redis的最大客户端的数量</span>
+maxmemory &lt;bytes&gt; <span class="c1"># redis配置最大的内存容量</span>
+axmemory-policy noeviction  <span class="c1"># 内存达到上限之后的处理策略</span>
 
-<span style="color:#998;font-style:italic"># 移除一些过期的key</span>
-<span style="color:#998;font-style:italic"># 报错</span>
+<span class="c1"># 移除一些过期的key</span>
+<span class="c1"># 报错</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>​	     当实际内存超出 maxmemory 时，Redis 提供了几种可选策略 (maxmemory-policy) 来让用户自己决定该如何腾出新的空间以继续提供读写服务。</p>
@@ -577,22 +519,22 @@ axmemory-policy noeviction  <span style="color:#998;font-style:italic"># 内存�
 <blockquote>
 <p>Append Only模式  aof配置</p>
 </blockquote>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">appendonly no  <span style="color:#998;font-style:italic"># 默认是不开启aof模式， 默认是使用rdb方式持久化的，在大部分的情况下，rdb够用</span>
-appendfilename <span style="color:#d14">&#34;appendonly.aof&#34;</span> <span style="color:#998;font-style:italic"># 持久化的文件的名字   .rdb</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">appendonly no  <span class="c1"># 默认是不开启aof模式， 默认是使用rdb方式持久化的，在大部分的情况下，rdb够用</span>
+appendfilename <span class="s2">&#34;appendonly.aof&#34;</span> <span class="c1"># 持久化的文件的名字   .rdb</span>
 
-appendfsync always  <span style="color:#998;font-style:italic"># 每次修改都会sync, 消耗性能</span>
-appendfsync everysec  <span style="color:#998;font-style:italic"># 每秒执行一次sync, 可能会丢失这1s的数据</span>
-appendfsync everysec  <span style="color:#998;font-style:italic"># 不执行sync, 这个时候操作系统自己会同步数据，速度最快</span>
+appendfsync always  <span class="c1"># 每次修改都会sync, 消耗性能</span>
+appendfsync everysec  <span class="c1"># 每秒执行一次sync, 可能会丢失这1s的数据</span>
+appendfsync everysec  <span class="c1"># 不执行sync, 这个时候操作系统自己会同步数据，速度最快</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="redis持久化">Redis持久化</h2>
@@ -653,56 +595,56 @@ AOF是文件的无限追加，所以有一个重写机制来保证aof文件不�
 <p>当有新消息通过 PUBLISH 命令发送给频道 channel1 时， 这个消息就会被发送给订阅它的三个客户端：</p>
 <p><img src="https://www.runoob.com/wp-content/uploads/2014/11/pubsub2.png" alt=""></p>
 <p><strong>订阅者</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; subscribe kuangshenshuo 
-Reading messages... <span style="color:#000;font-weight:bold">(</span>press Ctrl-C to quit<span style="color:#000;font-weight:bold">)</span>
-1<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;subscribe&#34;</span>
-2<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;kuangshenshuo&#34;</span>
-3<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">(</span>integer<span style="color:#000;font-weight:bold">)</span> <span style="color:#099">1</span>
-1<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;message&#34;</span>
-2<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;kuangshenshuo&#34;</span>
-3<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;hello,kuangshen&#34;</span>
-1<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;message&#34;</span>
-2<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;kuangshenshuo&#34;</span>
-3<span style="color:#000;font-weight:bold">)</span> <span style="color:#d14">&#34;hello,redis&#34;</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; subscribe kuangshenshuo 
+Reading messages... <span class="o">(</span>press Ctrl-C to quit<span class="o">)</span>
+1<span class="o">)</span> <span class="s2">&#34;subscribe&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;kuangshenshuo&#34;</span>
+3<span class="o">)</span> <span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+1<span class="o">)</span> <span class="s2">&#34;message&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;kuangshenshuo&#34;</span>
+3<span class="o">)</span> <span class="s2">&#34;hello,kuangshen&#34;</span>
+1<span class="o">)</span> <span class="s2">&#34;message&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;kuangshenshuo&#34;</span>
+3<span class="o">)</span> <span class="s2">&#34;hello,redis&#34;</span>
 
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>发送端</strong></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bomir@morn:~$ redis-cli
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">bomir@morn:~$ redis-cli
 127.0.0.1:6379&gt; ping
 PONG
-127.0.0.1:6379&gt; publish kuangshenshuo <span style="color:#d14">&#34;hello,kuangshen&#34;</span>
-<span style="color:#000;font-weight:bold">(</span>integer<span style="color:#000;font-weight:bold">)</span> <span style="color:#099">1</span>
-127.0.0.1:6379&gt; publish kuangshenshuo <span style="color:#d14">&#34;hello,redis&#34;</span>
-<span style="color:#000;font-weight:bold">(</span>integer<span style="color:#000;font-weight:bold">)</span> <span style="color:#099">1</span>
+127.0.0.1:6379&gt; publish kuangshenshuo <span class="s2">&#34;hello,kuangshen&#34;</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+127.0.0.1:6379&gt; publish kuangshenshuo <span class="s2">&#34;hello,redis&#34;</span>
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
 127.0.0.1:6379&gt; 
 </code></pre></td></tr></table>
 </div>
@@ -729,26 +671,26 @@ PONG
 <p>一般来说，将Redis运用于工程项目，只使用一台redis是万万不能的（会宕机），原因如下：</p>
 <p>从结构上，单个Redis服务器会发生单点故障，并且一台服务器需要处理所有的请求负载，压力较大;
 从容量上，单个redis服务器容量有限，一般来说，单台redis的最大使用内存不应该超过20G；</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#998;font-style:italic"># info</span>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># info</span>
 
-<span style="color:#998;font-style:italic"># Replication</span>
+<span class="c1"># Replication</span>
 role:master
 connected_slaves:0
 master_replid:9514b713962669e9679d1de62c2ef2fd56d1d19b
@@ -797,30 +739,30 @@ repl_backlog_histlen:0
 <ol>
 <li>
 <p>从机只能读，不能写，主机可读可写但是多用于写</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">127.0.0.1:6381&gt; <span style="color:#0086b3">set</span> name sakura <span style="color:#998;font-style:italic"># 从机6381写入失败</span>
-<span style="color:#000;font-weight:bold">(</span>error<span style="color:#000;font-weight:bold">)</span> READONLY You can<span style="color:#d14">&#39;t write against a read only replica.
-</span><span style="color:#d14">
-</span><span style="color:#d14">127.0.0.1:6380&gt; set name sakura # 从机6380写入失败
-</span><span style="color:#d14">(error) READONLY You can&#39;</span>t write against a <span style="color:#0086b3">read</span> only replica.
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">127.0.0.1:6381&gt; <span class="nb">set</span> name sakura <span class="c1"># 从机6381写入失败</span>
+<span class="o">(</span>error<span class="o">)</span> READONLY You can<span class="s1">&#39;t write against a read only replica.
+</span><span class="s1">
+</span><span class="s1">127.0.0.1:6380&gt; set name sakura # 从机6380写入失败
+</span><span class="s1">(error) READONLY You can&#39;</span>t write against a <span class="nb">read</span> only replica.
 
-127.0.0.1:6379&gt; <span style="color:#0086b3">set</span> name sakura
+127.0.0.1:6379&gt; <span class="nb">set</span> name sakura
 OK
 127.0.0.1:6379&gt; get name
-<span style="color:#d14">&#34;sakura&#34;</span>
+<span class="s2">&#34;sakura&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -1151,12 +1093,6 @@ OK
 
 
 
-
-  
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
 
 
 
