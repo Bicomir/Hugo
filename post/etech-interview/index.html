@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>etech面试模拟 - Wallis</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="bomir" />
+  <meta name="description" content="Interview Mock 一面 A （1）TCP三次握手和四次挥手，以及为什么要挥手4次呢？ 首先来理解一下TCP的报文格式： 序列号seq：占4个字节，用来标记数据段的" />
+
+  <meta name="keywords" content="Hugo, theme, jane" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0" />
+
+
+<link rel="canonical" href="https://bomir.top/post/etech-interview/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="etech面试模拟" />
+<meta property="og:description" content="Interview Mock 一面 A （1）TCP三次握手和四次挥手，以及为什么要挥手4次呢？ 首先来理解一下TCP的报文格式： 序列号seq：占4个字节，用来标记数据段的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bomir.top/post/etech-interview/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-01-17T18:56:34+00:00" />
+<meta property="article:modified_time" content="2021-01-17T18:56:34+00:00" />
+
+<meta itemprop="name" content="etech面试模拟">
+<meta itemprop="description" content="Interview Mock 一面 A （1）TCP三次握手和四次挥手，以及为什么要挥手4次呢？ 首先来理解一下TCP的报文格式： 序列号seq：占4个字节，用来标记数据段的"><meta itemprop="datePublished" content="2021-01-17T18:56:34+00:00" />
+<meta itemprop="dateModified" content="2021-01-17T18:56:34+00:00" />
+<meta itemprop="wordCount" content="9893">
+<meta itemprop="keywords" content="面试," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="etech面试模拟"/>
+<meta name="twitter:description" content="Interview Mock 一面 A （1）TCP三次握手和四次挥手，以及为什么要挥手4次呢？ 首先来理解一下TCP的报文格式： 序列号seq：占4个字节，用来标记数据段的"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">秤流沙</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      秤流沙
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">etech面试模拟</h1>
+      
+      <div class="post-meta">
+        <time datetime="2021-01-17" class="post-time">
+          2021-01-17
+        </time>
+        <div class="post-category">
+            <a href="https://bomir.top/categories/%E9%9D%A2%E8%AF%95/"> 面试 </a>
+            
+          </div>
+        <span class="more-meta"> 约 9893 字 </span>
+          <span class="more-meta"> 预计阅读 20 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一面">一面</a></li>
+    <li><a href="#a">A</a>
+      <ul>
+        <li><a href="#1tcp三次握手和四次挥手以及为什么要挥手4次呢">（1）TCP三次握手和四次挥手，以及为什么要挥手4次呢？</a></li>
+        <li><a href="#2close-wait和time_wait的相关内容分别是做什么用的分别在哪一个端存在">（2）CLOSE-WAIT和TIME_WAIT的相关内容，分别是做什么用的？分别在哪一个端存在？</a></li>
+        <li><a href="#3线程和进程的区别是什么">（3）线程和进程的区别是什么？</a></li>
+        <li><a href="#4了解算法吗排序算法常用的说一说稳定的算法都是什么什么叫做稳定">（4）了解算法吗，排序算法常用的说一说？稳定的算法都是什么？什么叫做稳定？</a></li>
+        <li><a href="#5对于调度算法了解吗都有什么描述一下">（5）对于调度算法了解吗，都有什么，描述一下？</a></li>
+      </ul>
+    </li>
+    <li><a href="#b">B</a>
+      <ul>
+        <li><a href="#1-sql优化只答了索引">(1) sql优化？（只答了索引）</a></li>
+        <li><a href="#2-数据库的索引">(2) 数据库的索引？</a></li>
+        <li><a href="#3-b树和b树的区别">(3) b树和b+树的区别？</a></li>
+        <li><a href="#4-explain分析sql语句有哪些列">(4) explain分析sql语句有哪些列？</a></li>
+        <li><a href="#幻读是什么怎么解决next-key-locks">幻读是什么？怎么解决？（next-key locks）</a></li>
+        <li><a href="#tcp和udp的区别">tcp和udp的区别？</a></li>
+      </ul>
+    </li>
+    <li><a href="#tcp传输控制协议和udp用户数据报协议区别">TCP(传输控制协议)和UDP（用户数据报协议）区别</a></li>
+    <li><a href="#区别">区别：</a></li>
+    <li><a href="#应用场景选择">应用场景选择</a>
+      <ul>
+        <li><a href="#说说httpsssltls加密过程">说说https?（ssl/tls加密过程）</a></li>
+        <li><a href="#对称加密和非对称加密的优劣没答出来只说了使用场景">对称加密和非对称加密的优劣？（没答出来，只说了使用场景）</a></li>
+        <li><a href="#三次握手四次挥手">三次握手？四次挥手？</a></li>
+        <li><a href="#进程与线程的区别">进程与线程的区别？</a></li>
+        <li><a href="#goroutine与线程的区别说了gmp模型">goroutine与线程的区别？（说了gmp模型）</a></li>
+        <li><a href="#面试官建议多了解数据库优化golang">面试官建议：多了解数据库优化，golang</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#为什么数据库需要索引">为什么数据库需要索引？</a></li>
+        <li><a href="#b树和hash">B+树和hash？</a></li>
+        <li><a href="#并发量变大时怎么开发网关系统">并发量变大时怎么开发网关系统？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h1 id="interview-mock">Interview Mock</h1>
+<h2 id="一面">一面</h2>
+<h2 id="a">A</h2>
+<h3 id="1tcp三次握手和四次挥手以及为什么要挥手4次呢">（1）TCP三次握手和四次挥手，以及为什么要挥手4次呢？</h3>
+<p>首先来理解一下TCP的报文格式：</p>
+<p><a href="https://imgtu.com/i/Wrk3ct"><img src="https://z3.ax1x.com/2021/07/23/Wrk3ct.jpg" alt="Wrk3ct.jpg"></a></p>
+<p>序列号seq：占4个字节，用来标记数据段的顺序，TCP把连接中发送的所有数据字节都编上一个序号，第一个字节的编号由本地随机产生；给字节编上序号后，就给每一个报文段指派一个序号；序列号seq就是这个报文段中的第一个字节的数据编号。</p>
+<p>​    确认号ack：占4个字节，期待收到对方下一个报文段的第一个数据字节的序号；序列号表示报文段携带数据的第一个字节的编号；而确认号指的是期望接收到下一个字节的编号；因此当前报文段最后一个字节的编号+1即为确认号。</p>
+<p>​    确认ACK：占1位，仅当ACK=1时，确认号字段才有效。ACK=0时，确认号无效</p>
+<p>​    同步SYN：连接建立时用于同步序号。当SYN=1，ACK=0时表示：这是一个连接请求报文段。若同意连接，则在响应报文段中使得SYN=1，ACK=1。因此，SYN=1表示这是一个连接请求，或连接接受报文。SYN这个标志位只有在TCP建产连接时才会被置1，握手完成后SYN标志位被置0。</p>
+<p>​    终止FIN：用来释放一个连接。FIN=1表示：此报文段的发送方的数据已经发送完毕，并要求释放运输连接</p>
+<p>​    PS：ACK、SYN和FIN这些大写的单词表示标志位，其值要么是1，要么是0；ack、seq小写的单词表示序号。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URG</td>
+<td>紧急指针是否有效。如果为1，表示某一位需要被优先处理</td>
+</tr>
+<tr>
+<td>ACK</td>
+<td>确认号是否有效，一般置为1</td>
+</tr>
+<tr>
+<td>PSH</td>
+<td>提示接收端应用程序立即从TCP缓冲区把数据读走</td>
+</tr>
+<tr>
+<td>RST</td>
+<td>对方要求立即重新建立连接，复位</td>
+</tr>
+<tr>
+<td>SYN</td>
+<td>请求建立连接，并在其序列号的字段进行序列号的初始值设定。建立连接，设置为1</td>
+</tr>
+<tr>
+<td>FIN</td>
+<td>希望断开连接</td>
+</tr>
+</tbody>
+</table>
+<p><strong>TCP三次握手过程</strong></p>
+<p><a href="https://imgtu.com/i/WrkFpR"><img src="https://z3.ax1x.com/2021/07/23/WrkFpR.png" alt="WrkFpR.png"></a></p>
+<blockquote>
+<p>第一次握手：建立连接时，客户端发送syn包（syn=j）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</p>
+<p>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
+<p>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。</p>
+</blockquote>
+<p>四次挥手过程理解</p>
+<p><a href="https://imgtu.com/i/WrELpd"><img src="https://z3.ax1x.com/2021/07/23/WrELpd.png" alt="WrELpd.png"></a></p>
+<blockquote>
+<p>1）客户端进程发出连接释放报文，并且停止发送数据。释放数据报文首部，FIN=1，其序列号为seq=u（等于前面已经传送过来的数据的最后一个字节的序号加1），此时，客户端进入FIN-WAIT-1（终止等待1）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。</p>
+<p>2）服务器收到连接释放报文，发出确认报文，ACK=1，ack=u+1，并且带上自己的序列号seq=v，此时，服务端就进入了CLOSE-WAIT（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。</p>
+<p>3）客户端收到服务器的确认请求后，此时，客户端就进入FIN-WAIT-2（终止等待2）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。</p>
+<p>4）服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，FIN=1，ack=u+1，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq=w，此时，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。</p>
+<p>5）客户端收到服务器的连接释放报文后，必须发出确认，ACK=1，ack=w+1，而自己的序列号是seq=u+1，此时，客户端就进入了TIME-WAIT（时间等待）状态。注意此时TCP连接还没有释放，必须经过2∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。</p>
+<p>6）服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，服务器结束TCP连接的时间要比客户端早一些。</p>
+</blockquote>
+<p><strong>可能的问题</strong></p>
+<blockquote>
+<p>【问题1】为什么连接的时候是三次握手，关闭的时候却是四次握手？</p>
+<p>答：因为当Server端收到Client端的SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当Server端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，&ldquo;你发的FIN报文我收到了&rdquo;。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。</p>
+<p>【问题2】为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</p>
+<p>答：虽然按道理，四个报文都发送完毕，我们可以直接进入CLOSE状态了，但是我们必须假想到网络是不可靠的，有可能最后一个ACK丢失。所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。在Client发送出最后的ACK回复，但该ACK可能丢失。Server如果没有收到ACK，将不断重复发送FIN片段。所以Client不能立即关闭，它必须确认Server接收到了该ACK。Client会在发送出ACK之后进入到TIME_WAIT状态。Client会设置一个计时器，等待2MSL的时间。如果在该时间内再次收到FIN，那么Client会重发ACK并再次等待2MSL。所谓的2MSL是两倍的MSL(Maximum Segment Lifetime)。MSL指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则结束TCP连接。</p>
+<p>【问题3】为什么不能用两次握手进行连接？</p>
+<p>答：3次握手完成两个重要的功能，既要双方做好发送数据的准备工作(双方都知道彼此已准备好)，也要允许双方就初始序列号进行协商，这个序列号在握手过程中被发送和确认。</p>
+<p>​       现在把三次握手改成仅需要两次握手，死锁是可能发生的。作为例子，考虑计算机S和C之间的通信，假定C给S发送一个连接请求分组，S收到了这个分组，并发 送了确认应答分组。按照两次握手的协定，S认为连接已经成功地建立了，可以开始发送数据分组。可是，C在S的应答分组在传输中被丢失的情况下，将不知道S 是否已准备好，不知道S建立什么样的序列号，C甚至怀疑S是否收到自己的连接请求分组。在这种情况下，C认为连接还未建立成功，将忽略S发来的任何数据分 组，只等待连接确认应答分组。而S在发出的分组超时后，重复发送同样的分组。这样就形成了死锁。</p>
+<p>【问题4】如果已经建立了连接，但是客户端突然出现故障了怎么办？</p>
+<p>TCP还设有一个保活计时器，显然，客户端如果出现故障，服务器不能一直等下去，白白浪费资源。服务器每收到一次客户端的请求后都会重新复位这个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</p>
+</blockquote>
+<p>参考：<a href="https://www.cnblogs.com/bj-mr-li/p/11106390.html">TCP三次握手和四次挥手过程</a></p>
+<h3 id="2close-wait和time_wait的相关内容分别是做什么用的分别在哪一个端存在">（2）CLOSE-WAIT和TIME_WAIT的相关内容，分别是做什么用的？分别在哪一个端存在？</h3>
+<p>​	i.根据上述分析内容， <code>CLOSE_WAIT</code>就是 服务器收到连接释放报文后，进入到CLOSE_WAIT的状态，这时候TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。</p>
+<p>​	ii.客户端收到服务器的连接释放报文后，必须发出确认，ACK=1，ack=w+1，而自己的序列号是seq=u+1，此时，客户端就进入了<code>TIME-WAIT</code>（时间等待）状态。注意此时TCP连接还没有释放，必须经过2∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。</p>
+<h3 id="3线程和进程的区别是什么">（3）线程和进程的区别是什么？</h3>
+<blockquote>
+<p><strong>（1）进程</strong></p>
+<p>进程是程序的一次执行过程，是一个动态概念，是程序在执行过程中分配和管理资源的基本单位，每一个进程都有一个自己的地址空间，至少有 5 种基本状态，它们是：初始态，执行态，等待状态，就绪状态，终止状态。</p>
+<p><strong>（2）线程</strong></p>
+<p>线程是CPU调度和分派的基本单位，它可与同属一个进程的其他的线程共享进程所拥有的全部资源。</p>
+<p><strong>（3）联系</strong></p>
+<p>线程是进程的一部分，一个线程只能属于一个进程，而一个进程可以有多个线程，但至少有一个线程。</p>
+<p><strong>（4）区别：理解它们的差别，我从资源使用的角度出发。（所谓的资源就是计算机里的中央处理器，内存，文件，网络等等）</strong></p>
+<p>根本区别：进程是操作系统资源分配的基本单位，而线程是任务调度和执行的基本单位</p>
+<p>在开销方面：每个进程都有独立的代码和数据空间（程序上下文），程序之间的切换会有较大的开销；线程可以看做轻量级的进程，同一类线程共享代码和数据空间，每个线程都有自己独立的运行栈和程序计数器（PC），线程之间切换的开销小。</p>
+<p>所处环境：在操作系统中能同时运行多个进程（程序）；而在同一个进程（程序）中有多个线程同时执行（通过CPU调度，在每个时间片中只有一个线程执行）</p>
+<p>内存分配方面：系统在运行的时候会为每个进程分配不同的内存空间；而对线程而言，除了CPU外，系统不会为线程分配内存（线程所使用的资源来自其所属进程的资源），线程组之间只能共享资源。</p>
+<p>包含关系：没有线程的进程可以看做是单线程的，如果一个进程内有多个线程，则执行过程不是一条线的，而是多条线（线程）共同完成的；线程是进程的一部分，所以线程也被称为轻权进程或者轻量级进程。</p>
+</blockquote>
+<h3 id="4了解算法吗排序算法常用的说一说稳定的算法都是什么什么叫做稳定">（4）了解算法吗，排序算法常用的说一说？稳定的算法都是什么？什么叫做稳定？</h3>
+<blockquote>
+<p>排序大的分类可以分为两种：内排序和外排序。在排序过程中，全部记录存放在内存，则称为内排序，如果排序过程中需要使用外存，则称为外排序。下面讲的排序都是属于内排序。内排序有可以分为以下几类：</p>
+<p>(1)、插入排序：直接插入排序、二分法插入排序、希尔排序。
+(2)、选择排序：简单选择排序、堆排序。
+(3)、交换排序：冒泡排序、快速排序。
+(4)、归并排序
+(5)、线性时间排序：计数排序、基数排序、桶排序</p>
+</blockquote>
+<p><a href="https://imgtu.com/i/WrGaLD"><img src="https://z3.ax1x.com/2021/07/23/WrGaLD.jpg" alt="WrGaLD.jpg"></a></p>
+<p>说下快排思想：</p>
+<blockquote>
+<p>快速排序使用分治策略来把一个序列（list）分为两个子序列（sub-lists）。步骤为：</p>
+<p>①  从数列中挑出一个元素，称为”基准”（pivot）。
+②  重新排序数列，所有比基准值小的元素摆放在基准前面，所有比基准值大的元素摆在基准后面（相同的数可以到任一边）。在这个分区结束之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。
+③  递归地（recursively）把小于基准值元素的子数列和大于基准值元素的子数列排序。</p>
+<p>递归到最底部时，数列的大小是零或一，也就是已经排序好了。这个算法一定会结束，因为在每次的迭代（iteration）中，它至少会把一个元素摆到它最后的位置去。</p>
+</blockquote>
+<p>参考</p>
+<p><a href="https://blog.csdn.net/jeremyjone/article/details/80581550">排序算法总结1</a></p>
+<p><a href="https://www.cnblogs.com/wxisme/p/5243631.html">排序算法总结2</a></p>
+<h3 id="5对于调度算法了解吗都有什么描述一下">（5）对于调度算法了解吗，都有什么，描述一下？</h3>
+<blockquote>
+<p>​	# 进程调度算法</p>
+<ul>
+<li>
+<p>先进先出算法(FIFO)：按照进程进入就绪队列的先后次序来选择。即每当进入进程调度，总是把就绪队列的队首进程投入运行。</p>
+</li>
+<li>
+<p>时间片轮转算法(RR)：分时系统的一种调度算法。轮转的基本思想是，将CPU的处理时间划分成一个个的时间片，就绪队列中的进程轮流运行一个时间片。当时间片结束时，就强迫进程让出CPU，该进程进入就绪队列，等待下一次调度，同时，进程调度又去选择就绪队列中的一个进程，分配给它一个时间片，以投入运行。</p>
+</li>
+<li>
+<p>最高优先级算法(HPF)：进程调度每次将处理机分配给具有最高优先级的就绪进程。最高优先级算法可与不同的CPU方式结合形成可抢占式最高优先级算法和不可抢占式最高优先级算法。</p>
+</li>
+<li>
+<p>多级队列反馈法：几种调度算法的结合形式多级队列方式。</p>
+</li>
+</ul>
+</blockquote>
+<p><a href="https://blog.csdn.net/azl397985856/article/details/108613161">调度算法图解</a></p>
+<p>（6）了解工厂模式吗，说几个，单例模式是什么？单例模式的析构函数和构造函数是什么样子的？</p>
+<p><strong>单例模式</strong></p>
+<blockquote>
+<p>答：单例模式是一种常用的软件设计模式，在应用这个模式时，单例对象的类必须保证只有一个实例存在，整个系统只能使用一个对象实例。</p>
+<p>优点：不会频繁地创建和销毁对象，浪费系统资源。</p>
+<p>使用场景：IO 、数据库连接、Redis 连接等。</p>
+</blockquote>
+<p>单例模式实现代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Singleton</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>单例模式调用代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">public</span> <span class="err">class</span> <span class="err">Lesson</span> <span class="p">{</span>
+    <span class="err">public</span> <span class="err">static</span> <span class="err">void</span> <span class="err">main(String[]</span> <span class="err">args)</span> <span class="err">{</span>
+        <span class="err">Singleton</span> <span class="err">singleton1</span> <span class="err">=</span> <span class="err">Singleton.getInstance();</span>
+        <span class="err">Singleton</span> <span class="err">singleton2</span> <span class="err">=</span> <span class="err">Singleton.getInstance();</span>
+        <span class="err">System.out.println(singleton1</span> <span class="err">==</span> <span class="err">singleton2);</span> 
+    <span class="p">}</span>
+<span class="err">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>程序的输出结果：true</p>
+<p>可以看出以上单例模式是在类加载的时候就创建了，这样会影响程序的启动速度，那如何实现单例模式的延迟加载？在使用时再创建？</p>
+<p>单例延迟加载代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//</span> <span class="err">单例模式-延迟加载版</span>
+<span class="err">class</span> <span class="err">SinletonLazy</span> <span class="p">{</span>
+    <span class="err">private</span> <span class="err">static</span> <span class="err">SingletonLazy</span> <span class="err">instance;</span>
+    <span class="err">public</span> <span class="err">static</span> <span class="err">SingletonLazy</span> <span class="err">getInstance()</span> <span class="err">{</span>
+        <span class="err">if</span> <span class="err">(instance</span> <span class="err">==</span> <span class="err">null)</span> <span class="err">{</span>
+            <span class="err">instance</span> <span class="err">=</span> <span class="err">new</span> <span class="err">SingletonLazy();</span>
+        <span class="p">}</span>
+        <span class="err">return</span> <span class="err">instance;</span>
+    <span class="err">}</span>
+<span class="err">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上为非线程安全的，单例模式如何支持多线程？</p>
+<p>使用 synchronized 来保证，单例模式的线程安全代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">class</span> <span class="err">SingletonLazy</span> <span class="p">{</span>
+    <span class="err">private</span> <span class="err">static</span> <span class="err">SingletonLazy</span> <span class="err">instance;</span>
+    <span class="err">public</span> <span class="err">static</span> <span class="err">synchronized</span> <span class="err">SingletonLazy</span> <span class="err">getInstance()</span> <span class="err">{</span>
+        <span class="err">if</span> <span class="err">(instance</span> <span class="err">==</span> <span class="err">null)</span> <span class="err">{</span>
+            <span class="err">instance</span> <span class="err">=</span> <span class="err">new</span> <span class="err">SingletonLazy();</span>
+        <span class="p">}</span>
+        <span class="err">return</span> <span class="err">instance;</span>
+    <span class="err">}</span>
+<span class="err">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>工厂模式， 简单工厂模式， 抽象工厂</em></p>
+<p><strong>简单工厂模式</strong></p>
+<blockquote>
+<p>答：简单工厂模式又叫静态工厂方法模式，就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。比如，一台咖啡机就可以理解为一个工厂模式，你只需要按下想喝的咖啡品类的按钮（摩卡或拿铁），它就会给你生产一杯相应的咖啡，你不需要管它内部的具体实现，只要告诉它你的需求即可。</p>
+</blockquote>
+<p><strong>抽象工厂模式</strong></p>
+<blockquote>
+<p>答：抽象工厂模式是在简单工厂的基础上将未来可能需要修改的代码抽象出来，通过继承的方式让子类去做决定。</p>
+<p>比如，以上面的咖啡工厂为例，某天我的口味突然变了，不想喝咖啡了想喝啤酒，这个时候如果直接修改简单工厂里面的代码，这种做法不但不够优雅，也不符合软件设计的“开闭原则”，因为每次新增品类都要修改原来的代码。这个时候就可以使用抽象工厂类了，抽象工厂里只声明方法，具体的实现交给子类（子工厂）去实现，这个时候再有新增品类的需求，只需要新创建代码即可。</p>
+</blockquote>
+<p>（7）对于什么方向感兴趣呢？回答AI，图像识别（因为个人项目了解过）；对于图像识别的算法和数据学习训练有什么了解？
+（8）写过什么相关框架</p>
+<h2 id="b">B</h2>
+<h3 id="1-sql优化只答了索引">(1) sql优化？（只答了索引）</h3>
+<blockquote>
+<h4 id="sql优化的具体操作">SQL优化的具体操作：</h4>
+<p>1、在表中建立索引，优先考虑where、group by使用到的字段。</p>
+<p>2、尽量避免使用select *，返回无用的字段会降低查询效率。如下：</p>
+<p>SELECT * FROM t</p>
+<p>优化方式：使用具体的字段代替*，只返回使用到的字段。</p>
+<p>3、尽量避免使用in 和not in，会导致数据库引擎放弃索引进行全表扫描。如下：</p>
+<p>SELECT * FROM t WHERE id IN (2,3)</p>
+<p>SELECT * FROM t1 WHERE username IN (SELECT username FROM t2)</p>
+<p>优化方式：如果是连续数值，可以用between代替。如下：</p>
+<p>SELECT * FROM t WHERE id BETWEEN 2 AND 3</p>
+<p>如果是子查询，可以用exists代替。如下：</p>
+<p>SELECT * FROM t1 WHERE EXISTS (SELECT * FROM t2 WHERE t1.username = t2.username)</p>
+<p>4、尽量避免使用or，会导致数据库引擎放弃索引进行全表扫描。如下：</p>
+<p>SELECT * FROM t WHERE id = 1 OR id = 3</p>
+<p>优化方式：可以用union代替or。如下：</p>
+<p>SELECT * FROM t WHERE id = 1
+UNION
+SELECT * FROM t WHERE id = 3</p>
+<p>（PS：如果or两边的字段是同一个，如例子中这样。貌似两种方式效率差不多，即使union扫描的是索引，or扫描的是全表）</p>
+<p>5、尽量避免在字段开头模糊查询，会导致数据库引擎放弃索引进行全表扫描。如下：</p>
+<p>SELECT * FROM t WHERE username LIKE &lsquo;%li%&rsquo;</p>
+<p>优化方式：尽量在字段后面使用模糊查询。如下：</p>
+<p>SELECT * FROM t WHERE username LIKE &lsquo;li%&rsquo;</p>
+<p>6、尽量避免进行null值的判断，会导致数据库引擎放弃索引进行全表扫描。如下：</p>
+<p>SELECT * FROM t WHERE score IS NULL</p>
+<p>优化方式：可以给字段添加默认值0，对0值进行判断。如下：</p>
+<p>SELECT * FROM t WHERE score = 0</p>
+<p>7、尽量避免在where条件中等号的左侧进行表达式、函数操作，会导致数据库引擎放弃索引进行全表扫描。如下：</p>
+<p>SELECT * FROM t2 WHERE score/10 = 9</p>
+<p>SELECT * FROM t2 WHERE SUBSTR(username,1,2) = &lsquo;li&rsquo;</p>
+<p>优化方式：可以将表达式、函数操作移动到等号右侧。如下：</p>
+<p>SELECT * FROM t2 WHERE score = 10*9</p>
+<p>SELECT * FROM t2 WHERE username LIKE &lsquo;li%&rsquo;</p>
+<p>8、当数据量大时，避免使用where 1=1的条件。通常为了方便拼装查询条件，我们会默认使用该条件，数据库引擎会放弃索引进行全表扫描。如下：</p>
+<p>SELECT * FROM t WHERE 1=1</p>
+<p>优化方式：用代码拼装sql时进行判断，没where加where，有where加and</p>
+</blockquote>
+<h3 id="2-数据库的索引">(2) 数据库的索引？</h3>
+<p>​	1)  为什么要使用索引？</p>
+<p>​		快速查找数据</p>
+<p>​	2)  什么样的信息能够成为索引？</p>
+<p>​		主键， 唯一的键，其他的普通键；</p>
+<p>​	3) 索引的数据结构</p>
+<ul>
+<li>生成索引， 建立二叉查找树进行二分查找(平衡二叉树， 红黑树)；</li>
+<li>生成索引， 建立B-tree结构进行查找；</li>
+<li>生成索引，建立B+ tree结构进行查找；</li>
+<li>生成索引，建立Hash结构进行查找；</li>
+</ul>
+<p><strong>B树</strong></p>
+<p>定义：</p>
+<ul>
+<li>根节点至少包括两个孩子</li>
+<li>树中每个节点最多含有m个孩子(m&gt;=2)</li>
+<li>除根节点和叶节点外,其他每个节点至少有ceil(m/2)个孩子</li>
+<li>所有叶子节点都位于同一层</li>
+</ul>
+<p><strong>B+-Tree</strong></p>
+<ul>
+<li>非叶子节点的子树指针与关键字个数相同</li>
+<li>非叶子节点的子树指针p[i]，指向关键字值[k[i],k[i+1])子树</li>
+<li>非叶子节点仅用来索引，数据都保存在叶子节点中</li>
+<li>所有叶子节点均有一个链指针指向下一个叶子节点</li>
+</ul>
+<p><strong>B+Tree更适合用来做存储索引</strong></p>
+<ul>
+<li>B+树的磁盘读写代价更低</li>
+<li>B+树的查询效率更加稳定</li>
+<li>B+树更有利于对数据库的扫描</li>
+</ul>
+<h3 id="3-b树和b树的区别">(3) b树和b+树的区别？</h3>
+<p>a) B树是每个关键字都保存数据，有n棵子树的B+树非叶子结点中含有n个关键字， B树是n-1个， B+树这些关键字不保存数据，所有的数据都保存在叶子结点(B树是每个关键字都保存数据);</p>
+<p>b) B+树中，有一个指针指向关键字最小的叶子结点，所有的叶子结点链成一个单链表；</p>
+<p>可以发现，B+树它和B树比较，B+树对磁盘的读写代价更低；因此B+树在文件系统，数据库系统中更有优势；</p>
+<p><strong>实际上，查询索引操作最耗资源的不在内存中，而是磁盘IO。索引是存在磁盘上的，当数据量比较大的时候，索引的大小可能达到几个G。那么，我们利用索引进行查询的时候，不可能把索引直接加载到内存中，只能一次读取一个磁盘页，一个磁盘页对应着一个节点，一次读取操作需要一次磁盘io。</strong></p>
+<p>在二叉树查询时，最坏的情况下查找的次数是树的高度，即io次数为树的高度。B-树就是比二叉树“矮胖”的树。</p>
+<p><strong>所以，B+树对比B-树有如下好处：</strong></p>
+<p>​	io次数少：B+树中间节点只存索引，不存在实际的数据，所以可以存储更多的数据。索引树更加的矮胖，io次数更少。</p>
+<p>​	性能稳定：B+树数据只存在于叶子节点，查询性能稳定</p>
+<p>​	范围查询简单：b+树不需要中序遍历，遍历链表即可。</p>
+<h3 id="4-explain分析sql语句有哪些列">(4) explain分析sql语句有哪些列？</h3>
+<p>类型	描述
+id	在一个大的查询语句中，每个select关键字都对应一个唯一的id
+select_type	select关键字对应的查询类型
+table	表
+type	针对单表的访问方法
+possible_keys	预测用到的索引
+key	实际使用的索引
+key_len	实际使用索引的长度
+ref	表之间的引用
+rows	估算出来的结果记录条数
+Extra	额外的信息</p>
+<h3 id="幻读是什么怎么解决next-key-locks">幻读是什么？怎么解决？（next-key locks）</h3>
+<p>幻读</p>
+<blockquote>
+<ul>
+<li>破坏了锁的语义。当实行 select &hellip; from&hellip; where &hellip; for update 的时候，语义是要锁住符合条件的行，但是幻读破坏了这个规则。</li>
+<li>数据不一致。两次同样的范围查询却查出来的结果不一样。</li>
+</ul>
+</blockquote>
+<p>解决幻读：</p>
+<blockquote>
+<p>使用间隙锁。在两两数据行之间有间隙，如果我们能把数据行之间的间隙也锁住，则不会有产生幻读的数据插入。</p>
+<p>间隙锁和行锁合称为next-key lock ，实现语句为 select * from t for update。这样表t中数据行被锁住，而且行与行之间的间隙也会被锁住。</p>
+</blockquote>
+<p>next-key lock 会导致锁的范围变大，影响并发，而且有可能会带来死锁。</p>
+<h3 id="tcp和udp的区别">tcp和udp的区别？</h3>
+<blockquote>
+<h2 id="tcp传输控制协议和udp用户数据报协议区别">TCP(传输控制协议)和UDP（用户数据报协议）区别</h2>
+<ul>
+<li>TCP是一种面向连接的、可靠的、基于字节流的传输层通信协议，是专门为了在不可靠的网络中提供一个可靠的端对端字节流而设计的，面向字节流。</li>
+<li>UDP（用户数据报协议）是iso参考模型中一种无连接的传输层协议，提供简单不可靠的非连接传输层服务，面向报文</li>
+</ul>
+<h2 id="区别">区别：</h2>
+<p>1） TCP是面向连接的，可靠性高；UDP是基于非连接的，可靠性低
+2） 由于TCP是连接的通信，需要有三次握手、重新确认等连接过程，会有延时，实时性差，同时过程复杂，也使其易于攻击；UDP没有建立连接的过程，因而实时性较强，也稍安全
+3） 在传输相同大小的数据时，TCP首部开销20字节；UDP首部开销8字节，TCP报头比UDP复杂，故实际包含的用户数据较少。TCP在IP协议的基础上添加了序号机制、确认机制、超时重传机制等，保证了传输的可靠性，不会出现丢包或乱序，而UDP有丢包，故TCP开销大，UDP开销较小
+4） 每条TCP连接只能时点到点的；UDP支持一对一、一对多、多对一、多对多的交互通信</p>
+<h2 id="应用场景选择">应用场景选择</h2>
+<ul>
+<li>对实时性要求高和高速传输的场合下使用UDP;在可靠性要求低，追求效率的情况下使用UDP;</li>
+<li>需要传输大量数据且对可靠性要求高的情况下使用TCP</li>
+</ul>
+</blockquote>
+<h3 id="说说httpsssltls加密过程">说说https?（ssl/tls加密过程）</h3>
+<blockquote>
+<p>HTTP是未经安全加密的协议，它的传输过程容易被攻击者监听、数据容易被窃取、发送方和接收方容易被伪造;而HTTPS是安全的协议，它通过密钥交换算法-签名算法-对称加密算法-摘要算法能够解决上面这些问题。</p>
+</blockquote>
+<blockquote>
+<p>// HTTPS的工作原理</p>
+<ul>
+<li>首先服务端给客户端传输证书,这个证书就是公钥,只是包含了很多的信息,比如说证书的办法机构,证书的过期时间</li>
+<li>客户端进行证书的解析,比如说验证办法机构,过期时间,如果发现没有任何问题,就生成一个随机值(私钥),然后用证书对这个私钥进行加密,并发送给服务端</li>
+<li>服务端使用私钥将这个信息进行解密,得到客户端的私钥,然后客户端和服务端就可以通过这个私钥进行通信了</li>
+<li>服务端将消息进行对称加密(简单来说就是讲消息和私钥进行混合,除非知道私钥否则服务进行解密),私钥正好只有客户端和服务端知道,所以信息就比较安全了</li>
+<li>服务端将进行对称加密后的消息进行传送</li>
+<li>客户端使用私钥进行信息的解密</li>
+</ul>
+</blockquote>
+<h3 id="对称加密和非对称加密的优劣没答出来只说了使用场景">对称加密和非对称加密的优劣？（没答出来，只说了使用场景）</h3>
+<blockquote>
+<p>对称加密：对称，也就是双方都是平等的。使用同一个秘钥进行加密和解密。优点就是：简单，易使用。缺点：就是不安全，因为只要获取到一方秘钥，就可以解密双方的信息。</p>
+<p>非对称加密：非对称，也就是双方不是平等的。服务方与客户方都各有一把公钥和私钥。两者发送信息的时候用公钥加密，对方用私钥解密。但这样做的就是管理困难，信息发送者用公开密钥去加密，而信息接收者则用私用密钥去解密。公钥机制灵活，但加密和解密速度却比对称密钥加密慢得多。</p>
+<p>（1） 对称加密加密与解密使用的是同样的密钥，所以速度快，但由于需要将密钥在网络传输，所以安全性不高。
+（2） 非对称加密使用了一对密钥，公钥与私钥，所以安全性高，但加密与解密速度慢。
+（3） 解决的办法是将对称加密的密钥使用非对称加密的公钥进行加密，然后发送出去，接收方使用私钥进行解密得到对称加密的密钥，然后双方可以使用对称加密来进行沟通。（其实就是在连接的过程中使用非对称加密，连接后进行通讯用的是对称加密）</p>
+</blockquote>
+<h3 id="三次握手四次挥手">三次握手？四次挥手？</h3>
+<h3 id="进程与线程的区别">进程与线程的区别？</h3>
+<h3 id="goroutine与线程的区别说了gmp模型">goroutine与线程的区别？（说了gmp模型）</h3>
+<blockquote>
+<p>（一）从使用上来讲</p>
+<p>a.goroutine 比线程更轻量级，可以创建十万、百万不用担心资源问题。</p>
+<p>b.goroutine 和 chan 搭配使用，实现多线程、高并发 实现起来要方便很多。</p>
+<p>c.虽然go的并发用起来很方便，但多线程还是要小心不要产生 数据竞态,以及共享锁还是互斥锁的选择问题、并发操作的数据同步问题（多核心，不同的cpu缓存操作，同步到内存使其他协程感知）。</p>
+<p>(二)  从实现上来讲</p>
+<p>a.从资源上讲，线程的栈内存大小一般是固定的一般为2MB，虽然这个数值可以设置，但是 太大了浪费，太小了容易不够用。而 goroutine 栈内存是可变的，初始一般为 2KB，随着需求可以扩大达到1GB。 所以goroutine 十分的轻量级，且能满足不同的需求。</p>
+<p>b.从调度上讲，线程的调度由 OS 的内核完成；线程的切换需要CPU寄存器和内存的数据交换，从而切换不同的线程上下文。 其触发方式为 CPU时钟。而goroutine 的调度 则比较轻量级，由go自身的调度器完成；其只关心当前go程序内协程的调度；触发方式为 go内部的事件，time.sleep,通道阻塞，互斥量操作等。</p>
+<p>c.协程同线程的关系，有些类似于 线程同进程的关系。多个协程绑定到同一个线程上，按照一定的调度算法执行。</p>
+</blockquote>
+<h3 id="面试官建议多了解数据库优化golang">面试官建议：多了解数据库优化，golang</h3>
+<h1 id="二面">二面</h1>
+<h3 id="为什么数据库需要索引">为什么数据库需要索引？</h3>
+<p>​	为了加快查找</p>
+<h3 id="b树和hash">B+树和hash？</h3>
+<h3 id="并发量变大时怎么开发网关系统">并发量变大时怎么开发网关系统？</h3>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bomir</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2021-01-17
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://bomir.top/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/base-redis-distributedlock/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">浅谈基于redis的分布式锁</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/docker-basic/">
+            <span class="next-text nav-default">Docker基础篇</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Shaper-fox/hugoblogtalks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:jinchunw@385@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/Bicomir" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://bomir.top/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2021
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        bomir
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

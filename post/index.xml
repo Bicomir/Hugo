@@ -26,6 +26,15 @@
     </item>
     
     <item>
+      <title>etech面试模拟</title>
+      <link>https://bomir.top/post/etech-interview/</link>
+      <pubDate>Sun, 17 Jan 2021 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/etech-interview/</guid>
+      <description>Interview Mock 一面 A （1）TCP三次握手和四次挥手，以及为什么要挥手4次呢？ 首先来理解一下TCP的报文格式： 序列号seq：占4个字节，用来标记数据段的</description>
+    </item>
+    
+    <item>
       <title>Docker基础篇</title>
       <link>https://bomir.top/post/docker-basic/</link>
       <pubDate>Fri, 08 Jan 2021 21:19:05 +0000</pubDate>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/basic-tornado/</guid>
       <description>高并发处理框架—Tornado Tornado介绍 ​ Tornado是一个可扩展的非阻塞式Web服务器及其相关工具的开源版本。Tornado每秒</description>
-    </item>
-    
-    <item>
-      <title>web服务器纵览</title>
-      <link>https://bomir.top/post/web-servers-choose/</link>
-      <pubDate>Mon, 18 Mar 2019 19:21:41 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/web-servers-choose/</guid>
-      <description>web框架概览 1）网络框架及MVC架构 ​ MVC是软件工程中的一种软件架构设计模式，MVC把web应用系统分为如下3个基本部分：模型、视图、控</description>
     </item>
     
   </channel>

@@ -58,6 +58,27 @@
   </url>
   
   <url>
+    <loc>https://bomir.top/post/etech-interview/</loc>
+    <lastmod>2021-01-17T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/tags/%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2021-01-17T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/categories/%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2021-01-17T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://bomir.top/categories/nosql/</loc>
     <lastmod>2021-01-12T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>

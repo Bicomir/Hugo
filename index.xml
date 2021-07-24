@@ -1248,6 +1248,434 @@ total &lt;span class=&#34;m&#34;&gt;12&lt;/span&gt;
     </item>
     
     <item>
+      <title>etech面试模拟</title>
+      <link>https://bomir.top/post/etech-interview/</link>
+      <pubDate>Sun, 17 Jan 2021 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/etech-interview/</guid>
+      
+        <description>&lt;h1 id=&#34;interview-mock&#34;&gt;Interview Mock&lt;/h1&gt;
+&lt;h2 id=&#34;一面&#34;&gt;一面&lt;/h2&gt;
+&lt;h2 id=&#34;a&#34;&gt;A&lt;/h2&gt;
+&lt;h3 id=&#34;1tcp三次握手和四次挥手以及为什么要挥手4次呢&#34;&gt;（1）TCP三次握手和四次挥手，以及为什么要挥手4次呢？&lt;/h3&gt;
+&lt;p&gt;首先来理解一下TCP的报文格式：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://imgtu.com/i/Wrk3ct&#34;&gt;&lt;img src=&#34;https://z3.ax1x.com/2021/07/23/Wrk3ct.jpg&#34; alt=&#34;Wrk3ct.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;序列号seq：占4个字节，用来标记数据段的顺序，TCP把连接中发送的所有数据字节都编上一个序号，第一个字节的编号由本地随机产生；给字节编上序号后，就给每一个报文段指派一个序号；序列号seq就是这个报文段中的第一个字节的数据编号。&lt;/p&gt;
+&lt;p&gt;​    确认号ack：占4个字节，期待收到对方下一个报文段的第一个数据字节的序号；序列号表示报文段携带数据的第一个字节的编号；而确认号指的是期望接收到下一个字节的编号；因此当前报文段最后一个字节的编号+1即为确认号。&lt;/p&gt;
+&lt;p&gt;​    确认ACK：占1位，仅当ACK=1时，确认号字段才有效。ACK=0时，确认号无效&lt;/p&gt;
+&lt;p&gt;​    同步SYN：连接建立时用于同步序号。当SYN=1，ACK=0时表示：这是一个连接请求报文段。若同意连接，则在响应报文段中使得SYN=1，ACK=1。因此，SYN=1表示这是一个连接请求，或连接接受报文。SYN这个标志位只有在TCP建产连接时才会被置1，握手完成后SYN标志位被置0。&lt;/p&gt;
+&lt;p&gt;​    终止FIN：用来释放一个连接。FIN=1表示：此报文段的发送方的数据已经发送完毕，并要求释放运输连接&lt;/p&gt;
+&lt;p&gt;​    PS：ACK、SYN和FIN这些大写的单词表示标志位，其值要么是1，要么是0；ack、seq小写的单词表示序号。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字段&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;URG&lt;/td&gt;
+&lt;td&gt;紧急指针是否有效。如果为1，表示某一位需要被优先处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ACK&lt;/td&gt;
+&lt;td&gt;确认号是否有效，一般置为1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;PSH&lt;/td&gt;
+&lt;td&gt;提示接收端应用程序立即从TCP缓冲区把数据读走&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RST&lt;/td&gt;
+&lt;td&gt;对方要求立即重新建立连接，复位&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SYN&lt;/td&gt;
+&lt;td&gt;请求建立连接，并在其序列号的字段进行序列号的初始值设定。建立连接，设置为1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;FIN&lt;/td&gt;
+&lt;td&gt;希望断开连接&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;TCP三次握手过程&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://imgtu.com/i/WrkFpR&#34;&gt;&lt;img src=&#34;https://z3.ax1x.com/2021/07/23/WrkFpR.png&#34; alt=&#34;WrkFpR.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;第一次握手：建立连接时，客户端发送syn包（syn=j）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。&lt;/p&gt;
+&lt;p&gt;第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态；&lt;/p&gt;
+&lt;p&gt;第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;四次挥手过程理解&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://imgtu.com/i/WrELpd&#34;&gt;&lt;img src=&#34;https://z3.ax1x.com/2021/07/23/WrELpd.png&#34; alt=&#34;WrELpd.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1）客户端进程发出连接释放报文，并且停止发送数据。释放数据报文首部，FIN=1，其序列号为seq=u（等于前面已经传送过来的数据的最后一个字节的序号加1），此时，客户端进入FIN-WAIT-1（终止等待1）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。&lt;/p&gt;
+&lt;p&gt;2）服务器收到连接释放报文，发出确认报文，ACK=1，ack=u+1，并且带上自己的序列号seq=v，此时，服务端就进入了CLOSE-WAIT（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。&lt;/p&gt;
+&lt;p&gt;3）客户端收到服务器的确认请求后，此时，客户端就进入FIN-WAIT-2（终止等待2）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。&lt;/p&gt;
+&lt;p&gt;4）服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，FIN=1，ack=u+1，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq=w，此时，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。&lt;/p&gt;
+&lt;p&gt;5）客户端收到服务器的连接释放报文后，必须发出确认，ACK=1，ack=w+1，而自己的序列号是seq=u+1，此时，客户端就进入了TIME-WAIT（时间等待）状态。注意此时TCP连接还没有释放，必须经过2∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。&lt;/p&gt;
+&lt;p&gt;6）服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，服务器结束TCP连接的时间要比客户端早一些。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;可能的问题&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;【问题1】为什么连接的时候是三次握手，关闭的时候却是四次握手？&lt;/p&gt;
+&lt;p&gt;答：因为当Server端收到Client端的SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当Server端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，&amp;ldquo;你发的FIN报文我收到了&amp;rdquo;。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。&lt;/p&gt;
+&lt;p&gt;【问题2】为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？&lt;/p&gt;
+&lt;p&gt;答：虽然按道理，四个报文都发送完毕，我们可以直接进入CLOSE状态了，但是我们必须假想到网络是不可靠的，有可能最后一个ACK丢失。所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。在Client发送出最后的ACK回复，但该ACK可能丢失。Server如果没有收到ACK，将不断重复发送FIN片段。所以Client不能立即关闭，它必须确认Server接收到了该ACK。Client会在发送出ACK之后进入到TIME_WAIT状态。Client会设置一个计时器，等待2MSL的时间。如果在该时间内再次收到FIN，那么Client会重发ACK并再次等待2MSL。所谓的2MSL是两倍的MSL(Maximum Segment Lifetime)。MSL指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则结束TCP连接。&lt;/p&gt;
+&lt;p&gt;【问题3】为什么不能用两次握手进行连接？&lt;/p&gt;
+&lt;p&gt;答：3次握手完成两个重要的功能，既要双方做好发送数据的准备工作(双方都知道彼此已准备好)，也要允许双方就初始序列号进行协商，这个序列号在握手过程中被发送和确认。&lt;/p&gt;
+&lt;p&gt;​       现在把三次握手改成仅需要两次握手，死锁是可能发生的。作为例子，考虑计算机S和C之间的通信，假定C给S发送一个连接请求分组，S收到了这个分组，并发 送了确认应答分组。按照两次握手的协定，S认为连接已经成功地建立了，可以开始发送数据分组。可是，C在S的应答分组在传输中被丢失的情况下，将不知道S 是否已准备好，不知道S建立什么样的序列号，C甚至怀疑S是否收到自己的连接请求分组。在这种情况下，C认为连接还未建立成功，将忽略S发来的任何数据分 组，只等待连接确认应答分组。而S在发出的分组超时后，重复发送同样的分组。这样就形成了死锁。&lt;/p&gt;
+&lt;p&gt;【问题4】如果已经建立了连接，但是客户端突然出现故障了怎么办？&lt;/p&gt;
+&lt;p&gt;TCP还设有一个保活计时器，显然，客户端如果出现故障，服务器不能一直等下去，白白浪费资源。服务器每收到一次客户端的请求后都会重新复位这个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;参考：&lt;a href=&#34;https://www.cnblogs.com/bj-mr-li/p/11106390.html&#34;&gt;TCP三次握手和四次挥手过程&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2close-wait和time_wait的相关内容分别是做什么用的分别在哪一个端存在&#34;&gt;（2）CLOSE-WAIT和TIME_WAIT的相关内容，分别是做什么用的？分别在哪一个端存在？&lt;/h3&gt;
+&lt;p&gt;​	i.根据上述分析内容， &lt;code&gt;CLOSE_WAIT&lt;/code&gt;就是 服务器收到连接释放报文后，进入到CLOSE_WAIT的状态，这时候TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。&lt;/p&gt;
+&lt;p&gt;​	ii.客户端收到服务器的连接释放报文后，必须发出确认，ACK=1，ack=w+1，而自己的序列号是seq=u+1，此时，客户端就进入了&lt;code&gt;TIME-WAIT&lt;/code&gt;（时间等待）状态。注意此时TCP连接还没有释放，必须经过2∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。&lt;/p&gt;
+&lt;h3 id=&#34;3线程和进程的区别是什么&#34;&gt;（3）线程和进程的区别是什么？&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;（1）进程&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;进程是程序的一次执行过程，是一个动态概念，是程序在执行过程中分配和管理资源的基本单位，每一个进程都有一个自己的地址空间，至少有 5 种基本状态，它们是：初始态，执行态，等待状态，就绪状态，终止状态。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;（2）线程&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;线程是CPU调度和分派的基本单位，它可与同属一个进程的其他的线程共享进程所拥有的全部资源。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;（3）联系&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;线程是进程的一部分，一个线程只能属于一个进程，而一个进程可以有多个线程，但至少有一个线程。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;（4）区别：理解它们的差别，我从资源使用的角度出发。（所谓的资源就是计算机里的中央处理器，内存，文件，网络等等）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;根本区别：进程是操作系统资源分配的基本单位，而线程是任务调度和执行的基本单位&lt;/p&gt;
+&lt;p&gt;在开销方面：每个进程都有独立的代码和数据空间（程序上下文），程序之间的切换会有较大的开销；线程可以看做轻量级的进程，同一类线程共享代码和数据空间，每个线程都有自己独立的运行栈和程序计数器（PC），线程之间切换的开销小。&lt;/p&gt;
+&lt;p&gt;所处环境：在操作系统中能同时运行多个进程（程序）；而在同一个进程（程序）中有多个线程同时执行（通过CPU调度，在每个时间片中只有一个线程执行）&lt;/p&gt;
+&lt;p&gt;内存分配方面：系统在运行的时候会为每个进程分配不同的内存空间；而对线程而言，除了CPU外，系统不会为线程分配内存（线程所使用的资源来自其所属进程的资源），线程组之间只能共享资源。&lt;/p&gt;
+&lt;p&gt;包含关系：没有线程的进程可以看做是单线程的，如果一个进程内有多个线程，则执行过程不是一条线的，而是多条线（线程）共同完成的；线程是进程的一部分，所以线程也被称为轻权进程或者轻量级进程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;4了解算法吗排序算法常用的说一说稳定的算法都是什么什么叫做稳定&#34;&gt;（4）了解算法吗，排序算法常用的说一说？稳定的算法都是什么？什么叫做稳定？&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;排序大的分类可以分为两种：内排序和外排序。在排序过程中，全部记录存放在内存，则称为内排序，如果排序过程中需要使用外存，则称为外排序。下面讲的排序都是属于内排序。内排序有可以分为以下几类：&lt;/p&gt;
+&lt;p&gt;(1)、插入排序：直接插入排序、二分法插入排序、希尔排序。
+(2)、选择排序：简单选择排序、堆排序。
+(3)、交换排序：冒泡排序、快速排序。
+(4)、归并排序
+(5)、线性时间排序：计数排序、基数排序、桶排序&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://imgtu.com/i/WrGaLD&#34;&gt;&lt;img src=&#34;https://z3.ax1x.com/2021/07/23/WrGaLD.jpg&#34; alt=&#34;WrGaLD.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;说下快排思想：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;快速排序使用分治策略来把一个序列（list）分为两个子序列（sub-lists）。步骤为：&lt;/p&gt;
+&lt;p&gt;①  从数列中挑出一个元素，称为”基准”（pivot）。
+②  重新排序数列，所有比基准值小的元素摆放在基准前面，所有比基准值大的元素摆在基准后面（相同的数可以到任一边）。在这个分区结束之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。
+③  递归地（recursively）把小于基准值元素的子数列和大于基准值元素的子数列排序。&lt;/p&gt;
+&lt;p&gt;递归到最底部时，数列的大小是零或一，也就是已经排序好了。这个算法一定会结束，因为在每次的迭代（iteration）中，它至少会把一个元素摆到它最后的位置去。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;参考&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/jeremyjone/article/details/80581550&#34;&gt;排序算法总结1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/wxisme/p/5243631.html&#34;&gt;排序算法总结2&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;5对于调度算法了解吗都有什么描述一下&#34;&gt;（5）对于调度算法了解吗，都有什么，描述一下？&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;​	# 进程调度算法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;先进先出算法(FIFO)：按照进程进入就绪队列的先后次序来选择。即每当进入进程调度，总是把就绪队列的队首进程投入运行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;时间片轮转算法(RR)：分时系统的一种调度算法。轮转的基本思想是，将CPU的处理时间划分成一个个的时间片，就绪队列中的进程轮流运行一个时间片。当时间片结束时，就强迫进程让出CPU，该进程进入就绪队列，等待下一次调度，同时，进程调度又去选择就绪队列中的一个进程，分配给它一个时间片，以投入运行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最高优先级算法(HPF)：进程调度每次将处理机分配给具有最高优先级的就绪进程。最高优先级算法可与不同的CPU方式结合形成可抢占式最高优先级算法和不可抢占式最高优先级算法。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;多级队列反馈法：几种调度算法的结合形式多级队列方式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/azl397985856/article/details/108613161&#34;&gt;调度算法图解&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;（6）了解工厂模式吗，说几个，单例模式是什么？单例模式的析构函数和构造函数是什么样子的？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;单例模式&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;答：单例模式是一种常用的软件设计模式，在应用这个模式时，单例对象的类必须保证只有一个实例存在，整个系统只能使用一个对象实例。&lt;/p&gt;
+&lt;p&gt;优点：不会频繁地创建和销毁对象，浪费系统资源。&lt;/p&gt;
+&lt;p&gt;使用场景：IO 、数据库连接、Redis 连接等。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;单例模式实现代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Singleton&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Singleton&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;instance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Singleton&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Singleton&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;getInstance&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;instance&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;单例模式调用代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;err&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Lesson&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;err&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;main(String[]&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;args)&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;err&#34;&gt;Singleton&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;singleton1&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Singleton.getInstance();&lt;/span&gt;
+        &lt;span class=&#34;err&#34;&gt;Singleton&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;singleton2&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;Singleton.getInstance();&lt;/span&gt;
+        &lt;span class=&#34;err&#34;&gt;System.out.println(singleton1&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;singleton2);&lt;/span&gt; 
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;程序的输出结果：true&lt;/p&gt;
+&lt;p&gt;可以看出以上单例模式是在类加载的时候就创建了，这样会影响程序的启动速度，那如何实现单例模式的延迟加载？在使用时再创建？&lt;/p&gt;
+&lt;p&gt;单例延迟加载代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;err&#34;&gt;//&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;单例模式-延迟加载版&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;SinletonLazy&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;err&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;SingletonLazy&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;instance;&lt;/span&gt;
+    &lt;span class=&#34;err&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;SingletonLazy&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;getInstance()&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;err&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;(instance&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;null)&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;err&#34;&gt;instance&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;SingletonLazy();&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;err&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;instance;&lt;/span&gt;
+    &lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;以上为非线程安全的，单例模式如何支持多线程？&lt;/p&gt;
+&lt;p&gt;使用 synchronized 来保证，单例模式的线程安全代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;err&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;SingletonLazy&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;err&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;SingletonLazy&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;instance;&lt;/span&gt;
+    &lt;span class=&#34;err&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;synchronized&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;SingletonLazy&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;getInstance()&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;err&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;(instance&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;null)&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;err&#34;&gt;instance&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;SingletonLazy();&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;err&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;instance;&lt;/span&gt;
+    &lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;em&gt;工厂模式， 简单工厂模式， 抽象工厂&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;简单工厂模式&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;答：简单工厂模式又叫静态工厂方法模式，就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。比如，一台咖啡机就可以理解为一个工厂模式，你只需要按下想喝的咖啡品类的按钮（摩卡或拿铁），它就会给你生产一杯相应的咖啡，你不需要管它内部的具体实现，只要告诉它你的需求即可。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;抽象工厂模式&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;答：抽象工厂模式是在简单工厂的基础上将未来可能需要修改的代码抽象出来，通过继承的方式让子类去做决定。&lt;/p&gt;
+&lt;p&gt;比如，以上面的咖啡工厂为例，某天我的口味突然变了，不想喝咖啡了想喝啤酒，这个时候如果直接修改简单工厂里面的代码，这种做法不但不够优雅，也不符合软件设计的“开闭原则”，因为每次新增品类都要修改原来的代码。这个时候就可以使用抽象工厂类了，抽象工厂里只声明方法，具体的实现交给子类（子工厂）去实现，这个时候再有新增品类的需求，只需要新创建代码即可。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;（7）对于什么方向感兴趣呢？回答AI，图像识别（因为个人项目了解过）；对于图像识别的算法和数据学习训练有什么了解？
+（8）写过什么相关框架&lt;/p&gt;
+&lt;h2 id=&#34;b&#34;&gt;B&lt;/h2&gt;
+&lt;h3 id=&#34;1-sql优化只答了索引&#34;&gt;(1) sql优化？（只答了索引）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;h4 id=&#34;sql优化的具体操作&#34;&gt;SQL优化的具体操作：&lt;/h4&gt;
+&lt;p&gt;1、在表中建立索引，优先考虑where、group by使用到的字段。&lt;/p&gt;
+&lt;p&gt;2、尽量避免使用select *，返回无用的字段会降低查询效率。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t&lt;/p&gt;
+&lt;p&gt;优化方式：使用具体的字段代替*，只返回使用到的字段。&lt;/p&gt;
+&lt;p&gt;3、尽量避免使用in 和not in，会导致数据库引擎放弃索引进行全表扫描。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t WHERE id IN (2,3)&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t1 WHERE username IN (SELECT username FROM t2)&lt;/p&gt;
+&lt;p&gt;优化方式：如果是连续数值，可以用between代替。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t WHERE id BETWEEN 2 AND 3&lt;/p&gt;
+&lt;p&gt;如果是子查询，可以用exists代替。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t1 WHERE EXISTS (SELECT * FROM t2 WHERE t1.username = t2.username)&lt;/p&gt;
+&lt;p&gt;4、尽量避免使用or，会导致数据库引擎放弃索引进行全表扫描。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t WHERE id = 1 OR id = 3&lt;/p&gt;
+&lt;p&gt;优化方式：可以用union代替or。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t WHERE id = 1
+UNION
+SELECT * FROM t WHERE id = 3&lt;/p&gt;
+&lt;p&gt;（PS：如果or两边的字段是同一个，如例子中这样。貌似两种方式效率差不多，即使union扫描的是索引，or扫描的是全表）&lt;/p&gt;
+&lt;p&gt;5、尽量避免在字段开头模糊查询，会导致数据库引擎放弃索引进行全表扫描。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t WHERE username LIKE &amp;lsquo;%li%&amp;rsquo;&lt;/p&gt;
+&lt;p&gt;优化方式：尽量在字段后面使用模糊查询。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t WHERE username LIKE &amp;lsquo;li%&amp;rsquo;&lt;/p&gt;
+&lt;p&gt;6、尽量避免进行null值的判断，会导致数据库引擎放弃索引进行全表扫描。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t WHERE score IS NULL&lt;/p&gt;
+&lt;p&gt;优化方式：可以给字段添加默认值0，对0值进行判断。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t WHERE score = 0&lt;/p&gt;
+&lt;p&gt;7、尽量避免在where条件中等号的左侧进行表达式、函数操作，会导致数据库引擎放弃索引进行全表扫描。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t2 WHERE score/10 = 9&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t2 WHERE SUBSTR(username,1,2) = &amp;lsquo;li&amp;rsquo;&lt;/p&gt;
+&lt;p&gt;优化方式：可以将表达式、函数操作移动到等号右侧。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t2 WHERE score = 10*9&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t2 WHERE username LIKE &amp;lsquo;li%&amp;rsquo;&lt;/p&gt;
+&lt;p&gt;8、当数据量大时，避免使用where 1=1的条件。通常为了方便拼装查询条件，我们会默认使用该条件，数据库引擎会放弃索引进行全表扫描。如下：&lt;/p&gt;
+&lt;p&gt;SELECT * FROM t WHERE 1=1&lt;/p&gt;
+&lt;p&gt;优化方式：用代码拼装sql时进行判断，没where加where，有where加and&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;2-数据库的索引&#34;&gt;(2) 数据库的索引？&lt;/h3&gt;
+&lt;p&gt;​	1)  为什么要使用索引？&lt;/p&gt;
+&lt;p&gt;​		快速查找数据&lt;/p&gt;
+&lt;p&gt;​	2)  什么样的信息能够成为索引？&lt;/p&gt;
+&lt;p&gt;​		主键， 唯一的键，其他的普通键；&lt;/p&gt;
+&lt;p&gt;​	3) 索引的数据结构&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;生成索引， 建立二叉查找树进行二分查找(平衡二叉树， 红黑树)；&lt;/li&gt;
+&lt;li&gt;生成索引， 建立B-tree结构进行查找；&lt;/li&gt;
+&lt;li&gt;生成索引，建立B+ tree结构进行查找；&lt;/li&gt;
+&lt;li&gt;生成索引，建立Hash结构进行查找；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;B树&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;根节点至少包括两个孩子&lt;/li&gt;
+&lt;li&gt;树中每个节点最多含有m个孩子(m&amp;gt;=2)&lt;/li&gt;
+&lt;li&gt;除根节点和叶节点外,其他每个节点至少有ceil(m/2)个孩子&lt;/li&gt;
+&lt;li&gt;所有叶子节点都位于同一层&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;B+-Tree&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;非叶子节点的子树指针与关键字个数相同&lt;/li&gt;
+&lt;li&gt;非叶子节点的子树指针p[i]，指向关键字值[k[i],k[i+1])子树&lt;/li&gt;
+&lt;li&gt;非叶子节点仅用来索引，数据都保存在叶子节点中&lt;/li&gt;
+&lt;li&gt;所有叶子节点均有一个链指针指向下一个叶子节点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;B+Tree更适合用来做存储索引&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;B+树的磁盘读写代价更低&lt;/li&gt;
+&lt;li&gt;B+树的查询效率更加稳定&lt;/li&gt;
+&lt;li&gt;B+树更有利于对数据库的扫描&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-b树和b树的区别&#34;&gt;(3) b树和b+树的区别？&lt;/h3&gt;
+&lt;p&gt;a) B树是每个关键字都保存数据，有n棵子树的B+树非叶子结点中含有n个关键字， B树是n-1个， B+树这些关键字不保存数据，所有的数据都保存在叶子结点(B树是每个关键字都保存数据);&lt;/p&gt;
+&lt;p&gt;b) B+树中，有一个指针指向关键字最小的叶子结点，所有的叶子结点链成一个单链表；&lt;/p&gt;
+&lt;p&gt;可以发现，B+树它和B树比较，B+树对磁盘的读写代价更低；因此B+树在文件系统，数据库系统中更有优势；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实际上，查询索引操作最耗资源的不在内存中，而是磁盘IO。索引是存在磁盘上的，当数据量比较大的时候，索引的大小可能达到几个G。那么，我们利用索引进行查询的时候，不可能把索引直接加载到内存中，只能一次读取一个磁盘页，一个磁盘页对应着一个节点，一次读取操作需要一次磁盘io。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在二叉树查询时，最坏的情况下查找的次数是树的高度，即io次数为树的高度。B-树就是比二叉树“矮胖”的树。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;所以，B+树对比B-树有如下好处：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	io次数少：B+树中间节点只存索引，不存在实际的数据，所以可以存储更多的数据。索引树更加的矮胖，io次数更少。&lt;/p&gt;
+&lt;p&gt;​	性能稳定：B+树数据只存在于叶子节点，查询性能稳定&lt;/p&gt;
+&lt;p&gt;​	范围查询简单：b+树不需要中序遍历，遍历链表即可。&lt;/p&gt;
+&lt;h3 id=&#34;4-explain分析sql语句有哪些列&#34;&gt;(4) explain分析sql语句有哪些列？&lt;/h3&gt;
+&lt;p&gt;类型	描述
+id	在一个大的查询语句中，每个select关键字都对应一个唯一的id
+select_type	select关键字对应的查询类型
+table	表
+type	针对单表的访问方法
+possible_keys	预测用到的索引
+key	实际使用的索引
+key_len	实际使用索引的长度
+ref	表之间的引用
+rows	估算出来的结果记录条数
+Extra	额外的信息&lt;/p&gt;
+&lt;h3 id=&#34;幻读是什么怎么解决next-key-locks&#34;&gt;幻读是什么？怎么解决？（next-key locks）&lt;/h3&gt;
+&lt;p&gt;幻读&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;破坏了锁的语义。当实行 select &amp;hellip; from&amp;hellip; where &amp;hellip; for update 的时候，语义是要锁住符合条件的行，但是幻读破坏了这个规则。&lt;/li&gt;
+&lt;li&gt;数据不一致。两次同样的范围查询却查出来的结果不一样。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;解决幻读：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用间隙锁。在两两数据行之间有间隙，如果我们能把数据行之间的间隙也锁住，则不会有产生幻读的数据插入。&lt;/p&gt;
+&lt;p&gt;间隙锁和行锁合称为next-key lock ，实现语句为 select * from t for update。这样表t中数据行被锁住，而且行与行之间的间隙也会被锁住。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;next-key lock 会导致锁的范围变大，影响并发，而且有可能会带来死锁。&lt;/p&gt;
+&lt;h3 id=&#34;tcp和udp的区别&#34;&gt;tcp和udp的区别？&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;tcp传输控制协议和udp用户数据报协议区别&#34;&gt;TCP(传输控制协议)和UDP（用户数据报协议）区别&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;TCP是一种面向连接的、可靠的、基于字节流的传输层通信协议，是专门为了在不可靠的网络中提供一个可靠的端对端字节流而设计的，面向字节流。&lt;/li&gt;
+&lt;li&gt;UDP（用户数据报协议）是iso参考模型中一种无连接的传输层协议，提供简单不可靠的非连接传输层服务，面向报文&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;区别&#34;&gt;区别：&lt;/h2&gt;
+&lt;p&gt;1） TCP是面向连接的，可靠性高；UDP是基于非连接的，可靠性低
+2） 由于TCP是连接的通信，需要有三次握手、重新确认等连接过程，会有延时，实时性差，同时过程复杂，也使其易于攻击；UDP没有建立连接的过程，因而实时性较强，也稍安全
+3） 在传输相同大小的数据时，TCP首部开销20字节；UDP首部开销8字节，TCP报头比UDP复杂，故实际包含的用户数据较少。TCP在IP协议的基础上添加了序号机制、确认机制、超时重传机制等，保证了传输的可靠性，不会出现丢包或乱序，而UDP有丢包，故TCP开销大，UDP开销较小
+4） 每条TCP连接只能时点到点的；UDP支持一对一、一对多、多对一、多对多的交互通信&lt;/p&gt;
+&lt;h2 id=&#34;应用场景选择&#34;&gt;应用场景选择&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;对实时性要求高和高速传输的场合下使用UDP;在可靠性要求低，追求效率的情况下使用UDP;&lt;/li&gt;
+&lt;li&gt;需要传输大量数据且对可靠性要求高的情况下使用TCP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;说说httpsssltls加密过程&#34;&gt;说说https?（ssl/tls加密过程）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;HTTP是未经安全加密的协议，它的传输过程容易被攻击者监听、数据容易被窃取、发送方和接收方容易被伪造;而HTTPS是安全的协议，它通过密钥交换算法-签名算法-对称加密算法-摘要算法能够解决上面这些问题。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;// HTTPS的工作原理&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首先服务端给客户端传输证书,这个证书就是公钥,只是包含了很多的信息,比如说证书的办法机构,证书的过期时间&lt;/li&gt;
+&lt;li&gt;客户端进行证书的解析,比如说验证办法机构,过期时间,如果发现没有任何问题,就生成一个随机值(私钥),然后用证书对这个私钥进行加密,并发送给服务端&lt;/li&gt;
+&lt;li&gt;服务端使用私钥将这个信息进行解密,得到客户端的私钥,然后客户端和服务端就可以通过这个私钥进行通信了&lt;/li&gt;
+&lt;li&gt;服务端将消息进行对称加密(简单来说就是讲消息和私钥进行混合,除非知道私钥否则服务进行解密),私钥正好只有客户端和服务端知道,所以信息就比较安全了&lt;/li&gt;
+&lt;li&gt;服务端将进行对称加密后的消息进行传送&lt;/li&gt;
+&lt;li&gt;客户端使用私钥进行信息的解密&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;对称加密和非对称加密的优劣没答出来只说了使用场景&#34;&gt;对称加密和非对称加密的优劣？（没答出来，只说了使用场景）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对称加密：对称，也就是双方都是平等的。使用同一个秘钥进行加密和解密。优点就是：简单，易使用。缺点：就是不安全，因为只要获取到一方秘钥，就可以解密双方的信息。&lt;/p&gt;
+&lt;p&gt;非对称加密：非对称，也就是双方不是平等的。服务方与客户方都各有一把公钥和私钥。两者发送信息的时候用公钥加密，对方用私钥解密。但这样做的就是管理困难，信息发送者用公开密钥去加密，而信息接收者则用私用密钥去解密。公钥机制灵活，但加密和解密速度却比对称密钥加密慢得多。&lt;/p&gt;
+&lt;p&gt;（1） 对称加密加密与解密使用的是同样的密钥，所以速度快，但由于需要将密钥在网络传输，所以安全性不高。
+（2） 非对称加密使用了一对密钥，公钥与私钥，所以安全性高，但加密与解密速度慢。
+（3） 解决的办法是将对称加密的密钥使用非对称加密的公钥进行加密，然后发送出去，接收方使用私钥进行解密得到对称加密的密钥，然后双方可以使用对称加密来进行沟通。（其实就是在连接的过程中使用非对称加密，连接后进行通讯用的是对称加密）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;三次握手四次挥手&#34;&gt;三次握手？四次挥手？&lt;/h3&gt;
+&lt;h3 id=&#34;进程与线程的区别&#34;&gt;进程与线程的区别？&lt;/h3&gt;
+&lt;h3 id=&#34;goroutine与线程的区别说了gmp模型&#34;&gt;goroutine与线程的区别？（说了gmp模型）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;（一）从使用上来讲&lt;/p&gt;
+&lt;p&gt;a.goroutine 比线程更轻量级，可以创建十万、百万不用担心资源问题。&lt;/p&gt;
+&lt;p&gt;b.goroutine 和 chan 搭配使用，实现多线程、高并发 实现起来要方便很多。&lt;/p&gt;
+&lt;p&gt;c.虽然go的并发用起来很方便，但多线程还是要小心不要产生 数据竞态,以及共享锁还是互斥锁的选择问题、并发操作的数据同步问题（多核心，不同的cpu缓存操作，同步到内存使其他协程感知）。&lt;/p&gt;
+&lt;p&gt;(二)  从实现上来讲&lt;/p&gt;
+&lt;p&gt;a.从资源上讲，线程的栈内存大小一般是固定的一般为2MB，虽然这个数值可以设置，但是 太大了浪费，太小了容易不够用。而 goroutine 栈内存是可变的，初始一般为 2KB，随着需求可以扩大达到1GB。 所以goroutine 十分的轻量级，且能满足不同的需求。&lt;/p&gt;
+&lt;p&gt;b.从调度上讲，线程的调度由 OS 的内核完成；线程的切换需要CPU寄存器和内存的数据交换，从而切换不同的线程上下文。 其触发方式为 CPU时钟。而goroutine 的调度 则比较轻量级，由go自身的调度器完成；其只关心当前go程序内协程的调度；触发方式为 go内部的事件，time.sleep,通道阻塞，互斥量操作等。&lt;/p&gt;
+&lt;p&gt;c.协程同线程的关系，有些类似于 线程同进程的关系。多个协程绑定到同一个线程上，按照一定的调度算法执行。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;面试官建议多了解数据库优化golang&#34;&gt;面试官建议：多了解数据库优化，golang&lt;/h3&gt;
+&lt;h1 id=&#34;二面&#34;&gt;二面&lt;/h1&gt;
+&lt;h3 id=&#34;为什么数据库需要索引&#34;&gt;为什么数据库需要索引？&lt;/h3&gt;
+&lt;p&gt;​	为了加快查找&lt;/p&gt;
+&lt;h3 id=&#34;b树和hash&#34;&gt;B+树和hash？&lt;/h3&gt;
+&lt;h3 id=&#34;并发量变大时怎么开发网关系统&#34;&gt;并发量变大时怎么开发网关系统？&lt;/h3&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>Docker基础篇</title>
       <link>https://bomir.top/post/docker-basic/</link>
       <pubDate>Fri, 08 Jan 2021 21:19:05 +0000</pubDate>
@@ -16447,461 +16875,6 @@ Connection: close
 &lt;li&gt;使用异步对象处理耗时操作，比如本例的AsyncHTTPClient。&lt;/li&gt;
 &lt;li&gt;调用yield关键字获取异步对象的处理结果。&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>web服务器纵览</title>
-      <link>https://bomir.top/post/web-servers-choose/</link>
-      <pubDate>Mon, 18 Mar 2019 19:21:41 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/web-servers-choose/</guid>
-      
-        <description>&lt;h3 id=&#34;web框架概览&#34;&gt;web框架概览&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;1）网络框架及MVC架构&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;​	MVC是软件工程中的一种软件架构设计模式，MVC把web应用系统分为如下3个基本部分：模型、视图、控制器，它们各自处理着自己的任务。几乎所有的Python全栈网络框架强制或引导开发者使用MVC架构开发Web应用。&lt;/p&gt;
-&lt;p&gt;注：全栈网络框架，是指除了封装网络和线程操作，还提供http栈，数据库的读写管理，HTML模板引擎等一系列功能的网络框架。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;img src=&#34;http://www.runoob.com/wp-content/uploads/2014/08/MVC1.png&#34; alt=&#34;MVC结构&#34;&gt;实现：创建一个作为模型的Student模型对象。StudentView是一个把学生详细信息输出到控制台的视图类，StudentController是负责存储数据到Student对象中的控制类，并相应地更新视图StudentView。MVCPatternDemo是使用StudentController来演示MVC模式用法的演示类。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://www.runoob.com/wp-content/uploads/2014/08/mvc_pattern_uml_diagram.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;模型（Model），用于封装与应用程序业务逻辑相关数据的处理，Model层是Web应用程序中处理应用程序的数据逻辑部分。换言之，模型表示企业数据和业务规则（大白话就是后端接口，用于业务处理）。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;视图（View），负责数据的展示与呈现。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;控制器（Controller），负责接受用户的输入并调用模型和视图去完成用户的需求，控制器本身不输出任何东西和做任何处理。它只是接收请求并决定调用哪个模型构件去处理请求，然后再确定用哪个视图来显示返回的数据。（可以看做是View的反向实现）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://a3.qpic.cn/psb?/V11LBpl80UoTHW/Y09f64qra1tZo7bDu3bewbNiAHXlH4*.mHEj6M7RhWA!/m/dL4AAAAAAAAAnull&amp;amp;bo=tAL.AQAAAAARB3k!&amp;amp;rf=photolist&amp;amp;t=5&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;当前的主流服务器都实现了主流语言的可调用接口标准，有如下标准。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;CGI（Common Gateway Interface），CGI规范允许Web服务器执行外部程序，并将它们的输出发送给Wb服务器，CGI将Web的一组简单的静态超媒体文档变成一个完整的新交互式媒体。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;ISAPI（Internet Server Application Program Interface）是微软提供的一套面向Web服务的API接口，它能实现CGI提供的全部功能，并在此基础上进行了扩展（比如提供了过滤应用程序的接口）。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;WSGI（Web Server Gateway Interface）是一套专门为Python语言制定的网络服务器标准接口。Python Web框架均以WSGI为基础构建。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psb?/V11LBpl80UoTHW/cUYa.3fv0UIrm3YQQSjxsPlsVMVdELpbNPNdTQpTKp8!/b/dL4AAAAAAAAA&amp;amp;bo=oQGTAaEBkwEDByI!&amp;amp;rf=viewer_4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;​       一般来说，最简单的服务器端程序可以是直接读取某文件或返回固定的网页内容；稍复杂一些的服务端程序需要处理客户端通过HTTP、URL、HTML传入的参数、动态的执行逻辑代码、在数据库或者缓存中读写数据等一系列操作，才能最终生成调用结果。&lt;/p&gt;
-&lt;p&gt;​	Web服务器是连接用户浏览器和Python服务器端程序的中间节点，在网站建立的过程中有着重要的作用。目前主流的Web服务器包括Nginx、Apache、lighthttpd、IIS等。Python服务端程序在Linux使用最广泛的是Nginx。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2）WSGI接口&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;​	WSGI是将Python服务器端程序连接到Web服务器的通用协议。由于WSGI的通用性，出现了独立的WSGI程序，例如uWSGI和Apache的mod_wsgi。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psb?/V11LBpl80UoTHW/dlvFIkYEGBlrUqtBDLNDV*Z.u9ez1g3jeOxgRNcT7p0!/b/dLkAAAAAAAAA&amp;amp;bo=LgG8AQAAAAADB7A!&amp;amp;rf=viewer_4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;​	由上图可知，WSGI的接口可分为两种：一个是与Web服务器接口，另一个是与服务器端程序的接口。WSGI Server与Web服务器的接口包括uwsgi、fastcgi等，服务器端程序的开发者无需学习此部分的详细内容，相反更应该关注WSGI与服务器端程序的接口。&lt;/p&gt;
-&lt;p&gt;​	虽然WSGI的设计目标是连接标准的Web服务器（Nginx，apache）与服务器端程序，但WSGI Server本身也可作为Web服务器运行（但WSGI性能方面不佳，WSGI Server一般只用于测试使用，不能用于正式运行）。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;linuxnginxuwsgi配-置&#34;&gt;Linux+Nginx+uWSGI配 置&lt;/h3&gt;
-&lt;p&gt;​	Nginx是Python在Linux环境下的首选Web服务器之一（通常作为高性能http和反向代理服务器，广泛运用于天猫、美团、腾讯等大厂），以下演示在Ubuntu Linux中演示Nginx的安装与配置方法。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1) 安装Nginx&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在Ubuntu Linux中可以通过如下命令安装Nginx：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sudo apt-get install nginx&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;安装程序把Nginx以服务的形式安装在系统中，相关的程序及文件路径如下。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;程序文件：放在/usr/sbin/nginx目录中。&lt;/li&gt;
-&lt;li&gt;全局配置文件：/etc/nginx/nginx.conf。&lt;/li&gt;
-&lt;li&gt;访问日志文件：/var/log/nginx/access.log。&lt;/li&gt;
-&lt;li&gt;错误日志文件：/var/log/nginx/err.log。&lt;/li&gt;
-&lt;li&gt;站点配置文件：/etc/nginx/sites-enabled/default。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;安装好了，用如下命令启动Nginx服务器：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sudo service nginx start&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;停止Nginx服务器：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sudo service nginx stop&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看Nginx服务的状态：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sudo service nginx status&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;重启Nginx服务器：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sudo service nginx restart&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2) Nginx配置文件&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;​	Nginx安装后会以默认方式启动，在开发调试的过程中可能需要调整Nginx的运行参数，这些运行参数会通过全局配置文件(nginx.conf)和站点配置文件(sites-enabled)进行设置，对全局配置文件(/etc/nginx/nginx.conf)中的关键可设置参数解析如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;user www-data&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;								 &lt;span class=&#34;c1&#34;&gt;##定义运行Nginx的用户&lt;/span&gt;
-worker_processes 4&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;							 &lt;span class=&#34;c1&#34;&gt;##Nginx进程数，应设置与系统CPU数量相等的数值&lt;/span&gt;
-worker_rlimit_nofile 65535&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;                  &lt;span class=&#34;c1&#34;&gt;##每个Nginx进程可以打开的最大文件数&lt;/span&gt;
-events&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-    worker_connections 768&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;                  &lt;span class=&#34;c1&#34;&gt;##每个Nginx进程允许的最大客户端连接数&lt;/span&gt;
-    
-    &lt;span class=&#34;c1&#34;&gt;#在Nginx接到一个新连接通知后调用accept()来接受尽量多的连接&lt;/span&gt;
-    multi_accept off&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-http&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;##&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;# Basic Settings&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;##&lt;/span&gt;
-    sendfile on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;							  &lt;span class=&#34;c1&#34;&gt;##是否允许文件上传&lt;/span&gt;
-    client_header_buffer_size 32K&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;			  &lt;span class=&#34;c1&#34;&gt;##上传文件大小限制&lt;/span&gt;
-    tcp_nopush on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;							  &lt;span class=&#34;c1&#34;&gt;##防止网络拥塞&lt;/span&gt;
-    tcp_nodelay on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;                           &lt;span class=&#34;c1&#34;&gt;##防止网络拥塞&lt;/span&gt;
-    keepalive_timeout 65&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;					  &lt;span class=&#34;c1&#34;&gt;##允许客户端长连接最大秒数&lt;/span&gt;
-    
-    &lt;span class=&#34;c1&#34;&gt;##Nginx散列表大小。本值越大，占用的内存空间越大，但路由速度很快&lt;/span&gt;
-    types_hash_max_size 2048&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    
-    access_log /var/log/nginx/access.log&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;	  &lt;span class=&#34;c1&#34;&gt;##访问日志文件路径名&lt;/span&gt;
-    error_log  /var/log/nginx/error.log&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;      &lt;span class=&#34;c1&#34;&gt;##错误日志文件路径名&lt;/span&gt;
-    
-    &lt;span class=&#34;c1&#34;&gt;## 如下两条用include命令加载站点配置文件&lt;/span&gt;
-    include /etc/nginx/conf.d/*.conf&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    include /etc/ngigx/sites-enabled/*&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; 
-&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;​	在每个Nginx服务器中可以运行多个Web站点。每个站点的配置通过站点配置文件设置。每个站点应该以一个单独的配置文件存放在/etc/nginx/sites-enabled目录中，默认站点的配置文件名为/etc/nginx/sites-default，对其中关键内容的解析如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;server&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;##配置站点监听的端口&lt;/span&gt;
-    listen 80&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    
-    root /usr/share/nginx/html&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;				  &lt;span class=&#34;c1&#34;&gt;##配置HTTP根页面目录&lt;/span&gt;
-    index index.html index.htm&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;				  &lt;span class=&#34;c1&#34;&gt;##配置HTTP根目录中的默认页面&lt;/span&gt;
-    
-    &lt;span class=&#34;c1&#34;&gt;#站点监听的IP地址，默认的localhost只可用于本机访问，一般需要将其更改为真实IP&lt;/span&gt;
-    sever_name localhost&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&#34;c1&#34;&gt;##location用于配置URL的转发接口&lt;/span&gt;
-    location /user/&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;c1&#34;&gt;##此处配置http://server_name/user/的转发地址&lt;/span&gt;
-        proxy_pass http://127.0.0.1:8080&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&#34;c1&#34;&gt;#错误页面配置，如下配置定义HTTP 404错误的显示页面 /404.html&lt;/span&gt;
-    error_page &lt;span class=&#34;m&#34;&gt;404&lt;/span&gt; /404.html&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;3) 安装uWSGI及配置&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;​	uWSGI是WSGI在Linux中的一种实现，这样开发者无需自己编写WSGI Server。使用pip命令可以直接安装uWSGI。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;pip install uwsgi&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;wjq@Ubuntu:~/TornadoWork/tornado_0/temp/cha5$ uwsgi --http-socket :9090 --plugin python --wsgi-file webapp.py
-open&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;./python_plugin.so&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: No such file or directory &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;core/utils.c line 3724&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-!!! UNABLE to load uWSGI plugin: ./python_plugin.so: cannot open shared object file: No such file or directory !!!
-*** Starting uWSGI 2.0.18 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;64bit&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; on &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Sat Mar &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; 11:23:32 2019&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; ***
-compiled with version: 4.8.4 on &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; March &lt;span class=&#34;m&#34;&gt;2019&lt;/span&gt; 02:33:42
-os: Linux-4.4.0-124-generic &lt;span class=&#34;c1&#34;&gt;#148~14.04.1-Ubuntu SMP Thu May 3 07:26:53 UTC 2018&lt;/span&gt;
-nodename: Ubuntu
-machine: x86_64
-clock source: unix
-detected number of CPU cores: &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;
-current working directory: /home/wjq/TornadoWork/tornado_0/temp/cha5
-detected binary path: /usr/local/bin/uwsgi
-!!! no internal routing support, rebuild with pcre support !!!
-*** WARNING: you are running uWSGI without its master process manager ***
-your processes number limit is &lt;span class=&#34;m&#34;&gt;11929&lt;/span&gt;
-your memory page size is &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt; bytes
-detected max file descriptor number: &lt;span class=&#34;m&#34;&gt;1024&lt;/span&gt;
-lock engine: pthread robust mutexes
-thunder lock: disabled &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;you can &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; it with --thunder-lock&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-uwsgi socket &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; bound to TCP address :9090 fd &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;
-Python version: 2.7.12 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;default, Jul &lt;span class=&#34;m&#34;&gt;18&lt;/span&gt; 2016, 15:07:05&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;GCC 4.8.4&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-*** Python threads support is disabled. You can &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; it with --enable-threads ***
-Python main interpreter initialized at 0x1a33880
-your server socket listen backlog is limited to &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; connections
-your mercy &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; graceful operations on workers is &lt;span class=&#34;m&#34;&gt;60&lt;/span&gt; seconds
-mapped &lt;span class=&#34;m&#34;&gt;72920&lt;/span&gt; bytes &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;71&lt;/span&gt; KB&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; cores
-*** Operational MODE: single process ***
-WSGI app &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;mountpoint&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; ready in &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; seconds on interpreter 0x1a33880 pid: &lt;span class=&#34;m&#34;&gt;4554&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;default app&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-*** uWSGI is running in multiple interpreter mode ***
-spawned uWSGI worker &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;and the only&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;pid: 4554, cores: 1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;pid: 4554&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;app: 0&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;req: 1/1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; 59.68.29.48 &lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;32&lt;/span&gt; vars in &lt;span class=&#34;m&#34;&gt;590&lt;/span&gt; bytes&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Sat Mar &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; 11:47:29 2019&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; GET / &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&amp;gt; generated &lt;span class=&#34;m&#34;&gt;20&lt;/span&gt; bytes in &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; msecs &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HTTP/1.1 200&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; headers in &lt;span class=&#34;m&#34;&gt;43&lt;/span&gt; bytes &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; switches on core 0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;pid: 4554&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;app: 0&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;req: 2/2&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; 59.68.29.48 &lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;32&lt;/span&gt; vars in &lt;span class=&#34;m&#34;&gt;571&lt;/span&gt; bytes&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Sat Mar &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; 11:47:30 2019&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; GET /favicon.ico &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&amp;gt; generated &lt;span class=&#34;m&#34;&gt;20&lt;/span&gt; bytes in &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; msecs &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HTTP/1.1 200&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; headers in &lt;span class=&#34;m&#34;&gt;43&lt;/span&gt; bytes &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; switches on core 0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;pid: 4554&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;app: 0&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;req: 3/3&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; 59.68.29.48 &lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;32&lt;/span&gt; vars in &lt;span class=&#34;m&#34;&gt;571&lt;/span&gt; bytes&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Sat Mar &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; 11:47:38 2019&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; GET /favicon.ico &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&amp;gt; generated &lt;span class=&#34;m&#34;&gt;20&lt;/span&gt; bytes in &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; msecs &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HTTP/1.1 200&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; headers in &lt;span class=&#34;m&#34;&gt;43&lt;/span&gt; bytes &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; switches on core 0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;​         &lt;code&gt;uwsgi --http-socket :9090 --plugin python --wsgi-file webapp.py&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;​	启动时用-http参数指定了监听端口，用&amp;ndash;wsgi-file指定了服务端的程序名。如上所示，uWSGI在启动的过程中会输出系统的一些环境信息：服务器名、进程数限制、服务器硬件配置、最大文件句柄数等。除了在uWSGI 启动命令行提供配置参数，uWSGI 还允许通过一个配置文件设置这些配置参数，比如可以编写如下配置文件，保存在文件名uwsgi.ini中：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;uwsgi&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;http&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;9090&lt;/span&gt;
-wsgi-file &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; webapp.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;​	启动uWSGI时直接指定配置文件即可。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;uwsgi uwsgi.ini&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;除了http和wsgi-file参数，uWSGI还有许多其他参数，常用的如下。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;socket: 以WSGI的Socket方式运行，并指定连接地址和端口。该Socket接口是uWSGI与其他Web服务器（Nginx/Apache）等进行对接的方式。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;chdir: 指定uWSGI 启动后的当前目录。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;processes: 指定启动服务器端程序的进程数。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;threads: 指定每个服务器端程序的线程数。即服务器端的总线程数为processes * threads。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;uid: 指定运行uWSGI的Linux用户id。&lt;/p&gt;
-&lt;p&gt;举例，如下配置文件用于以Socket方式启动一个uWSGI服务器，并配置了进程和线程数。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;uwsgi&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;socket&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 127.0.0.1: &lt;span class=&#34;m&#34;&gt;3011&lt;/span&gt;
-wsgi-file &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; webapp.py
-&lt;span class=&#34;nv&#34;&gt;processes&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;threads&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;4) 集成Nginx与uWSGI&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;​	直接通过在站点配置文件中为location配置uwsgi_pass,即可将Nginx与uWSGI集成，建立一个基于Nginx+Python的正式站点。针对如下uWSGI接口有：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;uwsgi&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;socket&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 127.0.0.1： &lt;span class=&#34;m&#34;&gt;3011&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;wsgi_file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; webapp.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;​	Nginx的站点配置文件为：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;server&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-    listen 80&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## 此处改为服务器的真实IP&lt;/span&gt;
-	server_name 121.12.134.11&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-location /&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;## 此处IP与Port配置必须与uwsgi接口中参数相同&lt;/span&gt;
-    uwsgi_pass http://127.0.0.1:3011&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&amp;#39;
-&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;可以为一个uWSGI配置多个Nginx Server和location，这样就可以实现多域名访问同一个python程序。
-&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;建立安全的https网站&#34;&gt;建立安全的HTTPS网站&lt;/h3&gt;
-&lt;p&gt;​	大多数的HTTP站点的协议与数据以明文方式在网络上传输，而HTTPS（HyperText Transfer Protocol over Secure Socket Layer ）是以安全为目标的HTTP通道，即在HTTP下加入SSL层，通过SSL达到数据加密及身份认证的功能。目前大多数银行、证券、交通的网站均以HTTPS方式构建。&lt;/p&gt;
-&lt;p&gt;​	OpenSSL是一个强大的免费Socket层密码库，蕴含了主要的密码算法、常用的密钥和证书封装管理功能以及SSL协议。目前大多数网站通过OpenSSL工具搭建HTTPS站点，其步骤如下。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;在服务器中安装OpenSSL工具包。&lt;/li&gt;
-&lt;li&gt;生成SSL密钥和证书。&lt;/li&gt;
-&lt;li&gt;将证书配置到Web服务器。&lt;/li&gt;
-&lt;li&gt;在客户端安装CA证书。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;​       如下记录在Ubuntu 14.04.5 LTS (GNU/Linux 4.4.0-124-generic x86_64)下使用OpenSSL的方法，以及Nginx在Linux下的证书配置方式。类似Linux其他发行版、Windows方法类似。&lt;/p&gt;
-&lt;p&gt;​      &lt;strong&gt;1）在服务器中安装OpenSSL工具包&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;​	通过如下两条命令安装OpenSSL：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#sudo apt-get install openssl&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;#sudo apt-get install libssl-dev &lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;pre&gt;&lt;code&gt;命令运行成功后，OpenSSL命令和配置文件将被安装到Linux系统目录中。
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;OpenSSL命令：/usr/bin/openssl。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;配置文件：/usr/lib/ssl/*。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2）生成SSL密钥和证书&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;通过如下步骤生成CA证书ca.crt、服务器密钥文件server.key和服务器证书server.crt:
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#生成CA密钥&lt;/span&gt;
-openssl genrsa -out ca.key &lt;span class=&#34;m&#34;&gt;2048&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;#生成CA证书，days参数以天为单位设置证书的有效期。在本过程中会要求输入证书的所在地、公司名、站点名等&lt;/span&gt;
-openssl req -x509 -new -nodes -key ca.key -days &lt;span class=&#34;m&#34;&gt;365&lt;/span&gt; -out ca.crt
-
-&lt;span class=&#34;c1&#34;&gt;#生成服务器证书RSA的密钥对&lt;/span&gt;
-openssl genrsa -out server.key &lt;span class=&#34;m&#34;&gt;2048&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;#生成服务器端证书ca.crt&lt;/span&gt;
-openssl x509 -req -in server.csr -CA ca.crt -CAKey ca.key -CAcreateserial -out server.crt -days &lt;span class=&#34;m&#34;&gt;365&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;​	上述命令生成服务器端证书时，需要在Common Name(CN)字段中如实输入站点的访问地址。即设若要访问www.abc.com进行访问，则必须定义CN=www.abc.com；如果通过IP地址访问，则需设置CN为具体的IP地址。&lt;/p&gt;
-&lt;p&gt;​        &lt;strong&gt;3）配置Nginx HTTPS服务器&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;​	在站点配置文件/etc/nginx/sites-enabled/default中添加如下server段，可以定义一个基于HTTPS的接口，该接口的服务器端程序仍旧为uWSGI接口127.0.0.1:3011。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;server&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-    listen					443&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;			&lt;span class=&#34;c1&#34;&gt;#HTTPS服务端口&lt;/span&gt;
-    server_name				0.0.0.0&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;	    &lt;span class=&#34;c1&#34;&gt;#本机上的所有IP地址&lt;/span&gt;
-    ssl						on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;					&lt;span class=&#34;c1&#34;&gt;#&lt;/span&gt;
-    ssl_certificate			/etc/nginx/ssl/server.crt&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    ssl_certificate_key		/etc/nginx/ssl/server.key&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-
-location &lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-    uwsgi_pass http://127.0.0.1:3011&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-	&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;​	其中需要注意的参数ssl_certificate和ssl_certificate_key需要分别指定生成的服务器证书和服务器密钥的全路径文件名。到此，我们就可以使用浏览器访问服务器的443端口进行HTTPS加密通信了。&lt;/p&gt;
 </description>
       
     </item>

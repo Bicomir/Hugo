@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>面试 on Wallis</title>
+    <link>https://bomir.top/tags/%E9%9D%A2%E8%AF%95/</link>
+    <description>Recent content in 面试 on Wallis</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 17 Jan 2021 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/%E9%9D%A2%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>etech面试模拟</title>
+      <link>https://bomir.top/post/etech-interview/</link>
+      <pubDate>Sun, 17 Jan 2021 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/etech-interview/</guid>
+      <description>Interview Mock 一面 A （1）TCP三次握手和四次挥手，以及为什么要挥手4次呢？ 首先来理解一下TCP的报文格式： 序列号seq：占4个字节，用来标记数据段的</description>
+    </item>
+    
+  </channel>
+</rss>
