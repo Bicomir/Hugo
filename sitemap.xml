@@ -58,6 +58,27 @@
   </url>
   
   <url>
+    <loc>https://bomir.top/post/defer-panic-order/</loc>
+    <lastmod>2021-01-20T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/tags/go/</loc>
+    <lastmod>2021-01-20T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/categories/golang/</loc>
+    <lastmod>2021-01-20T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://bomir.top/post/etech-interview/</loc>
     <lastmod>2021-01-17T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>

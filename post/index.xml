@@ -26,6 +26,15 @@
     </item>
     
     <item>
+      <title>defer和panic的执行顺序</title>
+      <link>https://bomir.top/post/defer-panic-order/</link>
+      <pubDate>Wed, 20 Jan 2021 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/defer-panic-order/</guid>
+      <description>​ 之前碰到的一个Golang面试题，关于defer和panic的执行顺序究竟是怎么样的，到底谁先执行谁后执行 ，来回顾验证学习一下； Defer, panic 和 recover Defer</description>
+    </item>
+    
+    <item>
       <title>etech面试模拟</title>
       <link>https://bomir.top/post/etech-interview/</link>
       <pubDate>Sun, 17 Jan 2021 18:56:34 +0000</pubDate>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/python-common-questions/</guid>
       <description>(1)Python常见面试题1 1.Python是如何进行内存管理的？ 三个方面来回答这个问题； ①对象的引用计数机制 ②垃圾回收机制 ③内存池机制 (</description>
-    </item>
-    
-    <item>
-      <title>浅谈Tornado</title>
-      <link>https://bomir.top/post/basic-tornado/</link>
-      <pubDate>Wed, 03 Jul 2019 17:51:08 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/basic-tornado/</guid>
-      <description>高并发处理框架—Tornado Tornado介绍 ​ Tornado是一个可扩展的非阻塞式Web服务器及其相关工具的开源版本。Tornado每秒</description>
     </item>
     
   </channel>
