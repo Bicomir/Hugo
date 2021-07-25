@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>剑指offer on Wallis</title>
+    <link>https://bomir.top/tags/%E5%89%91%E6%8C%87offer/</link>
+    <description>Recent content in 剑指offer on Wallis</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 20 Jan 2019 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/%E5%89%91%E6%8C%87offer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从尾到头打印链表</title>
+      <link>https://bomir.top/post/tail-to-head/</link>
+      <pubDate>Sun, 20 Jan 2019 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/tail-to-head/</guid>
+      <description>从尾到头打印链表 来源： https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035 描述 输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。 如输入{1,2,3}的链表如下图: 返回</description>
+    </item>
+    
+  </channel>
+</rss>
