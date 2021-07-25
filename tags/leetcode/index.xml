@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>leetcode on Wallis</title>
+    <link>https://bomir.top/tags/leetcode/</link>
+    <description>Recent content in leetcode on Wallis</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 21 Jan 2019 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>两数之和II - 输入有序数组</title>
+      <link>https://bomir.top/post/two-sum-sortedinputarray/</link>
+      <pubDate>Mon, 21 Jan 2019 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/two-sum-sortedinputarray/</guid>
+      <description>两数之和 II - 输入有序数组 - 双指针 O(N) 时间复杂度 来源 https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/ 思路 仅仅是遍历数组，找到数组中和为target的两个数；这个是利用了二数之和的解法，属于暴</description>
+    </item>
+    
+  </channel>
+</rss>

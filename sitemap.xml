@@ -380,6 +380,27 @@
   </url>
   
   <url>
+    <loc>https://bomir.top/tags/leetcode/</loc>
+    <lastmod>2019-01-21T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/post/two-sum-sortedinputarray/</loc>
+    <lastmod>2019-01-21T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2019-01-21T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://bomir.top/post/tail-to-head/</loc>
     <lastmod>2019-01-20T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -388,13 +409,6 @@
   
   <url>
     <loc>https://bomir.top/tags/%E5%89%91%E6%8C%87offer/</loc>
-    <lastmod>2019-01-20T18:56:34+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://bomir.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2019-01-20T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
