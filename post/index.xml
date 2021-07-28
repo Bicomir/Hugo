@@ -53,6 +53,15 @@
     </item>
     
     <item>
+      <title>MySQL复习整理</title>
+      <link>https://bomir.top/post/mysql-record/</link>
+      <pubDate>Thu, 12 Nov 2020 22:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/mysql-record/</guid>
+      <description>1.MySQL环境 1.1.环境安装 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 # 查看Lin</description>
+    </item>
+    
+    <item>
       <title>常用设计模式-5种创建型模式</title>
       <link>https://bomir.top/post/common-design-pattern-five-constructionmode/</link>
       <pubDate>Thu, 15 Oct 2020 20:51:05 +0000</pubDate>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/http/</guid>
       <description>网络 HTTP 条件 GET 使用的方法？ ​ 客户端向服务器发送一个包询问是否在上一次访问网站的时间后是否更改了页面，如果服务器没有更新，显然不需要把整个网页传</description>
-    </item>
-    
-    <item>
-      <title>Python常见题</title>
-      <link>https://bomir.top/post/python-common-questions/</link>
-      <pubDate>Thu, 08 Aug 2019 14:45:16 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/python-common-questions/</guid>
-      <description>(1)Python常见面试题1 1.Python是如何进行内存管理的？ 三个方面来回答这个问题； ①对象的引用计数机制 ②垃圾回收机制 ③内存池机制 (</description>
     </item>
     
   </channel>
