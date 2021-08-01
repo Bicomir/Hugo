@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>消息队列 on Wallis</title>
+    <link>https://bomir.top/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link>
+    <description>Recent content in 消息队列 on Wallis</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language><atom:link href="https://bomir.top/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>消息队列记录</title>
+      <link>https://bomir.top/post/message-queue-record/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/message-queue-record/</guid>
+      <description>消息队列的面试连环炮 前言 你用过消息队列么？ 说说你们项目里是怎么用消息队列的？ 我们有一个订单系统，订单系统会每次下一个新订单的时候，就会发送一</description>
+    </item>
+    
+  </channel>
+</rss>
