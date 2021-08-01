@@ -53,6 +53,15 @@
     </item>
     
     <item>
+      <title>消息队列记录</title>
+      <link>https://bomir.top/post/message-queue-record/</link>
+      <pubDate>Fri, 13 Nov 2020 21:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/message-queue-record/</guid>
+      <description>消息队列的面试连环炮 前言 你用过消息队列么？ 说说你们项目里是怎么用消息队列的？ 我们有一个订单系统，订单系统会每次下一个新订单的时候，就会发送一</description>
+    </item>
+    
+    <item>
       <title>MySQL复习整理</title>
       <link>https://bomir.top/post/mysql-record/</link>
       <pubDate>Thu, 12 Nov 2020 22:19:05 +0000</pubDate>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/rest-api-test/</guid>
       <description>为什么做接口测试 很多系统关联都是基于接口来实现，接口测试可以将复杂的系统关联进行简化。 接口功能比较单一，能够比较好地进行测试覆盖，也相对容易</description>
-    </item>
-    
-    <item>
-      <title>Fiddler抓包工具总结</title>
-      <link>https://bomir.top/post/fiddler-tool/</link>
-      <pubDate>Sat, 17 Aug 2019 21:03:54 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/fiddler-tool/</guid>
-      <description>Fiddler介绍 Fiddler（中文名称：小提琴）是一个HTTP的调试代理，以代理服务器的方式，监听系统的Http网络数据流动，Fiddl</description>
     </item>
     
   </channel>
