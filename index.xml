@@ -12477,7 +12477,7 @@ appendfsync everysec  &lt;span class=&#34;c1&#34;&gt;# 不执行sync, 这个时�
 &lt;/div&gt;&lt;h2 id=&#34;redis持久化&#34;&gt;Redis持久化&lt;/h2&gt;
 &lt;p&gt;面试和工作， 持久化是重点;&lt;/p&gt;
 &lt;p&gt;Redis是内存数据库， 如果不将内存中的数据库状态保存到磁盘， 那么一旦服务器进程退出， 服务器中的数据库状态也会消失，所以redis提供了持久化的功能。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcTpqWuFHUBJTOWN6Nkszpla7lTChny*S*4Ho88GOTvCvl1oDk*1V*rpAlH3EhcxZHbg78zOTac*pvn7iriCW7Dw!/b&amp;amp;bo=qgMfAgAAAAABF4Q!&amp;amp;rf=viewer_4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/base-1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;指定的时间间隔内将内存中的数据集快照写入磁盘，也就是行话Snapshot。它恢复时是将快照文件直接读到内存中。&lt;/p&gt;
 &lt;p&gt;Redis会单独创建一个fork子进程来进行持久化，先将数据写入一个临时文件，持久化结束后，用这个临时文件替代上次持久化好的文件。整个过程中，主进程是不进行任何IO操作的，这就确保了极高的性能。&lt;/p&gt;
 &lt;p&gt;如果需要进行大规模的数据恢复，且对于数据恢复的完整性不是特别敏感，那么RDB方式比AOF更加高效。RDB的缺点就是最后一次持久化的数据可能会丢失。&lt;/p&gt;
@@ -12505,7 +12505,7 @@ appendfsync everysec  &lt;span class=&#34;c1&#34;&gt;# 不执行sync, 这个时�
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;AOF : Append Only File&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcZYNrC2dVlUUTerRKLHYXF*mIxj*FwPLLMvse7EzzzSmVApFOVzNPCTyjmQPFyeMeAsG2s0k4m4uQxvd8AGZ3.o!/b&amp;amp;bo=QANMAkADTAIBFzA!&amp;amp;rf=viewer_4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/base-2.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;以日志的形式来记录每个写操作，将Redis执行过的所有指令记录下来（读操作不记录），只许追加文件但不可以改写文件，redis启动之初会读取该文件重新构建数据，redis重启的话就根据日志文件的内容将写指令从前到后执行一次以完成数据的恢复工作。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;工作原理：把所有命令全部记录在文件中，恢复时把所有命令再执行一遍。
@@ -12518,19 +12518,19 @@ AOF是文件的无限追加，所以有一个重写机制来保证aof文件不�
 &lt;/blockquote&gt;
 &lt;p&gt;AOF保存的文件是appendonly.aof文件&lt;/p&gt;
 &lt;p&gt;redis-check-aof &amp;ndash;fix aof文件：用来修复这个aof文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcQweLjXu4AitHZ0TkDlBIOHCsff3BC1wPld3yfkLGNqkpsLY6l4zrCyCeCq.HGNozlF27r6jJMAIJz60fgPLjfM!/b&amp;amp;bo=3wNgAd8DYAEDNxI!&amp;amp;rf=viewer_4&#34; alt=&#34;1625214277665&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcX*ClgCr4NsAzYhkv.hD6fzgQTPEEpF4RyC1X3HA7LyJRacfX77yo**C9ReT3BCSIVjsEdU97.IJqjd9gPkLIXM!/b&amp;amp;bo=4wMoAQAAAAADN9s!&amp;amp;rf=viewer_4&#34; alt=&#34;1625214300549&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/basic-3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/basic-4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;redis发布订阅&#34;&gt;Redis发布订阅&lt;/h2&gt;
 &lt;p&gt;通信  队列  发送者  接收者&lt;/p&gt;
 &lt;p&gt;Redis 发布订阅 (pub/sub) 是一种==消息通信模式==：发送者 (pub) 发送消息，订阅者 (sub) 接收消息。&lt;/p&gt;
 &lt;p&gt;Redis 客户端可以订阅任意数量的频道。&lt;/p&gt;
 &lt;p&gt;完成发布订阅需要消息发布者、频道、消息接受者；
 频道一般用消息队列来实现。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://img.blog.csdn.net/20170415153941123?/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3EyNTI2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/basic-5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;下图展示了频道 channel1 ， 以及订阅这个频道的三个客户端 —— client2 、 client5 和 client1 之间的关系：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.runoob.com/wp-content/uploads/2014/11/pubsub1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/basic-6.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;当有新消息通过 PUBLISH 命令发送给频道 channel1 时， 这个消息就会被发送给订阅它的三个客户端：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.runoob.com/wp-content/uploads/2014/11/pubsub2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/basic-7.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;订阅者&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -12664,9 +12664,9 @@ repl_backlog_histlen:0
 &lt;p&gt;从机认证主机&lt;/p&gt;
 &lt;p&gt;一主二从&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;SLAVEOF host port		#配置从机&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20200513215637483.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg3MzIyNw==,size_16,color_FFFFFF,t_70&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/base-08.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;然后主机上也能看到从机的状态：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20200513215645778.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg3MzIyNw==,size_16,color_FFFFFF,t_70&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/base-009.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;这里是使用命令搭建，是暂时的，==真实开发中应该在从机的配置文件中进行配置，==这样的话是永久的.&lt;/p&gt;
@@ -12735,18 +12735,18 @@ OK
 &lt;p&gt;概述：&lt;/p&gt;
 &lt;p&gt;主从切换技术的方法是：当主服务器宕机后，需要手动把一台服务器切换为主服务器，这就需要人工干预，费时费力，还会造成一段时间内服务不可用。这不是一种推荐的方式，更多时候，我们优先考虑哨兵模式。Redis从2.8开始正式提供Sentinel（哨兵）架构来解决这个问题。&lt;/p&gt;
 &lt;p&gt;能够监控主机是否故障，如果故障了==根据投票数自动将从库转化为主库==；&lt;/p&gt;
-&lt;p&gt;哨兵模式是一种特殊的模式，首先redis提供了哨兵的命令，哨兵是一个独立的进程，作为进程，它会独立运行。原理是：哨兵通过发送命令，等待redis服务器响应，从而监控多个redis示例。
-&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcb9eaSlMu7v25seWotI*yMOgJCdaBleXXry*eoJ5xx1jVeRBlSIWhBiBWvjc8IvOvXWiA7F8oiuQxYPdPdH1ezI!/b&amp;amp;bo=kwLdAQAAAAADJ08!&amp;amp;rf=viewer_4&#34; alt=&#34;1625220558695&#34;&gt;&lt;/p&gt;
+&lt;p&gt;哨兵模式是一种特殊的模式，首先redis提供了哨兵的命令，哨兵是一个独立的进程，作为进程，它会独立运行。原理是：哨兵通过发送命令，等待redis服务器响应，从而监控多个redis示例。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/basic-8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;​	多哨兵&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcUxw510K4hTT51qeXfI9yDIGxaCBfxK0tor3*iLf0N*RKeeJPdTVrOp6ODOUEptYQIwTqVcM65QYSJev4bLIlRQ!/b&amp;amp;bo=MgOpAQAAAAADJ5s!&amp;amp;rf=viewer_4&#34; alt=&#34;1625220614986&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/basic-9.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;​	一个哨兵可以对多台服务器进行监控，并且可以有多个哨兵，每个哨兵会定时发送PING命令给服务器，并且还要在一定时间内得到服务器的响应，得到响应之后哨兵模式才会判定你现在状态正常。如果在规定的时间内它发送的请求主机没有得到响应，那么哨兵便会初步判断，当前主机是==主观下线==，其余的哨兵发现这台主机没有在规定时间内响应数据，那么便会以每秒一次的频率对主机进行判断，它确实是主观下线了，那么主机就会被标记为==客观下线==，主机挂掉之后，哨兵便会通过投票的方式在挂掉的主机下的从机中选出一个作为新主机。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;哨兵的核心配置&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;sentinel monitor mymaster 127.0.0.1 6379 1&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;数字1表示 ：当一个哨兵主观认为主机断开，就可以客观认为主机故障，然后开始选举新的主机。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;成功启动哨兵模式&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20200513215752444.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg3MzIyNw==,size_16,color_FFFFFF,t_70&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/basic-10.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;此时哨兵监视着我们的主机6379，当我们断开主机后：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20200513215806972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg3MzIyNw==,size_16,color_FFFFFF,t_70&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/basic-11.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;就算此时原来的Master回来了，在6380面前也只能作为从机；&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -12774,10 +12774,10 @@ OK
 &lt;p&gt;3.使用一个东西，叫做布隆过滤器（Bloom Filter），布隆过滤器使用的是一个bit数组和一个hash算法实现的数据结构，并且内存的使用率极低。使用布隆过滤器可以快速判断当前key是否存在，和Java的Optional类有点相似，布隆过滤器告诉你这个key不存在，那么它就一定不存在；&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;布隆过滤器&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;对所有可能查询的参数以Hash的形式存储，以便快速确定是否存在这个值，在控制层先进行拦截校验，校验不通过直接打回，减轻了存储系统的压力。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20200513215824722.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg3MzIyNw==,size_16,color_FFFFFF,t_70&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/base-3.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;缓存空对象&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;一次请求若在缓存和数据库中都没找到，就在缓存中方一个空对象用于处理后续这个请求。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20200513215836317.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg3MzIyNw==,size_16,color_FFFFFF,t_70&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/redis-basic/base-4.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;这样做有一个缺陷：存储空对象也需要空间，大量的空对象会耗费一定的空间，存储效率并不高。解决这个缺陷的方式就是设置较短过期时间&lt;/p&gt;
@@ -12826,7 +12826,7 @@ OK
 &lt;p&gt;数据加热的含义就是在正式部署之前，我先把可能的数据先预先访问一遍，这样部分可能大量访问的数据就会加载到缓存中。在即将发生大并发访问前手动触发加载缓存不同的key，设置不同的过期时间，让缓存失效的时间点尽量均匀。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;参考博客&lt;/p&gt;
+&lt;h2 id=&#34;参考博客&#34;&gt;参考博客&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/DDDDeng_/article/details/108118544&#34;&gt;https://blog.csdn.net/DDDDeng_/article/details/108118544&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/yitudake/p/6747995.html&#34;&gt;https://www.cnblogs.com/yitudake/p/6747995.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/ysocean/p/9114268.html&#34;&gt;https://www.cnblogs.com/ysocean/p/9114268.html&lt;/a&gt;&lt;/p&gt;
