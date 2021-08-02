@@ -423,20 +423,27 @@
   
   <url>
     <loc>https://bomir.top/tags/leetcode/</loc>
-    <lastmod>2019-01-21T18:56:34+00:00</lastmod>
+    <lastmod>2019-01-23T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://bomir.top/post/two-sum-sortedinputarray/</loc>
-    <lastmod>2019-01-21T18:56:34+00:00</lastmod>
+    <loc>https://bomir.top/post/three-sum/</loc>
+    <lastmod>2019-01-23T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://bomir.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2019-01-23T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/post/two-sum-sortedinputarray/</loc>
     <lastmod>2019-01-21T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
