@@ -163,6 +163,13 @@
   </url>
   
   <url>
+    <loc>https://bomir.top/post/redis-interview-1/</loc>
+    <lastmod>2020-11-12T22:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://bomir.top/post/common-design-pattern-five-constructionmode/</loc>
     <lastmod>2020-10-15T20:51:05+00:00</lastmod>
     <changefreq>weekly</changefreq>

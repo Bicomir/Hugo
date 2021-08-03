@@ -71,6 +71,15 @@
     </item>
     
     <item>
+      <title>redis面试连环炮I</title>
+      <link>https://bomir.top/post/redis-interview-1/</link>
+      <pubDate>Thu, 12 Nov 2020 22:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/redis-interview-1/</guid>
+      <description>Redis的面试连环炮I 面试题 Redis和Memcache有什么区别 Redis的线程模型是什么？ Redis的数据类型及应用场景？ 为什么单线程</description>
+    </item>
+    
+    <item>
       <title>常用设计模式-5种创建型模式</title>
       <link>https://bomir.top/post/common-design-pattern-five-constructionmode/</link>
       <pubDate>Thu, 15 Oct 2020 20:51:05 +0000</pubDate>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/csharp-basic/</guid>
       <description>C# 重载与重写 基本定义 构造函数： 构造函数是一种特殊的方法，主要用来创建对象时初始化对象，即为对象成员变量赋初始值，总与new运算符一起使用再创</description>
-    </item>
-    
-    <item>
-      <title>Rest API接口测试</title>
-      <link>https://bomir.top/post/rest-api-test/</link>
-      <pubDate>Tue, 20 Aug 2019 22:48:50 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/rest-api-test/</guid>
-      <description>为什么做接口测试 很多系统关联都是基于接口来实现，接口测试可以将复杂的系统关联进行简化。 接口功能比较单一，能够比较好地进行测试覆盖，也相对容易</description>
     </item>
     
   </channel>

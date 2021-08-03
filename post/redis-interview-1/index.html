@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>redis面试连环炮I - Wallis</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="bomir" />
+  <meta name="description" content="Redis的面试连环炮I 面试题 Redis和Memcache有什么区别 Redis的线程模型是什么？ Redis的数据类型及应用场景？ 为什么单线程" />
+
+  <meta name="keywords" content="Hugo, theme, jane" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0" />
+
+
+<link rel="canonical" href="https://bomir.top/post/redis-interview-1/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="redis面试连环炮I" />
+<meta property="og:description" content="Redis的面试连环炮I 面试题 Redis和Memcache有什么区别 Redis的线程模型是什么？ Redis的数据类型及应用场景？ 为什么单线程" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bomir.top/post/redis-interview-1/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-11-12T22:19:05+00:00" />
+<meta property="article:modified_time" content="2020-11-12T22:19:05+00:00" />
+
+<meta itemprop="name" content="redis面试连环炮I">
+<meta itemprop="description" content="Redis的面试连环炮I 面试题 Redis和Memcache有什么区别 Redis的线程模型是什么？ Redis的数据类型及应用场景？ 为什么单线程"><meta itemprop="datePublished" content="2020-11-12T22:19:05+00:00" />
+<meta itemprop="dateModified" content="2020-11-12T22:19:05+00:00" />
+<meta itemprop="wordCount" content="17354">
+<meta itemprop="keywords" content="redis," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="redis面试连环炮I"/>
+<meta name="twitter:description" content="Redis的面试连环炮I 面试题 Redis和Memcache有什么区别 Redis的线程模型是什么？ Redis的数据类型及应用场景？ 为什么单线程"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">秤流沙</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      秤流沙
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">redis面试连环炮I</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-11-12" class="post-time">
+          2020-11-12
+        </time>
+        <div class="post-category">
+            <a href="https://bomir.top/categories/nosql/"> Nosql </a>
+            
+          </div>
+        <span class="more-meta"> 约 17354 字 </span>
+          <span class="more-meta"> 预计阅读 35 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#面试题">面试题</a></li>
+    <li><a href="#剖析">剖析</a></li>
+    <li><a href="#redis和memcache的区别">Redis和Memcache的区别</a></li>
+    <li><a href="#redis都有哪些数据类型及使用场景">Redis都有哪些数据类型，及使用场景</a></li>
+    <li><a href="#redis持久化对于生产环境的意义">Redis持久化对于生产环境的意义</a>
+      <ul>
+        <li><a href="#redis持久化的意义">Redis持久化的意义</a></li>
+        <li><a href="#redis中的rdb和aof两种持久化机制">Redis中的RDB和AOF两种持久化机制</a></li>
+        <li><a href="#rdb持久化机制">RDB持久化机制</a></li>
+        <li><a href="#aof持久化机制">AOF持久化机制</a></li>
+        <li><a href="#rdb持久化机制的优点">RDB持久化机制的优点</a></li>
+        <li><a href="#rdb持久化的缺点">RDB持久化的缺点</a></li>
+        <li><a href="#aof持久化的优点">AOF持久化的优点</a></li>
+        <li><a href="#aof持久化机制的缺点">AOF持久化机制的缺点</a></li>
+        <li><a href="#rdb和aof的选择">RDB和AOF的选择</a></li>
+      </ul>
+    </li>
+    <li><a href="#redis的线程模型">Redis的线程模型</a>
+      <ul>
+        <li><a href="#文件事件处理器">文件事件处理器</a></li>
+      </ul>
+    </li>
+    <li><a href="#为什么redis单线程模型效率这么高">为什么Redis单线程模型效率这么高？</a></li>
+    <li><a href="#redis的过期策略">Redis的过期策略</a>
+      <ul>
+        <li><a href="#redis中的数据为什么会丢失">Redis中的数据为什么会丢失</a></li>
+        <li><a href="#数据明明都过期了怎么还占用着内存啊">数据明明都过期了，怎么还占用着内存啊？</a></li>
+        <li><a href="#定期删除和惰性删除">定期删除和惰性删除</a></li>
+        <li><a href="#redis内存淘汰机制">Redis内存淘汰机制</a></li>
+      </ul>
+    </li>
+    <li><a href="#redis中的lru算法">Redis中的LRU算法</a></li>
+    <li><a href="#如何保证redis的高并发及高可用">如何保证Redis的高并发及高可用？</a>
+      <ul>
+        <li><a href="#剖析-1">剖析</a></li>
+      </ul>
+    </li>
+    <li><a href="#redis如何通过读写分离来承受百万的qps">Redis如何通过读写分离来承受百万的QPS</a>
+      <ul>
+        <li><a href="#redis高并发跟整个系统的高并发之间的关系">redis高并发跟整个系统的高并发之间的关系</a></li>
+        <li><a href="#redis不能支撑高并发的瓶颈在哪里">redis不能支撑高并发的瓶颈在哪里？</a></li>
+        <li><a href="#redis主从架构">Redis主从架构</a></li>
+        <li><a href="#主从复制的断点续传">主从复制的断点续传</a></li>
+        <li><a href="#无磁盘化复制">无磁盘化复制</a></li>
+        <li><a href="#redis主从复制的完整复制流程">Redis主从复制的完整复制流程</a></li>
+        <li><a href="#redis主从架构如何才能做到9999的高可用性">Redis主从架构如何才能做到99.99%的高可用性？</a></li>
+      </ul>
+    </li>
+    <li><a href="#redis哨兵架构">Redis哨兵架构</a>
+      <ul>
+        <li><a href="#哨兵介绍">哨兵介绍</a></li>
+        <li><a href="#哨兵的核心知识">哨兵的核心知识</a></li>
+        <li><a href="#为什么redis的哨兵集群只有2个节点无法正常工作">为什么Redis的哨兵集群只有2个节点无法正常工作？</a></li>
+        <li><a href="#经典的3节点哨兵集群">经典的3节点哨兵集群</a></li>
+        <li><a href="#redis主备切换的数据丢失问题异步复制集群脑裂">Redis主备切换的数据丢失问题：异步复制、集群脑裂</a></li>
+        <li><a href="#redis哨兵的底层原理">Redis哨兵的底层原理</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h1 id="redis的面试连环炮i">Redis的面试连环炮I</h1>
+<h2 id="面试题">面试题</h2>
+<ul>
+<li><a href="##Redis%E5%92%8CMemcache%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">Redis和Memcache有什么区别</a></li>
+<li><a href="##Redis%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F">Redis的线程模型是什么？</a></li>
+<li>Redis的数据类型及应用场景？</li>
+<li>为什么单线程的Redis比多线程的Memcache的效率要高？</li>
+<li>为什么Redis是单线程但是还可以支撑高并发？</li>
+<li>Redis如何通过读写分离来承受百万的QPS</li>
+<li>Redis的持久化策略有哪些？AOF和RDB各有什么优缺点</li>
+<li>Redis的过期策略以及LRU算法</li>
+<li>如何保证Redis的高并发和高可用？</li>
+<li>redis的主从复制原理能介绍一下么？</li>
+<li>redis的哨兵原理能介绍一下么？</li>
+<li>Redis主备切换的数据丢失问题：异步复制、集群脑裂</li>
+<li>Redis哨兵的底层原理</li>
+</ul>
+<h2 id="剖析">剖析</h2>
+<p>Redis最基本的一个内部原理和特点就是NIO异步的单线程工作模型。Memcache是早些年个大互联网公司常用的缓存方案，但是现在近几年都是使用的redis，没有什么公司使用Memcache了。</p>
+<p>注意：Redis中单个Value的大小最大为512MB，redis的key和string类型value限制均为512MB</p>
+<h2 id="redis和memcache的区别">Redis和Memcache的区别</h2>
+<p>从Redis作者给出的几个比较</p>
+<ul>
+<li>Redis拥有更多的数据结构
+<ul>
+<li><strong>Redis相比Memcache来说，拥有更多的数据结构和支持更丰富的数据操作，通常在Memcache里，你需要将数据拿到客户端来进行类似的修改，在set进去。这就大大增加了网络IO的次数和体积，在Redis中，这些复杂的操作通常和一般的set/get一样高效。所以，如果需要缓存能够支持更复杂的结构和操作，那么Redis是不错的选择</strong></li>
+</ul>
+</li>
+<li>Redis内存利用率对比
+<ul>
+<li>使用简单的key-value存储的话，Memcache的内存利用率更高，而Redis采用Hash结构来做key-value存储，由于其组合式的压缩，其内存利用率会高于Memcache</li>
+</ul>
+</li>
+<li>性能对比
+<ul>
+<li>由于Redis只使用了单核，而Memcache可以使用多核，所以平均每核上Redis在存储小数据比Memcache性能更高，而在100K以上的数据中，Memcache性能更高，虽然Redis最近也在存储大数据的性能上进行优化，但是比起Memcache还有略有逊色。</li>
+</ul>
+</li>
+<li>集群模式
+<ul>
+<li><strong>Memcache没有原生的集群模式，需要依赖客户端来实现往集群中分片写入数据，但是Redis目前是原生支持cluster模式的。</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="redis都有哪些数据类型及使用场景">Redis都有哪些数据类型，及使用场景</h2>
+<ul>
+<li>
+<p>String</p>
+<ul>
+<li>最基本的类型，就和普通的set 和 get，做简单的key - value 存储</li>
+</ul>
+</li>
+<li>
+<p>Hash</p>
+<ul>
+<li>这个是 类似于Map的一种结构，就是一半可以将结构化数据，比如对象（前提是这个对象没有嵌套其它对象）给缓存在redis中，每次读写redis缓存的时候，可以操作hash里面的某个字段</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">key</span><span class="o">=</span><span class="m">150</span>
+<span class="nv">value</span><span class="o">={</span>
+  <span class="s2">&#34;id&#34;</span>: 150,
+  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;张三&#34;</span>,
+  <span class="s2">&#34;age&#34;</span>: 20,  
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Hash类的数据结构，主要用来存放一些对象，把一些简单的对象给缓存起来，后续操作的时候，你可以直接仅仅修改这个对象中某个字段的值。</li>
+</ul>
+</li>
+<li>
+<p>List</p>
+<ul>
+<li>有序列表，可以通过list存储一些列表型的数据结构，类似粉丝列表，文章的评论列表之类的东西。</li>
+<li>可以通过lrange命令，从某个元素开始读取多少个元素，可以基于list实现分页查询，基于Redis实现简单的高性能分页，可以做类似微博那种下拉不断分页的东西，性能高，就是一页一页走。</li>
+<li>可以制作一个简单的消息队列，从list头插入，从list 的尾巴取出</li>
+</ul>
+</li>
+<li>
+<p>Set</p>
+<ul>
+<li>无序列表，自动去重</li>
+<li>直接基于Set将系统中需要去重的数据丢进去，如果你需要对一些数据进行快速的全局去重，就可以使用基于JVM内存里的HashSet进行去重，但是如果你的某个系统部署在多台机器上的话，只有使用Redis进行全局的Set去重</li>
+<li>可以基于set实现交集、并集、差集的操作，比如交集吧，可以把两个人的粉丝列表整一个交集，看看俩人的共同好友是谁？把两个大v的粉丝都放在两个set中，对两个set做交集</li>
+</ul>
+</li>
+<li>
+<p>Sort Set</p>
+<ul>
+<li>
+<p>排序的set，去重但是可以排序，写进去的时候给一个分数，自动根据分数排序，最大的特点是有个分数可以自定义排序规则</p>
+</li>
+<li>
+<p>比如说要是想根据时间对数据排序，那么可以写入进去的时候用某个时间作为分数，人家自动给你按照时间排序了</p>
+</li>
+<li>
+<p>排行榜：将每个用户以及其对应的什么分数写入进去，zadd board score username，接着zrevrange board 0 99，就可以获取排名前100的用户；zrank board username，可以看到用户在排行榜里的排名</p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">bomir@morn:~$ redis-cli
+127.0.0.1:6379&gt; 
+127.0.0.1:6379&gt; zadd board <span class="m">85</span> zhangsan
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+127.0.0.1:6379&gt; zadd board <span class="m">72</span> wangwu
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+127.0.0.1:6379&gt; zadd board <span class="m">96</span> lisi
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+127.0.0.1:6379&gt; zadd board <span class="m">62</span> zhaoliu
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+127.0.0.1:6379&gt; zrevrange board <span class="m">0</span> <span class="m">3</span>
+1<span class="o">)</span> <span class="s2">&#34;lisi&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;zhangsan&#34;</span>
+3<span class="o">)</span> <span class="s2">&#34;wangwu&#34;</span>
+4<span class="o">)</span> <span class="s2">&#34;zhaoliu&#34;</span>
+127.0.0.1:6379&gt; zrank board wangwu
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+127.0.0.1:6379&gt; zrank board zhaoliu
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">0</span>
+127.0.0.1:6379&gt; zrank board lisi
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">3</span>
+127.0.0.1:6379&gt; zrank board zhangsan
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">2</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="redis持久化对于生产环境的意义">Redis持久化对于生产环境的意义</h2>
+<p>故障发生时候会怎么样？</p>
+<p>如何应对故障的发生？</p>
+<p>redis的持久化， RDB， AOF的区别， 各自的特点是什么， 适合什么场景？</p>
+<p>redis企业级的解决方案是什么？是用来跟哪些企业级的场景结合起来使用的/</p>
+<p>redis持久化的意义，在于故障恢复。（数据备份和故障恢复）</p>
+<h3 id="redis持久化的意义">Redis持久化的意义</h3>
+<p>Redis持久化的意义，在于故障恢复，也属于高可用的一个环节。例如</p>
+<p>当存放在内存中数据，会因为Redis的突然挂掉，而导致数据丢失</p>
+<p><img src="https://bomir.top/pics/redis-interview1/image-20200422075753772.png" alt="image-20200422075753772"></p>
+<p>Redis的持久化，就是将内存中的数据，持久化到磁盘上中，然后将磁盘上的数据放到阿里云ODPS中</p>
+<p><img src="https://bomir.top/pics/redis-interview1/image-20200422080013776.png" alt="image-20200422080013776"></p>
+<p>通过持久化将数据存储在磁盘中，然后定期比如说同步和备份到一些云存储服务上去。</p>
+<h3 id="redis中的rdb和aof两种持久化机制">Redis中的RDB和AOF两种持久化机制</h3>
+<p>当出现Redis宕机时，我们需要做的是重启redis，尽快让他对外提供服务，缓存全部无法命中，在redis里根本找不到数据，这时候就会出现缓存雪崩的问题。所有的请求，没有在Redis中命中，就会去MySQL数据库这种数据源头中找，一下子MySQL无法承受高并发，那么系统将直接宕机。这个时候MySQL宕机，因为没办法从MySQL中将缓存恢复到Redis中，因为Redis中的数据是从MySQL中来的。</p>
+<h3 id="rdb持久化机制">RDB持久化机制</h3>
+<p>简单来说RDB：就是将Redis中的数据，每隔一段时间，进行数据持久化</p>
+<p><img src="https://bomir.top/pics/redis-interview1/image-20200422083709495.png" alt="image-20200422083709495"></p>
+<h3 id="aof持久化机制">AOF持久化机制</h3>
+<p>Redis将内存中的数据，存放到一个AOF文件中，但是因为Redis只会写一个AOF文件，因此这个AOF文件会越来越大。</p>
+<p>AOF机制对每条写入命令作为日志，以append-only的模式写入一个日志文件中，在Redis重启的时候，可以通过回放AOF日志中的写入指令来重新构建整个数据集。</p>
+<p><img src="https://bomir.top/pics/redis-interview1/image-20200422083910566.png" alt="image-20200422083910566"></p>
+<p>因为Redis中的数据是有一定限量的，不可能说Redis内存中的数据不限量增长，进而导致AOF无限量增长。</p>
+<p>内存大小是一定的，到一定时候，Redis就会用缓存淘汰算法，LRU，自动将一部分数据从内存中给清除。</p>
+<p>AOF，是存放每条写命令的，所以会不断的膨胀，当大到一定的时候，AOF做rewrite操作。</p>
+<p>AOF rewrite操作，就会基于当时redis内存中的数据，来重新构造一个更小的AOF文件，然后将旧的膨胀的很大的文件给删了。</p>
+<p><img src="https://bomir.top/pics/redis-interview1/image-20200422085957064.png" alt="image-20200422085957064"></p>
+<p>如果我们想要Redis仅仅作为纯内存的缓存来使用，那么可以禁止RDB和AOF所有的持久化机制</p>
+<p>通过AOF和RDB，都可以将Redis内存中的数据给持久化到磁盘上面来，然后可以将这些数据备份到其它地方去，例如阿里云的OOS。</p>
+<p>如果Redis挂了，服务器上的内存和磁盘上的数据都丢了，可以从云服务上拷贝回来之前的数据，放到指定的目录下，然后重新启动Redis，Redis就会自动根据持久化数据文件，去恢复内存中的数据，继续对外提供服务。</p>
+<p>如果同时使用RDB和AOF两种持久化机制，那么在Redis重启的时候，会使用AOF来重新构建数据，因为AOF中的数据更加完整。</p>
+<h3 id="rdb持久化机制的优点">RDB持久化机制的优点</h3>
+<ul>
+<li>RDB会生成多个数据文件，每个数据文件都代表了某个时刻中Redis的数据，这种多个数据文件的方式，非常适合做冷备份，可以将这种完整的数据文件发送到一些远程的安全存储上去，例如阿里云ODPS分布式存储上，以预定好的备份策略来定期备份Redis中的数据
+<ul>
+<li>RDB也可以做冷备份，生成多个文件，每个文件代表了某个时刻的完整的数据快照</li>
+<li>AOF也可以做冷备，只有一个文件，但是你可以每隔一段时间，去copy一份文件出来</li>
+<li>RDB做冷备份的优势在于，可以由Redis去控制固定时长生成快照文件的事情，比较方便。AOF还需要自己写一些脚本去做这个事情，各种定时。</li>
+</ul>
+</li>
+<li>RDB对Redis对外提供的读写服务，影响非常小，可以让Redis保持高性能，因为Redis主进程只需要fork一个子进程，让子进程执行磁盘IO操作来进行RDB持久化即可。
+<ul>
+<li>RDB每次写都是些Redis内存的，只是在一定的时间内，才将数据写入磁盘</li>
+<li>AOF每次都要写文件，虽然可以快速写入 OS Cache中，但是还是会有一定的时间开销，速度肯定比RDB略慢一点。</li>
+</ul>
+</li>
+<li>相对于AOF持久化机制来说，直接基于RDB数据文件来重启和恢复Redis进程，更加快速。
+<ul>
+<li>RDB数据做冷备份，在最坏的情况下，提供数据恢复的时候，速度比AOF快。</li>
+<li>AOF，存放的指令日志，做数据恢复的时候，其实是要回放和执行所有的指令日志，来恢复出来内存中的所有数据的，而RDB就是一份数据文件，恢复的时候，直接加载进内存即可。</li>
+</ul>
+</li>
+</ul>
+<p>综合上面可以知道：RDB特别适合做冷备份</p>
+<h3 id="rdb持久化的缺点">RDB持久化的缺点</h3>
+<ul>
+<li>如果想要在Redis故障时，尽可能的少丢失数据，那么RDB没有AOF好，一般来说，RDB数据快照文件，都是每隔5分钟，或者更长时间生成一次，这个时候就得接受一旦Redis经常宕机，那么丢失最近5分钟的数据。</li>
+</ul>
+<p><img src="https://bomir.top/pics/redis-interview1/image-20200422093446392.png" alt="image-20200422093446392"></p>
+<p>​		这个文件也是RDB最大的缺点，就是不适合做第一优先级的恢复方案，如果你依赖RDB做第一优先级方案，会导致数据丢失的比较多。</p>
+<ul>
+<li>RDB每次在fork子进程来执行RDB快照数据生成的时候，如果数据文件特别大，可能会导致对客户端提供的服务暂停数毫秒，或者甚至数秒
+<ul>
+<li>一般不要让RDB的间隔太长，否则每次生成的RDB文件太长，会对Redis本身的性能会有影响</li>
+</ul>
+</li>
+</ul>
+<h3 id="aof持久化的优点">AOF持久化的优点</h3>
+<ul>
+<li>AOF可以更好的保护数据不丢失，一般AOF会间隔一秒，通过一个后台线程执行一次fsync操作，最多丢失1秒</li>
+<li>AOF日志文件以append-only模式写入，所有没有任何磁盘寻址开销，写入性能非常高，而且文件不容易破损，即使文件尾部破损，也很容易快速修复。</li>
+<li>AOF日志文件及时过大的时候，出现后台的重写操作，也不会影响客户端的读写，因为rewrite log 的时候，会对其中的数据进行压缩，创建出一份需要恢复数据的最小日志出来，再创建新日志文件的时候，老的日志文件还是照常写入，当新的merge后的日志文件ready的时候，再交换新老日志文件即可。</li>
+<li>AOF日志文件的命令通过非常可读的方式进行记录，这个特性非常适合做灾难性的误删除的紧急恢复，比如某人不小心用了 flushall命令，清空了整个Redis数据，只要这个时候后台rewrite还没有发生，那么就可以立即拷贝AOF文件，将最后一条flushall命令删除了，然后再将该AOF文件放回去，就可以通过恢复机制，自动回复所有的数据。</li>
+</ul>
+<h3 id="aof持久化机制的缺点">AOF持久化机制的缺点</h3>
+<ul>
+<li>对于同一份数据来说，AOF日志通常比RDB数据快照文件更大</li>
+<li>AOF开启后，支持写QPS会比RDB支持的写QPS低，因为AOF一般会配置成每秒fsync一次日志文件，因此这也就造成了性能不是很高。
+<ul>
+<li>如果你要保证一条数据都不丢，也可以的，AOF的fsync设置成每次写入一条数据，fsync一次，这样Redis的QPS会大降。</li>
+</ul>
+</li>
+<li>AOF这种较为复杂的基于命令日志/merge/回放的方式，比基于RDB每次持久化一份完整的数据快照的方式，更加脆弱一些，容易有BUG，不过AOF就是为了避免rewrite过程导致的BUG，因此每次rewrite并不是基于旧的指令来进行merge的，而是基于当时内存中数据进行指令的重新构建，这样健壮性会好一些。</li>
+<li>唯一的缺点：就是做数据恢复的时候，会比较慢，还有做冷备，定期的备份，不太方便，可能要自己手动写复杂的脚本去做。</li>
+</ul>
+<h3 id="rdb和aof的选择">RDB和AOF的选择</h3>
+<ul>
+<li>不要仅仅使用RDB，因为那样会导致你丢失很多的数据</li>
+<li>也不要仅仅使用AOF，因为这样有两个问题
+<ul>
+<li>AOF做冷备，没有RDB冷备恢复快</li>
+<li>RDB每次简单粗暴的生成数据快照，更加健壮，可以避免AOF这种复杂的被封和恢复机制的BUG</li>
+</ul>
+</li>
+<li>综合使用AOF和RDB两种持久化机制，用AOF来保证数据不丢失，作为数据恢复的第一选择，用RDB来做不同程度的冷备，在AOF文件都丢失或者损坏不可用的时候，可以使用RDB来进行快速的数据恢复。</li>
+</ul>
+<h2 id="redis的线程模型">Redis的线程模型</h2>
+<h3 id="文件事件处理器">文件事件处理器</h3>
+<p>Redis基于reactor模式开发了网络事件处理器，这个处理器叫做<strong>文件事件处理器</strong>，file event handler，这个文件事件处理器是单线程的，因此Redis才叫做单线程的模型，采用IO多路复用机制同时监听多个socket，根据socket上的事件来选择相应的事件处理器来处理这个事件。</p>
+<p>文件事件处理器是单线程模式下运行的，但是通过IO多路复用机制监听了多个socket，可以实现高性能的网络通信模型，又可以跟内部的其它单线程的模块进行对接，保证了Redis内部的线程模型的简单性。</p>
+<p>文件事件处理器的结构包含4个部分：多个socket，IO多路复用程序，文件事件分派器，事件处理器等。</p>
+<p>多个socket可能并发的产生不同的操作，每个操作对应不同的文件事件，但是IO多路复用程序会监听多个socket，但是会把socket放入到一个队列中排队，每次从队列中取出一个socket给事件分派器，事件分派器把socket给对应的时间处理器。</p>
+<blockquote>
+<p>&mdash;客户端与redis通信的一次流程&mdash;</p>
+<p>在redis启动初始化的时候，redis会将连接应答处理器跟AE_READABLE事件关联起来，接着 如果一个客户端跟redis发起连接，此时会产生一个AJREADABLE事件，然后由连接应答处 理器来处理跟客户端建立连接，创建客户端对应的socket,同时将这个socket的AE_READABLE 事件跟命令请求处理器关联起来。</p>
+<p>当客户端向redis发起请求的时候（不管是读请求还是写请求，都一样），首先就会在socket 产生一个AE_READABLE事件，然后由对应的命令请求处理器来处理。这个命令请求处理器 就会从socket中读取请求相关数据，然后进行执行和处理。</p>
+<p>接着redis这边准备好了给客户端的响应数据之后，就会将socket的AE_WRITABLE事件跟命 令回复处理器关联起来，当客户端这边准备好读取响应数据时，就会在socket上产生一个 AE_WRITABLE事件，会由对应的命令回复处理器来处理，就是将准备好的响应数据写入 socket,供客户端来读取。命令回复处理器写完之后，就会删除这个socket的AE_WRITABLE事件和命令回复处理器的 关联关系。</p>
+</blockquote>
+<p><img src="https://bomir.top/pics/redis-interview1/image-20200421185741787.png" alt="image-20200421185741787"></p>
+<p><img src="https://bomir.top/pics/redis-interview1/image-20200421185725418.png" alt="image-20200421185725418"></p>
+<p>每次我们一个socket请求过来 和 redis中的 server socket建立连接后，通过IO多路复用程序，就会往队列中插入一个socket，文件事件分派器就是将队列中的socket取出来，分派到对应的处理器，在处理器处理完成后，才会从队列中在取出一个。</p>
+<p>这里也就是用一个线程，监听了客户端的所有请求，被称为Redis的单线程模型。</p>
+<h2 id="为什么redis单线程模型效率这么高">为什么Redis单线程模型效率这么高？</h2>
+<ul>
+<li>纯内存操作</li>
+<li>核心是非阻塞的IO多路复用机制</li>
+<li>单线程反而避免了多线程频繁上下文切换的问题</li>
+</ul>
+<h2 id="redis的过期策略">Redis的过期策略</h2>
+<h3 id="redis中的数据为什么会丢失">Redis中的数据为什么会丢失</h3>
+<p>​	当有人问你，说我们生产环境的redis怎么经常会丢掉一些数据？写进去了，过一会儿可能就没了。你问这个问题就说明redis你就没用对啊。redis是缓存，你给当存储了是吧？</p>
+<p>啥叫缓存？用内存当缓存。内存是无限的吗，<strong>内存是很宝贵而且是有限的</strong>，磁盘是廉价而且是大量的。可能一台机器就几十个G的内存，但是可以有几个T的硬盘空间。redis主要是基于内存来进行高性能、高并发的读写操作的。</p>
+<p>那既然内存是有限的，比如redis就只能用10个G，你要是往里面写了20个G的数据，会咋办？当然会干掉10个G的数据，然后就保留10个G的数据了。那干掉哪些数据？保留哪些数据？当然是干掉不常用的数据，保留常用的数据了。所以说，这是缓存的一个最基本的概念，数据是会过期的，要么是你自己设置个过期时间，要么是redis自己给干掉。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">set</span> key value 过期时间（1小时）
+set进去的key，1小时之后就没了，就失效了
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="数据明明都过期了怎么还占用着内存啊">数据明明都过期了，怎么还占用着内存啊？</h3>
+<p>还有一种就是如果你设置好了一个过期时间，你知道redis是怎么给你弄成过期的吗？什么时候删除掉？如果你不知道，之前有个学员就问了，为啥好多数据明明应该过期了，结果发现redis内存占用还是很高？那是因为你不知道redis是怎么删除那些过期key的。</p>
+<p>比如说redis 内存一共是10g，你现在往里面写了5g的数据，结果这些数据明明你都设置了过期时间，要求这些数据1小时之后都会过期，结果1小时之后，你回来一看，redis机器，怎么内存占用还是50%呢？5g数据过期了，我从redis里查，是查不到了，结果过期的数据还占用着redis的内存。</p>
+<h3 id="定期删除和惰性删除">定期删除和惰性删除</h3>
+<p>我们Redis设置了过期时间，其实内部是 定期删除 + 惰性删除两个再起作用的。</p>
+<p>所谓<strong>定期删除</strong>，指的是redis默认是每隔100ms就随机抽取一些设置了过期时间的key，检查其是否过期，如果过期就删除。假设redis里放了10万个key，都设置了过期时间，你每隔几百毫秒，就检查10万个key，那redis基本上就死了，cpu负载会很高的，消耗在你的检查过期key上了。注意，这里可不是每隔100ms就遍历所有的设置过期时间的key，那样就是一场性能上的灾难。实际上redis是每隔100ms随机抽取一些key来检查和删除的。</p>
+<p>但是问题是，定期删除可能会导致很多过期key到了时间并没有被删除掉，那咋整呢？所以就是惰性删除了。这就是说，在你获取某个key的时候，redis会检查一下 ，这个key如果设置了过期时间那么是否过期了？如果过期了此时就会删除，不会给你返回任何东西。</p>
+<p>并不是key到时间就被删除掉，而是你查询这个key的时候，redis再懒惰的检查一下</p>
+<p>通过上述两种手段结合起来，保证过期的key一定会被干掉。</p>
+<p>很简单，就是说，你的过期key，靠定期删除没有被删除掉，还停留在内存里，占用着你的内存呢，除非你的系统去查一下那个key，才会被redis给删除掉。</p>
+<p>但是实际上这还是有问题的，如果定期删除漏掉了很多过期key，然后你也没及时去查，也就没走惰性删除，此时会怎么样？如果大量过期key堆积在内存里，导致redis内存块耗尽了，咋整？</p>
+<p>答案是：走<strong>内存淘汰机制</strong>。</p>
+<h3 id="redis内存淘汰机制">Redis内存淘汰机制</h3>
+<p>如果redis的内存占用过多的时候，此时会进行内存淘汰，有如下一些策略：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">redis 10个key，现在已经满了，redis需要删除掉5个key
+
+1个key，最近1分钟被查询了100次
+
+1个key，最近10分钟被查询了50次
+
+1个key，最近1个小时倍查询了1次
+</code></pre></td></tr></table>
+</div>
+</div><p>1）noeviction：当内存不足以容纳新写入数据时，新写入操作会报错，这个一般没人用吧，实在是太恶心了</p>
+<p>2）allkeys-lru：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的key（这个是最常用的）</p>
+<p>3）allkeys-random：当内存不足以容纳新写入数据时，在键空间中，随机移除某个key，这个一般没人用吧，为啥要随机，肯定是把最近最少使用的key给干掉啊</p>
+<p>4）volatile-lru：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的key（这个一般不太合适）</p>
+<p>5）volatile-random：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，随机移除某个key</p>
+<p>6）volatile-ttl：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，有更早过期时间的key优先移除</p>
+<p>很简单，你写的数据太多，内存满了，或者触发了什么条件，redis lru，自动给你清理掉了一些最近很少使用的数据</p>
+<h2 id="redis中的lru算法">Redis中的LRU算法</h2>
+<p>Java版本的LRU</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Java" data-lang="Java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LRUCache</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="o">{</span>
+    
+	<span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">CACHE_SIZE</span><span class="o">;</span>
+
+    <span class="c1">// 这里就是传递进来最多能缓存多少数据
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="nf">LRUCache</span><span class="o">(</span><span class="kt">int</span> <span class="n">cacheSize</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">cacheSize</span> <span class="o">/</span> <span class="n">0</span><span class="o">.</span><span class="na">75</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">75f</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span> <span class="c1">// 这块就是设置一个hashmap的初始大小，同时最后一个true指的是让linkedhashmap按照访问顺序来进行排序，最近访问的放在头，最老访问的就在尾
+</span><span class="c1"></span>        <span class="n">CACHE_SIZE</span> <span class="o">=</span> <span class="n">cacheSize</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">removeEldestEntry</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span> <span class="n">eldest</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">CACHE_SIZE</span><span class="o">;</span> <span class="c1">// 这个意思就是说当map中的数据量大于指定的缓存个数的时候，就自动删除最老的数据
+</span><span class="c1"></span>    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="如何保证redis的高并发及高可用">如何保证Redis的高并发及高可用？</h2>
+<p>如何保证Redis的高并发和高可用？</p>
+<p>redis的主从复制原理能介绍一下么？</p>
+<p>redis的哨兵原理能介绍一下么？</p>
+<h3 id="剖析-1">剖析</h3>
+<p>就是如果你用redis缓存技术的话，肯定要考虑如何用redis来加多台机器，保证redis是高并发的，还有就是如何让Redis保证自己不是挂掉以后就直接死掉了，redis高可用</p>
+<p>这一块之前讲解过这一块内容，redis高并发、高可用、缓存一致性</p>
+<p>redis高并发：主从架构，一主多从，一般来说，很多项目其实就足够了，单主用来写入数据，单机几万QPS，多从用来查询数据，多个从实例可以提供每秒10万的QPS。</p>
+<p>redis高并发的同时，还需要容纳大量的数据：一主多从，每个实例都容纳了完整的数据，比如redis主就10G的内存量，其实你就最对只能容纳10g的数据量。如果你的缓存要容纳的数据量很大，达到了几十g，甚至几百g，或者是几t，那你就需要redis集群，而且用redis集群之后，可以提供可能每秒几十万的读写并发。</p>
+<p>redis高可用：如果你做主从架构部署，其实就是加上哨兵就可以了，就可以实现，任何一个实例宕机，自动会进行主备切换。</p>
+<h2 id="redis如何通过读写分离来承受百万的qps">Redis如何通过读写分离来承受百万的QPS</h2>
+<h3 id="redis高并发跟整个系统的高并发之间的关系">redis高并发跟整个系统的高并发之间的关系</h3>
+<p>redis，要搞高并发的话，不可避免，要把底层的缓存搞得很好</p>
+<p>mysql，高并发，做到了，那么也是通过一系列复杂的分库分表，订单系统，事务要求的，QPS到几万，比较高了</p>
+<p>要做一些电商的商品详情页，真正的超高并发，QPS上十万，甚至是百万，一秒钟百万的请求量</p>
+<p>光是redis是不够的，但是redis是整个大型的缓存架构中，支撑高并发的架构里面，非常重要的一个环节</p>
+<p>首先，你的底层的缓存中间件，缓存系统，必须能够支撑的起我们说的那种高并发，其次，再经过良好的整体的缓存架构的设计（多级缓存架构、热点缓存），支撑真正的上十万，甚至上百万的高并发</p>
+<h3 id="redis不能支撑高并发的瓶颈在哪里">redis不能支撑高并发的瓶颈在哪里？</h3>
+<p>因为单机的Redis，QPS只能在上万左右，成为了支撑高并发的瓶颈。</p>
+<p><img src="https://bomir.top/pics/redis-interview1/redis-single1.png" alt=""></p>
+<p>如果redis要支撑超过10万+的并发，那应该怎么做？</p>
+<p>单机的redis几乎不太可能说QPS超过10万+，除非一些特殊情况，比如你的机器性能特别好，配置特别高，物理机，维护做的特别好，而且你的整体的操作不是太复杂，单机在几万。</p>
+<p><strong>读写分离</strong>，一般来说，对缓存，一般都是用来支撑读高并发的，写的请求是比较少的，可能写请求也就一秒钟几千，一两千。大量的请求都是读，一秒钟二十万次读</p>
+<p>读写分离：主从架构 -&gt; 读写分离 -&gt; 支撑10万+读QPS的架构</p>
+<p><img src="https://bomir.top/pics/redis-interview1/redis-support-100k.png" alt="redis主从实现读写分离支撑10万+的高并发"></p>
+<p><strong>架构做成主从架构，一主多从，主服务器负责写，并且将数据同步到其它的slave节点，从节点负责读，所有的读请求全部走节点。</strong></p>
+<p>同时这样的架构，支持碎片扩容，就是说如果QPS在增加，也很简单，只需要增加  Redis Slave节点即可。</p>
+<h3 id="redis主从架构">Redis主从架构</h3>
+<p>redis主从架构 -&gt; 读写分离架构 -&gt; 可支持水平扩展的读高并发架构</p>
+<h4 id="基本原理">基本原理</h4>
+<ul>
+<li>redis采用异步方式复制数据到slave节点，不过redis 2.8开始，slave node会周期性地确认自己每次复制的数据量</li>
+<li>一个master node是可以配置多个slave node的</li>
+<li>slave node也可以连接其他的slave node</li>
+<li>slave node做复制的时候，是不会block master node的正常工作的</li>
+<li>slave node在做复制的时候，也不会block对自己的查询操作，它会用旧的数据集来提供服务; 但是复制完成的时候，需要删除旧数据集，加载新数据集，这个时候就会暂停对外服务了</li>
+<li>slave node主要用来进行横向扩容，做读写分离，扩容的slave node可以提高读的吞吐量</li>
+</ul>
+<p><img src="https://bomir.top/pics/redis-interview1/image-20200422073720488.png" alt="image-20200422073720488"></p>
+<p>写操作存放在master node，同时在异步把master上的信息，同步到每个slave node上。</p>
+<h4 id="master持久化对于主从架构的安全保障的意义">master持久化对于主从架构的安全保障的意义</h4>
+<p>如果采用了主从架构，那么建议必须开启master node的持久化！不建议用slave node作为master node的数据热备，因为那样的话，如果你关掉master的持久化，可能在master宕机重启的时候数据是空的，然后可能一经过复制，salve node数据也丢了</p>
+<p>master -&gt; RDB和AOF都关闭了 -&gt; 全部在内存中</p>
+<p>master宕机，重启，是没有本地数据可以恢复的，然后就会直接认为自己IDE数据是空的</p>
+<p>master就会将空的数据集同步到slave上去，所有slave的数据全部清空</p>
+<p>100%的数据丢失</p>
+<p>master节点，必须要使用持久化机制</p>
+<p>第二个，master的各种备份方案，要不要做，万一说本地的所有文件丢失了; 从备份中挑选一份rdb去恢复master; 这样才能确保master启动的时候，是有数据的</p>
+<p>即使采用了后续讲解的高可用机制，slave node可以自动接管master node，但是也可能sentinal还没有检测到master failure，master node就自动重启了，还是可能导致上面的所有slave node数据清空故障</p>
+<h4 id="redis主从复制原理">Redis主从复制原理</h4>
+<p>当启动一个slave node的时候，它会发送一个PSYNC命令给master node，如果这是slave node重新连接master node，那么master node仅仅会复制给slave部分缺少的数据; 否则如果是slave node第一次连接master node，那么会触发一次full resynchronization</p>
+<p>开始full resynchronization的时候，master会启动一个后台线程，开始生成一份RDB快照文件，同时还会将从客户端收到的所有写命令缓存在内存中。RDB文件生成完毕之后，master会将这个RDB发送给slave，slave会先写入本地磁盘，然后再从本地磁盘加载到内存中。然后master会将内存中缓存的写命令发送给slave，slave也会同步这些数据。</p>
+<p>slave node如果跟master node有网络故障，断开了连接，会自动重连。master如果发现有多个slave node都来重新连接，仅仅会启动一个rdb save操作，用一份数据服务所有slave node。<img src="https://bomir.top/pics/redis-interview1/redis-master-salve-theory.png" alt="redis主从复制的原理"></p>
+<h3 id="主从复制的断点续传">主从复制的断点续传</h3>
+<p>从redis 2.8开始，就支持主从复制的断点续传，如果主从复制过程中，网络连接断掉了，那么可以接着上次复制的地方，继续复制下去，而不是从头开始复制一份</p>
+<p>master node会在内存中常见一个backlog，master和slave都会保存一个replica offset还有一个master id，offset就是保存在backlog中的。如果master和slave网络连接断掉了，slave会让master从上次的replica offset开始继续复制，但是如果没有找到对应的offset，那么就会执行一次resynchronization</p>
+<h3 id="无磁盘化复制">无磁盘化复制</h3>
+<p>master在内存中直接创建rdb，然后发送给slave，不会在自己本地落地磁盘了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">repl-diskless-sync
+<span class="c1"># 等待一定时长再开始复制，因为要等更多slave重新连接过来</span>
+repl-diskless-sync-delay
+</code></pre></td></tr></table>
+</div>
+</div><p>过期Key的处理</p>
+<p>slave不会过期key, 只会等待master过期key, 如果master过期了一个key, 或者通过LRU淘汰了一个key, 那么会模拟一条del命令发送给salve；</p>
+<h3 id="redis主从复制的完整复制流程">Redis主从复制的完整复制流程</h3>
+<h4 id="主从复制流程图">主从复制流程图</h4>
+<ol>
+<li>slave node启动，仅仅保存master node的信息，包括master node的host和ip，但是复制流程没开始master host和ip是从哪儿来的，其实是在redis.conf里面的slaveof配置的</li>
+<li>slave node内部有个定时任务，每秒检查是否有新的master node要连接和复制，如果发现，就跟master node建立socket网络连接</li>
+<li>slave node发送ping命令给master node</li>
+<li>口令认证，如果master设置了requirepass，那么salve node必须发送masterauth的口令过去进行认证</li>
+<li>master node第一次执行全量复制，将所有数据发给slave node</li>
+<li>master node后续持续将写命令，异步复制给slave node</li>
+</ol>
+<p><img src="https://bomir.top/pics/redis-interview1/copy-full-process.png" alt="复制的完整的基本流程"></p>
+<h4 id="数据同步相关核心机制">数据同步相关核心机制</h4>
+<p>指的就是第一次slave连接msater的时候，执行的全量复制，那个过程里面你的一些细节的机制</p>
+<ul>
+<li>master和slave都会维护一个offset</li>
+</ul>
+<p>master会在自身不断累加offset，slave也会在自身不断累加offset；
+slave每秒都会上报自己的offset给master，同时master也会保存每个slave的offset；</p>
+<p>这个倒不是说特定就用在全量复制的，主要是master和slave都要知道各自的数据的offset，才能知道互相之间的数据不一致的情况</p>
+<ul>
+<li>backlog</li>
+</ul>
+<p>master node有一个backlog，默认是1MB大小
+master node给slave node复制数据时，也会将数据在backlog中同步写一份
+backlog主要是用来做全量复制中断候的增量复制的</p>
+<ul>
+<li>master run id</li>
+</ul>
+<p>info server，可以看到master run id
+如果根据host+ip定位master node，是不靠谱的，如果master node重启或者数据出现了变化，那么slave node应该根据不同的run id区分，run id不同就做全量复制
+如果需要不更改run id重启redis，可以使用redis-cli debug reload命令</p>
+<ul>
+<li>psync</li>
+</ul>
+<p>从节点使用psync从master node进行复制，psync runid offset master node会根据自身的情况返回响应信息，可能是FULLRESYNC runid offset触发全量复制，可能是CONTINUE触发增量复制<img src="https://bomir.top/pics/redis-interview1/maste-run-id-use.png" alt="maste run id的作用"></p>
+<h4 id="全量复制">全量复制</h4>
+<ol>
+<li>master执行bgsave，在本地生成一份rdb快照文件</li>
+<li>master node将rdb快照文件发送给salve node，如果rdb复制时间超过60秒（repl-timeout），那么slave node就会认为复制失败，可以适当调节大这个参数</li>
+<li>对于千兆网卡的机器，一般每秒传输100MB，6G文件，很可能超过60s</li>
+<li>master node在生成rdb时，会将所有新的写命令缓存在内存中，在salve node保存了rdb之后，再将新的写命令复制给salve node</li>
+<li>client-output-buffer-limit slave 256MB 64MB 60，如果在复制期间，内存缓冲区持续消耗超过64MB，或者一次性超过256MB，那么停止复制，复制失败</li>
+<li>slave node接收到rdb之后，清空自己的旧数据，然后重新加载rdb到自己的内存中，同时基于旧的数据版本对外提供服务</li>
+<li>如果slave node开启了AOF， 那么会立即执行BGREWRITEAOF，重写AOF</li>
+</ol>
+<p>rdb生成、rdb通过网络拷贝、slave旧数据的清理、slave aof rewrite，很耗费时间</p>
+<h4 id="增量复制">增量复制</h4>
+<ul>
+<li>如果全量复制过程中，master-slave网络连接断掉，那么salve重新连接master时，会触发增量复制</li>
+<li>master直接从自己的backlog中获取部分丢失的数据，发送给slave node，默认backlog就是1MB</li>
+<li>msater就是根据slave发送的psync中的offset来从backlog中获取数据的</li>
+</ul>
+<h4 id="异步复制">异步复制</h4>
+<p>master每次接收到写命令之后，先在内部写入数据，然后异步发送给slave node</p>
+<h4 id="心跳机制">心跳机制</h4>
+<p>master默认每隔10秒发送一次心跳，salve node每隔1秒发送一个心跳</p>
+<h3 id="redis主从架构如何才能做到9999的高可用性">Redis主从架构如何才能做到99.99%的高可用性？</h3>
+<p>架构上，高可用性，99.99%的高可用性</p>
+<p>99.99%，公式，系统可用的时间 / 系统故障的时间，365天，在365天 * 99.99%的时间内，你的系统都是可以对外提供服务的，那就是高可用性，99.99%</p>
+<p>系统可用的时间 / 总的时间 = 高可用性，然后会对各种时间的概念，说一大堆解释</p>
+<h4 id="系统可用性">系统可用性</h4>
+<p><img src="https://bomir.top/pics/redis-interview1/99-99-percent-avaliability.png" alt="什么是99.99%高可用性"></p>
+<h4 id="系统处于不可用">系统处于不可用</h4>
+<p><img src="https://bomir.top/pics/redis-interview1/system-unuse.png" alt="系统处于不可用是什么意思"></p>
+<h4 id="redis的不可用">Redis的不可用</h4>
+<p>一个slave宕机后，不会影响系统的可用性，还有其它slave在提供相同数据的情况下对外提供查询服务。</p>
+<p><img src="https://bomir.top/pics/redis-interview1/redis-unuse.png" alt="redis的不可用"></p>
+<p>master宕机后，相当于系统不可用了。</p>
+<h4 id="redis高可用的方案">Redis高可用的方案</h4>
+<p>当Redis的master节点宕机后，redis的高可用架构中，有一个故障转移，叫failover，也可以做主备切换。</p>
+<p><img src="https://bomir.top/pics/redis-interview1/redis-base-sentinel-highavaliable.png" alt="redis基于哨兵的高可用性"></p>
+<h4 id="总结">总结</h4>
+<p>Redis实现高并发：一主多从，一般来说，很多项目其实就足够了，单主用来写数据，单机几万QPS，多从用来查询数据，多个从实例可以提供每秒10万QPS</p>
+<p>Redis高并发的同时，还需要容纳大量的数据：一主多从，每个实例都容纳了完整的数据，比如Redis主就10G内存量，其实你就可以对只能容纳10G的数据量。如果你的缓存要容纳的数据量很大，达到了几十G，甚至几百G，那就需要使用到Redis集群，而且用Redis集群之后，提供可能每秒几十万的读写并发。</p>
+<p>Redis高可用：如果用主从架构部署，在加上哨兵就可以实现任何一个实例宕机，就会自动进行主备切换。</p>
+<h2 id="redis哨兵架构">Redis哨兵架构</h2>
+<h3 id="哨兵介绍">哨兵介绍</h3>
+<p>sentinal，中文名是哨兵</p>
+<p>哨兵是redis集群架构中非常重要的一个组件，主要功能如下</p>
+<ol>
+<li>集群监控，负责监控redis master和slave进程是否正常工作</li>
+<li>消息通知，如果某个redis实例有故障，那么哨兵负责发送消息作为报警通知给管理员</li>
+<li>故障转移，如果master node挂掉了，会自动转移到slave node上</li>
+<li>配置中心，如果故障转移发生了，通知client客户端新的master地址</li>
+</ol>
+<p>哨兵本身也是分布式的，作为一个哨兵集群去运行，互相协同工作</p>
+<ol>
+<li>故障转移时，判断一个master node是宕机了，需要大部分的哨兵都同意才行，涉及到了分布式选举的问题</li>
+<li>即使部分哨兵节点挂掉了，哨兵集群还是能正常工作的，因为如果一个作为高可用机制重要组成部分的故障转移系统本身是单点的，那就很坑爹了</li>
+</ol>
+<p>目前采用的是sentinal 2版本，sentinal 2相对于sentinal 1来说，重写了很多代码，主要是让故障转移的机制和算法变得更加健壮和简单。</p>
+<h3 id="哨兵的核心知识">哨兵的核心知识</h3>
+<ol>
+<li>哨兵至少需要3个实例，来保证自己的健壮性</li>
+<li>哨兵 + redis主从的部署架构，是不会保证数据零丢失的，只能保证redis集群的高可用性</li>
+<li>对于哨兵 + redis主从这种复杂的部署架构，尽量在测试环境和生产环境，都进行充足的测试和演练</li>
+</ol>
+<h3 id="为什么redis的哨兵集群只有2个节点无法正常工作">为什么Redis的哨兵集群只有2个节点无法正常工作？</h3>
+<p>哨兵集群必须部署2个以上节点</p>
+<p>如果哨兵集群仅仅部署了个2个哨兵实例，s1 和 s2，quorum=1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">+----+         +----+
+<span class="p">|</span> M1 <span class="p">|</span>---------<span class="p">|</span> R1 <span class="p">|</span>
+<span class="p">|</span> S1 <span class="p">|</span>         <span class="p">|</span> S2 <span class="p">|</span>
++----+         +----+
+</code></pre></td></tr></table>
+</div>
+</div><p>Configuration: quorum = 1</p>
+<p>master宕机，s1和s2中只要有1个哨兵认为master宕机就可以还行切换，同时s1和s2中会选举出一个哨兵来执行故障转移同时这个时候，需要majority，也就是大多数哨兵都是运行的，2个哨兵的majority就是2（2的majority=2，3的majority=2，5的majority=3，4的majority=2），2个哨兵都运行着，就可以允许执行故障转移但是如果整个M1和S1运行的机器宕机了，那么哨兵只有1个了，此时就没有majority来允许执行故障转移，虽然另外一台机器还有一个R1，但是故障转移不会执行</p>
+<h3 id="经典的3节点哨兵集群">经典的3节点哨兵集群</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">       +----+
+       <span class="p">|</span> M1 <span class="p">|</span>
+       <span class="p">|</span> S1 <span class="p">|</span>
+       +----+
+          <span class="p">|</span>
++----+    <span class="p">|</span>    +----+
+<span class="p">|</span> R2 <span class="p">|</span>----+----<span class="p">|</span> R3 <span class="p">|</span>
+<span class="p">|</span> S2 <span class="p">|</span>         <span class="p">|</span> S3 <span class="p">|</span>
++----+         +----+
+</code></pre></td></tr></table>
+</div>
+</div><p>Configuration: quorum = 2，majority</p>
+<p>如果M1所在机器宕机了，那么三个哨兵还剩下2个，S2和S3可以一致认为master宕机，然后选举出一个来执行故障转移，同时3个哨兵的majority是2，所以还剩下的2个哨兵运行着，就可以允许执行故障转移</p>
+<h3 id="redis主备切换的数据丢失问题异步复制集群脑裂">Redis主备切换的数据丢失问题：异步复制、集群脑裂</h3>
+<p>主备切换的过程，可能会导致数据丢失</p>
+<h4 id="异步复制导致的数据丢失">异步复制导致的数据丢失</h4>
+<p>因为master -&gt; slave的复制是异步的，所以可能有部分数据还没复制到slave，master就宕机了，此时这些部分数据就丢失了。</p>
+<p><img src="https://bomir.top/pics/redis-interview1/async-replication-dataloss.png" alt="异步复制导致的数据丢失问题"></p>
+<h4 id="脑裂导致的数据丢失">脑裂导致的数据丢失</h4>
+<p>脑裂，也就是说，某个master所在机器突然脱离了正常的网络，跟其他slave机器不能连接，但是实际上master还运行着，此时哨兵可能就会认为master宕机了，然后开启选举，将其他slave切换成了master</p>
+<p>这个时候，集群里就会有两个master，也就是所谓的脑裂。此时虽然某个slave被切换成了master，但是可能client还没来得及切换到新的master，还继续写向旧master的数据可能也丢失了</p>
+<p>因此旧master再次恢复的时候，会被作为一个slave挂到新的master上去，自己的数据会清空，重新从新的master复制数据</p>
+<p><img src="https://bomir.top/pics/redis-interview1/cluster-data-loss.png" alt="集群脑裂导致的数据丢失问题"></p>
+<p>同时原来的master节点上的，client像 旧的 master中写入数据，当网络分区恢复正常后，client写的数据就会因为复制，导致数据的丢失。</p>
+<h4 id="解决异步复制和脑裂导致数据丢失">解决异步复制和脑裂导致数据丢失</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">min-slaves-to-write <span class="m">1</span>
+min-slaves-max-lag <span class="m">10</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>要求至少有1个slave，数据复制和同步的延迟不能超过10秒</p>
+<p>如果说一旦所有的slave，数据复制和同步的延迟都超过了10秒钟，那么这个时候，master就不会再接收任何请求了，上面两个配置可以减少异步复制和脑裂导致的数据丢失;</p>
+<p>上面的两个配置可以减少异步复制和脑裂导致的数据丢失；</p>
+<ul>
+<li>减少异步复制的数据丢失</li>
+</ul>
+<p>有了min-slaves-max-lag这个配置，就可以确保说，一旦slave复制数据和ack延时太长，就认为可能master宕机后损失的数据太多了，那么就拒绝写请求，这样可以把master宕机时由于部分数据未同步到slave导致的数据丢失降低的可控范围内</p>
+<p><img src="https://bomir.top/pics/redis-interview1/dealwith-async-dataloss.png" alt="异步复制导致数据丢失如何降低损失"></p>
+<ul>
+<li>减少脑裂的数据丢失</li>
+</ul>
+<p>如果一个master出现了脑裂，跟其他slave丢了连接，那么上面两个配置可以确保说，如果不能继续给指定数量的slave发送数据，而且slave超过10秒没有给自己ack消息，那么就直接拒绝客户端的写请求，这样脑裂后的旧master就不会接受client的新数据，也就避免了数据丢失，上面的配置就确保了，如果跟任何一个slave丢了连接，在10秒后发现没有slave给自己ack，那么就拒绝新的写请求，因此在脑裂场景下，最多就丢失10秒的数据</p>
+<p><img src="https://bomir.top/pics/redis-interview1/dealwith-async-dataloss.png" alt="脑裂导致数据丢失的问题如何降低损失"></p>
+<h3 id="redis哨兵的底层原理">Redis哨兵的底层原理</h3>
+<h4 id="sdown和odown转换机制">sdown和odown转换机制</h4>
+<p>sdown和odown两种失败状态</p>
+<p>sdown是主观宕机，就一个哨兵如果自己觉得一个master宕机了，那么就是主观宕机</p>
+<p>odown是客观宕机，如果quorum数量的哨兵都觉得一个master宕机了，那么就是客观宕机</p>
+<p>sdown达成的条件很简单，如果一个哨兵ping一个master，超过了is-master-down-after-milliseconds指定的毫秒数之后，就主观认为master宕机</p>
+<p>sdown到odown转换的条件很简单，如果一个哨兵在指定时间内，收到了quorum指定数量的其他哨兵也认为那个master是sdown了，那么就认为是odown了，客观认为master宕机</p>
+<h4 id="哨兵集群的自动发现机制">哨兵集群的自动发现机制</h4>
+<p>哨兵互相之间的发现，是通过redis的pub/sub系统实现的，每个哨兵都会往__sentinel__:hello这个channel里发送一个消息，这时候所有其他哨兵都可以消费到这个消息，并感知到其他的哨兵的存在</p>
+<p>每隔两秒钟，每个哨兵都会往自己监控的某个master+slaves对应的__sentinel__:hello channel里发送一个消息，内容是自己的host、ip和runid还有对这个master的监控配置</p>
+<p>每个哨兵也会去监听自己监控的每个master+slaves对应的__sentinel__:hello channel，然后去感知到同样在监听这个master+slaves的其他哨兵的存在</p>
+<p>每个哨兵还会跟其他哨兵交换对master的监控配置，互相进行监控配置的同步</p>
+<h4 id="slave配置的自动纠正">slave配置的自动纠正</h4>
+<p>哨兵会负责自动纠正slave的一些配置，比如slave如果要成为潜在的master候选人，哨兵会确保slave在复制现有master的数据; 如果slave连接到了一个错误的master上，比如故障转移之后，那么哨兵会确保它们连接到正确的master上</p>
+<h4 id="slave---master选举算法">slave -&gt; master选举算法</h4>
+<p>如果一个master被认为odown了，而且majority哨兵都允许了主备切换，那么某个哨兵就会执行主备切换操作，此时首先要选举一个slave来，会考虑slave的一些信息</p>
+<ol>
+<li>跟master断开连接的时长</li>
+<li>slave优先级</li>
+<li>复制offset</li>
+<li>run id</li>
+</ol>
+<p>如果一个slave跟master断开连接已经超过了down-after-milliseconds的10倍，外加master宕机的时长，那么slave就被认为不适合选举为master</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="p">(</span><span class="n">down</span><span class="o">-</span><span class="n">after</span><span class="o">-</span><span class="n">milliseconds</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="n">milliseconds_since_master_is_in_SDOWN_state</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>接下来会对slave进行排序</p>
+<ol>
+<li>按照slave优先级进行排序，slave priority越低，优先级就越高</li>
+<li>如果slave priority相同，那么看replica offset，哪个slave复制了越多的数据，offset越靠后，优先级就越高</li>
+<li>如果上面两个条件都相同，那么选择一个run id比较小的那个slave</li>
+</ol>
+<h4 id="quorum和majority">quorum和majority</h4>
+<p><strong>quorum</strong>：确认odown的最少的哨兵数量</p>
+<p><strong>majority</strong>：授权进行主从切换的最少的哨兵数量</p>
+<p>每次一个哨兵要做主备切换，首先需要quorum数量的哨兵认为odown，然后选举出一个哨兵来做切换，这个哨兵还得得到majority哨兵的授权，才能正式执行切换</p>
+<p>如果quorum &lt; majority，比如5个哨兵，majority就是3，quorum设置为2，那么就3个哨兵授权就可以执行切换</p>
+<p>但是如果quorum  &gt;=  majority，那么必须quorum数量的哨兵都授权，比如5个哨兵，quorum是5，那么必须5个哨兵都同意授权，才能执行切换</p>
+<h4 id="configuration-epoch">configuration epoch</h4>
+<p>哨兵会对一套redis master+slave进行监控，有相应的监控的配置</p>
+<p>执行切换的那个哨兵，会从要切换到的新master（salve-&gt;master）那里得到一个configuration epoch，这就是一个version号，每次切换的version号都必须是唯一的</p>
+<p>如果第一个选举出的哨兵切换失败了，那么其他哨兵，会等待failover-timeout时间，然后接替继续执行切换，此时会重新获取一个新的configuration epoch，作为新的version号</p>
+<h4 id="configuraiton传播">configuraiton传播</h4>
+<p>哨兵完成切换之后，会在自己本地更新生成最新的master配置，然后同步给其他的哨兵，就是通过之前说的pub/sub消息机制，这里之前的version号就很重要了，因为各种消息都是通过一个channel去发布和监听的，所以一个哨兵完成一次新的切换之后，新的master配置是跟着新的version号的，其他的哨兵都是根据版本号的大小来更新自己的master配置的</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bomir</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2020-11-12
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://bomir.top/tags/redis/">redis</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/mysql-record/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">MySQL复习整理</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/common-design-pattern-five-constructionmode/">
+            <span class="next-text nav-default">常用设计模式-5种创建型模式</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Shaper-fox/hugoblogtalks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:jinchunw@385@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/Bicomir" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://bomir.top/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2021
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        bomir
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
