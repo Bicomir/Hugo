@@ -142,6 +142,27 @@
   </url>
   
   <url>
+    <loc>https://bomir.top/categories/linux/</loc>
+    <lastmod>2020-11-12T22:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/tags/linux/</loc>
+    <lastmod>2020-11-12T22:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/post/top-command-learn/</loc>
+    <lastmod>2020-11-12T22:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://bomir.top/tags/mysql/</loc>
     <lastmod>2020-11-12T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
