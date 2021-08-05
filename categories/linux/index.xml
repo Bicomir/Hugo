@@ -6,11 +6,11 @@
     <description>Recent content in Linux on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 12 Nov 2020 22:19:05 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Nov 2020 22:19:05 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux top命令学习</title>
       <link>https://bomir.top/post/top-command-learn/</link>
-      <pubDate>Thu, 12 Nov 2020 22:19:05 +0000</pubDate>
+      <pubDate>Sun, 15 Nov 2020 22:19:05 +0000</pubDate>
       
       <guid>https://bomir.top/post/top-command-learn/</guid>
       <description>之前的学习过程中， 对Linux的top命令老是一知半解，然后也不能很清楚的知道各项参数的含义，特地去学习一下然后记录； Top命令 我们平时会部</description>
