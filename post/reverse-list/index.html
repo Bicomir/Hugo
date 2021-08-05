@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>归档 - Wallis</title>
+  <title>反转链表 - Wallis</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="bomir" />
-  <meta name="description" content="Hugo theme jane example site." />
+  <meta name="description" content="反转链表 来源： JZ15-牛客网-反转链表 描述 输入一个链表，反转链表后，输出新链表的表头。 示例1 1 2 输入：{1,2,3} 返回值：[3,2,1]" />
+
   <meta name="keywords" content="Hugo, theme, jane" />
 
 
@@ -34,8 +35,8 @@
 <meta name="generator" content="Hugo 0.85.0" />
 
 
-<link rel="canonical" href="https://bomir.top/post/" />
-<link href="/post/index.xml" rel="alternate" type="application/rss+xml" title="Wallis" />
+<link rel="canonical" href="https://bomir.top/post/reverse-list/" />
+
 
 
 
@@ -58,15 +59,20 @@
 
 
 
-<meta property="og:title" content="Posts" />
-<meta property="og:description" content="Hugo theme jane example site." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://bomir.top/post/" />
+<meta property="og:title" content="反转链表" />
+<meta property="og:description" content="反转链表 来源： JZ15-牛客网-反转链表 描述 输入一个链表，反转链表后，输出新链表的表头。 示例1 1 2 输入：{1,2,3} 返回值：[3,2,1]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bomir.top/post/reverse-list/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-01-15T18:56:34+00:00" />
+<meta property="article:modified_time" content="2019-01-15T18:56:34+00:00" />
 
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content="Hugo theme jane example site."><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="Hugo theme jane example site."/>
+<meta itemprop="name" content="反转链表">
+<meta itemprop="description" content="反转链表 来源： JZ15-牛客网-反转链表 描述 输入一个链表，反转链表后，输出新链表的表头。 示例1 1 2 输入：{1,2,3} 返回值：[3,2,1]"><meta itemprop="datePublished" content="2019-01-15T18:56:34+00:00" />
+<meta itemprop="dateModified" content="2019-01-15T18:56:34+00:00" />
+<meta itemprop="wordCount" content="679">
+<meta itemprop="keywords" content="剑指offer," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="反转链表"/>
+<meta name="twitter:description" content="反转链表 来源： JZ15-牛客网-反转链表 描述 输入一个链表，反转链表后，输出新链表的表头。 示例1 1 2 输入：{1,2,3} 返回值：[3,2,1]"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -244,7 +250,7 @@
 
       </li>
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -325,187 +331,287 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">反转链表</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-01-15" class="post-time">
+          2019-01-15
+        </time>
+        <div class="post-category">
+            <a href="https://bomir.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"> 数据结构和算法 </a>
+            
+          </div>
+        <span class="more-meta"> 约 679 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#描述">描述</a></li>
+    <li><a href="#示例1">示例1</a></li>
+    <li><a href="#思路">思路</a></li>
+    <li><a href="#高手解法与赏析">高手解法与赏析</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h1 id="反转链表">反转链表</h1>
+<p>来源： <a href="https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca">JZ15-牛客网-反转链表</a></p>
+<h2 id="描述">描述</h2>
+<p>输入一个链表，反转链表后，输出新链表的表头。</p>
+<h2 id="示例1">示例1</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">输入：<span class="o">{</span>1,2,3<span class="o">}</span>
+返回值：<span class="o">[</span>3,2,1<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="思路">思路</h2>
+<p><img src="https://bomir.top/pics/reverseList/20160715234442592-230279132.jpg" alt=""></p>
+<blockquote>
+<p>假设我们现在正在对结点v进行反转操作，即原来结点u的next域指向v（图中已经调整完毕，现在指向前一个结点），v的next域指向w。</p>
+<p>现在要做的是将v的next域指向u。从图中我们可以看出，当把v的next指针指向u的同时，原先指向的w就已经无法被正常的访问到了，为了避免“断链”，我们必须在指针更改指向之前，保存修改结点的下一结点。</p>
+<p>同时我们也必须存储上一个结点，因为next域即将修改指向该结点。因此定义三个指针，分别指向当前遍历的结点，前一个结点和后一个结点。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 定义链表结构
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">ListNode</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Val</span>  <span class="kt">int</span>
+	<span class="nx">Next</span> <span class="o">*</span><span class="nx">ListNode</span>
+<span class="p">}</span>
+
+<span class="c1">// 打印链表
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="nf">readLink</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">result</span> <span class="p">[]</span><span class="kt">int</span>
+	<span class="k">for</span> <span class="nx">l</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">result</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">l</span><span class="p">.</span><span class="nx">Val</span><span class="p">)</span>
+		<span class="nx">l</span> <span class="p">=</span> <span class="nx">l</span><span class="p">.</span><span class="nx">Next</span>
+	<span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>ps: my ugly code</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="cm">/**
+</span><span class="cm"> * Definition for singly-linked list.
+</span><span class="cm"> * type ListNode struct {
+</span><span class="cm"> *     Val int
+</span><span class="cm"> *     Next *ListNode
+</span><span class="cm"> * }
+</span><span class="cm"> */</span>
+<span class="kd">func</span> <span class="nf">reverseList</span><span class="p">(</span><span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">pre</span> <span class="o">*</span><span class="nx">ListNode</span>  <span class="c1">// nil
+</span><span class="c1"></span>    <span class="nx">cur</span> <span class="o">:=</span> <span class="nx">head</span>
+    <span class="k">for</span> <span class="nx">cur</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
+        <span class="nx">pNext</span> <span class="o">:=</span> <span class="nx">cur</span><span class="p">.</span><span class="nx">Next</span> <span class="c1">// pNext保存w节点
+</span><span class="c1"></span>        <span class="nx">cur</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="nx">pre</span> <span class="c1">// 当前节点的后继指向pre
+</span><span class="c1"></span>        <span class="nx">pre</span> <span class="p">=</span> <span class="nx">cur</span>  <span class="c1">// pre指针指针后移
+</span><span class="c1"></span>        <span class="nx">cur</span> <span class="p">=</span> <span class="nx">pNext</span>  <span class="c1">// 当前指针也逐渐后移
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">pre</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>复杂度分析：</strong></p>
+<p>时间复杂度：O(n)，其中 nn 是链表的长度。需要遍历链表一次。</p>
+<p>空间复杂度：O(1)</p>
+<h2 id="高手解法与赏析">高手解法与赏析</h2>
+<p><img src="https://bomir.top/pics/reverseList/1628163092560.png" alt="1628163092560"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="cm">/*
+</span><span class="cm">方法二： 递归的一个思路
+</span><span class="cm">*/</span>
+<span class="kd">func</span> <span class="nf">reverseList</span><span class="p">(</span><span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">head</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">||</span> <span class="nx">head</span><span class="p">.</span><span class="nx">Next</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">head</span>
+    <span class="p">}</span>
+    <span class="nx">newHead</span> <span class="o">:=</span> <span class="nf">reverseList</span><span class="p">(</span><span class="nx">head</span><span class="p">.</span><span class="nx">Next</span><span class="p">)</span>
+    <span class="nx">head</span><span class="p">.</span><span class="nx">Next</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="nx">head</span>
+    <span class="nx">head</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="kc">nil</span>
+    <span class="k">return</span> <span class="nx">newHead</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>复杂度分析：</strong></p>
+<p>时间复杂度：O(n)，其中 n 是链表的长度。需要对链表的每个节点进行反转操作。</p>
+<p>空间复杂度：O(n)，其中 n 是链表的长度。空间复杂度主要取决于递归调用的栈空间，最多为 n 层。</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bomir</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2019-01-15
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://bomir.top/tags/%E5%89%91%E6%8C%87offer/">剑指offer</a>
           
-<section id="archive" class="archive">
-    
-      <div class="collection-title">
-        <h2 class="archive-year">2020</h2>
-      </div>
+        </div>
 
-    <div class="archive-post">
-      <time datetime="2020-10-12" class="archive-post-time">
-        2020-10-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/redis-basic1/" class="archive-post-link">
-          了解redis
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-09-25" class="archive-post-time">
-        2020-09-25
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/microservices-structure/" class="archive-post-link">
-          了解微服务架构
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-07-31" class="archive-post-time">
-        2020-07-31
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/rabbit-go-1/" class="archive-post-link">
-          RabbitMQ入门之Go语言教程-(1)
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-07-12" class="archive-post-time">
-        2020-07-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/mysql-ehancement/" class="archive-post-link">
-          MySQL优化笔记
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-06-28" class="archive-post-time">
-        2020-06-28
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/netcore-garbagecollection/" class="archive-post-link">
-          .netcore垃圾回收
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-05-25" class="archive-post-time">
-        2020-05-25
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/net-core-program_class/" class="archive-post-link">
-          .netcore之Program类
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-05-20" class="archive-post-time">
-        2020-05-20
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/net-core-startup_class/" class="archive-post-link">
-          .netcore之Startup类
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-05-12" class="archive-post-time">
-        2020-05-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/redis-basic0/" class="archive-post-link">
-          redis快速入门
-        </a>
-      </span>
-    </div>
-    
-      <div class="collection-title">
-        <h2 class="archive-year">2019</h2>
-      </div>
-
-    <div class="archive-post">
-      <time datetime="2019-09-11" class="archive-post-time">
-        2019-09-11
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/postman-learning/" class="archive-post-link">
-          Postman使用教程
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-08-26" class="archive-post-time">
-        2019-08-26
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/full-know-cookie-session-token/" class="archive-post-link">
-          彻底理解cookie session token
-        </a>
-      </span>
-    </div></section>
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
       
-      <li >
-        <a href="/post/">1</a>
-      </li>
-      
-      <li  class="active" >
-        <a href="/post/page/2/">2</a>
-      </li>
-      
-      <li >
-        <a href="/post/page/3/">3</a>
-      </li>
-      
-      <li >
-        <a href="/post/page/4/">4</a>
-      </li>
-      
-      <li >
-        <a href="/post/page/5/">5</a>
-      </li>
-      
-    </ul>
-  </nav>
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/tail-to-head/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">从尾到头打印链表</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/scrapy-simple-learning/">
+            <span class="next-text nav-default">Scrapy简单学习</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
 
+  
+  
 
+  
 
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Shaper-fox/hugoblogtalks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
 
+  
+
+  
+
+  
+
+    
+
+  
 
         </div>
       </div>
