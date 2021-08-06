@@ -25,5 +25,14 @@
       <description>Fiddler介绍 Fiddler（中文名称：小提琴）是一个HTTP的调试代理，以代理服务器的方式，监听系统的Http网络数据流动，Fiddl</description>
     </item>
     
+    <item>
+      <title>Mysql基于navicat记住密码后找回密码</title>
+      <link>https://bomir.top/post/lookback-mysql-password/</link>
+      <pubDate>Sat, 17 Aug 2019 21:03:54 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/lookback-mysql-password/</guid>
+      <description>​ 一次比较有意思的经历， 之前买过腾讯云的服务器安装的mysql由于时间过长，密码设置的也相对容易忘记一点，其实网上有一些方案是skip-gr</description>
+    </item>
+    
   </channel>
 </rss>
