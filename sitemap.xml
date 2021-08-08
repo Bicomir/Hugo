@@ -17,7 +17,49 @@
   
   <url>
     <loc>https://bomir.top/categories/</loc>
-    <lastmod>2021-02-17T18:56:34+00:00</lastmod>
+    <lastmod>2021-05-09T22:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/tags/mysql/</loc>
+    <lastmod>2021-05-09T22:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/categories/mysql/</loc>
+    <lastmod>2021-05-09T22:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/post/mysql-mvcc/</loc>
+    <lastmod>2021-05-09T22:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/post/</loc>
+    <lastmod>2021-05-09T22:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/tags/</loc>
+    <lastmod>2021-05-09T22:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/</loc>
+    <lastmod>2021-05-09T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -38,27 +80,6 @@
   
   <url>
     <loc>https://bomir.top/categories/network/</loc>
-    <lastmod>2021-02-17T18:56:34+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://bomir.top/post/</loc>
-    <lastmod>2021-02-17T18:56:34+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://bomir.top/tags/</loc>
-    <lastmod>2021-02-17T18:56:34+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://bomir.top/</loc>
     <lastmod>2021-02-17T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -191,20 +212,6 @@
   </url>
   
   <url>
-    <loc>https://bomir.top/tags/mysql/</loc>
-    <lastmod>2020-11-12T22:19:05+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://bomir.top/categories/mysql/</loc>
-    <lastmod>2020-11-12T22:19:05+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://bomir.top/post/mysql-record/</loc>
     <lastmod>2020-11-12T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -270,13 +277,6 @@
   <url>
     <loc>https://bomir.top/post/rabbit-go-1/</loc>
     <lastmod>2020-07-31T21:19:05+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://bomir.top/post/mysql-mvcc/</loc>
-    <lastmod>2020-07-12T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

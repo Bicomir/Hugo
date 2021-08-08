@@ -6,7 +6,16 @@
     <description>Recent content in Categories on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 17 Feb 2021 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 May 2021 22:19:05 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>mysql</title>
+      <link>https://bomir.top/categories/mysql/</link>
+      <pubDate>Sun, 09 May 2021 22:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/categories/mysql/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>network</title>
       <link>https://bomir.top/categories/network/</link>
@@ -67,15 +76,6 @@
       <pubDate>Fri, 13 Nov 2020 21:19:05 +0000</pubDate>
       
       <guid>https://bomir.top/categories/messagequeue/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>mysql</title>
-      <link>https://bomir.top/categories/mysql/</link>
-      <pubDate>Thu, 12 Nov 2020 22:19:05 +0000</pubDate>
-      
-      <guid>https://bomir.top/categories/mysql/</guid>
       <description></description>
     </item>
     
