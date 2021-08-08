@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>DNS相关问题 - Wallis</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="bomir" />
+  <meta name="description" content="DNS 因特网上的主机，可以使用多种方式标识，比如主机名或IP地址。 一种标识方法就是用它的主机名（hostname），比如·www.baidu.c" />
+
+  <meta name="keywords" content="Hugo, theme, jane" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0" />
+
+
+<link rel="canonical" href="https://bomir.top/post/dns-related-new/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="DNS相关问题" />
+<meta property="og:description" content="DNS 因特网上的主机，可以使用多种方式标识，比如主机名或IP地址。 一种标识方法就是用它的主机名（hostname），比如·www.baidu.c" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bomir.top/post/dns-related-new/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-02-17T18:56:34+00:00" />
+<meta property="article:modified_time" content="2021-02-17T18:56:34+00:00" />
+
+<meta itemprop="name" content="DNS相关问题">
+<meta itemprop="description" content="DNS 因特网上的主机，可以使用多种方式标识，比如主机名或IP地址。 一种标识方法就是用它的主机名（hostname），比如·www.baidu.c"><meta itemprop="datePublished" content="2021-02-17T18:56:34+00:00" />
+<meta itemprop="dateModified" content="2021-02-17T18:56:34+00:00" />
+<meta itemprop="wordCount" content="5663">
+<meta itemprop="keywords" content="dns," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DNS相关问题"/>
+<meta name="twitter:description" content="DNS 因特网上的主机，可以使用多种方式标识，比如主机名或IP地址。 一种标识方法就是用它的主机名（hostname），比如·www.baidu.c"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">秤流沙</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      秤流沙
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">DNS相关问题</h1>
+      
+      <div class="post-meta">
+        <time datetime="2021-02-17" class="post-time">
+          2021-02-17
+        </time>
+        <div class="post-category">
+            <a href="https://bomir.top/categories/network/"> network </a>
+            
+          </div>
+        <span class="more-meta"> 约 5663 字 </span>
+          <span class="more-meta"> 预计阅读 12 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#dns">DNS</a>
+      <ul>
+        <li><a href="#dns服务器">DNS服务器</a></li>
+      </ul>
+    </li>
+    <li><a href="#dns域名解析">DNS域名解析</a>
+      <ul>
+        <li><a href="#dns做什么的">DNS做什么的？</a></li>
+        <li><a href="#dns域名称">DNS域名称</a></li>
+        <li><a href="#dns域名称空间的组织方式">DNS域名称空间的组织方式</a></li>
+        <li><a href="#dns-和-internet-域">DNS 和 Internet 域</a></li>
+        <li><a href="#资源记录">资源记录</a></li>
+        <li><a href="#dns服务的工作过程">DNS服务的工作过程</a></li>
+        <li><a href="#dns报文">DNS报文</a></li>
+      </ul>
+    </li>
+    <li><a href="#dns解析安全问题">DNS解析安全问题</a>
+      <ul>
+        <li><a href="#dns劫持">DNS劫持</a></li>
+        <li><a href="#dns污染">DNS污染</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="dns">DNS</h2>
+<p>因特网上的主机，可以使用多种方式标识，比如主机名或IP地址。</p>
+<ul>
+<li>一种标识方法就是用它的主机名（hostname），比如·www.baidu.com、www.google.com、gaia.cs.umass.edu等。这方式方便人们记忆和接受，但是这种长度不一、没有规律的字符串路由器并不方便处理。</li>
+<li>还有一种方式，就是直接使用定长的、有着清晰层次结构的IP地址，路由器比较热衷于这种方式。</li>
+</ul>
+<p>为了折衷这两种方式，我们需要一种能进行主机名到IP地址转换的目录服务。这就是 域名系统（Domain Name System，DNS）的主要任务。</p>
+<p>DNS是：</p>
+<ul>
+<li>一个由分层的DNS服务器实现的分布式数据库</li>
+<li>一个使得主机能够查询分布式数据库的应用层协议</li>
+</ul>
+<p>而DNS服务器通常是运行BIND软件的UNIX机器，<strong>DNS协议运行在UDP上</strong>，使用53号端口，DNS通常是由其他应用层协议所使用的，包括HTTP、SMTP等。其作用则是：将用户提供的主机名解析为IP地址。</p>
+<p>DNS的一种简单设计就是在因特网上只使用一个DNS服务器，该服务器包含所有的映射。很明显这种设计是有很大的问题的：</p>
+<ul>
+<li>
+<p>单点故障：如果该DNS服务器崩溃，全世界的网络随之瘫痪</p>
+</li>
+<li>
+<p>通信容量：单个DNS服务器必须处理所有DNS查询</p>
+</li>
+<li>
+<p>远距离的集中式数据库：单个DNS服务器必须面对所有用户，距离过远会有严重的时延。</p>
+</li>
+<li>
+<p>维护：该数据库过于庞大，还需要对新添加的主机频繁更新。</p>
+</li>
+</ul>
+<p>所以，DNS被设计成了一个分布式、层次数据库。</p>
+<h3 id="dns服务器">DNS服务器</h3>
+<p>​	为了处理扩展性问题，DNS使用了大量的DNS服务器，它们以层次方式组织，并且分布在全世界范围内。</p>
+<p>​	域名服务器是提供域名解析的服务器，在有基本的知识下，任何人都可以搭建域名服务器，甚至是根域名服务器，有名的软件有：BIND</p>
+<p>​	目前的DNS服务器大致分为3种类型的DNS服务器：根DNS服务器、顶级域DNS服务器、权威DNS服务器。</p>
+<h4 id="根dns服务器">根DNS服务器</h4>
+<p>​	因特网上有13个根DNS服务器（标号A到M），1个为主根服务器在美国。其余12个均为辅根服务器，其中9个在美国，欧洲2个，位于英国和瑞典，亚洲1个位于日本。</p>
+<p>​	这里的个并不是指物理意义上的单个服务器，它是一个逻辑概念，根DNS服务器可以由分布在全球的多个服务器组成，形成一个集群，对外统一为1台逻辑的根DNS服务器（即每个标号下的根DNS服务器的IP地址是一样的）。而实际物理意义上的根DNS服务器，已超过千台https://root-servers.org/ ，这里可以查到所有根DNS服务器的分布。</p>
+<p>目前， 中国有<code>19</code>台根DNS服务器，分别位于：</p>
+<ul>
+<li>北京：F，I，J，L</li>
+<li>杭州：J</li>
+<li>澳门：F</li>
+<li>香港：A、D、E、F、F、I、J</li>
+<li>台北：E、F、F、I、K、L</li>
+</ul>
+<h4 id="顶级域tlddns服务器">顶级域(TLD)DNS服务器</h4>
+<p>​	这些服务器负责顶级域名如com、org、net、edu和gov，以及所有国家的顶级域名如uk、fr、ca和cn。</p>
+<h4 id="权威dns服务器">权威DNS服务器</h4>
+<p>​	在因特网上具有公共可访问主机的每个组织机构必须提供公共可访问的DNS记录，这些记录将这些主机的名字映射为IP地址。一个组织机构的权威DNS服务器收藏了这些DNS记录。</p>
+<p>​	除此之外，还有一种很重要的DNS，成为本地DNS服务器，其严格来说不属于该服务器的层次结构，但它对DNS层次结构是重要的。每个ISP （互联网服务提供商），比如一个大学，一个公司或一个居民区的ISP，都有一台本地DNS服务器。</p>
+<h2 id="dns域名解析">DNS域名解析</h2>
+<p>​	网络通讯大部分是基于TCP/IP的，而TCP/IP是基于IP地址的，所以计算机在网络上进行通讯时只能识别如“202.96.134.133”之类的IP地址，而不能认识域名。我们无法记住10个以上IP地址的网站，所以我们访问网站时，更多的是在浏览器地址栏中输入域名，就能看到所需要的页面，这是因为有一个叫“DNS服务器”的计算机自动把我们的域名“翻译”成了相应的IP地址，然后调出IP地址所对应的网页。</p>
+<h3 id="dns做什么的">DNS做什么的？</h3>
+<p>​	DNS( Domain Name System)是“域名系统”的英文缩写，是一种组织成域层次结构的计算机和网络服务命名系统，它用于TCP/IP网络，它所提供的服务是用来将主机名和域名转换为IP地址的工作。DNS就是这样的一位“翻译官”，它的基本工作原理可用下图来表示。</p>
+<p><img src="https://bomir.top/pics/dnsimgs/dns1.jpg" alt=""></p>
+<h3 id="dns域名称">DNS域名称</h3>
+<p>​	域名系统作为一个层次结构和分布式数据库，包含各种类型的数据，包括主机名和域名。DNS数据库中的名称形成一个分层树状结构称为域命名空间。域名包含单个标签分隔点，例如：im.qq.com。完全限定的域名 (FQDN) 唯一地标识在 DNS 分层树中的主机的位置，通过指定的路径中点分隔从根引用的主机的名称列表。 下图显示与主机称为 im 内 qq.com DNS 树的示例。 主机的 FQDN 是 im.qq.com。
+DNS 域的名称层次结构。</p>
+<p><img src="https://bomir.top/pics/dnsimgs/dns2.jpg" alt=""></p>
+<h3 id="dns域名称空间的组织方式">DNS域名称空间的组织方式</h3>
+<p>​	按其功能命名空间中用来描述 DNS 域名称的五个类别的介绍详见下表中，以及与每个名称类型的示例。</p>
+<p><img src="https://bomir.top/pics/dnsimgs/dns3.jpg" alt=""></p>
+<h3 id="dns-和-internet-域">DNS 和 Internet 域</h3>
+<p>​	互联网域名系统由名称注册机构负责维护分配由组织和国家/地区的顶级域在 Internet 上进行管理。 这些域名按照国际标准 3166。 一些很多现有缩写，保留以供组织中，以及两个字母和三个字母的国家/地区使用的缩写使用下表所示。一些常见的DNS域名称如下图：</p>
+<p><img src="https://bomir.top/pics/dnsimgs/dns4.jpg" alt=""></p>
+<h3 id="资源记录">资源记录</h3>
+<p>​	DNS 数据库中包含的资源记录 (RR)。 每个 RR 标识数据库中的特定资源。我们在建立DNS服务器时，经常会用到SOA,NS,A之类的记录，在维护DNS服务器时，会用到MX，CNAME记录。
+常见的RR见下图：</p>
+<p><img src="https://bomir.top/pics/dnsimgs/dns5.jpg" alt=""></p>
+<p>所有DNS服务器都存储了<strong>资源记录（Resource Record，RR）</strong>，其提供了主机名到IP的映射。
+资源记录是一个包含以下字段的四元组：<strong>（Name，Value，Type，TTL）</strong>，</p>
+<p>TTL是该记录的生存时间，决定了资源记录应当从缓存中删除的时间。
+Name和Value的值取决于Type(以下涉及的foo,bar均为伪变量)：</p>
+<ul>
+<li>
+<p>Type = A，则Name是主机名，Value使其对应的IP地址。这也是一个标准的主机名到IP地址的映射。如(replay1.bar.foo.com,145.37.93.126,A)</p>
+</li>
+<li>
+<p>Type = NS，则Name是个域（如foo.com），而Value是个知道如何获取该域中主机IP地址的权威DNS服务器的主机名，如(foo.com,dns.foo.com,NS)</p>
+</li>
+<li>
+<p>Type = CNAME,则Name是别名为Name的主机对应的规范主机名。该记录能够向查询的主机提供一个主机名对应的规范主机名，如（foo.com,replay1.bar.foo.com,CNAME）</p>
+</li>
+<li>
+<p>Type = MX，则Value是个别名为Name的邮件服务器的规范主机名。如（foo.com,main.bar.foo.com,MX）</p>
+</li>
+</ul>
+<h3 id="dns服务的工作过程">DNS服务的工作过程</h3>
+<p>​	当 DNS 客户机需要查询程序中使用的名称时，它会查询本地DNS 服务器来解析该名称。客户机发送的每条查询消息都包括3条信息，以指定服务器应回答的问题。
+● 指定的 DNS 域名，表示为完全合格的域名 (FQDN) 。
+● 指定的查询类型，它可根据类型指定资源记录，或作为查询操作的专门类型。
+● DNS域名的指定类别。
+​    对于DNS 服务器，它始终应指定为 Internet 类别。例如，指定的名称可以是计算机的完全合格的域名，如im.qq.com，并且指定的查询类型用于通过该名称搜索地址资源记录。
+​	DNS 查询以各种不同的方式进行解析。<strong>客户机有时也可通过使用从以前查询获得的缓存信息就地应答查询。DNS 服务器可使用其自身的资源记录信息缓存来应答查询，也可代表请求客户机来查询或联系其他 DNS 服务器，以完全解析该名称，并随后将应答返回至客户机。这个过程称为递归。</strong>
+​	另外，<strong>客户机自己也可尝试联系其他的 DNS 服务器来解析名称。如果客户机这么做，它会使用基于服务器应答的独立和附加的查询，该过程称作迭代，即DNS服务器之间的交互查询就是迭代查询。</strong></p>
+<p>DNS查询过程如下图所示：</p>
+<p><img src="https://bomir.top/pics/dnsimgs/dns6.jpg" alt=""></p>
+<blockquote>
+<p>1、在浏览器中输入www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。</p>
+<p>2、如果hosts里没有这个域名的映射，则查找本地DNS解析器缓存，是否有这个网址映射关系，如果有，直接返回，完成域名解析。</p>
+<p>3、如果hosts与本地DNS解析器缓存都没有相应的网址映射关系，首先会找TCP/ip参数中设置的首选DNS服务器，在此我们叫它本地DNS服务器，此服务器收到查询时，如果要查询的域名，包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析，此解析具有权威性。</p>
+<p>4、如果要查询的域名，不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析，此解析不具有权威性。</p>
+<p>5、如果本地DNS服务器本地区域文件与缓存解析都失效，则根据本地DNS服务器的设置（是否设置转发器）进行查询，如果未用转发模式，本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名(.com)是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址(qq.com)给本地DNS服务器。当本地DNS服务器收到这个地址后，就会找qq.com域服务器，重复上面的动作，进行查询，直至找到www.qq.com主机。</p>
+<p>6、如果用的是转发模式，此DNS服务器就会把请求转发至上一级DNS服务器，由上一级服务器进行解析，上一级服务器如果不能解析，或找根DNS或把转请求转至上上级，以此循环。不管是本地DNS服务器用是是转发，还是根提示，最后都是把结果返回给本地DNS服务器，由此DNS服务器再返回给客户机。</p>
+</blockquote>
+<p>由此可以看出， 从客户端到本地DNS服务器是属于递归查询，而DNS服务器之间就是的交互查询就是迭代查询。</p>
+<p><img src="https://bomir.top/pics/dnsimgs/1628330746186.png" alt="1628330746186"></p>
+<h3 id="dns报文">DNS报文</h3>
+<p>DNS只有查询和回答两种报文，这两种报文格式是一样的。</p>
+<ul>
+<li>
+<p>前12个字节是首部区域。</p>
+<p>标识符用于标识该查询，这个标识符会被复制到对查询的回答报文中，以便让客户用它来匹配发送的请求和接收到的回答。</p>
+<p>标志字段中含有若干标志。1比特的“查询/回答”标志位指出报文是查询报文（0）还是回答报文（1）。当某DNS服务器是所请求名字的权威DNS服务器时，1比特的“权威的”标志位被置在回答报文中。此外，还有“希望递归”、“递归可用”等标志位。</p>
+<p>在首部中，还有4个数量相关的字段，指出来在首部后的4类数据区域出现的数量，其中RR是资源记录的意思。</p>
+</li>
+<li>
+<p>问题区域包含着正在进行的查询信息。该区域包括：️名字字段，指出正在被查询的主机名字；️类型字段，指出有关该名字的正被查询的问题类型，即上边说的四元组中的Type</p>
+</li>
+<li>
+<p>回答区域包含了对最初请求的名字的资源记录。在回答区域中可以包含多条RR，因此一个主机名理论上能够有多个IP地址（不同用户在不同地点访问同一个域名，可能会访问到不同的IP地址）</p>
+</li>
+<li>
+<p>权威区域中包含了其他权威服务器的记录</p>
+</li>
+<li>
+<p>附加区域包含了其他有帮助的记录</p>
+</li>
+</ul>
+<p>得知DNS的报文格式后，我们也就可以手动发送DNS查询包了。
+一个在线DNS查询的工具：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Ftool.lu%2Fdns%2Findex.html">https://tool.lu/dns/index.html</a></p>
+<p><img src="https://bomir.top/pics/dnsimgs/1628400356831.png" alt="1628400356831"></p>
+<p><img src="https://bomir.top/pics/dnsimgs/1628400374769.png" alt="1628400374769"></p>
+<p><img src="https://bomir.top/pics/dnsimgs/1628400402980.png" alt="1628400402980"></p>
+<h2 id="dns解析安全问题">DNS解析安全问题</h2>
+<h3 id="dns劫持">DNS劫持</h3>
+<p>DNS劫持就是通过劫持了DNS服务器，通过某些手段取得某域名的解析记录控制权，进而修改此域名的解析结果，导致对该域名的访问由原IP地址转入到修改后的指定IP，其结果就是对特定的网址不能访问或访问的是假网址，从而实现窃取资料或者破坏原有正常服务的目的。DNS劫持通过篡改DNS服务器上的数据返回给用户一个错误的查询结果来实现的。</p>
+<p>DNS劫持症状：在某些地区的用户在成功连接宽带后，首次打开任何页面都指向ISP提供的“电信互联星空”、“网通黄页广告”等内容页面。还有就是曾经出现过用户访问Google域名的时候出现了百度的网站。这些都属于DNS劫持。</p>
+<p><strong>解决方法</strong></p>
+<p>对于DNS劫持，可以采用使用国外免费公用的DNS服务器解决。例如OpenDNS（208.67.222.222）或GoogleDNS（8.8.8.8）。</p>
+<p><strong>总结</strong></p>
+<p>DNS劫持就是指用户访问一个被标记的地址时，DNS服务器故意将此地址指向一个错误的IP地址的行为。范例，网通、电信、铁通的某些用户有时候会发现自己打算访问一个地址，却被转向了各种推送广告等网站，这就是DNS劫持。</p>
+<h3 id="dns污染">DNS污染</h3>
+<p>DNS污染(DNS cache pollution)是一种让一般用户由于得到虚假目标主机IP而不能与其通信的方法，是一种DNS缓存投毒攻击（DNS cache poisoning）。</p>
+<p>其工作方式是：由于通常的DNS查询没有任何认证机制，而且DNS查询通常基于的UDP是无连接不可靠的协议，因此DNS的查询非常容易被篡改，通过对UDP端口53上的DNS查询进行入侵检测，一经发现与关键词相匹配的请求则立即伪装成目标域名的解析服务器（NS，Name Server）给查询者返回虚假结果。</p>
+<p>DNS污染发生在用户请求的第一步上，直接从协议上对用户的DNS请求进行干扰。
+DNS污染症状：目前一些被禁止访问的网站很多就是通过DNS污染来实现的，例如YouTube、Facebook等网站。</p>
+<p><strong>解决办法</strong>：</p>
+<p>对于DNS污染，可以说，个人用户很难单单靠设置解决，通常可以使用VPN或者域名远程解析的方法解决，但这大多需要购买付费的VPN或SSH等，也可以通过修改Hosts的方法，手动设置域名正确的IP地址。</p>
+<p><strong>验证dns是否被污染</strong></p>
+<ol>
+<li>
+<p>点“开始”-“运行”-输入CMD，再输入 ipconfig /all ，在下“DNS SERVER”里找到你使用的DNS服务器地址。</p>
+<p><img src="https://bomir.top/pics/dnsimgs/1628397932426.png" alt="1628397932426"></p>
+</li>
+<li>
+<p>再输入 nslookup abc.com（你的域名） 你的DNS服务器IP ，来查看是否能解析。</p>
+<p><img src="https://bomir.top/pics/dnsimgs/1628398001781.png" alt="1628398001781"></p>
+<p><img src="https://bomir.top/pics/dnsimgs/1628398138989.png" alt="1628398138989"></p>
+</li>
+</ol>
+<p>​</p>
+<ol>
+<li>
+<p>再输入 nslookup abc.com 8.8.8.8 使用Google的DNS服务器验证。</p>
+<p><img src="https://bomir.top/pics/dnsimgs/1628398033693.png" alt="1628398033693"></p>
+</li>
+</ol>
+<p><img src="https://bomir.top/pics/dnsimgs/1628398200485.png" alt="1628398200485"></p>
+<p><strong>总结</strong>：</p>
+<p>DNS污染，指的是用户访问一个地址，国内的服务器(非DNS)监控到用户访问的已经被标记地址时，服务器伪装成DNS服务器向用户发回错误的地址的行为。范例，访问Youtube、Facebook之类网站等出现的状况。</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://blog.51cto.com/369369/812889">https://blog.51cto.com/369369/812889</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/101908711/">https://zhuanlan.zhihu.com/p/101908711/</a></p>
+<p><a href="https://blog.csdn.net/u012094456/article/details/102957456">https://blog.csdn.net/u012094456/article/details/102957456</a></p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bomir</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2021-02-17
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://bomir.top/tags/dns/">dns</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/base-redis-distributedlock/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">浅谈基于redis的分布式锁</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/defer-panic-order/">
+            <span class="next-text nav-default">defer和panic的执行顺序</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Shaper-fox/hugoblogtalks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:jinchunw@385@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/Bicomir" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://bomir.top/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2021
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        bomir
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
