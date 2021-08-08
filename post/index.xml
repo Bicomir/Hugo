@@ -134,6 +134,15 @@
     </item>
     
     <item>
+      <title>MySQL MVCC简单理解</title>
+      <link>https://bomir.top/post/mysql-mvcc/</link>
+      <pubDate>Sun, 12 Jul 2020 22:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/mysql-mvcc/</guid>
+      <description>什么是MVCC？ MVCC，全称Multi-Version Concurrency Control，即多版本并发控制。MVCC是一种并发控制的方法，一般在数据库管理系</description>
+    </item>
+    
+    <item>
       <title>MySQL优化笔记</title>
       <link>https://bomir.top/post/mysql-ehancement/</link>
       <pubDate>Sun, 12 Jul 2020 22:19:05 +0000</pubDate>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/redis-basic0/</guid>
       <description>String类型数据的扩展操作 业务场景一 大型企业级应用中，分表操作是基本操作，使用多张表存储同类型数据，但是对应的主键id必须保证统一性，不</description>
-    </item>
-    
-    <item>
-      <title>Postman使用教程</title>
-      <link>https://bomir.top/post/postman-learning/</link>
-      <pubDate>Wed, 11 Sep 2019 22:01:57 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/postman-learning/</guid>
-      <description>PostMan使用教程(一) 下载安装 1.进入postpostman官网 https://www.getpostman.com/apps ，自行下载安装，我这里下载使用的是Windows版。 2.安装完成后，</description>
     </item>
     
   </channel>

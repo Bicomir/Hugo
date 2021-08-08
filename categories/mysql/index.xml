@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>MySQL MVCC简单理解</title>
+      <link>https://bomir.top/post/mysql-mvcc/</link>
+      <pubDate>Sun, 12 Jul 2020 22:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/mysql-mvcc/</guid>
+      <description>什么是MVCC？ MVCC，全称Multi-Version Concurrency Control，即多版本并发控制。MVCC是一种并发控制的方法，一般在数据库管理系</description>
+    </item>
+    
+    <item>
       <title>MySQL优化笔记</title>
       <link>https://bomir.top/post/mysql-ehancement/</link>
       <pubDate>Sun, 12 Jul 2020 22:19:05 +0000</pubDate>
