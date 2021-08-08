@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 12 Feb 2021 21:19:05 +0000</lastBuildDate><atom:link href="https://bomir.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Feb 2021 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker底层原理介绍</title>
       <link>https://bomir.top/post/docker-storage/</link>
@@ -23,6 +23,15 @@
       
       <guid>https://bomir.top/post/base-redis-distributedlock/</guid>
       <description>一、介绍 这篇博文讲介绍如何一步步构建一个基于Redis的分布式锁。会从最原始的版本开始，然后根据问题进行调整，最后完成一个较为合理的分布式锁</description>
+    </item>
+    
+    <item>
+      <title>HTTP</title>
+      <link>https://bomir.top/post/dns-related/</link>
+      <pubDate>Wed, 17 Feb 2021 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/dns-related/</guid>
+      <description>DNS 因特网上的主机，可以使用多种方式标识，比如主机名或IP地址。 一种标识方法就是用它的主机名（hostname），比如·www.baidu.c</description>
     </item>
     
     <item>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/postman-learning/</guid>
       <description>PostMan使用教程(一) 下载安装 1.进入postpostman官网 https://www.getpostman.com/apps ，自行下载安装，我这里下载使用的是Windows版。 2.安装完成后，</description>
-    </item>
-    
-    <item>
-      <title>彻底理解cookie session token</title>
-      <link>https://bomir.top/post/full-know-cookie-session-token/</link>
-      <pubDate>Mon, 26 Aug 2019 22:29:54 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/full-know-cookie-session-token/</guid>
-      <description>发展史 很久很久以前，Web 基本上就是文档的浏览而已， 既然是浏览，作为服务器， 不需要记录谁在某一段时间里都浏览了什么文档，每次请求都是一个新的</description>
     </item>
     
   </channel>
