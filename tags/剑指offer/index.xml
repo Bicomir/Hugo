@@ -6,7 +6,16 @@
     <description>Recent content in 剑指offer on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 20 Jan 2019 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/%E5%89%91%E6%8C%87offer/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Jan 2019 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/%E5%89%91%E6%8C%87offer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>重建二叉树</title>
+      <link>https://bomir.top/post/rebuildbinarytree/</link>
+      <pubDate>Mon, 28 Jan 2019 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/rebuildbinarytree/</guid>
+      <description>重建二叉树 JZ-4 来源 牛客网 JZ-4 题目描述 ​ 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的</description>
+    </item>
+    
     <item>
       <title>从尾到头打印链表</title>
       <link>https://bomir.top/post/tail-to-head/</link>
