@@ -435,51 +435,51 @@
 </span><span class="lnt">45
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">class</span> <span class="nf">Solution</span><span class="p">(</span><span class="nx">object</span><span class="p">):</span>
-    <span class="nx">def</span> <span class="nf">countCharacters</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">words</span><span class="p">,</span> <span class="nx">chars</span><span class="p">):</span>
-        <span class="s">&#34;&#34;&#34;
-</span><span class="s">        :type words: List[str]
-</span><span class="s">        :type chars: str
-</span><span class="s">        :rtype: int
-</span><span class="s">        &#34;&#34;&#34;</span>
-        <span class="nx">res</span> <span class="p">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="nx">word</span> <span class="nx">in</span> <span class="nx">words</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nx">self</span><span class="p">.</span><span class="nf">check_word_in_chars</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="nx">chars</span><span class="p">):</span>
-                <span class="nx">res</span><span class="p">.</span><span class="nb">append</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span>
-        <span class="nx">count</span> <span class="p">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="nx">word</span> <span class="nx">in</span> <span class="nx">res</span><span class="p">:</span>
-            <span class="nx">count</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nx">count</span>
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">countCharacters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">words</span><span class="p">,</span> <span class="n">chars</span><span class="p">):</span>
+        <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">        :type words: List[str]
+</span><span class="s2">        :type chars: str
+</span><span class="s2">        :rtype: int
+</span><span class="s2">        &#34;&#34;&#34;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_word_in_chars</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">chars</span><span class="p">):</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">count</span>
 
 
-    <span class="nx">def</span> <span class="nf">check_word_in_chars</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">word</span><span class="p">,</span> <span class="nx">chars</span><span class="p">):</span>
-        <span class="nx">wordDict</span> <span class="p">=</span> <span class="p">{}</span>
-        <span class="nx">charsDict</span> <span class="p">=</span> <span class="p">{}</span>
+    <span class="k">def</span> <span class="nf">check_word_in_chars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">chars</span><span class="p">):</span>
+        <span class="n">wordDict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">charsDict</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="k">for</span> <span class="nx">wordChar</span> <span class="nx">in</span> <span class="nx">word</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nx">wordDict</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="nx">wordChar</span><span class="p">)</span> <span class="o">==</span> <span class="nx">None</span><span class="p">:</span>
-                <span class="nx">wordDict</span><span class="p">[</span><span class="nx">wordChar</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">wordChar</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">wordDict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">wordChar</span><span class="p">)</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">wordDict</span><span class="p">[</span><span class="n">wordChar</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nx">wordDict</span><span class="p">[</span><span class="nx">wordChar</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">wordDict</span><span class="p">[</span><span class="n">wordChar</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
 
-        <span class="k">for</span> <span class="nx">char</span> <span class="nx">in</span> <span class="nx">chars</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nx">charsDict</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="nx">char</span><span class="p">)</span> <span class="o">==</span> <span class="nx">None</span><span class="p">:</span>
-                <span class="nx">charsDict</span><span class="p">[</span><span class="nx">char</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">chars</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">charsDict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">charsDict</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nx">charsDict</span><span class="p">[</span><span class="nx">char</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">charsDict</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="err">#</span> <span class="nx">检查字母表里面字母出现的次数是不是大于词汇中字母出现的次数</span>
-        <span class="nx">flag</span> <span class="p">=</span> <span class="nx">False</span>
-        <span class="nx">wordLength</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">wordDict</span><span class="p">)</span>
-        <span class="nx">count</span> <span class="p">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="nx">wchar</span> <span class="nx">in</span> <span class="nx">wordDict</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nx">charsDict</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="nx">wchar</span><span class="p">)</span> <span class="nx">and</span> <span class="nx">wordDict</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="nx">wchar</span><span class="p">):</span>
-                <span class="k">if</span> <span class="nx">charsDict</span><span class="p">[</span><span class="nx">wchar</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="nx">wordDict</span><span class="p">[</span><span class="nx">wchar</span><span class="p">]:</span>
-                    <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="nx">count</span> <span class="o">==</span> <span class="nx">wordLength</span><span class="p">:</span>
-            <span class="nx">flag</span> <span class="p">=</span> <span class="nx">True</span>
-        <span class="k">return</span> <span class="nx">flag</span>
+        <span class="c1"># 检查字母表里面字母出现的次数是不是大于词汇中字母出现的次数</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">wordLength</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">wordDict</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">wchar</span> <span class="ow">in</span> <span class="n">wordDict</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">charsDict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">wchar</span><span class="p">)</span> <span class="ow">and</span> <span class="n">wordDict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">wchar</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">charsDict</span><span class="p">[</span><span class="n">wchar</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">wordDict</span><span class="p">[</span><span class="n">wchar</span><span class="p">]:</span>
+                    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="n">wordLength</span><span class="p">:</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">flag</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>明显上述代码效率就不高，经历了循环嵌套，而且相关实现代码重复啰嗦， 甚至会达到O(n^2)的复杂度；</p>
