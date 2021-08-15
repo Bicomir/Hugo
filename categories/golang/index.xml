@@ -6,7 +6,16 @@
     <description>Recent content in Golang on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 23 Jan 2021 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Feb 2021 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go http.Handler接口</title>
+      <link>https://bomir.top/post/go-http-handler/</link>
+      <pubDate>Wed, 03 Feb 2021 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/go-http-handler/</guid>
+      <description>Golang http.Handler接口 摘自《GO语言圣经》第7章 学习笔记 我们尝试对那些http.Handler接口的服务器API做更进一步的学习： net/http</description>
+    </item>
+    
     <item>
       <title>Go递归的处理HTML</title>
       <link>https://bomir.top/post/recursive-to-html/</link>

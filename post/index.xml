@@ -44,6 +44,15 @@
     </item>
     
     <item>
+      <title>Go http.Handler接口</title>
+      <link>https://bomir.top/post/go-http-handler/</link>
+      <pubDate>Wed, 03 Feb 2021 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/go-http-handler/</guid>
+      <description>Golang http.Handler接口 摘自《GO语言圣经》第7章 学习笔记 我们尝试对那些http.Handler接口的服务器API做更进一步的学习： net/http</description>
+    </item>
+    
+    <item>
       <title>Go递归的处理HTML</title>
       <link>https://bomir.top/post/recursive-to-html/</link>
       <pubDate>Sat, 23 Jan 2021 18:56:34 +0000</pubDate>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/net-core-program_class/</guid>
       <description>ASP.NET Core 启动和配置 Program类，Main方法 Startup类 其中很核心的思想是(Dependency Injection，依赖注入)； 还有Io</description>
-    </item>
-    
-    <item>
-      <title>.netcore之Startup类</title>
-      <link>https://bomir.top/post/net-core-startup_class/</link>
-      <pubDate>Wed, 20 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/net-core-startup_class/</guid>
-      <description>Startup 类：注册服务和使用中间件** Startup类默认生成了两个方法，在这个类中主要负责注册服务和使用中间件。 Startup类的源码 在下面的源码</description>
     </item>
     
   </channel>
