@@ -44,6 +44,15 @@
     </item>
     
     <item>
+      <title>Go递归的处理HTML</title>
+      <link>https://bomir.top/post/recursive-to-html/</link>
+      <pubDate>Mon, 25 Jan 2021 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/recursive-to-html/</guid>
+      <description>Golang 递归处理HTML 摘自《Go语言圣经》第五章 函数可以是递归的，这意味着函数可以直接或间接的调用自身。对许多问题而言，递归是一种强有力的技术，</description>
+    </item>
+    
+    <item>
       <title>defer和panic的执行顺序</title>
       <link>https://bomir.top/post/defer-panic-order/</link>
       <pubDate>Wed, 20 Jan 2021 18:56:34 +0000</pubDate>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/net-core-startup_class/</guid>
       <description>Startup 类：注册服务和使用中间件** Startup类默认生成了两个方法，在这个类中主要负责注册服务和使用中间件。 Startup类的源码 在下面的源码</description>
-    </item>
-    
-    <item>
-      <title>redis快速入门</title>
-      <link>https://bomir.top/post/redis-basic0/</link>
-      <pubDate>Tue, 12 May 2020 22:19:05 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/redis-basic0/</guid>
-      <description>String类型数据的扩展操作 业务场景一 大型企业级应用中，分表操作是基本操作，使用多张表存储同类型数据，但是对应的主键id必须保证统一性，不</description>
     </item>
     
   </channel>

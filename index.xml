@@ -1579,6 +1579,214 @@ DNS污染症状：目前一些被禁止访问的网站很多就是通过DNS污�
     </item>
     
     <item>
+      <title>Go递归的处理HTML</title>
+      <link>https://bomir.top/post/recursive-to-html/</link>
+      <pubDate>Mon, 25 Jan 2021 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/recursive-to-html/</guid>
+      
+        <description>&lt;h1 id=&#34;golang-递归处理html&#34;&gt;Golang 递归处理HTML&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;摘自《Go语言圣经》第五章&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;函数可以是递归的，这意味着函数可以直接或间接的调用自身。对许多问题而言，递归是一种强有力的技术，例如处理递归的数据结构。&lt;/p&gt;
+&lt;p&gt;尝试使用非标准包 golang.org/x/net/html ，解析HTML。golang.org/x/&amp;hellip; 目录下存储了一些由Go团队设计、维护，对网络编程、国际化文件处理、移动平台、图像处理、加密解密、开发者工具提供支持的扩展包。未将这些扩展包加入到标准库原因有二，一是部分包仍在开发中，二是对大多数Go语言的开发者而言，扩展包提供的功能很少被使用。&lt;/p&gt;
+&lt;p&gt;例子中调用golang.org/x/net/html的部分api如下所示。html.Parse函数读入一组bytes.解析后，返回html.node类型的HTML页面树状结构根节点。HTML拥有很多类型的结点如text（文本）,commnets（注释）类型，在下面的例子中，我们 只关注&amp;lt; name key=&amp;lsquo;value&amp;rsquo; &amp;gt;形式的结点。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;golang.org/x/net/html&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Go&#34; data-lang=&#34;Go&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;html&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Node&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;Type&lt;/span&gt;                    &lt;span class=&#34;nx&#34;&gt;NodeType&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;Data&lt;/span&gt;                    &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;Attr&lt;/span&gt;                    &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Attribute&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;FirstChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;NextSibling&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Node&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;NodeType&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int32&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;ErrorNode&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;NodeType&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;iota&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;TextNode&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;DocumentNode&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;ElementNode&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;CommentNode&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;DoctypeNode&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Attribute&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;Key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Val&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;io&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Node&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;main函数解析HTML标准输入，通过递归函数visit获得links（链接），并打印出这些links：&lt;/p&gt;
+&lt;h2 id=&#34;findlinks&#34;&gt;findlinks&lt;/h2&gt;
+&lt;p&gt;// findlinks1.go&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Go&#34; data-lang=&#34;Go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Findlinks1 prints the links in an HTML document read from standard input.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;
+
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+    &lt;span class=&#34;s&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+    &lt;span class=&#34;s&#34;&gt;&amp;#34;os&amp;#34;&lt;/span&gt;
+
+    &lt;span class=&#34;s&#34;&gt;&amp;#34;golang.org/x/net/html&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;doc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Stdin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Fprintf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Stderr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;findlinks1: %v\n&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;link&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;range&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;visit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;doc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;link&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;visit函数遍历HTML的节点树，从每一个anchor元素的href属性获得link,将这些links存入字符串数组中，并返回这个字符串数组。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Go&#34; data-lang=&#34;Go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// visit appends to links each link found in n and returns the result.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;visit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;links&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Node&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ElementNode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;range&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Attr&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;href&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;nx&#34;&gt;links&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;links&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;FirstChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;NextSibling&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;links&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;visit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;links&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;links&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;为了遍历结点n的所有后代结点，每次遇到n的孩子结点时，visit递归的调用自身。这些孩子结点存放在FirstChild链表中。&lt;/p&gt;
+&lt;p&gt;让我们以搜狗的主页（www.sougou.com）作为目标，运行findlinks。我们以fetch（1.5章）的输出作为findlinks的输入。下面的输出做了简化处理。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/images/findlinks_20210812121922.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;注意在页面中出现的链接格式，在之后我们会介绍如何将这些链接，根据根路径生成可以直接访问的url。&lt;/p&gt;
+&lt;h2 id=&#34;outline&#34;&gt;outline&lt;/h2&gt;
+&lt;p&gt;在函数outline中，我们通过递归的方式遍历整个HTML结点树，并输出树的结构。在outline内部，每遇到一个HTML元素标签，就将其入栈，并输出。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Go&#34; data-lang=&#34;Go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;doc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Stdin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Fprintf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Stderr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;outline: %v\n&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;nf&#34;&gt;outline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;doc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;outline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;stack&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Node&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ElementNode&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;stack&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;stack&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// push tag
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;stack&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;FirstChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;NextSibling&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nf&#34;&gt;outline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;stack&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;有一点值得注意：outline有入栈操作，但没有相对应的出栈操作。当outline调用自身时，被调用者接收的是stack的拷贝。被调用者的入栈操作，修改的是stack的拷贝，而不是调用者的stack,因对当函数返回时,调用者的stack并未被修改。&lt;/p&gt;
+&lt;p&gt;下面是https://www.sougou.com的简要结构：、&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bomir.top/pics/images/outline_20210812122732.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;大部分HTML页面只需几层递归就能被处理，但仍然有些页面需要深层次的递归。&lt;/p&gt;
+&lt;p&gt;大部分编程语言使用固定大小的函数调用栈，常见的大小从64KB到2MB不等。固定大小栈会限制递归的深度，当你用递归处理大量数据时，需要避免栈溢出；除此之外，还会导致安全性问题。与相反,Go语言使用可变栈，栈的大小按需增加(初始时很小)。这使得我们使用递归时不必考虑溢出和安全问题。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>defer和panic的执行顺序</title>
       <link>https://bomir.top/post/defer-panic-order/</link>
       <pubDate>Wed, 20 Jan 2021 18:56:34 +0000</pubDate>
@@ -18506,714 +18714,6 @@ mysql&amp;gt; select * from mysql.general_log;
 &lt;li&gt;Razor Pages: /SomePage&lt;/li&gt;
 &lt;li&gt;SignalR: /Hub/Chat&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>redis快速入门</title>
-      <link>https://bomir.top/post/redis-basic0/</link>
-      <pubDate>Tue, 12 May 2020 22:19:05 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/redis-basic0/</guid>
-      
-        <description>&lt;h2 id=&#34;string类型数据的扩展操作&#34;&gt;String类型数据的扩展操作&lt;/h2&gt;
-&lt;h4 id=&#34;业务场景一&#34;&gt;业务场景一&lt;/h4&gt;
-&lt;p&gt;大型企业级应用中，分表操作是基本操作，使用多张表存储同类型数据，但是对应的主键id必须保证统一性，不能重复。Oracle数据库有Sequence的设定，可以解决该问题，但MySQL数据库并不具有类似的机制，那么该如何解决？&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/ruAMsa53pVQWN7FLK88i5toZb6kcrr5ThfUnWUa.GQOASAas*WVwvoCMB*F6gvMYJHTqd0A1Fb10NSKV5JbzyObziw7mbcA8ETjsAP2LF2Q!/mnull&amp;amp;bo=PQROAT0ETgEDByI!&amp;amp;rf=photolist&amp;amp;t=5&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/ruAMsa53pVQWN7FLK88i5uIwIWZas6OjpFzS*xC*bgm2weG3t1*eln.zbviKQ29DDnnxSfiBvlKMWmoWoeMToj8DW8uRmrQxAxlp9r7QpsE!/mnull&amp;amp;bo=bgRJAQAAAAADBwA!&amp;amp;rf=photolist&amp;amp;t=5&#34; alt=&#34;1615899867130&#34;&gt;&lt;/p&gt;
-&lt;p&gt;redis， 把原来的一张表分成若干表，并保证所有的id都不重复； 找另一方控制不重复就行了;&lt;/p&gt;
-&lt;h5 id=&#34;解决方案&#34;&gt;解决方案&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;设置数值数据增加指定范围的值&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;incr key
-incrby key increment
-incrbyfloat key increment
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;设置数值数据减少指定范围的值&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;decr key
-decrby key increment
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;string作为数值操作&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;string在redis内部存储默认就是一个字符串，当遇到增减类操作incr， decr时就会转成数值型进行计算;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;redis所有的操作都是原子性的，采用单线程来处理所有的业务，命令是一个一个的执行的，因此无需考虑并发带来的数据影响;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;注意: 按数值进行操作的数据，如果原始数据不能转成数值，或超越了redis数值的上限范围，将报错。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;9223372036854775807 (java中long型数据的最大值， Long.MAX_VALUE)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Tips1:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;redis用于控制数据库表主键id， 为数据库表主键提供生成策略，保障数据库表的主键唯一性;&lt;/li&gt;
-&lt;li&gt;此方案适用于所有数据库，且支持数据库集群;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;业务场景二&#34;&gt;业务场景二&lt;/h4&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&amp;ldquo;最强女生&amp;rdquo; 启动海选投票， 只能通过微信投票， 每个微信号每4小时只能投一票;&lt;/p&gt;
-&lt;p&gt;电商商家开启热门商品推荐， 热门商品不能一直处于热门期， 每种商品热门期维持3天， 3天后自动取消热门;&lt;/p&gt;
-&lt;p&gt;新闻网站会出现热点新闻，热点新闻最大的特征是时效性， 如何自动控制热点新闻的时效性;&lt;/p&gt;
-&lt;p&gt;new_id: HB314790725;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h5 id=&#34;解决方案-1&#34;&gt;解决方案&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;设置数据具有指定的生命周期&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;setex key seconds value
-psetex key milliseconds value
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;秒， 毫秒&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;127.0.0.1:6379&amp;gt; setex tel 10 1
-OK
-127.0.0.1:6379&amp;gt; get tel
-&amp;ldquo;1&amp;rdquo;
-127.0.0.1:6379&amp;gt; get tel
-&amp;ldquo;1&amp;rdquo;
-127.0.0.1:6379&amp;gt; get tel
-(nil)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Tips2:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Redis控制数据的生命周期， 通过数据是否失效控制业务行为， 适用于所有具有时效性限定控制的操作;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;String类型数据操作的注意事项&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/ruAMsa53pVQWN7FLK88i5toZb6kcrr5ThfUnWUa.GQP9F3Vm64w1sFzhxAzJMio9fYn4g9LSi2xSw2Gj8ie63As9egq9WCynXTyehYPBjA4!/mnull&amp;amp;bo=xAGqAcQBqgEDByI!&amp;amp;rf=photolist&amp;amp;t=5&#34; alt=&#34;1615901644560&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;String类型应用场景&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;主页高频访问信息显示控制， 例如新浪微博大V主页显示粉丝数与微博数量;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/ruAMsa53pVQWN7FLK88i5th3fePNwb*pFb9A5WAbu4ER2PnTEE7SPj20kGxYuwH02jnX*6NqeUifuw2DFI*UCEgL0n.ESXrbL5vLc5XINQ4!/mnull&amp;amp;bo=IAOTASADkwEDByI!&amp;amp;rf=photolist&amp;amp;t=5&#34; alt=&#34;1615902015163&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;key的设置约定&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;数据库中的热点数据key命名惯例&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;表名&lt;/th&gt;
-&lt;th&gt;主键名&lt;/th&gt;
-&lt;th&gt;主键值&lt;/th&gt;
-&lt;th&gt;字段名&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;eg1&lt;/td&gt;
-&lt;td&gt;order&lt;/td&gt;
-&lt;td&gt;id&lt;/td&gt;
-&lt;td&gt;29437595&lt;/td&gt;
-&lt;td&gt;name&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;eg2&lt;/td&gt;
-&lt;td&gt;equip&lt;/td&gt;
-&lt;td&gt;id&lt;/td&gt;
-&lt;td&gt;39047234&lt;/td&gt;
-&lt;td&gt;type&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;eg3&lt;/td&gt;
-&lt;td&gt;news&lt;/td&gt;
-&lt;td&gt;id&lt;/td&gt;
-&lt;td&gt;20200415&lt;/td&gt;
-&lt;td&gt;title&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&#34;hash数据类型&#34;&gt;Hash数据类型&lt;/h2&gt;
-&lt;p&gt;存储的困惑&lt;/p&gt;
-&lt;p&gt;对象类数据的存储，如果具有较频繁的更新需求操作会显得笨重;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:%5CUsers%5Cwjq%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1615902411357.png&#34; alt=&#34;1615902411357&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcZRKOZdvI2Uaap*HswVjcWsMAYl4Z2Yfm2HWLMk1op*8ectHpZR1ILcnUemf08J3mPhBNrbjjIOGt2XQvRdA8Nw!/b&amp;amp;bo=JQLhAAAAAAADF*Q!&amp;amp;rf=viewer_4&#34; alt=&#34;1615902441957&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcYQQuS6sbOYocvxZL5Ul86vifbhmlI2Y3BKleGx8fMgA9oE5pF0oju9wlGkqyj50BiNudC.kMVUaOPUYwLtRLhI!/b&amp;amp;bo=wgL7AAAAAAADFwk!&amp;amp;rf=viewer_4&#34; alt=&#34;1615902463626&#34;&gt;&lt;/p&gt;
-&lt;p&gt;key, field, value; 这就是hash；&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;新的存储需求：对一系列存储的数据进行编组，方便管理， 典型应用存储对象信息;&lt;/li&gt;
-&lt;li&gt;需要的存储结构： 一个存储空间保存多个键值对数据;&lt;/li&gt;
-&lt;li&gt;hash类型： 底层使用哈希表结构实现数据存储;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mccgZHtD*IM0iyOD4iZrrhx.86*f092DqPV1QLLOl.Ui6yEwflE9frxlOO98f7klq0Hs*rmy845Rj2unDwSHA.kE!/b&amp;amp;bo=5gNWAQAAAAADF4A!&amp;amp;rf=viewer_4&#34; alt=&#34;1615902670612&#34;&gt;&lt;/p&gt;
-&lt;h4 id=&#34;hash类型数据的基本操作&#34;&gt;&lt;strong&gt;hash类型数据的基本操作&lt;/strong&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;添加 / 修改数据&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;hset key field value&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;获取数据&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;hget key field&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;hgetall key&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;删除数据&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;hdel key field1 [field2]&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;127.0.0.1:6379&amp;gt; hset user name zhangsan
-&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
-127.0.0.1:6379&amp;gt; hset user age &lt;span class=&#34;m&#34;&gt;38&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
-127.0.0.1:6379&amp;gt; hset user weight &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
-127.0.0.1:6379&amp;gt; hgetall user
-1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;
-2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;zhangsan&amp;#34;&lt;/span&gt;
-3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;age&amp;#34;&lt;/span&gt;
-4&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;38&amp;#34;&lt;/span&gt;
-5&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;weight&amp;#34;&lt;/span&gt;
-6&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;80&amp;#34;&lt;/span&gt;
-127.0.0.1:6379&amp;gt; hget user name
-&lt;span class=&#34;s2&#34;&gt;&amp;#34;zhangsan&amp;#34;&lt;/span&gt;
-127.0.0.1:6379&amp;gt; hdel user weight
-&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;integer&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
-127.0.0.1:6379&amp;gt; hgetall user
-1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;
-2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;zhangsan&amp;#34;&lt;/span&gt;
-3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;age&amp;#34;&lt;/span&gt;
-4&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;38&amp;#34;&lt;/span&gt;
-127.0.0.1:6379&amp;gt;   
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;添加 /  修改多个数据&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;hmset key field1 value1 field2 value2&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;获取多个数据&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;hmget key field1 field2&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;获取哈希表中字段的数量&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;hlen key&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;获取哈希表中是否存在指定的字段&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;hexists key field&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;hash类型数据扩展操作&#34;&gt;&lt;strong&gt;hash类型数据扩展操作&lt;/strong&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;获取哈希表中所有的字段名或字段值&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;hkeys key
-hvals key
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;设置指定字段的数值数据增加指定范围的值&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;hincrby key field increment
-hincrbyfloat key field increment
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;C:%5CUsers%5Cwjq%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1615904006771.png&#34; alt=&#34;1615904006771&#34;&gt;&lt;/p&gt;
-&lt;h4 id=&#34;hash类型应用场景&#34;&gt;hash类型应用场景&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;业务场景&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;电商网站购物车设计实现&lt;/p&gt;
-&lt;p&gt;用户id =key, 商品id = field, 数量: value&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcQafjAnXApSJtXATbj2ZDmwfwqDNu35klyu.tFmkpTmU*uUftNIcISD9x5lCXF5jzmKnqpe63JMrazC9BW.6IeU!/b&amp;amp;bo=EwJ8AgAAAAADJ20!&amp;amp;rf=viewer_4&#34; alt=&#34;1615904336541&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;业务分析&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;仅分析购物车的redis存储模型&lt;/p&gt;
-&lt;p&gt;添加，浏览，更改数量，删除，清空&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;购物车与数据库间持久化同步（不讨论）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;购物车与订单间关系(不讨论)&lt;/p&gt;
-&lt;p&gt;提交购物车： 读取数据生成订单&lt;/p&gt;
-&lt;p&gt;商家临时价格调整： 隶属于订单级别&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;未登录用户购物车信息存储（不讨论）&lt;/p&gt;
-&lt;p&gt;cookie存储&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;以客户id作为key, 每位客户创建一个hash存储结构存储对应的购物车信息;&lt;/li&gt;
-&lt;li&gt;将商品编号作为field, 购买数量作为value进行存储;&lt;/li&gt;
-&lt;li&gt;添加商品， 追加全新的field与value；&lt;/li&gt;
-&lt;li&gt;浏览： 遍历hash；&lt;/li&gt;
-&lt;li&gt;更改数量: 自增 / 自减， 设置value值;&lt;/li&gt;
-&lt;li&gt;删除商品： 删除field；&lt;/li&gt;
-&lt;li&gt;清空: 删除key；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;当前仅仅是将数据存储到了redis， 并没有起到加速的作用， 商品的信息还需要二次到数据库中去查;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcQUo30ajEmJeKfpnh6K672hk*DDnQR8heKaghdViQ1HgmqFJnSE8Vea1SL8WU45gVQrc7RoDOzww8gcuQjvCl4c!/b&amp;amp;bo=AwNGAQAAAAADJ0U!&amp;amp;rf=viewer_4&#34; alt=&#34;1615905166663&#34;&gt;&lt;/p&gt;
-&lt;p&gt;field2 应该单独拿出来作为商品的一个hash；会避免数据的重复存储;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;hsetnx key field value&lt;/code&gt; 有值不加进去， 没有就加进去;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;业务场景&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcb28SjSPh1vuQ4dSth57D99RHSp1Bjoew1u699*OR2CybSE2jxfLLb5PcVb8dK1vOz8FHDKYWhYr9mj*bZvKiz8!/b&amp;amp;bo=zwO4AQAAAAADJ3c!&amp;amp;rf=viewer_4&#34; alt=&#34;1615905615997&#34;&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcYBEloLhAhEAjcWwVimgAd78JJAPUEgUAnUeDF6gKsfNHcrSMYb6mVFi*Vg6dr1bKU64LwrBWE2cWMn7hAc.7RI!/b&amp;amp;bo=nQH3AAAAAAADF1k!&amp;amp;rf=viewer_4&#34; alt=&#34;1615905645343&#34;&gt;&lt;/p&gt;
-&lt;p&gt;string存储对象（json）（读操作灵活）， 与hash存储对象 （更新操作灵活）&lt;/p&gt;
-&lt;h2 id=&#34;list数据类型&#34;&gt;list数据类型&lt;/h2&gt;
-&lt;p&gt;list类型&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;数据存储要求： 存储多个数据，并对数据进入存储空间的顺序进行区分;&lt;/li&gt;
-&lt;li&gt;需要的存储结构：一个存储空间保存多个数据，&lt;/li&gt;
-&lt;li&gt;list类型： 保存多个数据，底层使用&lt;strong&gt;双向链表&lt;/strong&gt;存储结构实现;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;顺序表&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;头指针  huawei   tencent  alibaba  apple, 插入CNPC&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcfXeYI4.31rYmKtbKpHViMbGLfBUFHsYcddrO83LuDhnL4r7iXd9yxwzWo61KEVnkcNmu4jVbywgRQ*UP9RuS18!/b&amp;amp;bo=VARUAQAAAAADJwc!&amp;amp;rf=viewer_4&#34; alt=&#34;1616076949878&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcdv*4pyjCfTqzAvj4TeUsRM9qRYQj4WXTdkfMOeU*Q2VnW3CSbtFmBTlqjlSXuubb30B*KWPKM1KbETzR3IWuc4!/b&amp;amp;bo=TgIQAQAAAAADF28!&amp;amp;rf=viewer_4&#34; alt=&#34;1616077053791&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;list类型数据基本操作&#34;&gt;list类型数据基本操作&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;添加 / 修改数据&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;lpush key value1 [value2] ...&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;获取数据&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;lrange key start stop&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;lindex key index&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;llen key&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;删除数据&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;lpop key&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;rpop key&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;list类型数据扩展操作&#34;&gt;list类型数据扩展操作&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;规定时间内获取并移除操作&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;bpop key1 [key2] timeout&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;bpop key1 [key2] timeout&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;b是block的意思, 阻塞多少秒之后pop;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;list类型数据业务背景&#34;&gt;list类型数据业务背景&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;业务背景&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;微信朋友圈点赞， 要求按照点赞顺序显示点赞好友的信息;&lt;/p&gt;
-&lt;p&gt;如果取消点赞，移除对应好友信息;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcWwNG31cgG7ffaCdgoYN1GKtbGtRjGDtHlB3huuJ2.e6Jb42iLFkIvc3FFdSSxJTT8KtmU.MZomJKM24jsFuRT0!/b&amp;amp;bo=PQEFAgAAAAADJzk!&amp;amp;rf=viewer_4&#34; alt=&#34;1616078447626&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解决方案：&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;移除指定数据&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;lrem key count value&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Tips:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;redis应用于具有操作先后顺序的数据控制&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;list类型数据操作注意事项&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;list保存的数据都是string类型的， 数据总容量是有限的， 最多2^32 -1个元素(4,294,967,295)&lt;/li&gt;
-&lt;li&gt;list具有索引的概念， 但是操作数据时通常以队列的形式进行入队出队操作，或以栈的形式进行入栈出栈操作;&lt;/li&gt;
-&lt;li&gt;获取全部数据操作结束索引设置为-1；&lt;/li&gt;
-&lt;li&gt;list可以对数据进行分页操作，通常第一页的信息来自于list， 第2页及更多的信息通过数据库的形式加载;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;业务场景&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;1.Twitter， 微博中个人用户的关注列表需要按照用户的关注顺序进行展示，粉丝列表需要将最近关注的粉丝列在前面;&lt;/p&gt;
-&lt;p&gt;2.新闻， 资讯类网站如何将最近的新闻或资讯按照发生的时间顺序展示?&lt;/p&gt;
-&lt;p&gt;3.企业运营过程中，系统将产生出大量的运营数据，如何保障多台服务器操作日志的统一顺序输出？&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcQafjAnXApSJtXATbj2ZDmxFSk1zPztitabRQ9p1cPFyTGlrrzdyy5iZq1on8F3PC1pEcEQ4iDNPPFm9Iada56M!/b&amp;amp;bo=QAMFAQAAAAADJ0U!&amp;amp;rf=viewer_4&#34; alt=&#34;1616079849353&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;依赖list的数据具有顺序的特征对信息进行管理&lt;/li&gt;
-&lt;li&gt;使用队列模型解决多路信息汇总合并的问题&lt;/li&gt;
-&lt;li&gt;使用栈模型解决最新消息的问题&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Tips&lt;/strong&gt;： redis应用于最新信息展示；&lt;/p&gt;
-&lt;h2 id=&#34;set数据类型&#34;&gt;Set数据类型&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;新的存储要求: 存储大量的数据， 在查询方面提供更高的效率；&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;需要的存储结构： 能够保存大量的数据， 高效的内部存储机制， 便于查询;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;set类型：与hash存储结构完全相同，仅存储键， 不存储值nil， 并且值是不允许重复;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcXnhF9lsdif6emyCiHFqI9I*3roiBcm*p58IdhEipGdlAprbQ8XMd5W2OXXiBOQeCFIvN0qPtV9zlQ2PKZyID4Y!/b&amp;amp;bo=RwJTAQAAAAADFyU!&amp;amp;rf=viewer_4&#34; alt=&#34;1616208198289&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;set类型数据的基本操作&#34;&gt;Set类型数据的基本操作&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;添加数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;sadd key member1 [member2]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;获取全部数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;smembers key
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;删除数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;srem key member1 [member2]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;获取集合数据总量&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;scard key
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;判断集合中是否包含指定数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;sismember key member
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;set类型数据扩展操作&#34;&gt;Set类型数据扩展操作&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;业务场景&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;每位用户首次使用今日头条时会设置3项爱好的内容， 但是后期为了增加用户的活跃度、兴趣点，必须让用户对其他信息类别逐渐产生兴趣，增加客户留存度， 如何实现？&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;业务分析&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;系统分析出各个分类的最新或最热点信息条目并组织成set集合；&lt;/li&gt;
-&lt;li&gt;随机挑选其中的部分信息；&lt;/li&gt;
-&lt;li&gt;配合用户关注信息分类中的热点信息组织成展示的全信息集合;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;随机获取集合中指定数量的数据&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;srandmember key [count]&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;随机获取集合中的某个数据并将该数据移出集合&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;spop key&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Tips8:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;redis应用于随机推荐类信息检索， 例如热点歌单推荐，热点新闻推荐， 热卖旅游线路，应用APP推荐，大V推荐等&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;业务场景&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;脉脉为了促进用户间的交流， 保障业务成单率的提升， 需要让每位用户拥有大量的好友，事实上职场新人不具有更多的职场好友， 如何快速的为用户积累更多的好友？&lt;/p&gt;
-&lt;p&gt;新浪微博为了增加用户的热度， 提高用户的留存性&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mccgZHtD*IM0iyOD4iZrrhx8OT9GLaTkESJgtFNQuTHK0mbmRbeKLGzEWT2ahqnaz8g7NdvowcuDgo7xHBTFS8Dk!/b&amp;amp;bo=owPyAQAAAAADN0E!&amp;amp;rf=viewer_4&#34; alt=&#34;1616212945415&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;求两个集合的交， 并， 差集&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sinter key1 [key2]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sunion key1 [key2]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sdiff key1 [key2]&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;求两个集合的交，并， 差集并存储到指定集合中&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sinterstore destination key1 [key2]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sunionstore desitination key1 [key2]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sdiffstore destination key1 [key2]&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;将指定数据从原始集合移动到目标集合中&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;smove souece destination member&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Tips9:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;redis应用于同类信息的关联检索， 二度关联检索， 深度关联检索;&lt;/li&gt;
-&lt;li&gt;显示共同关注（一度）&lt;/li&gt;
-&lt;li&gt;显示共同好友（一度）&lt;/li&gt;
-&lt;li&gt;由用户A出发， 获取到好友用户B的好友信息列表(一度)&lt;/li&gt;
-&lt;li&gt;由用户A 出发， 获取到好友用户B的购物清单列表（二度）&lt;/li&gt;
-&lt;li&gt;由用户A 出发， 获取到好友用户B的游戏充值列表（二度）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;注意事项：&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;SEI类型不允许数据重复；&lt;/li&gt;
-&lt;li&gt;set虽然与hash的存储结构相同，但是无法启用hash中存储的空间;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;set型数据业务场景&#34;&gt;Set型数据业务场景&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcYZovcClZnsQD41WTFhDo2uwIouREPg5HrY4GYTKcL*ty0CsUyNqMUCgW7V44RDWo1rULC7LeS8vN.EeJiJ7C*g!/b&amp;amp;bo=mQOEAAAAAAADFyw!&amp;amp;rf=viewer_4&#34; alt=&#34;1616233828683&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcYQQuS6sbOYocvxZL5Ul86sLHYQSepWwf6IZqVTa*CqthB6JiLI0j4sj8Ffb0ss2ExBx0kkcOlnLZkZhFoONLBI!/b&amp;amp;bo=VQJvAQAAAAADJzs!&amp;amp;rf=viewer_4&#34; alt=&#34;1616233871263&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcfXeYI4.31rYmKtbKpHViMajAaJnMibN8y9UsElFhmauPTwUEFn2jXOqo9UQPXKzO0NSI.wxXoJB9JL6wSXSNfY!/b&amp;amp;bo=FwPGAAAAAAADF.A!&amp;amp;rf=viewer_4&#34; alt=&#34;1616247155384&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sadd rid:001 getall&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sadd rid:001 getById&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sadd rid:002 getCount&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sadd rid:002 getall&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sadd rid:002 insert&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sunionstore uid:007 rid:001 rid:002&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sismembers uid:007 insert&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;redis应当是提供基础数据， 而不要提供检验结果（含业务逻辑， 业务逻辑应该放在调用端去实现）；&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Tip10:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;redis应用于同类型 不重复数据的合并操作;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;业务场景&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;公司对旗下新的网站做推广，统计网站的PV(访问量)， UV（独立访客），IP（独立IP）。&lt;/p&gt;
-&lt;p&gt;PV： 网站被访问次数， 可通过刷新页面提高访问量;&lt;/p&gt;
-&lt;p&gt;UV:  网站被不同用户访问的次数， 可通过Cookie统计访问量， 相同用户切换IP地址， UV不变；&lt;/p&gt;
-&lt;p&gt;IP： 网站被不同IP地址访问的总次数， 可通过IP地址统计访问量， 相同IP不同用户访问， IP不变;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcQUo30ajEmJeKfpnh6K672jCV9Vej6N2endT36k3lz0TIzq0HT7fFPbs2XVf4I2XuxhZAaJuhqc*b3yc4XPousw!/b&amp;amp;bo=zwHHAAAAAAADFzs!&amp;amp;rf=viewer_4&#34; alt=&#34;1616248456441&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Tips:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;redis应用于同类型数据的快速去重;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcTpqWuFHUBJTOWN6Nkszplbm7.SVMH9kQEDpu6slGZkRDXjZVS2xNYw6BU9oFmP2HbidjYbdN692GdxaJG5a8Bo!/b&amp;amp;bo=kAPWAQAAAAADN1Y!&amp;amp;rf=viewer_4&#34; alt=&#34;1616248591852&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcZYNrC2dVlUUTerRKLHYXF*VlTl7gtX4ZS3wSeCKvpY5zKCmyoheE8lrZEe3UsEtEVf4sTXOhkfzgJykJ9vm*LE!/b&amp;amp;bo=8QEHAQAAAAADJ*Q!&amp;amp;rf=viewer_4&#34; alt=&#34;1616248722257&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Tips12: redis应用于基于黑名单和白名单的设定限制;&lt;/p&gt;
-&lt;h2 id=&#34;sorted_set类型&#34;&gt;sorted_set类型&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;新的存储需求： 数据排序有利于数据的有效展示，需要提供一种可以根据自身特征进行排序的方式;&lt;/li&gt;
-&lt;li&gt;需要的存储结构：新的存储模型， 可以保存可排序的数据;&lt;/li&gt;
-&lt;li&gt;sorted_set类型： 在set的存储结构基础上添加可排序字段&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcZM98E76J2BI.79ATQN9b.N7rdedapjC.5ckKOfr8lXGH20l.Sa.JvFSGjzw4KXvIDygj1LVKmlWrHEFhhq5v50!/b&amp;amp;bo=pgIKAQAAAAADF50!&amp;amp;rf=viewer_4&#34; alt=&#34;1616249237405&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;sorted_set类型数据的基本操作&#34;&gt;sorted_set类型数据的基本操作&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;添加数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;zadd key score1 member1 [score2 member2]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;获取全部数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;zrange key start stop [WITHSCORES]
-zrevrange key start stop [WITHSCORES]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;删除数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;zrem key member [member...]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;按条件获取数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;zrangebyscore key min max [WITHSCOES] [LIMIT]
-zreverangebyscore key min max [WITHSCOES]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;条件删除数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;zremrangebyrank&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;start&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;stop&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;zremrangebyscore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;min&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;max&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;min与max用于限定搜索查询的条件;&lt;/p&gt;
-&lt;p&gt;start与stop用于限定查询范围， 作用域索引， 表示开始和结束索引;&lt;/p&gt;
-&lt;p&gt;offset与count用于限定查询范围(limit)， 作用于查询结果， 表示开始位置和数据总量;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;获取集合数据总量&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;zcard key
-zcount key min max
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;集合交，并操作&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;zinterstore destination numkeys key &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;key ...&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-zunionstore destination numkeys key &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;key ...&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcWp5.5BzlMKZ4kOlHNpSPlqZpOX454xj1DbSGVlxyCuFS2qeaWgQtV4o*j6VyzGojl8n8uT*4F4f1xPdMOxWYmU!/b&amp;amp;bo=cgKMAQAAAAADJ*8!&amp;amp;rf=viewer_4&#34; alt=&#34;1616419839622&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcWp5.5BzlMKZ4kOlHNpSPlqZpOX454xj1DbSGVlxyCuFS2qeaWgQtV4o*j6VyzGojlHCbafNsovtmzlOyFAc0Ww!/b&amp;amp;bo=cgKMAQAAAAADJ*8!&amp;amp;rf=viewer_4&#34; alt=&#34;1616419882199&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;sorted_set类型数据扩展操作&#34;&gt;sorted_set类型数据扩展操作&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;业务场景&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;票选广东十大杰出青年， 各类综艺选秀海选投票，各类资源网站TOp10（电影， 歌曲，文档，电商，游戏等），聊天室活跃度统计，游戏好友亲密度等&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;业务分析&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;为所有参与排名的资源建立排序资源&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;获取数据对应的索引(排名)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;zrank key member
-zrevrank key member
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;score值获取与修改&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;zscore key member
-zincrby key increment member
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;**Tips：**redis应用于计数器组合排序功能的排名&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcbKSiBC*5qS3BPInf0owb4kzGuUygZjh3Cwu5ZqwiwmrQpsryuVIB6wB9bK15n3QyO*z7wj.CevM7t2AovTn8b4!/b&amp;amp;bo=kgM1AQAAAAADJ6c!&amp;amp;rf=viewer_4&#34; alt=&#34;1616420622508&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;业务场景&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;​	基础服务+增值服务类网站会设定各位会员的试用，让用户充分体验会员优势。例如观影试用VIP， 游戏VIP体验， 云盘下载体验VIP， 数据查看体验VIP。当VIP体验到期后，如何有效管理此类信息。 即便对于正式VIP用户也存在对应的管理方式。&lt;/p&gt;
-&lt;p&gt;​	网站会定期开启投票、讨论，限时进行，逾期作废。如何有效管理此类过期信息;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mccVZcdjpKml1Nf78YJmDy2.1oA4UmyCPs6QZ.QVcMo1lOkzdX8*v6PXEd1.mY.WW4SL.zGYSr6VCDISGbdPO9Zk!/b&amp;amp;bo=kgP3AAAAAAADJ2Q!&amp;amp;rf=viewer_4&#34; alt=&#34;1616421196330&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Tip14:&lt;/strong&gt;  redis应用于定时任务执行顺序管理或任务过期管理;&lt;/p&gt;
-&lt;h3 id=&#34;sorted_set数据业务场景&#34;&gt;sorted_set数据业务场景&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;任务 / 消息权重设定应用&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;当任务或者消息待处理， 形成了任务队列或者消息队列时， 对于高优先级的任务要保障对其优先处理， 如何实现任务权重管理;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;对于带权重的任务， 优先处理权重高的任务，采用score记录权重即可；&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcYkyXIY9fwXVUwtKoUe2fx8AZTqiVk.e5P7zmjIB0fzb8p*LCcH*gcdPN9C7L5ozHgVSitvsRB6GupUzXD6MxKw!/b&amp;amp;bo=ZQKJAQAAAAADJ.0!&amp;amp;rf=viewer_4&#34; alt=&#34;1616421976326&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcb9eaSlMu7v25seWotI*yMOhaKWT5EgLORdzZp61REhxVtpcIQb7qtV0a4DrjMdMOOSx*62NJobITo*mkkylBCI!/b&amp;amp;bo=pgNeAQAAAAADN.g!&amp;amp;rf=viewer_4&#34; alt=&#34;1616422064144&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;数据实践案例&#34;&gt;数据实践案例&lt;/h2&gt;
-&lt;h3 id=&#34;场景一&#34;&gt;场景一&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;业务场景&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;人工智能领域的语义识别与自动对话将是未来服务业机器人应答呼叫体系中的重要技术，百度自研用户评价语义识别服务， 免费开放给企业试用， 同时训练百度自己的模型。现对试用用户的使用行为进行限速， 限制每个用户每分钟最多发起10次调用;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcVCAWFETsg66BpauXOz8e1qXlz9XH5X0qHPOc2X*oodWmgdqtParzCa6Du6xsc6ck3vxRoxJsIvdmdjs7DF.9QY!/b&amp;amp;bo=WwMDAQAAAAADJ1g!&amp;amp;rf=viewer_4&#34; alt=&#34;1616838534931&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcZM98E76J2BI.79ATQN9b.PyVSRI.uW.kf2xWUkDFBlWa38kqMujrSqyrivEpPBHPTZPIZ.f*rFNpCRSO17lWOU!/b&amp;amp;bo=sgMNAQAAAAADF48!&amp;amp;rf=viewer_4&#34; alt=&#34;1616838851843&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcXnhF9lsdif6emyCiHFqI9K3EWax5r3D2Wha7UZzUD6XLGXJBhtEkEot29znoVgdRq.vD4psLIbAuvHCqeCMyfg!/b&amp;amp;bo=JwMVAQAAAAADFwI!&amp;amp;rf=viewer_4&#34; alt=&#34;1616839016536&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcWP.spEL3g*MeEXoyAMU1zd9SOqu77CuSihS7kpGrvHWLnPHKQjj3wpbf7D4njsaGFRpiucvfVoBfdvcHLOjcu0!/b&amp;amp;bo=*wMJAQAAAAADF8Y!&amp;amp;rf=viewer_4&#34; alt=&#34;1616839071304&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;tips&lt;/strong&gt; : redis应用于限时按次结算的服务控制&lt;/p&gt;
-&lt;h3 id=&#34;场景二&#34;&gt;场景二&lt;/h3&gt;
-&lt;p&gt;微信会话的顺序（消息应该是按什么顺序？）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcTDVR0HO5KZJAAwSW3vgf91I6pXhRMxEZjHQKN1efqnwpJjmbnH261*j77p08boST1cuGLde0MhFzbbcZ82tANU!/b&amp;amp;bo=nQOqAAAAAAADFwY!&amp;amp;rf=viewer_4&#34; alt=&#34;1616839376253&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcYQQuS6sbOYocvxZL5Ul86sMkRjSiZwCajXgRuVaVL1HMmXhrhXY6M5PcKuCbxaqX8PIu1nOUWZNiEjbuzqcZKQ!/b&amp;amp;bo=LQTdAQAAAAADJ*c!&amp;amp;rf=viewer_4&#34; alt=&#34;1616839614981&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcdbcJOR8Vb7U5lQF2.mMPwUSoP19qmdBpz81ylmoQUnxAGpfP.59UbF9ZBlxdypZ36fIZ6*oegHq20Wed95vOJk!/b&amp;amp;bo=kQMRAQAAAAADJ4A!&amp;amp;rf=viewer_4&#34; alt=&#34;1616839871683&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Tips17&lt;/strong&gt;: redis应用于基于时间顺序的数据操作， 而不关注具体时间;&lt;/p&gt;
 </description>
       
     </item>
