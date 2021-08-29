@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>go on Wallis</title>
+    <title>Go on Wallis</title>
     <link>https://bomir.top/tags/go/</link>
-    <description>Recent content in go on Wallis</description>
+    <description>Recent content in Go on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 03 Feb 2021 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/go/index.xml" rel="self" type="application/rss+xml" />
@@ -32,16 +32,6 @@
       
       <guid>https://bomir.top/post/defer-panic-order/</guid>
       <description>​ 之前碰到的一个Golang面试题，关于defer和panic的执行顺序究竟是怎么样的，到底谁先执行谁后执行 ，来回顾验证学习一下； Defer, panic 和 recover Defer</description>
-    </item>
-    
-    <item>
-      <title>Creating a New Theme</title>
-      <link>https://bomir.top/post/creating-a-new-theme/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/creating-a-new-theme/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
-We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
     </item>
     
   </channel>
