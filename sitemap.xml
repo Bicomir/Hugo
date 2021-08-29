@@ -100,27 +100,6 @@
   </url>
   
   <url>
-    <loc>https://bomir.top/tags/%E5%89%91%E6%8C%87offer/</loc>
-    <lastmod>2021-02-12T18:56:34+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://bomir.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2021-02-12T18:56:34+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://bomir.top/post/link-tail-ktoend/</loc>
-    <lastmod>2021-02-12T18:56:34+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://bomir.top/tags/go/</loc>
     <lastmod>2021-02-03T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -501,6 +480,27 @@
   <url>
     <loc>https://bomir.top/post/basic-tornado/</loc>
     <lastmod>2019-07-03T17:51:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/tags/%E5%89%91%E6%8C%87offer/</loc>
+    <lastmod>2019-03-23T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2019-03-23T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/post/link-tail-ktoend/</loc>
+    <lastmod>2019-03-23T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

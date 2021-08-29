@@ -44,15 +44,6 @@
     </item>
     
     <item>
-      <title>链表中倒数最后k个结点</title>
-      <link>https://bomir.top/post/link-tail-ktoend/</link>
-      <pubDate>Fri, 12 Feb 2021 18:56:34 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/link-tail-ktoend/</guid>
-      <description>链表中倒数最后k个结点 来源：牛客网 - JZ14 链表中倒数最后k个结点 描述 输入一个链表，输出一个链表，该输出链表包含原链表中从倒数第k个结点至尾节点的</description>
-    </item>
-    
-    <item>
       <title>Go http.Handler接口</title>
       <link>https://bomir.top/post/go-http-handler/</link>
       <pubDate>Wed, 03 Feb 2021 18:56:34 +0000</pubDate>
@@ -185,6 +176,15 @@
       
       <guid>https://bomir.top/post/netcore-garbagecollection/</guid>
       <description>.NetCore垃圾收集 在本节中，我们将介绍垃圾收集的概念，垃圾收集是.NET托管代码平台最重要的特性之一。 垃圾收集器(GC)管理内存的分配</description>
+    </item>
+    
+    <item>
+      <title>.netcore之Program类</title>
+      <link>https://bomir.top/post/net-core-program_class/</link>
+      <pubDate>Mon, 25 May 2020 22:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/net-core-program_class/</guid>
+      <description>ASP.NET Core 启动和配置 Program类，Main方法 Startup类 其中很核心的思想是(Dependency Injection，依赖注入)； 还有Io</description>
     </item>
     
   </channel>
