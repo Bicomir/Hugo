@@ -6,11 +6,11 @@
     <description>Recent content in 剑指offer on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 20 Mar 2021 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/%E5%89%91%E6%8C%87offer/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Feb 2021 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/%E5%89%91%E6%8C%87offer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>链表中倒数最后k个结点</title>
       <link>https://bomir.top/post/link-tail-ktoend/</link>
-      <pubDate>Sat, 20 Mar 2021 18:56:34 +0000</pubDate>
+      <pubDate>Fri, 12 Feb 2021 18:56:34 +0000</pubDate>
       
       <guid>https://bomir.top/post/link-tail-ktoend/</guid>
       <description>链表中倒数最后k个结点 来源：牛客网 - JZ14 链表中倒数最后k个结点 描述 输入一个链表，输出一个链表，该输出链表包含原链表中从倒数第k个结点至尾节点的</description>
