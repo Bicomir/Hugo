@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 23 Mar 2019 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/%E5%89%91%E6%8C%87offer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>链表中倒数最后k个结点</title>
-      <link>https://bomir.top/post/link-tail-ktoend/</link>
+      <link>https://bomir.top/post/linkktoend/</link>
       <pubDate>Sat, 23 Mar 2019 18:56:34 +0000</pubDate>
       
-      <guid>https://bomir.top/post/link-tail-ktoend/</guid>
+      <guid>https://bomir.top/post/linkktoend/</guid>
       <description>链表中倒数最后k个结点 来源：牛客网 - JZ14 链表中倒数最后k个结点 描述 输入一个链表，输出一个链表，该输出链表包含原链表中从倒数第k个结点至尾节点的</description>
     </item>
     
@@ -23,15 +23,6 @@
       
       <guid>https://bomir.top/post/rebuildbinarytree/</guid>
       <description>重建二叉树 JZ-4 来源 牛客网 JZ-4 题目描述 ​ 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的</description>
-    </item>
-    
-    <item>
-      <title>从尾到头打印链表2</title>
-      <link>https://bomir.top/post/tail-to-head-copy/</link>
-      <pubDate>Mon, 21 Jan 2019 18:56:34 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/tail-to-head-copy/</guid>
-      <description>从尾到头打印链表 来源： https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035 描述 输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。 如输入{1,2,3}的链表如下图: 返回</description>
     </item>
     
     <item>

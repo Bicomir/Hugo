@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 23 Mar 2019 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>链表中倒数最后k个结点</title>
-      <link>https://bomir.top/post/link-tail-ktoend/</link>
+      <link>https://bomir.top/post/linkktoend/</link>
       <pubDate>Sat, 23 Mar 2019 18:56:34 +0000</pubDate>
       
-      <guid>https://bomir.top/post/link-tail-ktoend/</guid>
+      <guid>https://bomir.top/post/linkktoend/</guid>
       <description>链表中倒数最后k个结点 来源：牛客网 - JZ14 链表中倒数最后k个结点 描述 输入一个链表，输出一个链表，该输出链表包含原链表中从倒数第k个结点至尾节点的</description>
     </item>
     
@@ -50,15 +50,6 @@
       
       <guid>https://bomir.top/post/two-sum-sortedinputarray/</guid>
       <description>两数之和 II - 输入有序数组 - 双指针 O(N) 时间复杂度 来源 https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/ 思路 仅仅是遍历数组，找到数组中和为target的两个数；这个是利用了二数之和的解法，属于暴</description>
-    </item>
-    
-    <item>
-      <title>从尾到头打印链表2</title>
-      <link>https://bomir.top/post/tail-to-head-copy/</link>
-      <pubDate>Mon, 21 Jan 2019 18:56:34 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/tail-to-head-copy/</guid>
-      <description>从尾到头打印链表 来源： https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035 描述 输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。 如输入{1,2,3}的链表如下图: 返回</description>
     </item>
     
     <item>

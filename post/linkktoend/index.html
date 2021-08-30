@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>从尾到头打印链表 - Wallis</title>
+  <title>链表中倒数最后k个结点 - Wallis</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="bomir" />
-  <meta name="description" content="从尾到头打印链表 来源： https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035 描述 输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。 如输入{1,2,3}的链表如下图: 返回" />
+  <meta name="description" content="链表中倒数最后k个结点 来源：牛客网 - JZ14 链表中倒数最后k个结点 描述 输入一个链表，输出一个链表，该输出链表包含原链表中从倒数第k个结点至尾节点的" />
 
   <meta name="keywords" content="Hugo, theme, jane" />
 
@@ -35,7 +35,7 @@
 <meta name="generator" content="Hugo 0.85.0" />
 
 
-<link rel="canonical" href="https://bomir.top/post/tail-to-head/" />
+<link rel="canonical" href="https://bomir.top/post/linkktoend/" />
 
 
 
@@ -59,20 +59,20 @@
 
 
 
-<meta property="og:title" content="从尾到头打印链表" />
-<meta property="og:description" content="从尾到头打印链表 来源： https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035 描述 输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。 如输入{1,2,3}的链表如下图: 返回" />
+<meta property="og:title" content="链表中倒数最后k个结点" />
+<meta property="og:description" content="链表中倒数最后k个结点 来源：牛客网 - JZ14 链表中倒数最后k个结点 描述 输入一个链表，输出一个链表，该输出链表包含原链表中从倒数第k个结点至尾节点的" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://bomir.top/post/tail-to-head/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2019-01-20T18:56:34+00:00" />
-<meta property="article:modified_time" content="2019-01-20T18:56:34+00:00" />
+<meta property="og:url" content="https://bomir.top/post/linkktoend/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-03-23T18:56:34+00:00" />
+<meta property="article:modified_time" content="2019-03-23T18:56:34+00:00" />
 
-<meta itemprop="name" content="从尾到头打印链表">
-<meta itemprop="description" content="从尾到头打印链表 来源： https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035 描述 输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。 如输入{1,2,3}的链表如下图: 返回"><meta itemprop="datePublished" content="2019-01-20T18:56:34+00:00" />
-<meta itemprop="dateModified" content="2019-01-20T18:56:34+00:00" />
-<meta itemprop="wordCount" content="1338">
+<meta itemprop="name" content="链表中倒数最后k个结点">
+<meta itemprop="description" content="链表中倒数最后k个结点 来源：牛客网 - JZ14 链表中倒数最后k个结点 描述 输入一个链表，输出一个链表，该输出链表包含原链表中从倒数第k个结点至尾节点的"><meta itemprop="datePublished" content="2019-03-23T18:56:34+00:00" />
+<meta itemprop="dateModified" content="2019-03-23T18:56:34+00:00" />
+<meta itemprop="wordCount" content="911">
 <meta itemprop="keywords" content="剑指offer," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="从尾到头打印链表"/>
-<meta name="twitter:description" content="从尾到头打印链表 来源： https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035 描述 输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。 如输入{1,2,3}的链表如下图: 返回"/>
+<meta name="twitter:title" content="链表中倒数最后k个结点"/>
+<meta name="twitter:description" content="链表中倒数最后k个结点 来源：牛客网 - JZ14 链表中倒数最后k个结点 描述 输入一个链表，输出一个链表，该输出链表包含原链表中从倒数第k个结点至尾节点的"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -334,18 +334,18 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">从尾到头打印链表</h1>
+      <h1 class="post-title">链表中倒数最后k个结点</h1>
       
       <div class="post-meta">
-        <time datetime="2019-01-20" class="post-time">
-          2019-01-20
+        <time datetime="2019-03-23" class="post-time">
+          2019-03-23
         </time>
         <div class="post-category">
             <a href="https://bomir.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"> 数据结构和算法 </a>
             
           </div>
-        <span class="more-meta"> 约 1338 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span class="more-meta"> 约 911 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
         
@@ -364,11 +364,11 @@
   <ul>
     <li><a href="#描述">描述</a></li>
     <li><a href="#示例1">示例1</a></li>
-    <li><a href="#示例2">示例2</a></li>
     <li><a href="#思路">思路</a></li>
     <li><a href="#测试用例">测试用例</a></li>
     <li><a href="#本题考点">本题考点</a></li>
     <li><a href="#高手解法与赏析">高手解法与赏析</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
   </ul>
 </nav>
   </div>
@@ -376,13 +376,10 @@
 
     
     <div class="post-content">
-      <h1 id="从尾到头打印链表">从尾到头打印链表</h1>
-<p>来源： <a href="https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035">https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035</a></p>
+      <h1 id="链表中倒数最后k个结点">链表中倒数最后k个结点</h1>
+<p>来源：<a href="https://www.nowcoder.com/practice/886370fe658f41b498d40fb34ae76ff9?tpId=13&amp;&amp;tqId=11167&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 - JZ14 链表中倒数最后k个结点</a></p>
 <h2 id="描述">描述</h2>
-<p>输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。</p>
-<p>如输入{1,2,3}的链表如下图:</p>
-<p><img src="https://uploadfiles.nowcoder.com/images/20210717/557336_1626506480516/103D87B58E565E87DEFA9DD0B822C55F" alt=""></p>
-<p>返回一个数组为[3,2,1]，0 &lt;= 链表长度 &lt;= 1000</p>
+<p>输入一个链表，输出一个链表，该输出链表包含原链表中从倒数第k个结点至尾节点的全部节点。如果该链表长度小于k，请返回一个长度为 0 的链表。</p>
 <h2 id="示例1">示例1</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -390,26 +387,15 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">输入：<span class="o">{</span>1,2,3<span class="o">}</span>
-返回值：<span class="o">[</span>3,2,1<span class="o">]</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="示例2">示例2</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">输入：<span class="o">{</span>67,0,24,58<span class="o">}</span>
-返回值：<span class="o">[</span>58,24,0,67<span class="o">]</span>
+<pre class="chroma"><code class="language-shell" data-lang="shell">输入：<span class="o">{</span>1,2,3,4,5<span class="o">}</span>,1 
+返回值：<span class="o">{</span>5<span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="思路">思路</h2>
 <blockquote>
-<p>(1) 一开始很多人拿到这个题，很自然的想到是否直接把链表中的链接结点的指针反转过来，改变链表的方向，那么很自然的就实现了从头到尾的输出了。然而这个方法会改变原来链表的结构， 是否会允许我们在打印链表时候改变链表的结构？这取决于面试官的需求。</p>
-<p>(2) 一般是不允许的，打印时不能修改原有链表的结构；那么解决这个链表肯定是需要遍历链表，当前遍历是从头到尾的顺序，要求的顺序是 从尾到头。也就是说  第一个节点最后一个输出， 这不就是 &ldquo;后进先出&quot;么， 我们立即想到用栈来实现这个顺序。</p>
-<p>每经历一个结点的时候，就把它压入到一个栈中，当遍历到整个链表后，再从栈顶开始逐个输出结点的值，此时输出结点的顺序已经反转过来了。</p>
+<p>(1) 我的想法是基于链表先构建一个切片， 切片对于索引的查找很便捷。</p>
+<p>(2) 对于倒数k个结点到尾结点利用切片的特性[len(recordList) - k:]可以获取；</p>
+<p>(3) 基于结果切片的数据构建对应该切片的链表；</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -428,7 +414,6 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 定义链表结构
@@ -446,10 +431,10 @@
 	<span class="p">}</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
 <span class="p">}</span>
-
 </code></pre></td></tr></table>
 </div>
-</div><p><em>ps: my ugly code</em></p>
+</div><p>其实这个思路也就是网上盛传的“数组法”, 大意是：把每个节点装进数组中，访问倒数第 k 个元素。</p>
+<p>ps: my ugly code*</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -498,32 +483,10 @@
 </span><span class="lnt">44
 </span><span class="lnt">45
 </span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 <span class="kn">import</span> <span class="p">.</span> <span class="s">&#34;nc_tools&#34;</span>
-<span class="kn">import</span> <span class="s">&#34;errors&#34;</span>
 <span class="cm">/*
 </span><span class="cm"> * type ListNode struct{
 </span><span class="cm"> *   Val int
@@ -533,89 +496,44 @@
 
 <span class="cm">/**
 </span><span class="cm"> * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+</span><span class="cm"> *
 </span><span class="cm"> * 
-</span><span class="cm"> * @param head ListNode类 
-</span><span class="cm"> * @return int整型一维数组
-</span><span class="cm">*/</span><span class="c1">// 实现一个栈
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Stack</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span>
-
-<span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="o">*</span><span class="nx">Stack</span><span class="p">)</span> <span class="nf">Push</span><span class="p">(</span><span class="nx">value</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
-	<span class="o">*</span><span class="nx">stack</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="o">*</span><span class="nx">stack</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="nx">Stack</span><span class="p">)</span> <span class="nf">Top</span><span class="p">()</span> <span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;Out of index, len is 0&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="nx">stack</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="kc">nil</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="o">*</span><span class="nx">Stack</span><span class="p">)</span> <span class="nf">Pop</span><span class="p">()</span> <span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">theStack</span> <span class="o">:=</span> <span class="o">*</span><span class="nx">stack</span>
-	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">theStack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;out of index, len is 0&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-
-	<span class="nx">value</span> <span class="o">:=</span> <span class="nx">theStack</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">theStack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-	<span class="o">*</span><span class="nx">stack</span> <span class="p">=</span> <span class="nx">theStack</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">theStack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-	<span class="k">return</span> <span class="nx">value</span><span class="p">,</span> <span class="kc">nil</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="nx">Stack</span><span class="p">)</span> <span class="nf">IsEmpty</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
-	<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
-<span class="p">}</span>
-
-
-<span class="kd">func</span> <span class="nf">printListFromTailToHead</span><span class="p">(</span> <span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+</span><span class="cm"> * @param pHead ListNode类 
+</span><span class="cm"> * @param k int整型 
+</span><span class="cm"> * @return ListNode类
+</span><span class="cm">*/</span>
+<span class="kd">func</span> <span class="nf">FindKthToTail</span><span class="p">(</span> <span class="nx">pHead</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">,</span>  <span class="nx">k</span> <span class="kt">int</span> <span class="p">)</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">{</span>
     <span class="c1">// write code here
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">nodeStack</span> <span class="nx">Stack</span>
-	<span class="kd">var</span> <span class="nx">pNode</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">ListNode</span><span class="p">)</span>
-	<span class="nx">pNode</span> <span class="p">=</span> <span class="nx">head</span>
-	<span class="k">for</span> <span class="nx">pNode</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">nodeStack</span><span class="p">.</span><span class="nf">Push</span><span class="p">(</span><span class="nx">pNode</span><span class="p">)</span>
-		<span class="nx">pNode</span> <span class="p">=</span> <span class="nx">pNode</span><span class="p">.</span><span class="nx">Next</span>
+</span><span class="c1"></span>    <span class="nx">tmp</span> <span class="o">:=</span> <span class="nx">pHead</span>
+	<span class="kd">var</span> <span class="nx">recordList</span> <span class="p">[]</span><span class="kt">int</span>
+	<span class="k">for</span> <span class="nx">tmp</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
+		<span class="nx">recordList</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">recordList</span><span class="p">,</span> <span class="nx">tmp</span><span class="p">.</span><span class="nx">Val</span><span class="p">)</span>
+		<span class="nx">tmp</span> <span class="p">=</span> <span class="nx">tmp</span><span class="p">.</span><span class="nx">Next</span>
 	<span class="p">}</span>
 
-	<span class="kd">var</span> <span class="nx">res</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nodeStack</span><span class="p">))</span>
-	<span class="nx">index</span> <span class="o">:=</span> <span class="mi">0</span>
-	<span class="k">for</span> <span class="p">!</span><span class="nx">nodeStack</span><span class="p">.</span><span class="nf">IsEmpty</span><span class="p">()</span> <span class="p">{</span>
-		<span class="nx">top</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">nodeStack</span><span class="p">.</span><span class="nf">Top</span><span class="p">()</span>
-		<span class="nx">node</span> <span class="o">:=</span> <span class="nx">top</span><span class="p">.(</span><span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">recordList</span><span class="p">)</span> <span class="p">&lt;</span> <span class="nx">k</span><span class="p">{</span>
+		<span class="k">return</span> <span class="kc">nil</span>
+	<span class="p">}</span>
 
-		<span class="nx">res</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="p">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">Val</span>
-		<span class="nx">_</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">nodeStack</span><span class="p">.</span><span class="nf">Pop</span><span class="p">()</span>
-		<span class="nx">index</span><span class="o">++</span>
+	<span class="c1">// 基于resList构建链表
+</span><span class="c1"></span>	<span class="nx">resList</span> <span class="o">:=</span> <span class="nx">recordList</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">recordList</span><span class="p">)</span> <span class="o">-</span> <span class="nx">k</span><span class="p">:]</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">resList</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">{</span>
+		<span class="k">return</span> <span class="kc">nil</span>
+	<span class="p">}</span>
+	<span class="nx">res</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">ListNode</span><span class="p">{</span>
+		<span class="nx">Val</span><span class="p">:</span><span class="nx">resList</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+	<span class="p">}</span>
+
+	<span class="nx">temp</span> <span class="o">:=</span> <span class="nx">res</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="p">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="nx">resList</span><span class="p">);</span><span class="nx">i</span><span class="o">++</span>  <span class="p">{</span>
+		<span class="nx">temp</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">ListNode</span><span class="p">{</span> <span class="nx">Val</span><span class="p">:</span>  <span class="nx">resList</span><span class="p">[</span><span class="nx">i</span><span class="p">]}</span>
+		<span class="nx">temp</span> <span class="p">=</span> <span class="nx">temp</span><span class="p">.</span><span class="nx">Next</span>
 	<span class="p">}</span>
 	<span class="k">return</span> <span class="nx">res</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>​	既然都已经用栈来实现了这个函数，我们知道递归本质上就是一个栈结构；很自然的想到了用递归来实现，要想实现反过来输出链表，每访问一个结点的时候，先递归输出它后面的结点，再输出该结点自身， 这样链表的输出结果就反过来了；</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">printListFromTailToHead_Recursively</span><span class="p">(</span><span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="nx">head</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
-		<span class="k">if</span> <span class="nx">head</span><span class="p">.</span><span class="nx">Next</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
-			<span class="nf">printListFromTailToHead_Recursively</span><span class="p">(</span><span class="nx">head</span><span class="p">.</span><span class="nx">Next</span><span class="p">)</span>
-		<span class="p">}</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">head</span><span class="p">.</span><span class="nx">Val</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>上面用递归实现的看起简单， 但是是不是就没什么问题？ 答案是否定的；</p>
-<p>当链表非常长的时候，就会导致函数的调用层级很深，进而有可能导致函数的调用栈溢出；相比起来，显式的用栈基于循环实现的代码的鲁棒性要更好一些；</p>
-<h2 id="测试用例">测试用例</h2>
+</div><h2 id="测试用例">测试用例</h2>
 <blockquote>
 <ul>
 <li>功能测试（输入的链表有多个节点，输入的链表只有一个节点）</li>
@@ -626,10 +544,19 @@
 <blockquote>
 <ul>
 <li>考察单链表的理解和编程能力；</li>
-<li>考察对循环，递归和栈3个相互关联的概念和理解；</li>
+<li>考察对循环，链表的遍历和 查找，构建等；</li>
 </ul>
 </blockquote>
 <h2 id="高手解法与赏析">高手解法与赏析</h2>
+<blockquote>
+<p><strong>双指针法</strong></p>
+<ul>
+<li>用两个指针 left, right 指向头节点</li>
+<li>把 right 指针后移 k 个位置</li>
+<li>把 left, right 同时后移直到 right 到链表尾部，此时 left 指向的就是倒数第 k 个节点</li>
+</ul>
+</blockquote>
+<p><a href="https://imgtu.com/i/hJQIMt"><img src="https://z3.ax1x.com/2021/08/30/hJQIMt.png" alt="hJQIMt.png"></a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -646,45 +573,58 @@
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/*
-</span><span class="cm">a.实际上是一种往列表头部插入的一个思路了；
-</span><span class="cm">
-</span><span class="cm">b.ArrayList 中有个方法是 add(index,value)，可以指定 index 位置插入 value 值
-</span><span class="cm">所以我们在遍历 listNode 的同时将每个遇到的值插入到 list 的 0 位置，最后输出 listNode 即可得到逆序链表；
-</span><span class="cm">
-</span><span class="cm">c.复杂度
-</span><span class="cm">时间复杂度：O(n)
-</span><span class="cm">空间复杂度：O(n)
-</span><span class="cm">
-</span><span class="cm">*/</span>
-
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">printListFromTailToHead</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">listNode</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-        <span class="n">ListNode</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">listNode</span><span class="o">;</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">tmp</span><span class="o">!=</span><span class="kc">null</span><span class="o">){</span>
-            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">tmp</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
-            <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// c++
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<span class="kd">public</span><span class="o">:</span>
+ <span class="n">ListNode</span><span class="o">*</span> <span class="n">FindKthToTail</span><span class="o">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">pHead</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+     <span class="n">ListNode</span><span class="o">*</span> <span class="n">r</span> <span class="o">=</span> <span class="n">pHead</span><span class="o">;</span>
+     <span class="k">while</span> <span class="o">(</span><span class="n">k</span><span class="o">--</span> <span class="o">&amp;&amp;</span> <span class="n">r</span><span class="o">)</span> 
+         <span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">;</span> <span class="c1">// 移动右侧指针造成 k 的距离差
+</span><span class="c1"></span>     <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">nullptr</span><span class="o">;</span> <span class="c1">// 此时说明 k 比链表长度长
+</span><span class="c1"></span>     <span class="n">ListNode</span><span class="o">*</span> <span class="n">l</span> <span class="o">=</span> <span class="n">pHead</span><span class="o">;</span>
+     <span class="k">while</span> <span class="o">(</span><span class="n">r</span><span class="o">)</span>
+         <span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">;</span> <span class="c1">// 两个指针一起移动找到倒数第 k 个节点
+</span><span class="c1"></span>     <span class="k">return</span> <span class="n">l</span><span class="o">;</span>
+ <span class="o">}</span>
+<span class="o">};</span>
 </code></pre></td></tr></table>
 </div>
+</div><p>或者给出一个Python解法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># python3</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+ <span class="k">def</span> <span class="nf">FindKthToTail</span><span class="p">(</span><span class="bp">self</span> <span class="p">,</span> <span class="n">p</span> <span class="p">,</span> <span class="n">k</span> <span class="p">):</span>
+     <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span> 
+     <span class="k">while</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">r</span><span class="p">:</span>
+         <span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">next</span>
+         <span class="n">k</span> <span class="o">-=</span> <span class="mi">1</span>
+     <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="kc">None</span> <span class="o">//</span> <span class="n">判断不合法的</span> <span class="n">k</span> <span class="n">值</span>
+     <span class="k">while</span> <span class="n">r</span><span class="p">:</span>
+         <span class="n">l</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">next</span>
+         <span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">next</span>
+     <span class="k">return</span> <span class="n">l</span>
+</code></pre></td></tr></table>
 </div>
+</div><h2 id="参考资料">参考资料</h2>
+<p><a href="https://www.nowcoder.com/practice/886370fe658f41b498d40fb34ae76ff9?tpId=13&amp;&amp;tqId=11167&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网精华题解</a></p>
+
     </div>
 
     
@@ -697,7 +637,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-      2019-01-20
+      2019-03-23
       
     </span>
   </p>
@@ -721,7 +661,7 @@
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/two-sum-sortedinputarray/">
+          <a class="prev" href="/post/basic-tornado/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -731,12 +671,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default">两数之和II - 输入有序数组</span>
+            <span class="prev-text nav-default">浅谈Tornado</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/reverse-list/">
-            <span class="next-text nav-default">反转链表</span>
+          <a class="next" href="/post/web-servers-choose/">
+            <span class="next-text nav-default">web服务器纵览</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
