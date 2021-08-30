@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>二叉树中和为某一值的路径</title>
+      <link>https://bomir.top/post/pathsum-is-target/</link>
+      <pubDate>Fri, 22 Mar 2019 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/pathsum-is-target/</guid>
+      <description>二叉树中和为某一值的路径 来源：牛客网 JZ24 描述 输入一颗二叉树的根节点和一个整数，按字典序打印出二叉树中结点值的和为输入整数的所有路径。路径定义为</description>
+    </item>
+    
+    <item>
       <title>重建二叉树</title>
       <link>https://bomir.top/post/rebuildbinarytree/</link>
       <pubDate>Mon, 28 Jan 2019 18:56:34 +0000</pubDate>
