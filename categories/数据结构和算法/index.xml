@@ -6,16 +6,7 @@
     <description>Recent content in 数据结构和算法 on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 23 Mar 2019 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>链表中倒数最后k个结点</title>
-      <link>https://bomir.top/post/ktoend/</link>
-      <pubDate>Sat, 23 Mar 2019 18:56:34 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/ktoend/</guid>
-      <description>链表中倒数最后k个结点 来源：牛客网 - JZ14 链表中倒数最后k个结点 描述 输入一个链表，输出一个链表，该输出链表包含原链表中从倒数第k个结点至尾节点的</description>
-    </item>
-    
+    <lastBuildDate>Fri, 22 Mar 2019 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>二叉树中和为某一值的路径</title>
       <link>https://bomir.top/post/pathsum-is-target/</link>
@@ -23,6 +14,15 @@
       
       <guid>https://bomir.top/post/pathsum-is-target/</guid>
       <description>二叉树中和为某一值的路径 来源：牛客网 JZ24 描述 输入一颗二叉树的根节点和一个整数，按字典序打印出二叉树中结点值的和为输入整数的所有路径。路径定义为</description>
+    </item>
+    
+    <item>
+      <title>链表中倒数最后k个结点</title>
+      <link>https://bomir.top/post/ktoend/</link>
+      <pubDate>Tue, 19 Mar 2019 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/ktoend/</guid>
+      <description>链表中倒数最后k个结点 来源：牛客网 - JZ14 链表中倒数最后k个结点 描述 输入一个链表，输出一个链表，该输出链表包含原链表中从倒数第k个结点至尾节点的</description>
     </item>
     
     <item>
