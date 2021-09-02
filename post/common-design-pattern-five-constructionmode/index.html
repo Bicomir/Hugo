@@ -69,7 +69,7 @@
 <meta itemprop="name" content="常用设计模式-5种创建型模式">
 <meta itemprop="description" content="设计模式 ​ — 可复用面向对象软件的基础 总体来说， 设计模式主要分为三大类： 创建型模式： 共5种： 工厂方法模式， 抽象工厂模式， 单例模式， 建造者模式，"><meta itemprop="datePublished" content="2020-10-15T20:51:05+00:00" />
 <meta itemprop="dateModified" content="2020-10-15T20:51:05+00:00" />
-<meta itemprop="wordCount" content="6208">
+<meta itemprop="wordCount" content="6211">
 <meta itemprop="keywords" content="设计模式," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="常用设计模式-5种创建型模式"/>
 <meta name="twitter:description" content="设计模式 ​ — 可复用面向对象软件的基础 总体来说， 设计模式主要分为三大类： 创建型模式： 共5种： 工厂方法模式， 抽象工厂模式， 单例模式， 建造者模式，"/>
@@ -344,7 +344,7 @@
             <a href="https://bomir.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> 设计模式 </a>
             
           </div>
-        <span class="more-meta"> 约 6208 字 </span>
+        <span class="more-meta"> 约 6211 字 </span>
           <span class="more-meta"> 预计阅读 13 分钟 </span>
 
         
@@ -423,9 +423,7 @@ The dependency of one class to another one should depend on the smallest possibl
 <p>1、上层模块不应该依赖底层模块，它们都应该依赖于抽象。
 2、抽象不应该依赖于细节，细节应该依赖于抽象。</p>
 <p><code>High level modules should not depend upon low level modules. Both should depend upon abstractions.Abstractions should not depend upon details. Details should depend upon abstractions.</code></p>
-<ul>
-<li><strong>合成复用法则</strong> （Composite Reuse Principle）</li>
-</ul>
+<p>（7）<strong>合成复用法则</strong> （Composite Reuse Principle）</p>
 <p>原则是尽量使用合成/聚合的方式，而不是使用继承。</p>
 <p>现有的23种设计模式的概念，应用场景等情况， 并结合他们的特点及设计模式的原则进行分析；</p>
 <p>本次设计模式的code， 使用java来实现， 去体会设计模式的魅力所在；</p>
@@ -531,7 +529,7 @@ The dependency of one class to another one should depend on the smallest possibl
 </div>
 </div><h3 id="2多个工厂方法模式">2.多个工厂方法模式</h3>
 <p>是对普通工厂模式的改进，在普通工厂方法模式中，如果传递的字符串出错，则不能正确的创建对象，而多个工厂方法模式是提供多个工厂方法，分别创建对象；关系图如下：</p>
-<p><img src="http://dl.iteye.com/upload/attachment/0083/1181/84673ccf-ef89-3774-b5cf-6d2523cd03e5.jpg" alt=""></p>
+<p><a href="https://imgtu.com/i/hDNgOI"><img src="https://z3.ax1x.com/2021/09/02/hDNgOI.jpg" alt="hDNgOI.jpg"></a></p>
 <p>将上面的代码做下修改，改动下SendFactory类就行，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -644,7 +642,7 @@ The dependency of one class to another one should depend on the smallest possibl
 <h2 id="抽象工厂模式">抽象工厂模式</h2>
 <p>Abstract Factory</p>
 <p>工厂方法模式有一个问题就是，类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了开闭原则，所以，从设计角度考虑，有一定的问题，如何解决？就用到抽象工厂模式，创建多个工厂类，这样一旦需要增加新的功能，直接增加新的工厂类就可以了，不需要修改之前的代码。因为抽象工厂不太好理解，我们先看看图，然后就和代码，就比较容易理解。</p>
-<p><img src="http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcVj6V1ZXMNZpOuh4YKgjhrV1BfeZN*o6jLrnXKQUeXVYEC2uwi0ti5Hj4MaDQkTgJ8qXm*RvHYTFQrWzQcSRkD8!/b&amp;bo=1AInAQAAAAADF8I!&amp;rf=viewer_4" alt=""></p>
+<p><a href="https://imgtu.com/i/hDNDYD"><img src="https://z3.ax1x.com/2021/09/02/hDNDYD.png" alt="hDNDYD.png"></a></p>
 <p>两个工厂类：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
