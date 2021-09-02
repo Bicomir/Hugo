@@ -9,10 +9,10 @@
     <lastBuildDate>Tue, 09 Apr 2019 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/%E5%89%91%E6%8C%87offer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>用两个栈实现队列</title>
-      <link>https://bomir.top/post/queuewithtwostacks/</link>
+      <link>https://bomir.top/post/queue-with-twostacks/</link>
       <pubDate>Tue, 09 Apr 2019 18:56:34 +0000</pubDate>
       
-      <guid>https://bomir.top/post/queuewithtwostacks/</guid>
+      <guid>https://bomir.top/post/queue-with-twostacks/</guid>
       <description>用两个栈实现队列 来源：牛客网 JZ5 描述 用两个栈来实现一个队列，分别完成在队列尾部插入整数(push)和在队列头部删除整数(pop)的功能。 队列中</description>
     </item>
     
