@@ -16,5 +16,14 @@
       <description>《RabbitMQ入门之Go语言教程》(1) Hello World RabbitMQ是一个开源的、使用最广的消息转发器。提供匿名消息类型，可使用多种消息协议、消</description>
     </item>
     
+    <item>
+      <title>RabbitMQ入门基础</title>
+      <link>https://bomir.top/post/rabbitmq-basic/</link>
+      <pubDate>Tue, 21 Jul 2020 21:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/rabbitmq-basic/</guid>
+      <description>RabbitMQ简介 RabbitMQ是一个开源的消息代理的队列服务器，用来通过普通协议在完全不同的应用之间共享数据。 RabbitMQ是使用E</description>
+    </item>
+    
   </channel>
 </rss>

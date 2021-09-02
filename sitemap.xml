@@ -296,6 +296,13 @@
   </url>
   
   <url>
+    <loc>https://bomir.top/post/rabbitmq-basic/</loc>
+    <lastmod>2020-07-21T21:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://bomir.top/post/mysql-ehancement/</loc>
     <lastmod>2020-07-12T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
