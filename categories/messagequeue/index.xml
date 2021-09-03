@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>RabbitMQ入门之Go语言教程-(2)</title>
+      <link>https://bomir.top/post/rabbit-go-2/</link>
+      <pubDate>Tue, 11 Aug 2020 21:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/rabbit-go-2/</guid>
+      <description>RabbitMQ官网的消息模型的第二种-Work Queue（工作队列）； 第二种模型（Work Queue） 介绍 Work queues, 也被称为(Task queues), 任务模型</description>
+    </item>
+    
+    <item>
       <title>RabbitMQ入门之Go语言教程-(1)</title>
       <link>https://bomir.top/post/rabbit-go-1/</link>
       <pubDate>Fri, 31 Jul 2020 21:19:05 +0000</pubDate>

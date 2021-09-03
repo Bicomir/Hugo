@@ -283,7 +283,14 @@
   
   <url>
     <loc>https://bomir.top/tags/rabbitmq/</loc>
-    <lastmod>2020-07-31T21:19:05+00:00</lastmod>
+    <lastmod>2020-08-11T21:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/post/rabbit-go-2/</loc>
+    <lastmod>2020-08-11T21:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
