@@ -152,6 +152,15 @@
     </item>
     
     <item>
+      <title>RabbitMQ入门之Go语言教程-(3)</title>
+      <link>https://bomir.top/post/rabbit-go-3/</link>
+      <pubDate>Wed, 12 Aug 2020 21:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/rabbit-go-3/</guid>
+      <description>RabbitMQ官网的消息模型的第三种-发布/订阅模式 发布/订阅 (using the Go RabbitMQ client) ​ 在上一个教程中我们创建了一个work queue。work queu</description>
+    </item>
+    
+    <item>
       <title>RabbitMQ入门之Go语言教程-(2)</title>
       <link>https://bomir.top/post/rabbit-go-2/</link>
       <pubDate>Tue, 11 Aug 2020 21:19:05 +0000</pubDate>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/rabbitmq-basic/</guid>
       <description>RabbitMQ简介 RabbitMQ是一个开源的消息代理的队列服务器，用来通过普通协议在完全不同的应用之间共享数据。 RabbitMQ是使用E</description>
-    </item>
-    
-    <item>
-      <title>MySQL优化笔记</title>
-      <link>https://bomir.top/post/mysql-ehancement/</link>
-      <pubDate>Sun, 12 Jul 2020 22:19:05 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/mysql-ehancement/</guid>
-      <description>MySQL 分层、存储引擎 mysql 分层 连接层 提供与客户端连接的服务 服务层 提供各种用户使用的接口 提供 SQL 优化器（MySQL Query Optimizer） 引擎层 提供各种存</description>
     </item>
     
   </channel>

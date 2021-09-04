@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>RabbitMQ入门之Go语言教程-(3)</title>
+      <link>https://bomir.top/post/rabbit-go-3/</link>
+      <pubDate>Wed, 12 Aug 2020 21:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/rabbit-go-3/</guid>
+      <description>RabbitMQ官网的消息模型的第三种-发布/订阅模式 发布/订阅 (using the Go RabbitMQ client) ​ 在上一个教程中我们创建了一个work queue。work queu</description>
+    </item>
+    
+    <item>
       <title>RabbitMQ入门之Go语言教程-(2)</title>
       <link>https://bomir.top/post/rabbit-go-2/</link>
       <pubDate>Tue, 11 Aug 2020 21:19:05 +0000</pubDate>
