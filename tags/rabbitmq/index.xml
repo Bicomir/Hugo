@@ -6,7 +6,16 @@
     <description>Recent content in RabbitMQ on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 12 Aug 2020 21:19:05 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Aug 2020 21:19:05 +0000</lastBuildDate><atom:link href="https://bomir.top/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RabbitMQ入门之Go语言教程-(4)</title>
+      <link>https://bomir.top/post/rabbit-go-4/</link>
+      <pubDate>Fri, 14 Aug 2020 21:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/rabbit-go-4/</guid>
+      <description>RabbitMQ官网的消息模型的第四种-路由模式 路由(routing) (using the Go RabbitMQ client) 在上一教程中，我们构建了一个简单的日志记录系统。我们能够向许</description>
+    </item>
+    
     <item>
       <title>RabbitMQ入门之Go语言教程-(3)</title>
       <link>https://bomir.top/post/rabbit-go-3/</link>
