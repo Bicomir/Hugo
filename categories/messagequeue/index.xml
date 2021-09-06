@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>RabbitMQ入门之Go语言教程-(5)</title>
+      <link>https://bomir.top/post/rabbit-go-5/</link>
+      <pubDate>Sat, 15 Aug 2020 21:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/rabbit-go-5/</guid>
+      <description>RabbitMQ官网的消息模型的第五种-Topic topic交换器 topic(主题)交换器 ​ 发送到topic交换器的消息不能具有随意的rou</description>
+    </item>
+    
+    <item>
       <title>RabbitMQ入门之Go语言教程-(4)</title>
       <link>https://bomir.top/post/rabbit-go-4/</link>
       <pubDate>Fri, 14 Aug 2020 21:19:05 +0000</pubDate>

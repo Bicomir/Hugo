@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>RabbitMQ入门之Go语言教程-(4) - Wallis</title>
+  <title>RabbitMQ入门之Go语言教程-(5) - Wallis</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="bomir" />
-  <meta name="description" content="RabbitMQ官网的消息模型的第四种-路由模式 路由(routing) (using the Go RabbitMQ client) 在上一教程中，我们构建了一个简单的日志记录系统。我们能够向许" />
+  <meta name="description" content="RabbitMQ官网的消息模型的第五种-Topic topic交换器 topic(主题)交换器 ​ 发送到topic交换器的消息不能具有随意的rou" />
 
   <meta name="keywords" content="Hugo, theme, jane" />
 
@@ -35,7 +35,7 @@
 <meta name="generator" content="Hugo 0.85.0" />
 
 
-<link rel="canonical" href="https://bomir.top/post/rabbit-go-4/" />
+<link rel="canonical" href="https://bomir.top/post/rabbit-go-5/" />
 
 
 
@@ -59,20 +59,20 @@
 
 
 
-<meta property="og:title" content="RabbitMQ入门之Go语言教程-(4)" />
-<meta property="og:description" content="RabbitMQ官网的消息模型的第四种-路由模式 路由(routing) (using the Go RabbitMQ client) 在上一教程中，我们构建了一个简单的日志记录系统。我们能够向许" />
+<meta property="og:title" content="RabbitMQ入门之Go语言教程-(5)" />
+<meta property="og:description" content="RabbitMQ官网的消息模型的第五种-Topic topic交换器 topic(主题)交换器 ​ 发送到topic交换器的消息不能具有随意的rou" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://bomir.top/post/rabbit-go-4/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-08-14T21:19:05+00:00" />
-<meta property="article:modified_time" content="2020-08-14T21:19:05+00:00" />
+<meta property="og:url" content="https://bomir.top/post/rabbit-go-5/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-08-15T21:19:05+00:00" />
+<meta property="article:modified_time" content="2020-08-15T21:19:05+00:00" />
 
-<meta itemprop="name" content="RabbitMQ入门之Go语言教程-(4)">
-<meta itemprop="description" content="RabbitMQ官网的消息模型的第四种-路由模式 路由(routing) (using the Go RabbitMQ client) 在上一教程中，我们构建了一个简单的日志记录系统。我们能够向许"><meta itemprop="datePublished" content="2020-08-14T21:19:05+00:00" />
-<meta itemprop="dateModified" content="2020-08-14T21:19:05+00:00" />
-<meta itemprop="wordCount" content="2802">
+<meta itemprop="name" content="RabbitMQ入门之Go语言教程-(5)">
+<meta itemprop="description" content="RabbitMQ官网的消息模型的第五种-Topic topic交换器 topic(主题)交换器 ​ 发送到topic交换器的消息不能具有随意的rou"><meta itemprop="datePublished" content="2020-08-15T21:19:05+00:00" />
+<meta itemprop="dateModified" content="2020-08-15T21:19:05+00:00" />
+<meta itemprop="wordCount" content="2245">
 <meta itemprop="keywords" content="RabbitMQ," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="RabbitMQ入门之Go语言教程-(4)"/>
-<meta name="twitter:description" content="RabbitMQ官网的消息模型的第四种-路由模式 路由(routing) (using the Go RabbitMQ client) 在上一教程中，我们构建了一个简单的日志记录系统。我们能够向许"/>
+<meta name="twitter:title" content="RabbitMQ入门之Go语言教程-(5)"/>
+<meta name="twitter:description" content="RabbitMQ官网的消息模型的第五种-Topic topic交换器 topic(主题)交换器 ​ 发送到topic交换器的消息不能具有随意的rou"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -334,18 +334,18 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">RabbitMQ入门之Go语言教程-(4)</h1>
+      <h1 class="post-title">RabbitMQ入门之Go语言教程-(5)</h1>
       
       <div class="post-meta">
-        <time datetime="2020-08-14" class="post-time">
-          2020-08-14
+        <time datetime="2020-08-15" class="post-time">
+          2020-08-15
         </time>
         <div class="post-category">
             <a href="https://bomir.top/categories/messagequeue/"> MessageQueue </a>
             
           </div>
-        <span class="more-meta"> 约 2802 字 </span>
-          <span class="more-meta"> 预计阅读 6 分钟 </span>
+        <span class="more-meta"> 约 2245 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
 
         
         
@@ -362,14 +362,10 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#路由routing">路由(routing)</a>
+    <li><a href="#topic交换器">topic交换器</a>
       <ul>
-        <li><a href="#绑定">绑定</a></li>
-        <li><a href="#direct交换器">Direct交换器</a></li>
-        <li><a href="#多重绑定">多重绑定</a></li>
-        <li><a href="#发送日志">发送日志</a></li>
-        <li><a href="#订阅">订阅</a></li>
-        <li><a href="#完整demo">完整demo</a></li>
+        <li><a href="#topic主题交换器">topic(主题)交换器</a></li>
+        <li><a href="#测试">测试</a></li>
       </ul>
     </li>
     <li><a href="#参考资料">参考资料</a></li>
@@ -380,225 +376,50 @@
 
     
     <div class="post-content">
-      <p>RabbitMQ官网的消息模型的第四种-路由模式</p>
-<h2 id="路由routing">路由(routing)</h2>
-<p><strong>(using the Go RabbitMQ client)</strong></p>
-<p>在<a href="https://bomir.top/post/rabbit-go-3/">上一教程</a>中，我们构建了一个简单的日志记录系统。我们能够向许多接收者广播日志消息。</p>
-<p>在本教程中，我们将向它添加一个特性-我们将使它能够只订阅消息的一个子集。例如，我们将只能将关键错误消息定向到日志文件（以节省磁盘空间），同时仍然能够在控制台上打印所有日志消息。</p>
-<h3 id="绑定">绑定</h3>
-<p>在前面的示例中，我们已经在创建绑定。你可能会想起以下代码：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
-  <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue name
-</span><span class="c1"></span>  <span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// routing key
-</span><span class="c1"></span>  <span class="s">&#34;logs&#34;</span><span class="p">,</span> <span class="c1">// exchange
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>
-  <span class="kc">nil</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>绑定是交换器和队列之间的关系。这可以简单地理解为：队列对来自此交换器的消息感兴趣。</p>
-<p>绑定可以采用额外的<code>routing_key</code>参数。为了避免与<code>Channel.Publish</code>参数混淆，我们将其称为<code>binding key</code>。这是我们如何使用键创建绑定的方法：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
-  <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>    <span class="c1">// queue name
-</span><span class="c1"></span>  <span class="s">&#34;black&#34;</span><span class="p">,</span>   <span class="c1">// routing key
-</span><span class="c1"></span>  <span class="s">&#34;logs&#34;</span><span class="p">,</span>    <span class="c1">// exchange
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>
-  <span class="kc">nil</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>绑定密钥的含义取决于交换器的类型。我们以前使用的<code>fanout</code>交换器只是忽略了这个值。</p>
-<h3 id="direct交换器">Direct交换器</h3>
-<p>我们上一个教程中的日志系统将所有消息广播给所有消费者。我们希望扩展这一点，允许根据消息的严重性过滤消息。例如，我们可能希望将日志消息写入磁盘的脚本只接收严重错误，而不会在warning或info日志消息上浪费磁盘空间。</p>
-<p>我们使用<code>fanout</code>交换器，这并没有给我们很大的灵活性——它只能进行无脑广播。</p>
-<p>我们将使用<code>direct</code>交换器。<code>direct</code>交换器背后的路由算法很简单——消息进入其<code>binding key</code>与消息的<code>routing key</code>完全匹配的队列。</p>
-<p>为了说明这一点，请考虑以下设置：</p>
-<p><img src="https://bomir.top/pics/rabbitMQ4/direct-exchange.png" alt=""></p>
-<p>在此设置中，我们可以看到绑定了两个队列的<code>direct</code>交换器<code>X</code>。第一个队列绑定键为<code>orange</code>，第二个队列绑定为两个，一个绑定键为<code>black</code>，另一个为<code>green</code>。</p>
-<p>在这种设置中，使用<code>orange</code>路由键发布到交换器的消息将被路由到队列<code>Q1</code>。路由键为<code>black</code>或<code>green</code>的消息将转到<code>Q2</code>。所有其他消息将被丢弃。</p>
-<h3 id="多重绑定">多重绑定</h3>
-<p><img src="https://bomir.top/pics/rabbitMQ4/direct-exchange-multiple.png" alt=""></p>
-<p>用相同的绑定键绑定多个队列是完全合法的。在我们的示例中，我们可以使用绑定键<code>black</code>在<code>X</code>和<code>Q1</code>之间添加绑定。在这种情况下，<code>direct</code>交换器的行为将类似<code>fanout</code>，并将消息广播到所有匹配的队列。带有<code>black</code>路由键的消息将同时传递给<code>Q1</code>和<code>Q2</code>。</p>
-<h3 id="发送日志">发送日志</h3>
-<p>我们将在日志系统中使用这个模型。我们将发送消息到<code>direct</code>交换器，而不是<code>fanout</code>。我们将提供严重性（译注：通常我们使用日志级别划分日志信息的严重程度）作为路由键。这样，接收脚本将能够选择其想要接收的日志级别。让我们首先关注发送日志。</p>
-<p>与以前一样，我们需要首先创建一个交换器：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
-  <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
-</span><span class="c1"></span>  <span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
-</span><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
-</span><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
-</span><span class="c1"></span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>我们已经准备好发送一条消息：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
-  <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
-</span><span class="c1"></span>  <span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
-</span><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
-</span><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
-</span><span class="c1"></span><span class="p">)</span>
-<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare an exchange&#34;</span><span class="p">)</span>
-
-<span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
-  <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span>         <span class="c1">// exchange
-</span><span class="c1"></span>  <span class="nf">severityFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">),</span> <span class="c1">// routing key
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// mandatory
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// immediate
-</span><span class="c1"></span>  <span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
-    <span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
-    <span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
-<span class="p">})</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>为了简化问题，我们假设“严重性”可以是“info”、“warning”、“error”之一。</p>
-<h3 id="订阅">订阅</h3>
-<p>接收消息的工作方式与上一教程一样，但有一个例外——我们将为感兴趣的每种严重性（日志级别）创建一个新的绑定。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
-  <span class="s">&#34;&#34;</span><span class="p">,</span>    <span class="c1">// name
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// durable
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// delete when unused
-</span><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>  <span class="c1">// exclusive
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// no-wait
-</span><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>   <span class="c1">// arguments
-</span><span class="c1"></span><span class="p">)</span>
-<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare a queue&#34;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span> <span class="p">{</span>
-  <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Usage: %s [info] [warning] [error]&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-  <span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="c1">// 建立多个绑定关系
-</span><span class="c1"></span><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">s</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="p">{</span>
-  <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Binding queue %s to exchange %s with routing key %s&#34;</span><span class="p">,</span>
-     <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
-  <span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
-    <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>        <span class="c1">// queue name
-</span><span class="c1"></span>    <span class="nx">s</span><span class="p">,</span>             <span class="c1">// routing key
-</span><span class="c1"></span>    <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// exchange
-</span><span class="c1"></span>    <span class="kc">false</span><span class="p">,</span>
-    <span class="kc">nil</span><span class="p">)</span>
-  <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to bind a queue&#34;</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="完整demo">完整demo</h3>
-<p>1.Routing之订阅模型-Direct(直连)</p>
-<p>在Fanout模式中，一条消息，会被所有订阅的队列所消费。但是，在某些场景下，我们希望不同的消息被不同的队列消费，这时就要用到Direct类型的Exchange。</p>
-<p>在Direct模型下：</p>
+      <p>RabbitMQ官网的消息模型的第五种-<strong>Topic</strong></p>
+<h2 id="topic交换器">topic交换器</h2>
+<h3 id="topic主题交换器">topic(主题)交换器</h3>
+<p>​	发送到<code>topic</code>交换器的消息不能具有随意的<code>routing_key</code>——它必须是单词列表，以点分隔。这些词可以是任何东西，但通常它们指定与消息相关的某些功能。一些有效的<code>routing_key</code>示例：“<code>stock.usd.nyse</code>”，“<code>nyse.vmw</code>”，</p>
+<p>“<code>quick.orange.rabbit</code>”。<code>routing_key</code>中可以包含任意多个单词，最多255个字节。</p>
+<p>​	绑定键也必须采用相同的形式。<code>topic</code>交换器背后的逻辑类似于<code>direct</code>交换器——用特定路由键发送的消息将传递到所有匹配绑定键绑定的队列。但是，绑定键有两个重要的特殊情况： - <code>*</code>（星号）可以代替一个单词。 - <code>＃</code>（井号）可以替代零个或多个单词。</p>
+<p>​	<code>Topic</code>类型的<code>Exchange</code>与<code>Direct</code>相比，都是可以根据<code>RoutingKey</code>把消息路由到不同的队列。只不过<code>Topic</code>类型<code>Exchange</code>可以让队列在绑定<code>Routing Key</code>的时候使用通配符! 这种模型<code>RoutingKey</code>一般都是一个或多个单词组成，多个单词间以&quot;.&ldquo;分割，例如: <code>item.insert</code></p>
+<p><img src="https://serverless-page-bucket-bf93jsyr-1254266754.cos-website.ap-hongkong.myqcloud.com/pics/rabbitMQ5/python-five.png" alt=""></p>
+<p>通配符</p>
 <ul>
 <li>
-<p>队列与交换机的绑定，不能是任意绑定了，而是要制定一个<code>Routing Key</code>（路由key）</p>
+<blockquote>
+<p>* (star) can substitute for exactly one word.  匹配不多不少刚好一个词</p>
+</blockquote>
 </li>
 <li>
-<p>消息的发送方在向Exchange发送消息时，也必须指定消息的<code>Routing Key</code></p>
-</li>
-<li>
-<p>Exchange不再把消息交给每一个绑定的队列，而是根据消息的<code>Routing Key</code>进行判断，只有队列的<code>Routing Key</code>与消息的<code>Routing Key</code>完全一致，才会接收到消息</p>
+<blockquote>
+<p># (hash)  can substitute for zero or more words.  匹配0个或多个词</p>
+</blockquote>
 </li>
 </ul>
-<p>流程：</p>
-<p><strong>Putting it all together</strong></p>
-<p><img src="https://bomir.top/pics/rabbitMQ4/python-four.png" alt=""></p>
-<p>图解：</p>
+<p><em>例如：</em></p>
+<p><code>audit.# 	匹配audit.irs.corporate或者audit.irs等</code></p>
+<p><code>audit.*	只能匹配audit.irs</code></p>
+<p>​	以上图作为示例，我们将发送一些都是描述动物的信息。将使用包含三个词（两个点）的路由密钥发送消息。路由键中的第一个单词将描述速度，第二个是颜色，第三个是种类：&quot;<code>&lt;speed&gt;.&lt;colour&gt;.&lt;species&gt;</code>&quot;。</p>
+<p>我们创建了三个绑定关系：Q1与绑定键“<code>*.orange.*</code>”绑定，Q2与“<code>*.*.rabbit</code>”和“<code>lazy.＃</code>”绑定。</p>
+<p>这些绑定可以总结为：</p>
 <ul>
-<li>P: 生产者，向Exchange发送消息，发送消息时，会指定一个routing key.</li>
-<li>X: Exchange（交换机），接收生产者的消息， 然后把消息递交给与routing key完全匹配的队列；</li>
-<li>C1： 消费者， 其所在的队列指定了需要routing key为error的消息</li>
-<li>C2： 消费者， 其所在的队列指定了需要routing key为info, error，warning的消息</li>
+<li>Q1对所有橙色动物都感兴趣。</li>
+<li>Q2想接收有关兔子（rabbit）的一切消息，以及有关懒惰（lazy）动物的一切消息。</li>
 </ul>
+<p>路由键设置为“<code>quick.orange.rabbit</code>”的消息将传递到两个队列。消息“<code>lazy.orange.elephant</code>”也将发送给他们两个。另一方面，“<code>quick.orange.fox</code>”将仅进入第一个队列，而“<code>lazy.brown.fox</code>”将仅进入第二个队列。即使“<code>lazy.pink.rabbit</code>”与两个绑定匹配（匹配Q2的两个绑定），也只会传递到第二个队列一次。 “<code>quick.brown.fox</code>”与任何绑定都不匹配，因此将被丢弃。</p>
+<p>如果我们打破约定并发送一个或四个单词的消息，例如“<code>orange</code>”或“</p>
+<p><code>quick.orange.male.rabbit</code>”，会发生什么？好吧，这些消息将不匹配任何绑定，并且将会丢失。</p>
+<p>另外，“<code>lazy.orange.male.rabbit</code>”即使有四个单词，也将匹配最后一个绑定，并将其传送到第二个队列。</p>
+<p><strong>topic交换器</strong></p>
+<blockquote>
+<p>topic交换器功能强大，可以像其他交换器一样运行。</p>
+<p>当队列用“#”作为绑定键绑定时，它将接收所有消息，而与路由键无关，就像在fanout交换器中一样；</p>
+<p>当在绑定中不使用特殊字符“<code>*</code>”（星号）和“<code>#</code>”（井号）时，topic交换器的行为就像<code>direct</code>交换器一样。</p>
+</blockquote>
+<p><strong>完整demo</strong></p>
+<p>我们将在日志记录系统中使用<code>topic</code>交换器。我们将从一个可行的假设开始，即日志的路由键将包含两个词：“<code>&lt;facility&gt;.&lt;severity&gt;</code>”。</p>
+<p>该代码与<a href="https://bomir.top/post/rabbit-go-4/">上一教程</a>中的代码几乎相同。</p>
 <p><code>producer.go</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -673,7 +494,6 @@
 </span><span class="lnt">69
 </span><span class="lnt">70
 </span><span class="lnt">71
-</span><span class="lnt">72
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kn">package</span> <span class="nx">main</span>
@@ -682,18 +502,18 @@
 	<span class="s">&#34;log&#34;</span>
 	<span class="s">&#34;os&#34;</span>
 	<span class="s">&#34;strings&#34;</span>
+
 	<span class="s">&#34;github.com/streadway/amqp&#34;</span>
 <span class="p">)</span>
 
-<span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span>  <span class="p">{</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s : %s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s: %s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 	<span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// 产生日志
-</span><span class="c1"></span>	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672&#34;</span><span class="p">)</span>
+	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672/&#34;</span><span class="p">)</span>
 	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to connect to RabbitMQ&#34;</span><span class="p">)</span>
 	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
 
@@ -702,52 +522,51 @@
 	<span class="k">defer</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
 
 	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
-		<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
-</span><span class="c1"></span>		<span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
-</span><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
-</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
+		<span class="s">&#34;logs_topic&#34;</span><span class="p">,</span> <span class="c1">// name
+</span><span class="c1"></span>		<span class="s">&#34;topic&#34;</span><span class="p">,</span>      <span class="c1">// type, 主题交换器
+</span><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>         <span class="c1">// durable
+</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>        <span class="c1">// auto-deleted
+</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>        <span class="c1">// internal
+</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>        <span class="c1">// no-wait
+</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>          <span class="c1">// arguments
 </span><span class="c1"></span>	<span class="p">)</span>
-
 	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare an exchange&#34;</span><span class="p">)</span>
 
 	<span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
 	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
-		<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span>         <span class="c1">// exchange
+		<span class="s">&#34;logs_topic&#34;</span><span class="p">,</span>          <span class="c1">// exchange
 </span><span class="c1"></span>		<span class="nf">severityFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">),</span> <span class="c1">// routing key
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// mandatory
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// immediate
+</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>                 <span class="c1">// mandatory
+</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>                 <span class="c1">// immediate
 </span><span class="c1"></span>		<span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
 			<span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
 			<span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
 		<span class="p">})</span>
-
 	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to publish a message&#34;</span><span class="p">)</span>
 
 	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [x] Sent %s&#34;</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>  <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
 	<span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span><span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
 		<span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
 	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-		<span class="nx">s</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+		<span class="nx">s</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
 	<span class="p">}</span>
 	<span class="k">return</span> <span class="nx">s</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">severityFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>  <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">severityFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
 	<span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span><span class="p">{</span>
-		<span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;info&#34;</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+		<span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;anonymous.info&#34;</span>
 	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 		<span class="nx">s</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 	<span class="p">}</span>
 	<span class="k">return</span> <span class="nx">s</span>
 <span class="p">}</span>
+
 </code></pre></td></tr></table>
 </div>
 </div><p><code>consumer.go</code></p>
@@ -835,6 +654,8 @@
 </span><span class="lnt">80
 </span><span class="lnt">81
 </span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kn">package</span> <span class="nx">main</span>
@@ -842,6 +663,7 @@
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;log&#34;</span>
 	<span class="s">&#34;os&#34;</span>
+
 	<span class="s">&#34;github.com/streadway/amqp&#34;</span>
 <span class="p">)</span>
 
@@ -852,7 +674,7 @@
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672&#34;</span><span class="p">)</span>
+	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672/&#34;</span><span class="p">)</span>
 	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to connect to RabbitMQ&#34;</span><span class="p">)</span>
 	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
 
@@ -861,13 +683,13 @@
 	<span class="k">defer</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
 
 	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
-		<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
-</span><span class="c1"></span>		<span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
-</span><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
-</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
+		<span class="s">&#34;logs_topic&#34;</span><span class="p">,</span> <span class="c1">// name
+</span><span class="c1"></span>		<span class="s">&#34;topic&#34;</span><span class="p">,</span>      <span class="c1">// type
+</span><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>         <span class="c1">// durable
+</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>        <span class="c1">// auto-deleted
+</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>        <span class="c1">// internal
+</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>        <span class="c1">// no-wait
+</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>          <span class="c1">// arguments
 </span><span class="c1"></span>	<span class="p">)</span>
 	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare an exchange&#34;</span><span class="p">)</span>
 
@@ -882,16 +704,17 @@
 	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare a queue&#34;</span><span class="p">)</span>
 
 	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Usage: %s [info] [warning] [error]&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Usage: %s [binding_key]...&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 		<span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 	<span class="p">}</span>
-	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">s</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="p">{</span>
+	<span class="c1">// 绑定topic
+</span><span class="c1"></span>	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">s</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="p">{</span>
 		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Binding queue %s to exchange %s with routing key %s&#34;</span><span class="p">,</span>
-			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
+			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="s">&#34;logs_topic&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
 		<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
-			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>        <span class="c1">// queue name
-</span><span class="c1"></span>			<span class="nx">s</span><span class="p">,</span>             <span class="c1">// routing key
-</span><span class="c1"></span>			<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// exchange
+			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>       <span class="c1">// queue name
+</span><span class="c1"></span>			<span class="nx">s</span><span class="p">,</span>            <span class="c1">// routing key
+</span><span class="c1"></span>			<span class="s">&#34;logs_topic&#34;</span><span class="p">,</span> <span class="c1">// exchange
 </span><span class="c1"></span>			<span class="kc">false</span><span class="p">,</span>
 			<span class="kc">nil</span><span class="p">)</span>
 		<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to bind a queue&#34;</span><span class="p">)</span>
@@ -921,30 +744,70 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><strong>测试</strong></p>
-<p>如果我们只想将“warning”和“err”（而不是“info”）级别的日志消息保存到文件中，只需打开控制台并输入：</p>
-<p><code>go run consumer1.go warning error &gt; logs_from_rabbit.log</code></p>
-<p>如果你想在屏幕上查看所有日志消息，请打开一个新终端并执行以下操作：</p>
-<p><code>go run consumer2.go info warning error</code></p>
-<p>例如，我们要发出<code>error</code>日志消息，只需输入：</p>
-<p><code>go run producer.go error &quot;Run. Run. Or it will explode.&quot;</code></p>
-<p>我们发出“info”级别的日志消息， 输入：</p>
-<p><code>go run producer.go info &quot;Run. Info Test&quot;</code></p>
-<p>创建的<code>logs_direct</code>的交换机：</p>
-<p><img src="https://bomir.top/pics/rabbitMQ4/1630853716172.png" alt="1630853716172"></p>
-<p>绑定的两个队列：</p>
-<p><img src="https://bomir.top/pics/rabbitMQ4/1630853808518.png" alt="1630853808518"></p>
-<p><strong>消费者1</strong></p>
-<p><img src="https://bomir.top/pics/rabbitMQ4/1630852986604.png" alt="1630852986604"></p>
-<p><strong>消费者2</strong></p>
-<p><img src="https://bomir.top/pics/rabbitMQ4/1630853312124.png" alt="1630853312124"></p>
-<p><strong>生产者</strong></p>
-<p><img src="https://bomir.top/pics/rabbitMQ4/1630852889585.png" alt="1630852889585"></p>
-<p>如同我们所期望的， 消费者1和消费者2都能获取到<code>error</code>级别的日志消息， 对于<code>info</code>级别的日志消息， 只有消费者2能获取到；</p>
+</div><p>想要接收所有的日志：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">go run consumer.go <span class="s2">&#34;#&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>要从“<code>kern</code>”接收所有日志：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">go run consumer.go &#34;kern.*&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>或者，如果你只想接收“<code>critical</code>”日志：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">go run consumer.go <span class="s2">&#34;*.critical&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>你可以创建多个绑定：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">go run consumer.go <span class="s2">&#34;kern.*&#34;</span> <span class="s2">&#34;*.critical&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>并发出带有路由键“<code>kern.critical</code>”的日志：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">go run producer.go <span class="s2">&#34;kern.critical&#34;</span> <span class="s2">&#34;A critical kernel error&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="测试">测试</h3>
+<ul>
+<li><strong>rabbitMQ web面板</strong></li>
+</ul>
+<p><img src="https://serverless-page-bucket-bf93jsyr-1254266754.cos-website.ap-hongkong.myqcloud.com/pics/rabbitMQ5/1630917157347.png" alt="1630917157347"></p>
+<p><img src="https://serverless-page-bucket-bf93jsyr-1254266754.cos-website.ap-hongkong.myqcloud.com/pics/rabbitMQ5/1630917256069.png" alt="1630917256069"></p>
+<ul>
+<li><strong>消费者</strong></li>
+</ul>
+<p><img src="https://serverless-page-bucket-bf93jsyr-1254266754.cos-website.ap-hongkong.myqcloud.com/pics/rabbitMQ5/1630917334725.png" alt="1630917334725"></p>
+<p><img src="https://serverless-page-bucket-bf93jsyr-1254266754.cos-website.ap-hongkong.myqcloud.com/pics/rabbitMQ5/1630917363122.png" alt="1630917363122"></p>
+<ul>
+<li><strong>生产者</strong></li>
+</ul>
+<p><img src="https://serverless-page-bucket-bf93jsyr-1254266754.cos-website.ap-hongkong.myqcloud.com/pics/rabbitMQ5/1630917396703.png" alt="1630917396703"></p>
 <h2 id="参考资料">参考资料</h2>
 <ol>
-<li><a href="https://www.rabbitmq.com/tutorials/tutorial-four-go.html">RabbitMQ官网 路由模式-Go客户端</a></li>
-<li><a href="https://www.liwenzhou.com/posts/Go/go_rabbitmq_tutorials_04/">李文周老师  Go语言客户端教程4-路由</a></li>
+<li><a href="https://www.rabbitmq.com/tutorials/tutorial-five-go.html">RabbitMQ官网 Topic模式-Go客户端</a></li>
+<li><a href="https://www.liwenzhou.com/posts/Go/go_rabbitmq_tutorials_05/">李文周老师  Go语言客户端教程5-topic</a></li>
 <li><a href="https://b23.tv/hf3Jmw">MQ消息中间件之RabbitMQ</a></li>
 </ol>
 
@@ -960,7 +823,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-      2020-08-14
+      2020-08-15
       
     </span>
   </p>
@@ -984,7 +847,7 @@
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/rabbit-go-5/">
+          <a class="prev" href="/post/microservices-structure/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -994,12 +857,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default">RabbitMQ入门之Go语言教程-(5)</span>
+            <span class="prev-text nav-default">了解微服务架构</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/rabbit-go-3/">
-            <span class="next-text nav-default">RabbitMQ入门之Go语言教程-(3)</span>
+          <a class="next" href="/post/rabbit-go-4/">
+            <span class="next-text nav-default">RabbitMQ入门之Go语言教程-(4)</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
