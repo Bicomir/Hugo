@@ -35,6 +35,15 @@
     </item>
     
     <item>
+      <title>C#杂项聊一聊</title>
+      <link>https://bomir.top/post/csharp-others-talk/</link>
+      <pubDate>Sun, 10 Nov 2019 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/csharp-others-talk/</guid>
+      <description>C#是怎么跑起来的 C#源代码生成IL（中间语言）， CLR（公共语言运行时）翻译成 机器指令： 坏处 慢， 运行时， IL更易读更容易反编译 好处 跨平台 承</description>
+    </item>
+    
+    <item>
       <title>C#语法回顾I</title>
       <link>https://bomir.top/post/csharp-basic/</link>
       <pubDate>Sat, 24 Aug 2019 22:19:05 +0000</pubDate>
