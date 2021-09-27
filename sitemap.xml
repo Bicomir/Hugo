@@ -352,7 +352,7 @@
   </url>
   
   <url>
-    <loc>https://bomir.top/categories/c#/</loc>
+    <loc>https://bomir.top/categories/csharp/</loc>
     <lastmod>2020-06-28T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -388,13 +388,6 @@
   
   <url>
     <loc>https://bomir.top/tags/csharp/</loc>
-    <lastmod>2019-11-10T18:56:34+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://bomir.top/categories/csharp/</loc>
     <lastmod>2019-11-10T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
