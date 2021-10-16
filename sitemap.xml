@@ -514,14 +514,21 @@
   
   <url>
     <loc>https://bomir.top/tags/morningstar/</loc>
-    <lastmod>2019-07-20T18:56:34+00:00</lastmod>
+    <lastmod>2019-07-25T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://bomir.top/categories/morningstar/</loc>
-    <lastmod>2019-07-20T18:56:34+00:00</lastmod>
+    <lastmod>2019-07-25T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/post/mdp-movienight/</loc>
+    <lastmod>2019-07-25T18:56:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
