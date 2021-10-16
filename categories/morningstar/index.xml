@@ -6,7 +6,16 @@
     <description>Recent content in morningstar on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 29 Jul 2019 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/morningstar/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Oct 2019 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/morningstar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS DeepRacer</title>
+      <link>https://bomir.top/post/deepracer/</link>
+      <pubDate>Sat, 12 Oct 2019 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/deepracer/</guid>
+      <description>DeepRacer组委会成立 DeepRacer的要旨， 也是我们后面参考设计和组织、执行这个比赛的重要依据； DeepRacer智能小车场地设计</description>
+    </item>
+    
     <item>
       <title>OutDoor Development</title>
       <link>https://bomir.top/post/outdoor-development/</link>
