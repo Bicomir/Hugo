@@ -1,0 +1,2484 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>改善C#代码的157个建议（1）- 基本要素 - Wallis</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="bomir" />
+  <meta name="description" content="如何操作字符串？ 如何进行转型？ 什么是clone? 什么是相等型？ 为什么需要Hashcode? 使用一门语言编程的时候，就应该会遇到到这些问题，而" />
+
+  <meta name="keywords" content="Hugo, theme, jane" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0" />
+
+
+<link rel="canonical" href="https://bomir.top/post/basic-language-elements/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="改善C#代码的157个建议（1）- 基本要素" />
+<meta property="og:description" content="如何操作字符串？ 如何进行转型？ 什么是clone? 什么是相等型？ 为什么需要Hashcode? 使用一门语言编程的时候，就应该会遇到到这些问题，而" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bomir.top/post/basic-language-elements/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-10-12T22:19:05+00:00" />
+<meta property="article:modified_time" content="2019-10-12T22:19:05+00:00" />
+
+<meta itemprop="name" content="改善C#代码的157个建议（1）- 基本要素">
+<meta itemprop="description" content="如何操作字符串？ 如何进行转型？ 什么是clone? 什么是相等型？ 为什么需要Hashcode? 使用一门语言编程的时候，就应该会遇到到这些问题，而"><meta itemprop="datePublished" content="2019-10-12T22:19:05+00:00" />
+<meta itemprop="dateModified" content="2019-10-12T22:19:05+00:00" />
+<meta itemprop="wordCount" content="11199">
+<meta itemprop="keywords" content="CSharp," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="改善C#代码的157个建议（1）- 基本要素"/>
+<meta name="twitter:description" content="如何操作字符串？ 如何进行转型？ 什么是clone? 什么是相等型？ 为什么需要Hashcode? 使用一门语言编程的时候，就应该会遇到到这些问题，而"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">秤流沙</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      秤流沙
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">改善C#代码的157个建议（1）- 基本要素</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-10-12" class="post-time">
+          2019-10-12
+        </time>
+        <div class="post-category">
+            <a href="https://bomir.top/categories/csharp/"> CSharp </a>
+            
+          </div>
+        <span class="more-meta"> 约 11199 字 </span>
+          <span class="more-meta"> 预计阅读 23 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>如何操作字符串？</p>
+<ul>
+<li>如何进行转型？</li>
+<li>什么是clone?</li>
+<li>什么是相等型？</li>
+<li>为什么需要Hashcode?</li>
+</ul>
+<p>使用一门语言编程的时候，就应该会遇到到这些问题，而且我们要尝试想想这些问题，为什么会是这样？</p>
+<h4 id="建议1正确操作字符串">建议1：正确操作字符串</h4>
+<p>字符串是常用的一种基本数据类型，不恰当的使用会造成许多额外的性能开销；</p>
+<ul>
+<li>确保尽量少的装箱</li>
+<li>避免分配额外的内存空间</li>
+</ul>
+<p>先看两行代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">String</span> <span class="n">str1</span> <span class="p">=</span> <span class="s">&#34;str1&#34;</span> <span class="p">+</span> <span class="m">9</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">str2</span> <span class="p">=</span> <span class="s">&#34;str2&#34;</span> <span class="p">+</span> <span class="m">9.</span><span class="n">ToString</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第一行代码我们通过ildasm工具查看IL代码:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="p">.</span><span class="n">method</span> <span class="k">private</span> <span class="n">hidebysig</span> <span class="k">static</span> <span class="k">void</span>  <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="n">cil</span> <span class="n">managed</span>
+<span class="p">{</span>
+  <span class="p">.</span><span class="n">entrypoint</span>
+  <span class="c1">// 代码大小       23 (0x17)
+</span><span class="c1"></span>  <span class="p">.</span><span class="n">maxstack</span>  <span class="m">2</span>
+  <span class="p">.</span><span class="n">locals</span> <span class="n">init</span> <span class="p">(</span><span class="kt">string</span> <span class="n">V_0</span><span class="p">,</span>
+           <span class="n">int32</span> <span class="n">V_1</span><span class="p">)</span>
+  <span class="n">IL_0000</span><span class="p">:</span>  <span class="n">nop</span>
+  <span class="n">IL_0001</span><span class="p">:</span>  <span class="n">ldstr</span>      <span class="s">&#34;str1&#34;</span>
+  <span class="n">IL_0006</span><span class="p">:</span>  <span class="n">ldc</span><span class="p">.</span><span class="n">i4</span><span class="p">.</span><span class="n">s</span>   <span class="m">9</span>
+  <span class="n">IL_0008</span><span class="p">:</span>  <span class="n">stloc</span><span class="p">.</span><span class="m">1</span>    <span class="c1">// 以前的版本， 这里有一个box, 代表会装箱
+</span><span class="c1"></span>  <span class="n">IL_0009</span><span class="p">:</span>  <span class="n">ldloca</span><span class="p">.</span><span class="n">s</span>   <span class="n">V_1</span>
+  <span class="n">IL_000b</span><span class="p">:</span>  <span class="n">call</span>       <span class="n">instance</span> <span class="kt">string</span> <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Runtime</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Int32</span><span class="p">::</span><span class="n">ToString</span><span class="p">()</span>
+  <span class="n">IL_0010</span><span class="p">:</span>  <span class="n">call</span>       <span class="kt">string</span> <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Runtime</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">String</span><span class="p">::</span><span class="n">Concat</span><span class="p">(</span><span class="kt">string</span><span class="p">,</span>
+                                                                    <span class="kt">string</span><span class="p">)</span>
+  <span class="n">IL_0015</span><span class="p">:</span>  <span class="n">stloc</span><span class="p">.</span><span class="m">0</span>
+  <span class="n">IL_0016</span><span class="p">:</span>  <span class="n">ret</span>
+<span class="p">}</span> <span class="c1">// end of method Program::Main
+</span></code></pre></td></tr></table>
+</div>
+</div><p>第二行代码的IL代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="p">.</span><span class="n">method</span> <span class="k">private</span> <span class="n">hidebysig</span> <span class="k">static</span> <span class="k">void</span>  <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="n">cil</span> <span class="n">managed</span>
+<span class="p">{</span>
+  <span class="p">.</span><span class="n">entrypoint</span>
+  <span class="c1">// 代码大小       23 (0x17)
+</span><span class="c1"></span>  <span class="p">.</span><span class="n">maxstack</span>  <span class="m">2</span>
+  <span class="p">.</span><span class="n">locals</span> <span class="n">init</span> <span class="p">(</span><span class="kt">string</span> <span class="n">V_0</span><span class="p">,</span>
+           <span class="n">int32</span> <span class="n">V_1</span><span class="p">)</span>
+  <span class="n">IL_0000</span><span class="p">:</span>  <span class="n">nop</span>
+  <span class="n">IL_0001</span><span class="p">:</span>  <span class="n">ldstr</span>      <span class="s">&#34;str2&#34;</span>
+  <span class="n">IL_0006</span><span class="p">:</span>  <span class="n">ldc</span><span class="p">.</span><span class="n">i4</span><span class="p">.</span><span class="n">s</span>   <span class="m">9</span>
+  <span class="n">IL_0008</span><span class="p">:</span>  <span class="n">stloc</span><span class="p">.</span><span class="m">1</span>
+  <span class="n">IL_0009</span><span class="p">:</span>  <span class="n">ldloca</span><span class="p">.</span><span class="n">s</span>   <span class="n">V_1</span>
+  <span class="n">IL_000b</span><span class="p">:</span>  <span class="n">call</span>       <span class="n">instance</span> <span class="kt">string</span> <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Runtime</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Int32</span><span class="p">::</span><span class="n">ToString</span><span class="p">()</span>
+  <span class="n">IL_0010</span><span class="p">:</span>  <span class="n">call</span>       <span class="kt">string</span> <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Runtime</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">String</span><span class="p">::</span><span class="n">Concat</span><span class="p">(</span><span class="kt">string</span><span class="p">,</span>
+                                                                    <span class="kt">string</span><span class="p">)</span>
+  <span class="n">IL_0015</span><span class="p">:</span>  <span class="n">stloc</span><span class="p">.</span><span class="m">0</span>
+  <span class="n">IL_0016</span><span class="p">:</span>  <span class="n">ret</span>
+<span class="p">}</span> <span class="c1">// end of method Program::Main
+</span></code></pre></td></tr></table>
+</div>
+</div><p>作者给出自己编写的代码中，提出应该尽可能的避免不必要的装箱代码的准则：</p>
+<p>原因是， 装箱之所以带来性能损耗，因为它需要完成以下三个步骤：</p>
+<ol>
+<li>首先，会为值类型在托管堆中分配内存，除了值类型本身分配的内存外，内存总量还需要加上类型对象的指针和同步索引块所占用的内存；</li>
+<li>将值类型的值复制到新分配的堆内存中；</li>
+<li>返回已经成为引用类型的对象的地址；</li>
+</ol>
+<p><strong>第二个方面</strong>： 避免额外的分配内存空间；对于CLR来说，string(字符串) 对象是个特殊的对象，它一旦被赋值就不可改变。在运行时调用System.String类中任何方法或进行任何计算（比如赋值，拼接操作），都会在内存中创建新的字符串对象，这也就意味这要为这些新对象分配新的空间；（这些就是额外的开销）</p>
+<p>对于重复拼接字符串，推荐使用StringBuilder来弥补String的不足；</p>
+<p><strong>StringBuilder</strong> 对象是动态对象，允许扩充它所封装的字符串中字符的数量，但是您可以为它可容纳的最大字符数指定一个值，当修改 StringBuilder 时，在达到容量之前，它不会为其自己重新分配空间。当达到容量时，将自动分配新的空间且容量翻倍。</p>
+<p>实际上， 微软提供了一种更为简化的方法， 即string.Format方法， string.Format方法内部使用StringBuilder来进行字符串的格式化；</p>
+<h4 id="建议2使用默认转型方法">建议2：使用默认转型方法</h4>
+<p>大家在编程中经常会碰到的一个问题是，如何对数据进行转换类型？在大部分情况下，当需要对FCL提供的类型进行转换时，都应该使用FCL提供的转换方法。</p>
+<ul>
+<li>
+<p>使用类型的转换运算符</p>
+<p>显式转换和隐式转换，自定义类型重载运算符转换等；</p>
+</li>
+<li>
+<p>使用内置的Parse， TryParse,  或者ToString(), ToDouble()等方法；</p>
+</li>
+<li>
+<p>使用帮助类提供的方法</p>
+<p>类似System.Convert类， System.BitConverter等类进行类型的转换；</p>
+</li>
+<li>
+<p>使用CLR支持的转型</p>
+<p>CLR支持的转型，分为上溯转型和下溯转型，实际上就是父类和子类之间的相互转换；</p>
+</li>
+</ul>
+<p><img src="https://bomir.top/pics/CSharpAdvice/image-20211022170830783.png" alt="image-20211022170830783"></p>
+<p>在进行子类向基类转型的时候支持隐式转换。比如Dog显然就是一个Animal；而当Animal转型为Dog的时候，必须是显式转换，因为Animal还可能是个Cat，示例如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">Animal</span> <span class="n">animal</span><span class="p">;</span>
+<span class="n">Dog</span> <span class="n">dog</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dog</span><span class="p">();</span>
+<span class="n">animal</span> <span class="p">=</span> <span class="n">dog</span><span class="p">;</span>		<span class="c1">// 隐式转换
+</span><span class="c1">// dog = animal;    // 编译不通过
+</span><span class="c1"></span><span class="n">dog</span> <span class="p">=</span> <span class="p">(</span><span class="n">Dog</span><span class="p">)</span><span class="n">animal</span><span class="p">;</span>  <span class="c1">// 必须存在一个显式转换
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="建议3区分对待强制转型与as和is">建议3：区分对待强制转型与as和is</h4>
+<p><code>secondType = (SecondType)firstType  // 这个代码就是强制转型</code></p>
+<p>强制转型可能意味着两件不同的事情：</p>
+<ul>
+<li>FirstType和SecondType彼此依靠转换操作符来完成两个类型之间的转型；</li>
+<li>FirstType是SecondType的基类；</li>
+</ul>
+<p>类型之间如果存在强制转换，那么它们之间的关系就在以上两者之间；</p>
+<p>建议： 如果类型之间都上溯了某个共同的基类，那么根据此基类进行的转型（基类转型为子类本身）应该使用as。子类和子类之间的转型，则应该提供转换操作符，以便进行强制转型；</p>
+<p>​	as操作符永远不会抛出异常，如果类型不匹配(被转换对象的运行时类型既不是所转换的目标类型， 也不是其派生类型)，或者转型的源对象是null, 那么转型之后的值也是null;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">DoWithSomeType1</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">SecondType</span> <span class="n">secondType</span> <span class="p">=</span> <span class="n">obj</span> <span class="k">as</span> <span class="n">SecondType</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">secondType</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+    	<span class="c1">// ...
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>对于第二种情况，即FirstType是SecondType的基类；这种情形下，既可以使用强制转型，也可以使用as操作符；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">DoWithSomeType2</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">obj</span> <span class="k">is</span> <span class="n">SecondType</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">SecondType</span> <span class="n">secondType</span> <span class="p">=</span> <span class="n">obj</span> <span class="k">as</span> <span class="n">SecondType</span><span class="p">;</span>
+        <span class="c1">// ...
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个版本没有上一个版本的效率高，因为进行了两次类型检测， 但是要注意到as运算符有一个问题，就是不能操作基元类型。如果涉及到基元类型的操作，还是需要通过is转型前的判断，以避免转型失败；</p>
+<h4 id="建议4tryparse比parse好">建议4：TryParse比Parse好</h4>
+<p>我们注意到除string外的所有基元类型，会发现它们都有两个将字符串转换为本身的方法：Parse和TryParse， 以类型int为例，这两个方法最简单的原型为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="n">Int32</span> <span class="n">Parse</span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">);</span>
+<span class="k">public</span> <span class="k">static</span> <span class="kt">bool</span> <span class="n">TryParse</span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">,</span> <span class="k">out</span> <span class="n">Int32</span> <span class="n">result</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>两者最大的区别是，如果字符串格式不满足的要求，Parse方法触发一个异常；TryParse方法则不会引发异常，它会返回false,同时将result置为0；</p>
+<p>写一个demo测试一下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Test</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">res</span><span class="p">;</span>
+            <span class="kt">long</span> <span class="n">ticks</span><span class="p">;</span>
+
+            <span class="n">Stopwatch</span> <span class="n">sw</span> <span class="p">=</span> <span class="n">Stopwatch</span><span class="p">.</span><span class="n">StartNew</span><span class="p">();</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">1000</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="k">try</span>
+                <span class="p">{</span>
+                    <span class="n">res</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="s">&#34;123&#34;</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">catch</span>
+                <span class="p">{</span>
+                    <span class="n">res</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">sw</span><span class="p">.</span><span class="n">Stop</span><span class="p">();</span>
+            <span class="n">ticks</span> <span class="p">=</span> <span class="n">sw</span><span class="p">.</span><span class="n">ElapsedTicks</span><span class="p">;</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;int.Parse() 成功, {0} ticks&#34;</span><span class="p">,</span> <span class="n">ticks</span><span class="p">);</span>
+            
+            
+            <span class="n">sw</span> <span class="p">=</span> <span class="n">Stopwatch</span><span class="p">.</span><span class="n">StartNew</span><span class="p">();</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">1000</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="kt">int</span><span class="p">.</span><span class="n">TryParse</span><span class="p">(</span><span class="s">&#34;123&#34;</span><span class="p">,</span> <span class="k">out</span> <span class="n">res</span><span class="p">)</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">res</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">sw</span><span class="p">.</span><span class="n">Stop</span><span class="p">();</span>
+            <span class="n">ticks</span> <span class="p">=</span> <span class="n">sw</span><span class="p">.</span><span class="n">ElapsedTicks</span><span class="p">;</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;int.TryParse() 成功， {0} ticks&#34;</span><span class="p">,</span> <span class="n">ticks</span><span class="p">);</span>
+
+            <span class="n">sw</span> <span class="p">=</span> <span class="n">Stopwatch</span><span class="p">.</span><span class="n">StartNew</span><span class="p">();</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">1000</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="k">try</span>
+                <span class="p">{</span>
+                    <span class="n">res</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="s">&#34;aaa&#34;</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">catch</span>
+                <span class="p">{</span>
+                    <span class="n">res</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">sw</span><span class="p">.</span><span class="n">Stop</span><span class="p">();</span>
+            <span class="n">ticks</span> <span class="p">=</span> <span class="n">sw</span><span class="p">.</span><span class="n">ElapsedTicks</span><span class="p">;</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;int.Parse() 失败, {0} ticks&#34;</span><span class="p">,</span> <span class="n">ticks</span><span class="p">);</span>
+
+
+            <span class="n">sw</span> <span class="p">=</span> <span class="n">Stopwatch</span><span class="p">.</span><span class="n">StartNew</span><span class="p">();</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">1000</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="kt">int</span><span class="p">.</span><span class="n">TryParse</span><span class="p">(</span><span class="s">&#34;aaa&#34;</span><span class="p">,</span> <span class="k">out</span> <span class="n">res</span><span class="p">)</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">res</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">sw</span><span class="p">.</span><span class="n">Stop</span><span class="p">();</span>
+            <span class="n">ticks</span> <span class="p">=</span> <span class="n">sw</span><span class="p">.</span><span class="n">ElapsedTicks</span><span class="p">;</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;int.TryParse() 失败， {0} ticks&#34;</span><span class="p">,</span> <span class="n">ticks</span><span class="p">);</span>
+        <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>测试的结果如下：</p>
+<p><img src="https://bomir.top/pics/CSharpAdvice/image-20211022180023527.png" alt="image-20211022180023527"></p>
+<p>我们可以看到，执行T成功的时候，Parse和TryParse的效率是一个数量级，一个循环里边，TryParse略高于Parse；但是转换执行失败的时候，Parse的效率就会比TryParse低太多了；</p>
+<h4 id="建议5使用int来确保值类型也可以为null">建议5：使用int?来确保值类型也可以为null</h4>
+<p>基元类型可能为null的一些场景：</p>
+<ol>
+<li>
+<p>数据库中一个int字段可以被设置为null, 在C#中， int变量去承载这个字段，那么就有必要先判断它是否为null，如果是为null直接赋值给int类型，会报异常；</p>
+</li>
+<li>
+<p>在一个分布式系统中，服务器需要接收并解析来自客户端的数据，一个int型的数据可能在传输过程中丢失或被篡改了，转型失败后应该保存为null值，而不是提供一个初始值；</p>
+<p>需要为null的场景还是挺多的，一个可以为空的int类型表示为： <code>Nullable&lt;int&gt; i = null;</code></p>
+</li>
+</ol>
+<p>可以简写成 <code>int? i = null;</code> 语法T? 是 <code>Nullable&lt;T&gt;</code>的简写；可以为null的类型表示其基础值类型的正常范围内的值再加上一个null值；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// 可空类型和基元类型的互相转换
+</span><span class="c1"></span><span class="kt">int?</span> <span class="n">i</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="n">i</span> <span class="p">=</span> <span class="n">j</span><span class="p">;</span>
+
+<span class="c1">// 可空类型不可隐式转换为对应的基元类型
+</span><span class="c1"></span><span class="kt">int?</span> <span class="n">i</span> <span class="p">=</span> <span class="m">123</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">HasValue</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">j</span> <span class="p">=</span> <span class="n">i</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="n">j</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 上一段代码， 可以简写成:
+</span><span class="c1"></span><span class="kt">int?</span> <span class="n">i</span> <span class="p">=</span> <span class="m">123</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="n">i</span> <span class="p">??</span> <span class="m">0</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="建议6-区别readonly和const的使用方法">建议6: 区别readonly和const的使用方法</h4>
+<p>初学者很不容易搞明白readonly和const的使用场合，我也Confuse了很久，一直理解的不好；陆敏技老师的观点是，使用const的理由只有一个，那就是为了效率；但大多数情形下，效率并没有这么高的地位，可能更愿意采用readonly, 因为readonly赋予了代码更多的灵活性；</p>
+<p>const和readonly本质的区别是：</p>
+<ul>
+<li>
+<p>const是一个编译期的常量，readonly是一个运行时常量；</p>
+</li>
+<li>
+<p>const只能修饰基元类型、枚举类型或者字符串类型，readonly则没有限制；</p>
+<p>const是编译期常量，天生就是static的，不可以再给它加上static的修饰符；</p>
+</li>
+</ul>
+<p>而const变量的效率高，是因为经过编译器编译后，我们在代码中引用到const变量的地方会用const变量所对应的</p>
+<p>实际值来代替；</p>
+<p>​		readonly是运行时变量，其赋值行为发生在运行时。readonly的全部意义在于：它在运行时第一次被赋值后将不可以改变。”不可以”改变分为两层意思：</p>
+<ol>
+<li>对于值类型变量，值类型本身不可改变；(readonly， 只读)；</li>
+<li>对于引用变量，引用本身（理解为指针）不可改变；</li>
+</ol>
+<p><strong>对于值类型变量：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">Sample</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">readonly</span> <span class="kt">int</span> <span class="n">ReadOnlyValue</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">Sample</span><span class="p">(</span><span class="kt">int</span> <span class="k">value</span><span class="p">)</span>
+    <span class="p">{</span>
+    	<span class="n">ReadOnlyValue</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Sample</span> <span class="n">sample</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Sample</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
+    <span class="n">sample</span><span class="p">.</span><span class="n">ReadOnlyValue</span> <span class="p">=</span> <span class="m">300</span><span class="p">;</span> 
+    <span class="c1">// A readonly field can only take an assignment in a constructor or at declaration. For more information, see Constructors.
+</span><span class="c1"></span>
+	<span class="c1">// CS0191 also results if the readonly field is static and the constructor is not marked static.
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>报错信息就是： 无法对只读的字段赋值（构造函数或变量初始值指定项中除外）</p>
+<p><strong>对于引用类型变量：</strong></p>
+<p>Sample2的ReadOnlyValue是一个Student类型的引用类型变量，经过赋值后，变量不能再指向其他的Student实例；</p>
+<h4 id="建议7将0值作为枚举的默认值">建议7：将0值作为枚举的默认值</h4>
+<p>允许使用的枚举类型有<code>byte、sbyte、short、ushort、int、uint、long、ulong</code>、应该始终将0值作为枚举的默认值。接下来我们通过示例来说明问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">enum</span> <span class="n">Week</span>
+<span class="p">{</span>
+    <span class="n">Money</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+    <span class="n">Tuesday</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span>
+    <span class="n">Wednesday</span> <span class="p">=</span> <span class="m">3</span><span class="p">,</span>
+    <span class="n">Thursday</span> <span class="p">=</span> <span class="m">4</span><span class="p">,</span>
+    <span class="n">Friday</span> <span class="p">=</span> <span class="m">5</span><span class="p">,</span>
+    <span class="n">Saturday</span> <span class="p">=</span> <span class="m">6</span><span class="p">,</span>
+    <span class="n">Sunday</span> <span class="p">=</span> <span class="m">7</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://bomir.top/pics/CSharpAdvice/image-20211025094233462.png" alt="image-20211025094233462"></p>
+<p>​		打印出来的值是一个0，可在枚举中并没有定义该值，让人感觉怎么是第八个值出现了。所以建议将0设置为枚举的默认值。（做法可以是： 可以将显式为元素赋值去掉，编译器会自动从0值开始计数，然后逐个为元素的值+1）</p>
+<h4 id="建议8避免给枚举类型的元素提供显式的值">建议8：避免给枚举类型的元素提供显式的值</h4>
+<p>一般情况下，没有必要给枚举类型的元素提供显式的值。创建枚举的理由之一，就是为了代替使用实际的值。不正确的为枚举类型的元素设定显式的值，会带来意想不到的错误。</p>
+<p>在建议7的实例下, 给枚举类型Week增加一个元素;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">enum</span> <span class="n">Week</span>
+<span class="p">{</span>
+    <span class="n">Money</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+    <span class="n">Tuesday</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span>
+    <span class="n">ValueTemp</span><span class="p">,</span>
+    <span class="n">Wednesday</span> <span class="p">=</span> <span class="m">3</span><span class="p">,</span>
+    <span class="n">Thursday</span> <span class="p">=</span> <span class="m">4</span><span class="p">,</span>
+    <span class="n">Friday</span> <span class="p">=</span> <span class="m">5</span><span class="p">,</span>
+    <span class="n">Saturday</span> <span class="p">=</span> <span class="m">6</span><span class="p">,</span>
+    <span class="n">Sunday</span> <span class="p">=</span> <span class="m">7</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Week</span> <span class="n">week</span> <span class="p">=</span> <span class="n">Week</span><span class="p">.</span><span class="n">ValueTemp</span><span class="p">;</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">week</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">week</span> <span class="p">==</span> <span class="n">Week</span><span class="p">.</span><span class="n">ValueTemp</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>比较让人困惑的是, Week的赋值为ValueTemp, 但是打印的时候却是Wednesday;</p>
+<p>通过调试可以发现。当编译器发现元素ValueTemp的时候，它会自动在Tuesday=2的基础上+1，所以ValueTemp的值和Wednesday的值都是3。可见，枚举元素允许设定重复的值。</p>
+<p><strong>注意：</strong> 本建议也有例外的情况。例如，当为一个枚举类型指定System.FlagsAttribute属性就意味着可以为这些值执行And、Or、Not、Xor按位运算了，这样一来，枚举的每个元素的值就要求都是2的若干次幂，指数依次递增。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[Flags]</span>
+<span class="k">enum</span> <span class="n">NewWeek</span>
+<span class="p">{</span>
+    <span class="n">None</span> <span class="p">=</span> <span class="m">0x0</span><span class="p">,</span>
+    <span class="n">Money</span> <span class="p">=</span> <span class="m">0x1</span><span class="p">,</span>
+    <span class="n">Tuesday</span> <span class="p">=</span> <span class="m">0x2</span><span class="p">,</span>
+    <span class="n">Wednesday</span> <span class="p">=</span> <span class="m">0x4</span><span class="p">,</span>
+    <span class="n">Thursday</span> <span class="p">=</span> <span class="m">0x8</span><span class="p">,</span>
+    <span class="n">Friday</span> <span class="p">=</span> <span class="m">0x10</span><span class="p">,</span>
+    <span class="n">Saturday</span> <span class="p">=</span> <span class="m">0x20</span><span class="p">,</span>
+    <span class="n">Sunday</span> <span class="p">=</span> <span class="m">0x40</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">NewWeek</span> <span class="n">newWeek</span> <span class="p">=</span> <span class="n">NewWeek</span><span class="p">.</span><span class="n">Thursday</span> <span class="p">|</span> <span class="n">NewWeek</span><span class="p">.</span><span class="n">Sunday</span><span class="p">;</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">newWeek</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// 运行结果是:
+</span><span class="c1"></span><span class="n">Thursday</span><span class="p">,</span> <span class="n">Sunday</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="建议9-习惯重载运算符">建议9: 习惯重载运算符</h4>
+<p>在开发的过程中，应该习惯于使用微软提供给我们的语法特性。我想大部分人应该喜欢看到这样的语法特性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">7</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="p">=</span> <span class="m">8</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">total</span> <span class="p">=</span> <span class="n">x</span> <span class="p">+</span> <span class="n">y</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>而不是看到下面的语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">7</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="p">=</span> <span class="m">8</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">total</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>所以我们在自定义类型的时候，也可以考虑看看类型是否可以使用运算符重载。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"> <span class="k">public</span> <span class="k">class</span> <span class="nc">Salary</span>
+ <span class="p">{</span>
+     <span class="k">public</span> <span class="kt">int</span> <span class="n">RMB</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+     <span class="k">public</span> <span class="k">static</span> <span class="n">Salary</span> <span class="k">operator</span> <span class="p">+(</span><span class="n">Salary</span> <span class="n">s1</span><span class="p">,</span> <span class="n">Salary</span> <span class="n">s2</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="n">s2</span><span class="p">.</span><span class="n">RMB</span> <span class="p">+=</span> <span class="n">s1</span><span class="p">.</span><span class="n">RMB</span><span class="p">;</span>
+         <span class="k">return</span> <span class="n">s2</span><span class="p">;</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>重载了运算符之后, 现在我们来进行调用的时候就方便了很多。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">Salary</span> <span class="n">s1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Salary</span><span class="p">()</span> <span class="p">{</span> <span class="n">RMB</span> <span class="p">=</span> <span class="m">10</span> <span class="p">};</span>
+<span class="n">Salary</span> <span class="n">s2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Salary</span><span class="p">()</span> <span class="p">{</span> <span class="n">RMB</span> <span class="p">=</span> <span class="m">20</span> <span class="p">};</span>
+<span class="n">Salary</span> <span class="n">s3</span> <span class="p">=</span> <span class="n">s1</span> <span class="p">+</span> <span class="n">s2</span><span class="p">;</span> 
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="建议10-创建对象时需要考虑是否实现比较器">建议10: 创建对象时需要考虑是否实现比较器</h4>
+<p>有对象的地方就会存在比较, 在C#的世界也一样; 举个简单的例子, 假设有10个人的Salary列表. 根据排序的需要, 列表需要支持针对基本工资来排序Salary. 这个时候IComparable就会有作用:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ArrayList</span> <span class="n">array</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="p">();</span>
+        <span class="n">array</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="m">1100</span><span class="p">);</span>
+        <span class="n">array</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="m">1200</span><span class="p">);</span>
+        <span class="n">array</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="m">1160</span><span class="p">);</span>
+        <span class="n">array</span><span class="p">.</span><span class="n">Sort</span><span class="p">();</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">obj</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以用<code>ArrayList.Sort()</code>方法即可完成排序的任务。不过<code>ArrayList</code>这里只能是一个字段的。假如有姓名、工资两个字段，然后根据工资进行排序那么按照现在的情况来看，<code>ArrayList</code>是无法实现的。所以接口<code>IComparable</code>现在可以派上用场了。现在先定义一个实体，并且实现接口IComparable。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">Salary</span> <span class="p">:</span> <span class="n">IComparable</span><span class="p">&lt;</span><span class="n">Salary</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">BaseSalary</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Bonus</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">CompareTo</span><span class="p">(</span><span class="n">Salary</span> <span class="n">staff</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">BaseSalary</span><span class="p">.</span><span class="n">CompareTo</span><span class="p">(</span><span class="n">staff</span><span class="p">.</span><span class="n">BaseSalary</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>实现了<code>IComparable</code>接口之后, 就可以根据BaseSalary来进行排序了;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">ArrayList</span> <span class="n">array</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="p">();</span>
+<span class="n">array</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Salary</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;aehyok&#34;</span><span class="p">,</span> <span class="n">BaseSalary</span> <span class="p">=</span> <span class="m">12000</span> <span class="p">});</span>
+<span class="n">array</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Salary</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Kris&#34;</span><span class="p">,</span> <span class="n">BaseSalary</span> <span class="p">=</span> <span class="m">11200</span> <span class="p">});</span>
+<span class="n">array</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Salary</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Leo&#34;</span><span class="p">,</span> <span class="n">BaseSalary</span> <span class="p">=</span> <span class="m">18000</span> <span class="p">});</span>
+<span class="n">array</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Salary</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Niki&#34;</span><span class="p">,</span> <span class="n">BaseSalary</span> <span class="p">=</span> <span class="m">20000</span> <span class="p">});</span>
+<span class="n">array</span><span class="p">.</span><span class="n">Sort</span><span class="p">();</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="n">Salary</span> <span class="n">obj</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0} BaseSalary:{1}&#34;</span><span class="p">,</span> <span class="n">obj</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">obj</span><span class="p">.</span><span class="n">BaseSalary</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果现在不想以基本工资BaseSalary进行排序, 而是以奖金Bonus进行排序, 该如何处理呢? 答案是: 可以使用<code>IComparer</code>来实现一个自定义的比较器 (当然修改Salary实体类中继承的接口方法进行处理肯定是没问题了，但是比较麻烦).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">BounsComparer</span><span class="p">:</span><span class="n">IComparer</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Compare</span><span class="p">(</span><span class="kt">object</span> <span class="n">x</span><span class="p">,</span> <span class="kt">object</span> <span class="n">y</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Salary</span> <span class="n">s1</span> <span class="p">=</span> <span class="n">x</span> <span class="k">as</span> <span class="n">Salary</span><span class="p">;</span>
+        <span class="n">Salary</span> <span class="n">s2</span> <span class="p">=</span> <span class="n">y</span> <span class="k">as</span> <span class="n">Salary</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">s1</span><span class="p">.</span><span class="n">Bouns</span><span class="p">.</span><span class="n">CompareTo</span><span class="p">(</span><span class="n">s2</span><span class="p">.</span><span class="n">Bouns</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后进行排序:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// code
+</span><span class="c1">// 排序时候为Sort方法提供比较器
+</span><span class="c1"></span> <span class="n">array</span><span class="p">.</span><span class="n">Sort</span><span class="p">(</span><span class="k">new</span> <span class="n">BounsComparer</span><span class="p">());</span>
+ <span class="p">...</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>​		我们可以观察到上面的代码, 使用了一个已经不建议的类ArrayList(当泛型出来后, 就建议尽量不使用所有非泛型集合类); 另外一点是, Compare函数中进行了转型处理，这是会影响性能的。如果集合中有成千上万个复杂的实体对象，那么进行排序时耗费的时间是巨大的。所以需要泛型登场，很好的解决了这个问题。</p>
+<p>实现的代码如下:</p>
+<ul>
+<li>实体类实现接口IComparable<!-- raw HTML omitted --></li>
+<li>自定义比较器实现接口IComparer<!-- raw HTML omitted --></li>
+<li>进行排序的调用</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice10</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Salary</span> <span class="p">:</span> <span class="n">IComparable</span><span class="p">&lt;</span><span class="n">Salary</span><span class="p">&gt;</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">BaseSalary</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Bonus</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">CompareTo</span><span class="p">(</span><span class="n">Salary</span> <span class="n">staff</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">BaseSalary</span><span class="p">.</span><span class="n">CompareTo</span><span class="p">(</span><span class="n">staff</span><span class="p">.</span><span class="n">BaseSalary</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice10</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">BonusComparer</span> <span class="p">:</span> <span class="n">IComparer</span><span class="p">&lt;</span><span class="n">Salary</span><span class="p">&gt;</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Compare</span><span class="p">(</span><span class="n">Salary</span> <span class="n">x</span><span class="p">,</span> <span class="n">Salary</span> <span class="n">y</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="n">Bonus</span><span class="p">.</span><span class="n">CompareTo</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="n">Bonus</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice10</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">List</span><span class="p">&lt;</span><span class="n">Salary</span><span class="p">&gt;</span> <span class="n">companySalary</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Salary</span><span class="p">&gt;();</span>
+            <span class="n">companySalary</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Salary</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Mike&#34;</span><span class="p">,</span> <span class="n">BaseSalary</span> <span class="p">=</span> <span class="m">3000</span><span class="p">,</span> <span class="n">Bonus</span> <span class="p">=</span> <span class="m">1000</span><span class="p">,</span> <span class="p">});</span>
+            <span class="n">companySalary</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Salary</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Rose&#34;</span><span class="p">,</span> <span class="n">BaseSalary</span> <span class="p">=</span> <span class="m">2000</span><span class="p">,</span> <span class="n">Bonus</span> <span class="p">=</span> <span class="m">4000</span> <span class="p">});</span>
+            <span class="n">companySalary</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Salary</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Jeffry&#34;</span><span class="p">,</span> <span class="n">BaseSalary</span> <span class="p">=</span> <span class="m">1000</span><span class="p">,</span> <span class="n">Bonus</span> <span class="p">=</span> <span class="m">6000</span> <span class="p">});</span>
+            <span class="n">companySalary</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Salary</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Steve&#34;</span><span class="p">,</span> <span class="n">BaseSalary</span> <span class="p">=</span> <span class="m">4000</span><span class="p">,</span> <span class="n">Bonus</span> <span class="p">=</span> <span class="m">3000</span> <span class="p">});</span>
+            <span class="n">companySalary</span><span class="p">.</span><span class="n">Sort</span><span class="p">(</span><span class="k">new</span> <span class="n">BonusComparer</span><span class="p">());</span>    <span class="c1">// 提供一个非默认的比较器
+</span><span class="c1"></span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="n">Salary</span> <span class="n">item</span> <span class="k">in</span> <span class="n">companySalary</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">Name</span> <span class="p">+</span> <span class="s">&#34;\t BaseSalary: &#34;</span> <span class="p">+</span> <span class="n">item</span><span class="p">.</span><span class="n">BaseSalary</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s">&#34;\t Bonus: &#34;</span> <span class="p">+</span> <span class="n">item</span><span class="p">.</span><span class="n">Bonus</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="建议11-区分对待和equals">建议11: 区分对待==和Equals</h4>
+<p>​		需要先去明白&quot;相等性&quot;的概念,  CLR中将&quot;相等性&quot;分为两类,  &ldquo;值相等性&quot;和&quot;引用相等性&rdquo;, 如果要比较的两个变量所包含的数值相等, 那么将其定义为&quot;值相等性&quot;; 如果比较的两个变量的引用的是内存中的同一个对象, 那么将其定义为&quot;引用相等性&quot;;</p>
+<p>​		无论是操作符&quot;==&ldquo;还是方法&quot;Equals&rdquo;, 都倾向于表达这样一个原则;</p>
+<ul>
+<li>对于值类型, 如果类型的值相等, 就应该返回True;</li>
+<li>对于引用类型, 如果类型指向同一个对象, 则返回True;</li>
+</ul>
+<p>​	   一般说来, 对于值类型, 两者是相同的, 都是比较变量的值; 而对于引用类型, ，等号(==)比较的是两个变量的<strong>引用</strong>是否一样，即是引用的”<strong>地址</strong>”是否相同。而对于equals来说仍然比较的是变量的 **”内容”**是否一样;</p>
+<p>​		同时我们也要了解, 无论是操作符&quot;==&ldquo;还是&quot;Equals&quot;方法都是可以被重载的. 比如, 对于string这样一个特殊的引用类型, 微软认为它的意义更接近于值类型, 因此在Framework Class Library中, string的比较被重载为针对&quot;类型的值&quot;的比较, 而不是针对&quot;引用本身&quot;的比较;</p>
+<p>​		从设计而言, 很多自定义类型(尤其是自定义的引用类型)会存在和string类型比较相近的情况, 如生活中的Person, 如果他们的ID是相等的, 我们就认为两者是同一个人, 这个时候, 需要重载Equals方法:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">namespace</span> <span class="nn">Advice11</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Person</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">ID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="n">Person</span><span class="p">(</span><span class="kt">string</span> <span class="n">id</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="n">ID</span> <span class="p">=</span> <span class="n">id</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="n">Equals</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">ID</span> <span class="p">==</span> <span class="p">(</span><span class="n">obj</span> <span class="k">as</span> <span class="n">Person</span><span class="p">).</span><span class="n">ID</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice11</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">object</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&#34;NB123&#34;</span><span class="p">);</span>
+            <span class="kt">object</span> <span class="n">b</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&#34;NB123&#34;</span><span class="p">);</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">a</span> <span class="p">==</span> <span class="n">b</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里再引出操作符&rdquo;==&ldquo;和&quot;Equals&quot;方法之间的一些区别. 一般来说, 对于引用类型, 如果我们是要去定义&quot;值相等性&rdquo;, 那应该仅仅去重载Equals方法, 同时让&quot;==&quot;来表示&quot;引用相等性&quot;;</p>
+<h4 id="建议12-重写equals时也要重写gethashcode">建议12: 重写Equals时也要重写GetHashCode</h4>
+<p>除非考虑到自定义类型会被用作基于散列的集合的键值, 否则不建议重写Equals方法, 因为这会带来一些问题;</p>
+<p>如果编译建议11的Person这个类型, 编译器会给出一个警告:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Shell" data-lang="Shell"> Rebuild started...
+1&gt;------ Rebuild All started: Project: Advice11, Configuration: Debug Any CPU ------
+1&gt;F:<span class="se">\D</span>emos<span class="se">\C</span>sharpAdvice<span class="se">\A</span>dvice11<span class="se">\P</span>erson.cs<span class="o">(</span>3,11,3,17<span class="o">)</span>: warning CS0659: <span class="s1">&#39;Person&#39;</span> overrides Object.Equals<span class="o">(</span>object o<span class="o">)</span> but does not override Object.GetHashCode<span class="o">()</span>
+1&gt;  Advice11 -&gt; F:<span class="se">\D</span>emos<span class="se">\C</span>sharpAdvice<span class="se">\A</span>dvice11<span class="se">\b</span>in<span class="se">\D</span>ebug<span class="se">\A</span>dvice11.exe
+<span class="o">==========</span> Rebuild All: <span class="m">1</span> succeeded, <span class="m">0</span> failed  <span class="m">0</span> <span class="nv">skipped</span> <span class="o">==========</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果重写Equals方法而不重写GetHashCode(),  在使用如FCL的Dictionary类的时候, 可能会有一些bug, 我们在Advice11的代码上进行验证:</p>
+<p>建议两个实体类, 来使用以下的Dictionary类型:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice11</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">,</span> <span class="n">PersonMoreInfo</span><span class="p">&gt;</span> <span class="n">PersonValues</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">,</span> <span class="n">PersonMoreInfo</span><span class="p">&gt;();</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">AddPerson</span><span class="p">();</span>
+            <span class="n">Person</span> <span class="n">bomir</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&#34;morn423&#34;</span><span class="p">);</span>
+            <span class="c1">// Console.WriteLine(bomir.GetHashCode());
+</span><span class="c1"></span>            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">PersonValues</span><span class="p">.</span><span class="n">ContainsKey</span><span class="p">(</span><span class="n">bomir</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="k">static</span> <span class="k">void</span> <span class="n">AddPerson</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Person</span> <span class="n">bomir</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&#34;morn423&#34;</span><span class="p">);</span>
+            <span class="n">PersonMoreInfo</span> <span class="n">bomirValue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PersonMoreInfo</span><span class="p">()</span> <span class="p">{</span> <span class="n">SomeInfo</span> <span class="p">=</span> <span class="s">&#34;Bomir&#39;s Info&#34;</span> <span class="p">};</span>
+            <span class="n">PersonValues</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">bomir</span><span class="p">,</span> <span class="n">bomirValue</span><span class="p">);</span>
+            <span class="c1">// Console.WriteLine(bomir.GetHashCode());
+</span><span class="c1"></span>            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">PersonValues</span><span class="p">.</span><span class="n">ContainsKey</span><span class="p">(</span><span class="n">bomir</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">PersonMoreInfo</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">SomeInfo</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>结果为True, False.</p>
+<p>理论上来说，我们重写了Person类中的Equals方法，也就是说在<code>AddPerson</code>方法中的bomir和在Main函数中的bomir属于”值相等“。从上面的结果可以发现，针对同一个实例，这种结论是正确的，针对不同的实例，这种结果就是有问题的。</p>
+<p>实际上, 基于键值的集合（如上面的Dictionary）会根据Key值来查找Value值。CLR内部会优化这种查找，实际上，最终是根据Key值的HashCode来查找Value值。代码运行的时候，CLR首先会调用Person类型的GetHashCode，由于发现Person没有实现GetHashCode，所以CLR最终会调用Object的 GetHashCode方法。</p>
+<p>为什么两者实际对一个调用的Object的 GetHashCode会不同?</p>
+<p>Object为所有的CLR类型都提供了GetHashCode的默认实现。每new一个对象，CLR都会为该对象生成一个固定的整形值，该整形值在对象的生存周期内不会改变，而该对象默认的GetHashCode实现就是对该整型值求HashCode。所以，在上面的代码中，两个mike兑现虽然属性值都一致，但是它们默认实现的HashCode不一致，这就导致Dictionary中出现异常的行为。</p>
+<p>将上面代码中的两行注释代码去掉，运行程序得到输出两个hashcode是不一样的;</p>
+<p>要修正上面的问题就需要重写GetHashCode, 简单的重写GetHashCode如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">override</span> <span class="kt">int</span> <span class="n">GetHashCode</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">ID</span><span class="p">.</span><span class="n">GetHashCode</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这时候, 两者的HashCode是一致的，而dictionary也会找到相应的键值。</p>
+<p>一些Code上的优化:</p>
+<ul>
+<li>就语法特性而言, Person类的ID是可读可写的, 但是现实意义下, 一个人一旦踏入社会, ID不应该发生改变, 就像身份证号码一样, 发生改变意味着是另一个人了; 所以应该只实现ID的只读属性, 同理GetHashCode方法也应该基于那些只读的属性或者特性生成HashCode.</li>
+<li>另外一个问题是, GetHashCode永远只返回一个整型, 而整型类型的容量显然无法满足字符串的容量; 下面这个例子就产生了相同的hashcode:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="kt">string</span> <span class="n">str1</span> <span class="p">=</span> <span class="s">&#34;NB0903100006&#34;</span><span class="p">;</span>
+<span class="kt">string</span> <span class="n">str2</span> <span class="p">=</span> <span class="s">&#34;NB0904140001&#34;</span><span class="p">;</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">str1</span><span class="p">.</span><span class="n">GetHashCode</span><span class="p">());</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">str2</span><span class="p">.</span><span class="n">GetHashCode</span><span class="p">());</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>为了减少不同类型之间根据字符串产生相同的HashCode的概率, 一个稍作改进版本的GetHashCode方法如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">override</span> <span class="kt">int</span> <span class="n">GetHashCode</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Reflection</span><span class="p">.</span><span class="n">MethodBase</span><span class="p">.</span><span class="n">GetCurrentMethod</span><span class="p">().</span><span class="n">DeclaringType</span><span class="p">.</span><span class="n">FullName</span> <span class="p">+</span> <span class="s">&#34;#&#34;</span> <span class="p">+</span> <span class="k">this</span><span class="p">.</span><span class="n">ID</span><span class="p">).</span><span class="n">GetHashCode</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Note: 重写Equals方法的同时, 也应该实现一个类型安全的接口IEquatable<!-- raw HTML omitted -->,所以Person类型的最终代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice11</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Person</span> <span class="p">:</span> <span class="n">IEquatable</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">&gt;</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">ID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="n">Person</span><span class="p">(</span><span class="kt">string</span> <span class="n">id</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="n">ID</span> <span class="p">=</span> <span class="n">id</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="n">Equals</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">ID</span> <span class="p">==</span> <span class="p">(</span><span class="n">obj</span> <span class="k">as</span> <span class="n">Person</span><span class="p">).</span><span class="n">ID</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">override</span> <span class="kt">int</span> <span class="n">GetHashCode</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Reflection</span><span class="p">.</span><span class="n">MethodBase</span><span class="p">.</span><span class="n">GetCurrentMethod</span><span class="p">().</span><span class="n">DeclaringType</span><span class="p">.</span><span class="n">FullName</span> <span class="p">+</span> <span class="s">&#34;#&#34;</span> <span class="p">+</span> <span class="k">this</span><span class="p">.</span><span class="n">ID</span><span class="p">).</span><span class="n">GetHashCode</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="kt">bool</span> <span class="n">Equals</span><span class="p">(</span><span class="n">Person</span> <span class="n">other</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">ID</span> <span class="p">==</span> <span class="n">other</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="建议13-为类型输出格式化字符串">建议13: 为类型输出格式化字符串</h4>
+<p>有两种方法可以为类型提供格式化的字符串输出。</p>
+<p>　　一种是意识到类型会产生格式化字符串输出，于是让类型继承接口IFormattable。这对类型来说，是一种主动实现的方式，要求开发者可以预见类型在格式化方面的要求。</p>
+<p>　　更多的时候，类型的使用者需为类型自定义格式化器，这就是第二种方法，也是最灵活多变的方法，可以根据需求的变化为类型提供多个格式化器。</p>
+<p>　　下面我们就来看一下这两种方式的实现。</p>
+<p>　　最简单的字符串输出是为类型重写ToString()方法，如果没有为类型重写该方法，默认会调用Object的ToString方法，它会返回当前类型的类型名称。但即使是重写了ToString()方法，提供的字符串输出也是非常单一的，而通过实现IFormattable接口的ToString()方法，可以让类型根据用户的输入而格式化输出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice13</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Person</span> <span class="p">:</span> <span class="n">IFormattable</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">IDCode</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">FirstName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">LastName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">// 实现接口IFormattable的方法ToString()
+</span><span class="c1"></span>        <span class="k">public</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">(</span><span class="kt">string</span> <span class="n">format</span><span class="p">,</span> <span class="n">IFormatProvider</span> <span class="n">formatProvider</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="n">format</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">case</span> <span class="s">&#34;ch&#34;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+                <span class="k">case</span> <span class="s">&#34;eg&#34;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0} {1}&#34;</span><span class="p">,</span> <span class="n">FirstName</span><span class="p">,</span> <span class="n">LastName</span><span class="p">);</span>
+                <span class="k">default</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 重写Object.ToString()
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0} {1}&#34;</span><span class="p">,</span> <span class="n">LastName</span><span class="p">,</span> <span class="n">FirstName</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice13</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Person</span> <span class="n">person</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">()</span> <span class="p">{</span> <span class="n">FirstName</span><span class="p">=</span><span class="s">&#34;Bomir&#34;</span><span class="p">,</span> <span class="n">LastName</span><span class="p">=</span><span class="s">&#34;Wang&#34;</span><span class="p">,</span> <span class="n">IDCode</span><span class="p">=</span><span class="s">&#34;Morn423&#34;</span> <span class="p">};</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s">&#34;ch&#34;</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s">&#34;eg&#34;</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面这种方法是在意识到类型会存在格式化字符出输出的需求时, 提前为类型继承了接口IFormattable. 如果类型本身没有提供格式化字符串输出的功能, 这个时候, 格式化器就有用了; 使用格式化器的好处就是可以根据需求的变化, 随时增加或者修改它.</p>
+<p>首先定义一个实体类Person:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice13</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Person</span> <span class="p">:</span> <span class="n">IFormattable</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">IDCode</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">FirstName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">LastName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">// 实现接口IFormattable的方法ToString()
+</span><span class="c1"></span>        <span class="k">public</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">(</span><span class="kt">string</span> <span class="n">format</span><span class="p">,</span> <span class="n">IFormatProvider</span> <span class="n">formatProvider</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="n">format</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">case</span> <span class="s">&#34;ch&#34;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+                <span class="k">case</span> <span class="s">&#34;eg&#34;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0} {1}&#34;</span><span class="p">,</span> <span class="n">FirstName</span><span class="p">,</span> <span class="n">LastName</span><span class="p">);</span>
+                <span class="k">default</span><span class="p">:</span>
+                    <span class="c1">// return this.ToString();
+</span><span class="c1"></span>                    <span class="n">ICustomFormatter</span> <span class="n">customFormatter</span> <span class="p">=</span> <span class="n">formatProvider</span> <span class="k">as</span> <span class="n">ICustomFormatter</span><span class="p">;</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">customFormatter</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+                    <span class="p">}</span>
+                    <span class="k">return</span> <span class="n">customFormatter</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="n">format</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 重写Object.ToString()
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0} {1}&#34;</span><span class="p">,</span> <span class="n">LastName</span><span class="p">,</span> <span class="n">FirstName</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>一个典型的格式化器应该继承IFormatProvider和ICustomerFormatter，看代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice13</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">PersonFomartter</span> <span class="p">:</span> <span class="n">IFormatProvider</span><span class="p">,</span> <span class="n">ICustomFormatter</span>
+    <span class="p">{</span>
+        <span class="c1">// ICustomFormatter的成员
+</span><span class="c1"></span>        <span class="k">public</span> <span class="kt">string</span> <span class="n">Format</span><span class="p">(</span><span class="kt">string</span> <span class="n">format</span><span class="p">,</span> <span class="kt">object</span> <span class="n">arg</span><span class="p">,</span> <span class="n">IFormatProvider</span> <span class="n">formatProvider</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Person</span> <span class="n">person</span> <span class="p">=</span> <span class="n">arg</span> <span class="k">as</span> <span class="n">Person</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">person</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="n">format</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">case</span> <span class="s">&#34;ch&#34;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0} {1}&#34;</span><span class="p">,</span> <span class="n">person</span><span class="p">.</span><span class="n">LastName</span><span class="p">,</span> <span class="n">person</span><span class="p">.</span><span class="n">FirstName</span><span class="p">);</span>
+                <span class="k">case</span> <span class="s">&#34;eg&#34;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0} {1}&#34;</span><span class="p">,</span> <span class="n">person</span><span class="p">.</span><span class="n">FirstName</span><span class="p">,</span> <span class="n">person</span><span class="p">.</span><span class="n">LastName</span><span class="p">);</span>
+                <span class="k">case</span> <span class="s">&#34;chM&#34;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0} {1} : {2}&#34;</span><span class="p">,</span> <span class="n">person</span><span class="p">.</span><span class="n">FirstName</span><span class="p">,</span> <span class="n">person</span><span class="p">.</span><span class="n">LastName</span><span class="p">,</span> <span class="n">person</span><span class="p">.</span><span class="n">IDCode</span><span class="p">);</span>
+                <span class="k">default</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0} {1}&#34;</span><span class="p">,</span> <span class="n">person</span><span class="p">.</span><span class="n">FirstName</span><span class="p">,</span> <span class="n">person</span><span class="p">.</span><span class="n">LastName</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// IFormatProvider的成员
+</span><span class="c1"></span>        <span class="k">public</span> <span class="kt">object</span> <span class="n">GetFormat</span><span class="p">(</span><span class="n">Type</span> <span class="n">formatType</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">formatType</span> <span class="p">==</span> <span class="k">typeof</span><span class="p">(</span><span class="n">ICustomFormatter</span><span class="p">))</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以使用变通的形式，就是将这两种方式合并一起使用的过程;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice13</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Person</span> <span class="n">person</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">()</span> <span class="p">{</span> <span class="n">FirstName</span><span class="p">=</span><span class="s">&#34;Bomir&#34;</span><span class="p">,</span> <span class="n">LastName</span><span class="p">=</span><span class="s">&#34;Wang&#34;</span><span class="p">,</span> <span class="n">IDCode</span><span class="p">=</span><span class="s">&#34;Morn423&#34;</span> <span class="p">};</span>
+
+            <span class="n">PersonFomartter</span> <span class="n">pFomartter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PersonFomartter</span><span class="p">();</span>
+            <span class="c1">// 从第一类格式化输出语法
+</span><span class="c1"></span>            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">pFomartter</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;ch&#34;</span><span class="p">,</span> <span class="n">person</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">pFomartter</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;eg&#34;</span><span class="p">,</span> <span class="n">person</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">pFomartter</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;chM&#34;</span><span class="p">,</span> <span class="n">person</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+
+            <span class="c1">// 从第二类格式化输出语法, 更简洁
+</span><span class="c1"></span>            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s">&#34;ch&#34;</span><span class="p">,</span> <span class="n">pFomartter</span><span class="p">));</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s">&#34;eg&#34;</span><span class="p">,</span> <span class="n">pFomartter</span><span class="p">));</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s">&#34;chM&#34;</span><span class="p">,</span> <span class="n">pFomartter</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="建议14-正确实现浅拷贝和深拷贝">建议14: 正确实现浅拷贝和深拷贝</h4>
+<p>为对象创建副本的技术成为拷贝(也叫克隆)。我们将拷贝分为浅拷贝和深拷贝。</p>
+<p><strong>浅拷贝</strong> 将对象中的所有字段复制到新的对象(副本)中。其中，值类型字段的值被复制到副本中后，在副本中的修改不会影响到源对象对应的值。 而引用类型的字段被复制到副本中的是引用类型的引用，而不是引用的对象，在副本中对引用类型的字段值做修改会影响到源对象本身。</p>
+<p><strong>深拷贝</strong> 同样，将对象中的所有字段复制到新的对象中。不过无论是对象的值类型字段，还是引用类型字段，都会被重新创建并赋值，对于副本的修改，不会影响到源对象本身。</p>
+<p>无论是浅拷贝还是深拷贝，微软都建议用类型继承ICloneable接口的方式明确告诉调用者：该类型可以被拷贝。当然，ICloneable接口只提供了一个声明为Clone的方法，我们可根据需求在Clone方法内实现浅拷贝或深拷贝。一个简答的浅拷贝的实现代码如下所示：</p>
+<p>首先定义实体类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice14</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Employee</span> <span class="p">:</span> <span class="n">ICloneable</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">IDCode</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Age</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="n">Department</span> <span class="n">Department</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">object</span> <span class="n">Clone</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">MemberwiseClone</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Department</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">Name</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>调用方代码如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice14</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Employee</span> <span class="n">bomir</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span>
+            <span class="p">{</span>
+                <span class="n">IDCode</span> <span class="p">=</span> <span class="s">&#34;morn423&#34;</span><span class="p">,</span>
+                <span class="n">Age</span> <span class="p">=</span> <span class="m">30</span><span class="p">,</span>
+                <span class="n">Department</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Department</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Dep1&#34;</span> <span class="p">}</span>
+            <span class="p">};</span>
+
+            <span class="n">Employee</span> <span class="n">kiki</span> <span class="p">=</span> <span class="n">bomir</span><span class="p">.</span><span class="n">Clone</span><span class="p">()</span> <span class="k">as</span> <span class="n">Employee</span><span class="p">;</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">kiki</span><span class="p">.</span><span class="n">IDCode</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">kiki</span><span class="p">.</span><span class="n">Age</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">kiki</span><span class="p">.</span><span class="n">Department</span><span class="p">);</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;开始改变bomir的值: &#34;</span><span class="p">);</span>
+            <span class="n">bomir</span><span class="p">.</span><span class="n">IDCode</span> <span class="p">=</span> <span class="s">&#34;morn456&#34;</span><span class="p">;</span>
+            <span class="n">bomir</span><span class="p">.</span><span class="n">Age</span> <span class="p">=</span> <span class="m">22</span><span class="p">;</span>
+            <span class="n">bomir</span><span class="p">.</span><span class="n">Department</span><span class="p">.</span><span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Dep2&#34;</span><span class="p">;</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">kiki</span><span class="p">.</span><span class="n">IDCode</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">kiki</span><span class="p">.</span><span class="n">Age</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">kiki</span><span class="p">.</span><span class="n">Department</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>输出的结果是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Shell" data-lang="Shell">orn423
+<span class="m">30</span>
+Dep1
+开始改变bomir的值:
+morn423
+<span class="m">30</span>
+Dep2
+请按任意键继续. .
+</code></pre></td></tr></table>
+</div>
+</div><p>注意到Employee的IDCode属string类型。理论上string类型是引用类型，但是由于该引用类型的特殊性（无论是实际还是语义），Object.MemberwiseClone方法仍旧为其创建了副本。也就是说，在<strong>浅拷贝</strong>过程，我们应该将字符串看成是值类型。Employee的Department属性是一个引用类型，所以，如果改变了源对象bomir中的值，那么副本kiki中的值也会随之一起变动。</p>
+<p>Employee的深拷贝有多种实现方法，最简单的方式是手动的对字段进行逐个的赋值。但是这种方法容易出错，也就是说，如果类型的字段发生变化或有增减，那么该拷贝方法也要发生相应的变化，所以，建议使用序列化的形式来进行深拷贝。Employee<strong>深拷贝</strong>的一种实现方式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Runtime.Serialization</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Runtime.Serialization.Formatters.Binary</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice14</span>
+<span class="p">{</span>
+<span class="na">    [Serializable]</span>
+    <span class="k">class</span> <span class="nc">Employee</span> <span class="p">:</span> <span class="n">ICloneable</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">IDCode</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Age</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="n">Department</span> <span class="n">Department</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">object</span> <span class="n">Clone</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">using</span> <span class="p">(</span><span class="n">Stream</span> <span class="n">objectstram</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="n">IFormatter</span> <span class="n">formatter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BinaryFormatter</span><span class="p">();</span>
+                <span class="n">formatter</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">objectstram</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+                <span class="n">objectstram</span><span class="p">.</span><span class="n">Seek</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">SeekOrigin</span><span class="p">.</span><span class="n">Begin</span><span class="p">);</span>
+                <span class="k">return</span> <span class="n">formatter</span><span class="p">.</span><span class="n">Deserialize</span><span class="p">(</span><span class="n">objectstram</span><span class="p">)</span> <span class="k">as</span> <span class="n">Employee</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="na">
+</span><span class="na">    [Serializable]</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Department</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">Name</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以发现， 例子中再次更改bomir的值已经不会影响副本kiki的值了；</p>
+<p>由于接口ICloneable只有一个模棱两可的Clone方法， 所以， 如果要在一个类中同时实现浅拷贝和深拷贝， 只能由我们自己实现两个额外的方法， 声明为DeepClone和Shallow。 Employee的最终版本看起来像如下的形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[Serializable]</span>
+<span class="k">class</span> <span class="nc">Employee</span> <span class="p">:</span> <span class="n">ICloneable</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">IDCode</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Age</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="n">Department</span> <span class="n">Department</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">object</span> <span class="n">Clone</span><span class="p">()</span>
+    <span class="p">{</span>
+    	<span class="k">return</span> <span class="n">MemberwiseClone</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">Employee</span> <span class="n">DeepClone</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">using</span> <span class="p">(</span><span class="n">Stream</span> <span class="n">objectstram</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">())</span>
+        <span class="p">{</span>
+        <span class="n">IFormatter</span> <span class="n">formatter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BinaryFormatter</span><span class="p">();</span>
+        <span class="n">formatter</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">objectstram</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="n">objectstram</span><span class="p">.</span><span class="n">Seek</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">SeekOrigin</span><span class="p">.</span><span class="n">Begin</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">formatter</span><span class="p">.</span><span class="n">Deserialize</span><span class="p">(</span><span class="n">objectstram</span><span class="p">)</span> <span class="k">as</span> <span class="n">Employee</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">Employee</span> <span class="n">ShallowClone</span><span class="p">()</span>
+    <span class="p">{</span>
+    	<span class="k">return</span> <span class="n">Clone</span><span class="p">()</span> <span class="k">as</span> <span class="n">Employee</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="建议15-使用dynamic来简化反射实现">建议15: 使用dynamic来简化反射实现</h4>
+<p>Dynamic是<code>Framework4.0</code>的新特性。dynamic的出现让C#具有了弱类型的特性。编译器在编译的时候不再对类型进行检查，编译器默认dynamic对象支持开发者想要的任何类型。如果运行时不包含指定的特性，运行时程序会抛出一个RuntimeBinderException异常。</p>
+<blockquote>
+<p>注意区分dynamic和var关键字的区别， 实际上， var和dynamic完全是两个概念， 不应该放在一起比较；</p>
+<ol>
+<li>var实际上是编译器给我们的“语法糖”， 一旦被编译， 编译器会自动匹配var变量的实际类型， 并用实际类型来替换该变量的声明，这看起来就是好像在编码时候用实际类型来声明的。</li>
+<li>dynamic被编译后，实际上是一个object类型， 只不过编译器会对dynamic类型进行特殊处理，让它在编译期间进行任何的类型检查，而是把类型检查放到了运行期；</li>
+<li>从VS的编辑窗口能看出来， var声明的“智能感知”， 从VS中能推断出var类型的实际类型。而dynamic不支持智能感知， 因为编译器对运行期的类型一无所知；</li>
+</ol>
+</blockquote>
+<p>看下简单的demo:</p>
+<!-- raw HTML omitted -->
+<p>作者以10000000次的调用测试中发现，有着非常明显的区别， 普通方法调用发射执行效率远远的低于使用dynamic。第三种方式是优化了发射之后的执行时间，比使用dynamic也有所提升，但是并不是特别明显，虽然带来了性能的提升，不过却牺牲了代码的整洁性。这种实现方式其实是得不偿失的。所以建议大家使用dynamic来优化发射。</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bomir</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2019-10-12
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://bomir.top/tags/csharp/">CSharp</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/csharp-others-talk/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">C#杂项聊一聊</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/deepracer/">
+            <span class="next-text nav-default">AWS DeepRacer</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Shaper-fox/hugoblogtalks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:jinchunw@385@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/Bicomir" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://bomir.top/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2021
+    <span class="heart">
+      
+      <i class="iconfont">        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        bomir
+        
+      </span>
+	  <span class="division">|</span>
+	  <span class="author">
+			<a href="http://beian.miit.gov.cn/">粤ICP备2021140392号-1</a>
+	  </span></span>
+  
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
