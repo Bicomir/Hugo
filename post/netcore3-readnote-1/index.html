@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>.netcore之核心组件 - Wallis</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="bomir" />
+  <meta name="description" content="netCore3从入门到实战-读书笔记-1 .netcore核心组件 .netcore提供了一组内置的组件来帮助开发者来实现一个应用程序的基本功" />
+
+  <meta name="keywords" content="Hugo, theme, jane" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0" />
+
+
+<link rel="canonical" href="https://bomir.top/post/netcore3-readnote-1/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content=".netcore之核心组件" />
+<meta property="og:description" content="netCore3从入门到实战-读书笔记-1 .netcore核心组件 .netcore提供了一组内置的组件来帮助开发者来实现一个应用程序的基本功" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bomir.top/post/netcore3-readnote-1/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-07-12T22:19:05+00:00" />
+<meta property="article:modified_time" content="2020-07-12T22:19:05+00:00" />
+
+<meta itemprop="name" content=".netcore之核心组件">
+<meta itemprop="description" content="netCore3从入门到实战-读书笔记-1 .netcore核心组件 .netcore提供了一组内置的组件来帮助开发者来实现一个应用程序的基本功"><meta itemprop="datePublished" content="2020-07-12T22:19:05+00:00" />
+<meta itemprop="dateModified" content="2020-07-12T22:19:05+00:00" />
+<meta itemprop="wordCount" content="9072">
+<meta itemprop="keywords" content=".netcore," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=".netcore之核心组件"/>
+<meta name="twitter:description" content="netCore3从入门到实战-读书笔记-1 .netcore核心组件 .netcore提供了一组内置的组件来帮助开发者来实现一个应用程序的基本功"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">秤流沙</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      秤流沙
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">.netcore之核心组件</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-07-12" class="post-time">
+          2020-07-12
+        </time>
+        <div class="post-category">
+            <a href="https://bomir.top/categories/csharp/"> CSharp </a>
+            
+          </div>
+        <span class="more-meta"> 约 9072 字 </span>
+          <span class="more-meta"> 预计阅读 19 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#netcore3从入门到实战-读书笔记-1">netCore3从入门到实战-读书笔记-1</a>
+      <ul>
+        <li><a href="#依赖注入">依赖注入</a></li>
+        <li><a href="#依赖注入组件">依赖注入组件</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="netcore3从入门到实战-读书笔记-1">netCore3从入门到实战-读书笔记-1</h2>
+<p>.netcore核心组件</p>
+<p><img src="https://bomir.top/pics/dotnetCore/image-20211020121632368.png" alt="image-20211020121632368"></p>
+<p>.netcore提供了一组内置的组件来帮助开发者来实现一个应用程序的基本功能，如依赖注入 、配置、选项、日志等，这些组件以Microsoft.Extensions为前缀；</p>
+<h3 id="依赖注入">依赖注入</h3>
+<p>依赖注入就是一个类型使用或引用到另一个类型，从严格意义上来讲，如果<strong>A类型</strong>的定义或实现中出现了<strong>B类型</strong>， 就可以理解为<strong>A类型</strong>依赖了<strong>B类型</strong>， 大体上有下列几种情形或者这些情形的组合：</p>
+<ul>
+<li>A类型的构造函数入参包含了B类型</li>
+<li>A类型的属性、字段包含了B类型</li>
+<li>A类型的方法输入或输出参数包含了B类型</li>
+<li>A类型的方法的局部变量包含了B类型</li>
+</ul>
+<p>**什么是依赖注入？**按照上例中B类型的实例注入给A类型就是。讲到依赖注入，就会提到控制反转(Inversion of Control)， 它们本质上讲同一个事物的两面，都是处理对象之间的依赖关系；</p>
+<p>​		从容器的角度来看，<strong>依赖注入</strong>由容器负责对象的构造，对象所依赖的其他对象由容器负责管理并注入给对象。<strong>控制反转</strong>是从对象的视角来讲的，指对象把构造自己及其依赖对象的控制权交给容器来管理；</p>
+<p>​		为什么需要依赖注入？在oop思想中有个很重要的原则叫<strong>单一职责原则</strong>，指一个类型应该仅负责单一的职责，当一个类型负责过多的职责的时候，它被改变的因素就会被增多，使得类型变得更加不稳定；</p>
+<p>​		像前面讲的那样，当A类型依赖B类型时，A类型并不关心B类型的实例是怎么产生的，A类型只在需要的地方使用B的属性或者方法；（类比Driver类型并不关心Car类型是怎么造出来的，他只关心这个车是否可被正常驾驶？(使用Car类型的Run方法)），也不关心给Driver的是电动车还是汽油车；</p>
+<p>​		还有一个对应的设计原则叫<strong>关注点分离原则</strong>，指在设计系统时应该在宏观上为不同的关注点分别设计，然后组合起来。这里的“关注点”可以理解为是不同的能力，比如以MVC框架为例，Model负责数据的承载，View负责UI的渲染，Cotroller负责View， Model之间的数据传递以及通过仓储层将数据存储在数据库。这里Model的关注点就是数据本身，View的关注点是UI渲染，Cotroller的关注点是传递和组合。</p>
+<p>​		反过来想一想，假设我们没有为对象的创建进行关注点设计，那就意味着系统代码到处充斥着new关键字。对于简单类型，这还可以容忍；但是对于复杂类型，尤其是那些负责将不同组件组装在一起的类型，构造过程就显得非常繁琐，因为它依赖了多个其他组件。而那些被依赖的组件很有可能也依赖了其他的组件，最终我们会发现负责创建对象的代码让系统难以维护，任何类型的变更都可能影响到那些依赖它的代码，这也就是为什么会有工厂模式/抽象工厂模式等负责创建对象的设计模式，本质上都是为了将创建对象这个关注点分离出来。</p>
+<p>​		如果说工厂模式、抽象设计模式是特定类型的创建过程的分离，那么依赖注入就是将任意类型的创建的能力分离出来，实际上在我们使用依赖注入框架时会惊奇地发现它实际是支持工厂模式的；</p>
+<p>​		本质上，依赖注入是控制反转思想的一种实现方式。在.NET Core生态中，<strong>是由依赖注入组件来实现依赖注入设计模式的，它的设计思路是通过定义类型的生命周期、构造方式等规则配置到容器中，由容器负责管理对象的创建和资源释放</strong>。</p>
+<h3 id="依赖注入组件">依赖注入组件</h3>
+<p>要用到依赖注入框架， 就需要使用以下两个包：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Microsoft.Extensions.DependencyInjection.Abstractions;
+Microsoft.Extensions.DependencyInjection;
+</code></pre></td></tr></table>
+</div>
+</div><p>其中 <code>Microsoft.Extensions.DependencyInjection.Abstractions</code>包含了依赖注入框架核心接口的定义，<code>Microsoft.Extensions.DependencyInjection</code>包含了框架的具体实现，这种将接口定义和具体实现放在不同包的模式叫做<strong>接口实现分离模式</strong>， 其好处是组件的使用者可以只依赖抽象的定义包，可以在运行时决定使用哪种具体的实现，这与依赖注入的核心思想是一致的。后面的配置组件，选项组件和日志组件，也都是在组件的设定初期就设定用户会使用依赖注入来管理对象</p>
+<p>依赖注入框架类型的主要命名空间为<code>Microsoft.Extensions.DependencyInjection</code>, 其中核心的类型是ServiceDescriptor, ServiceCollection, ServiceProvider. 下图也揭示了这三个类之间的关系和DI框架的使用过程;</p>
+<p><img src="https://bomir.top/pics/dotnetCore/image-20211103184319055.png" alt="image-20211103184319055"></p>
+<h4 id="服务描述类servicedescriptor">服务描述类ServiceDescriptor</h4>
+<p>ServiceDescriptor类包含服务的类型, 生命周期和构造方式等信息. ServiceCollection是ServiceDescriptor的集合, 通过BuildServiceProvider方法可以获得服务容器ServiceProvider, 通过ServiceProvider的GetService方法可以获得注册服务的实例;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">ServiceDescriptor</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">Type</span> <span class="n">ImplementationType</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">object</span> <span class="n">ImplementationInstance</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">IServiceProvider</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">ImplementationFactory</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="n">ServiceLifetime</span> <span class="n">Lifetime</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="n">Type</span> <span class="n">ServiceType</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>实际上, 这个只是列出了ServiceDescriptor的主要定义, 其中ServiceType是要注册的类型, 也就是将来要获取的类型; 既可以是接口, 也可以是抽象类, 也可以是普通的类型; 属性ImplementationType表明实际要创建的类型, 属性ImplementationInstance表明注册时候已经获取了类型实例并将它注册进来, 将来要获取的时候将ImplementationInstance返回给调用者即可; 属性ImplementationFactory表示注册了一个用于创建ServiceType指定的类型的工厂, 当需要从容器获取时, 由这个工厂负责创建类型实例;</p>
+<p>总结起来就是, 可以有3种方式获得目标类型(ServiceType)的实例:</p>
+<ul>
+<li>从已有的实例来创建, 即ImplementationInstance;</li>
+<li>从指定的类型来动态创建, 即ImplementationType;</li>
+<li>从指定的工厂方法来来动态创建, 即ImplementationFactory;</li>
+</ul>
+<p>而且, 对于一个ServiceDescriptor实例, 只能注册为这三种方式之一, 它们时互斥的, 不可重复定义; 为了方便的创建ServiceDescriptor实例, 提供了一系列的静态方法可供调用(瞬时服务注册, 范围服务注册, 单例服务注册, 指定生命周期注册);</p>
+<h4 id="iservicecollection与服务注册">IServiceCollection与服务注册</h4>
+<p>看一下IServiceCollection的定义, 没有包含任何特别的方法, 仅仅是一个ServiceDescriptor的集合, 在组件的实现包Microsoft.Extensions.DependencyInjection中, 类ServiceCollection实现了IServiceCollection接口:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IServiceCollection</span> <span class="p">:</span> <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">,</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">ServiceCollection</span> <span class="p">:</span> <span class="n">IServiceCollection</span><span class="p">,</span> <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">,</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">ServiceCollection</span><span class="p">();</span>
+
+    <span class="k">public</span> <span class="n">ServiceDescriptor</span> <span class="k">this</span><span class="p">[</span><span class="kt">int</span> <span class="n">index</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Count</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsReadOnly</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="n">Clear</span><span class="p">();</span>
+    <span class="k">public</span> <span class="kt">bool</span> <span class="n">Contains</span><span class="p">(</span><span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="n">CopyTo</span><span class="p">(</span><span class="n">ServiceDescriptor</span><span class="p">[]</span> <span class="n">array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arrayIndex</span><span class="p">);</span>
+    <span class="k">public</span> <span class="n">IEnumerator</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;</span> <span class="n">GetEnumerator</span><span class="p">();</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">IndexOf</span><span class="p">(</span><span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="n">Insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
+    <span class="k">public</span> <span class="kt">bool</span> <span class="n">Remove</span><span class="p">(</span><span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="n">RemoveAt</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>最直接的方式就是 创建ServiceDescriptor实例, 并通过Add方法添加到IServiceCollection中,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="kt">var</span> <span class="n">serviceDescriptor</span> <span class="p">=</span> <span class="n">ServiceDescriptor</span><span class="p">.</span><span class="n">Singleton</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">,</span> <span class="n">MyService</span><span class="p">&gt;();</span>
+<span class="n">services</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">serviceDescriptor</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>另外提供了一组扩展方法来快速注册服务, 并给出备注说明:</p>
+<ul>
+<li>AddSingleton, 将服务注册为单例的;</li>
+<li>AddScoped, 将服务注册为范围的;</li>
+<li>AddTransisent, 将服务注册为瞬时的;</li>
+</ul>
+<p>这些不同生命周期的服务注册方法都提供了多种重载, 支持用户按类型, 按实例, 按工厂方法的方式来定义服务的构造方式;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">IServiceCollection</span> <span class="n">services</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ServiceCollection</span><span class="p">();</span>
+
+<span class="c1">// 指定实例
+</span><span class="c1"></span><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="k">new</span> <span class="n">MyService</span><span class="p">());</span>
+
+<span class="c1">// 指定类型
+</span><span class="c1"></span><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">,</span> <span class="n">MyService</span><span class="p">&gt;();</span>
+
+<span class="c1">// 工厂模式
+</span><span class="c1"></span><span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="n">provider</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">MyService</span><span class="p">());</span>
+
+<span class="c1">// 工厂模式， 从容器中获取
+</span><span class="c1"></span><span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="n">provider</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">MyService</span><span class="p">());</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="n">provider</span> <span class="p">=&gt;</span> <span class="n">provider</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">MyService</span><span class="p">&gt;());</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>​		需要注意的是, 指定已有实例的方式仅支持单例模式;</p>
+<p>工厂模式使用了委托<code>Func&lt;IServiceProvider, object&gt;</code>, 其入参是一个IServiceProvider, 实际上就是当前容器实例;</p>
+<p>所以可以使用上面的代码从容器中取出需要的服务实例用于构造服务;</p>
+<p>在实际的应用场景中, 我们通常会遇到一个服务被多个组件依赖的情形, 仅当服务未被注册时才需要注册, 可以使用<strong>TryAddXXX</strong>系列的扩展方法, 这些方法会被判断指定的服务是否已经注册过; 如果已经注册过, 则忽略本次注册操作; 如果未注册过, 则注册该服务;</p>
+<p>还有一种比较特殊的场景, 就是为服务注册不同的实现. 要避免同一具体实现被重复注册, 可以使用<code>TryAddEnumerable</code>方法, 该方法有两个重载, 一个是注册单个<code>ServiceDescriptor</code>, 另一个是批量注册, 传入<code>IEnumerable&lt;ServiceDescriptor&gt;</code> .</p>
+<p>​		在ASP.NET Core应用中, 可以在Startup类的ConfigServices方法中为IServiceCollection注册服务, 而IServiceCollection本身的创建由框架负责, 不需要特别地处理;</p>
+<h4 id="通过iserviceprovider获取服务实例">通过IServiceProvider获取服务实例</h4>
+<p>接口IServiceProvider位于System命名空间下, 是一个拥有很长历史的接口(在.NETFramework1.1版本就存在了), 并且在很多针对特定场景的实现中, 它的定义只有一个GetService方法, 入参是服务的类型, 返回值是服务的实例;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IServiceProvider</span>
+<span class="p">{</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Gets the service object of the specified type.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Parameters:
+</span><span class="c1"></span>    <span class="c1">//   serviceType:
+</span><span class="c1"></span>    <span class="c1">//     An object that specifies the type of service object to get.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Returns:
+</span><span class="c1"></span>    <span class="c1">//     A service object of type serviceType. -or- null if there is no service object
+</span><span class="c1"></span>    <span class="c1">//     of type serviceType.
+</span><span class="c1"></span>    <span class="kt">object</span> <span class="n">GetService</span><span class="p">(</span><span class="n">Type</span> <span class="n">serviceType</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>​		在依赖注入组件中, 由类ServiceProvider实现了IServiceProvider, 它位于Microsoft.Extensions.DependencyInjection包中, 同时类<code>ServiceProviderServiceExtensions</code>提供了一组扩展方法, 让开发者可以更方便编写获取实例的代码, 尤其是泛型方法, 它可以直接获得特定类型的返回值, 而无需进行类型转换;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="err">假设已经注册好的服务也获得了</span><span class="n">IServiceProvider实例</span><span class="p">:</span> 
+<span class="n">IServiceCollection</span> <span class="n">services</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ServiceCollection</span><span class="p">();</span>
+<span class="c1">// 忽略服务注册的代码
+</span><span class="c1"></span>
+<span class="n">IServiceProvider</span> <span class="n">serviceProvider</span> <span class="p">=</span> <span class="n">services</span><span class="p">.</span><span class="n">BuildServiceProvider</span><span class="p">();</span>
+
+<span class="err">获取服务实例的代码如下：</span>
+
+<span class="c1">// 指定类型获取服务实例
+</span><span class="c1"></span><span class="kt">object</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IMyService</span><span class="p">));</span>
+
+<span class="c1">// 泛型方法指定类型获取服务实例
+</span><span class="c1"></span><span class="n">IMyService</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的代码中, 如果要获取的服务类型没有注册在容器中,, 则返回null; 如果我们期望在服务未被注册的情形下抛出异常而不是返回null,</p>
+<p>则可以调用GetRequiredService方法. 如果服务未被注册, 则会抛出异常InvalidOperationException并显示服务未被注册. GetRequiredService方法在服务不可为空的场景下非常有用, 有了该方法我们就无需重复地编写验证空服务的代码:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// 指定类型获取服务实例
+</span><span class="c1"></span><span class="kt">object</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IMyService</span><span class="p">));</span>
+
+<span class="c1">// 泛型方法指定类型获取服务实例
+</span><span class="c1"></span><span class="n">IMyService</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在实际的应用程序中, 当我们为同一类型重复注册, GetService方法会以最后注册的生命周期和构造方法为准. 我们也可以通过复数方法GetServices来获得一个实例集合, 它对应了为同一类型的多个注册:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// 指定类型, 获取object实例集合
+</span><span class="c1"></span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;</span> <span class="n">myServiceList</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IMyService</span><span class="p">));</span>
+
+<span class="c1">// 泛型方法, 获取指定类型的实例集合
+</span><span class="c1"></span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">myServiceList</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在ASP.NET Core应用中, 我们可以看到Startup类的Configure有一个IApplicationBuilder类型的入参:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">Startup</span>
+<span class="p">{</span>
+    <span class="c1">// some code
+</span><span class="c1"></span>	 <span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+     <span class="p">{</span>
+		<span class="c1">// 服务注册
+</span><span class="c1"></span>     <span class="p">}</span>
+    
+     <span class="k">public</span> <span class="k">void</span> <span class="n">Configure</span><span class="p">(</span><span class="n">IApplicationBuilder</span> <span class="n">app</span><span class="p">,</span> <span class="n">IWebHostEnvironment</span> <span class="n">env</span><span class="p">)</span>
+     <span class="p">{</span>
+          <span class="c1">// 根容器
+</span><span class="c1"></span>          <span class="kt">var</span> <span class="n">rootServiceProvider</span> <span class="p">=</span> <span class="n">app</span><span class="p">.</span><span class="n">ApplicationServices</span><span class="p">;</span> 
+         <span class="c1">// some code
+</span><span class="c1"></span>     <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>查看一下IApplicationBuilder接口的代码, 它有一个IServiceProvider类型的属性ApplicationServices, 这个属性就是应用程序的根容器实例. 当我们类访问根容器时, 可以通过接口IApplicationBuilder来获取根容器的实例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IApplicationBuilder</span>
+<span class="p">{</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Gets or sets the System.IServiceProvider that provides access to the application&#39;s
+</span><span class="c1"></span>    <span class="c1">//     service container.
+</span><span class="c1"></span>    <span class="n">IServiceProvider</span> <span class="n">ApplicationServices</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Gets a key/value collection that can be used to share data between middleware.
+</span><span class="c1"></span>    <span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">Properties</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Gets the set of HTTP features the application&#39;s server provides.
+</span><span class="c1"></span>    <span class="n">IFeatureCollection</span> <span class="n">ServerFeatures</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Builds the delegate used by this application to process HTTP requests.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Returns:
+</span><span class="c1"></span>    <span class="c1">//     The request handling delegate.
+</span><span class="c1"></span>    <span class="n">RequestDelegate</span> <span class="n">Build</span><span class="p">();</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Creates a new Microsoft.AspNetCore.Builder.IApplicationBuilder that shares the
+</span><span class="c1"></span>    <span class="c1">//     Microsoft.AspNetCore.Builder.IApplicationBuilder.Properties of this Microsoft.AspNetCore.Builder.IApplicationBuilder.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Returns:
+</span><span class="c1"></span>    <span class="c1">//     The new Microsoft.AspNetCore.Builder.IApplicationBuilder.
+</span><span class="c1"></span>    <span class="n">IApplicationBuilder</span> <span class="n">New</span><span class="p">();</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Adds a middleware delegate to the application&#39;s request pipeline.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Parameters:
+</span><span class="c1"></span>    <span class="c1">//   middleware:
+</span><span class="c1"></span>    <span class="c1">//     The middleware delegate.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Returns:
+</span><span class="c1"></span>    <span class="c1">//     The Microsoft.AspNetCore.Builder.IApplicationBuilder.
+</span><span class="c1"></span>    <span class="n">IApplicationBuilder</span> <span class="n">Use</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">RequestDelegate</span><span class="p">,</span> <span class="n">RequestDelegate</span><span class="p">&gt;</span> <span class="n">middleware</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="作用域与生命周期">作用域与生命周期</h4>
+<p>​		要理解生命周期, 先要去了解概念-Scope(范围的意思), 也就是作用域; Scope本身具有一个生命周期, 就是从它被&quot;创建&quot;到被&quot;回收释放&quot;这个周期. 在Scope生存期间, 将一些对象与其关联, 当Scope回收释放时, 同时也释放与其关联的对象, 就能达到相应的效果, 这些对象的生命周期和Scope的相同, 或者可以理解为这些对象的生命周期由Scope决定;</p>
+<p>​		在依赖注入组件中, 我们将由ServiceCollection通过BuildServiceProvider构造的IServiceProvider实例称为&quot;根容器&quot;,  对应的依赖注入组件提供了一个接口IServiceScope来表示&quot;子作用域&quot;, 我们可以通过扩展方法CreateScope来创建IServiceScope实例.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IServiceScope</span> <span class="p">:</span> <span class="n">IDisposable</span>
+<span class="p">{</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     The System.IServiceProvider used to resolve dependencies from the scope.
+</span><span class="c1"></span>    <span class="n">IServiceProvider</span> <span class="n">ServiceProvider</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>下面的代码定义了创建IServiceScope的方法:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">IServiceCollection</span> <span class="n">services</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ServiceCollection</span><span class="p">();</span>
+
+<span class="c1">// ignore service register code here
+</span><span class="c1"></span><span class="n">IServiceProvider</span> <span class="n">serviceProvider</span> <span class="p">=</span> <span class="n">services</span><span class="p">.</span><span class="n">BuildServiceProvider</span><span class="p">();</span>
+
+<span class="c1">// 创建了子容器
+</span><span class="c1"></span><span class="n">IServiceScope</span> <span class="n">scope</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">CreateScope</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>​		实际上IServiceScope的实例是由接口IServiceScopeFactory来负责创建的, 上面示例代码中的扩展方法CreateScope的内部实现逻辑是从IServiceScopeFactory, 然后调用IServiceScopeFactory的CreateScope, 当我们构造好一个IServiceProvider容器时, 其内部实际上已经注入了IServiceScopeFactory, 这一切在依赖注入的内部实现了;</p>
+<p>​	来看一下IServiceScopeFactory的定义:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IServiceScopeFactory</span>
+<span class="p">{</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Create an Microsoft.Extensions.DependencyInjection.IServiceScope which contains
+</span><span class="c1"></span>    <span class="c1">//     an System.IServiceProvider used to resolve dependencies from a newly created
+</span><span class="c1"></span>    <span class="c1">//     scope.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Returns:
+</span><span class="c1"></span>    <span class="c1">//     An Microsoft.Extensions.DependencyInjection.IServiceScope controlling the lifetime
+</span><span class="c1"></span>    <span class="c1">//     of the scope. Once this is disposed, any scoped services that have been resolved
+</span><span class="c1"></span>    <span class="c1">//     from the Microsoft.Extensions.DependencyInjection.IServiceScope.ServiceProvider
+</span><span class="c1"></span>    <span class="c1">//     will also be disposed.
+</span><span class="c1"></span>    <span class="n">IServiceScope</span> <span class="n">CreateScope</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>前面展示的ServiceDescriptor的定义中, 其生命周期由枚举ServiceLifetime来定义:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">enum</span> <span class="n">ServiceLifetime</span>
+<span class="p">{</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Specifies that a single instance of the service will be created.
+</span><span class="c1"></span>    <span class="n">Singleton</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Specifies that a new instance of the service will be created for each scope.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Remarks:
+</span><span class="c1"></span>    <span class="c1">//     In ASP.NET Core applications a scope is created around each server request.
+</span><span class="c1"></span>    <span class="n">Scoped</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Specifies that a new instance of the service will be created every time it is
+</span><span class="c1"></span>    <span class="c1">//     requested.
+</span><span class="c1"></span>    <span class="n">Transient</span> <span class="p">=</span> <span class="m">2</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里说到的生命周期决定了我们调用GetService来获取服务实例时的行为:</p>
+<ul>
+<li>Singleton表示单例, 容器只会给生命周期为Singleton的类型创建一次实例, 后续获取实例时都会返回这个唯一的实例. Singleton的服务只会由根容器创建, 从子容器获取服务实例时会从根容器中查找;</li>
+<li>Scoped 表示范围, 本质上是在作用域内的单例模式, 在IServiceScope作用域内只给生命周期为Scoped的类型创建一次实例, 后续在该作用域内都会获得同一实例. 基于这个原则, 根容器中的Scoped服务和Singleton服务是对等的;</li>
+<li>Transient表示瞬时, 是指每次通过容器获取对象都会创建一个新的实例, 不论是在根容器还是在子容器中.</li>
+</ul>
+<p>下图展示了根容器, 子容器和不同生命周期服务实例间的关系:</p>
+<p><img src="https://bomir.top/pics/dotnetCore/image-20211104144129066.png" alt="image-20211104144129066"></p>
+<p>对于从根容器获得Scoped服务的情形, 在BuildServiceProvider中可以使用validateScopes(验证Scope)来决定行为:</p>
+<ul>
+<li>false, 允许从根容器获取Scoped服务, 行为与Singleton服务一致;</li>
+<li>true, 不允许从根容器获取服务, 如果尝试这样做, 则会抛异常;</li>
+<li></li>
+</ul>
+<p><img src="https://bomir.top/pics/dotnetCore/image-20211104145034760.png" alt="image-20211104145034760"></p>
+<p>在.netcore中, 框架会为每个HTTP请求创建一个Scope, 这样可以为不同的请求创建其需要的服务, 避免请求之间的相互影响, 例如将数据库连接对象注册为Scoped, 类型HttpContext表示一个Http请求的上下文,  可以通过它的RequiredServices属性来访问请求子容器:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">HttpContext</span>
+<span class="p">{</span>
+        <span class="k">protected</span> <span class="n">HttpContext</span><span class="p">();</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Gets information about the underlying connection for this request.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">ConnectionInfo</span> <span class="n">Connection</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Gets the collection of HTTP features provided by the server and middleware available
+</span><span class="c1"></span>        <span class="c1">//     on this request.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">IFeatureCollection</span> <span class="n">Features</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Gets or sets a key/value collection that can be used to share data within the
+</span><span class="c1"></span>        <span class="c1">//     scope of this request.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">Items</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Gets the Microsoft.AspNetCore.Http.HttpRequest object for this request.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">HttpRequest</span> <span class="n">Request</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Notifies when the connection underlying this request is aborted and thus request
+</span><span class="c1"></span>        <span class="c1">//     operations should be cancelled.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">CancellationToken</span> <span class="n">RequestAborted</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Gets or sets the System.IServiceProvider that provides access to the request&#39;s
+</span><span class="c1"></span>        <span class="c1">//     service container.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">IServiceProvider</span> <span class="n">RequestServices</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Gets the Microsoft.AspNetCore.Http.HttpResponse object for this request.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">HttpResponse</span> <span class="n">Response</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Gets or sets the object used to manage user session data for this request.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">ISession</span> <span class="n">Session</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Gets or sets a unique identifier to represent this request in trace logs.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="kt">string</span> <span class="n">TraceIdentifier</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Gets or sets the user for this request.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">ClaimsPrincipal</span> <span class="n">User</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Gets an object that manages the establishment of WebSocket connections for this
+</span><span class="c1"></span>        <span class="c1">//     request.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">WebSocketManager</span> <span class="n">WebSockets</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Summary:
+</span><span class="c1"></span>        <span class="c1">//     Aborts the connection underlying this request.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="n">Abort</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="idisposable与生命周期">IDisposable与生命周期</h4>
+<p>​	C#是类型安全的语言, 通常不需关心对象的回收, 由垃圾回收机制(GC)来负责回收那些不再使用的对象实例, 但是垃圾回收机制回收对象并不是实时的, 因此当对象使用了网络链接, 线程, 文件等资源时, 就需要在使用完成后立即释放这些资源, 以避免资源耗尽的情况; 一般约定类型实现IDispoable接口来表示其使用了系统资源, 需要在使用完成之后调用Dispose方法来主动释放资源;</p>
+<p>​	DI框架负责对象的创建, 容器的生命周期和其创造的对象的生命周期是一致的, 因此依赖注入组件&quot;恰好&quot;具备了对其创建的对象进行&quot;释放&quot;操作的时机, 即容器或子容器释放之时;</p>
+<p>​	在具体的实现上, 依赖注入组件负责<strong>对实现了IDispoable接口类的实例的资源释放,</strong> 其原则就是<strong>容器(子容器)仅负责由其构造且实现了IDispoable实例的Dispose方法的调用, 调用的时机是容器(子容器)本身释放之时;</strong></p>
+<p>下表展示容器释放与实现了IDisposable的服务的生命周期的关系:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">释放根容器</th>
+<th style="text-align:center">释放子容器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Singleton</td>
+<td style="text-align:center">释放</td>
+<td style="text-align:center">不释放</td>
+</tr>
+<tr>
+<td>Scoped</td>
+<td style="text-align:center">释放</td>
+<td style="text-align:center">释放</td>
+</tr>
+<tr>
+<td>Transient</td>
+<td style="text-align:center">释放</td>
+<td style="text-align:center">释放</td>
+</tr>
+</tbody>
+</table>
+<p>​		在.netcore框架中, 每个请求作为一个Scope来处理, 当请求结束时, 请求子容器会被释放, 因此由其创建的IDisposable, 请求子容器会被释放, 因此由其创建的IDisposable服务也会被释放, 注册的Scoped服务(例如数据库连接)也会被释放, 从而达到以下效果: 以HTTP请求为生命周期来管理请求内使用的资源.</p>
+<p>​		需要注意的是,  根容器的生命周期与应用进程是相同的, 也就是当应用程序退出时回收根容器, 那么当服务同时满足下面的情形时会存在内存等资源持续占用的情形:</p>
+<ul>
+<li>
+<p>服务实现了IDisposable接口;</p>
+</li>
+<li>
+<p>服务的生命周期为Transient;</p>
+</li>
+<li>
+<p>服务的实例从根容器获取;</p>
+<p>这是因为每次从根容器获取服务时都会给生命周期为Transient的服务创建新实例, 并且实现了IDisposable. 所以容器会负责管理这些实例的释放, 从而造成持续不断的新实例的积累. 由于根容器在程序退出时才回收, 因此这些实例会一直存在到程序退出, 实际时候应避免这种情形产生;</p>
+</li>
+</ul>
+<h4 id="扩展接口">扩展接口</h4>
+<p><code>IServiceProviderFactory&lt;TContainerBuilder&gt;</code></p>
+<p>依赖注入组件提供了对象的创建和基于Scope的生命周期管理的能力, 能够满足大部分场景, 但是需要额外的扩展能力时, 如面向切面编程(AOP), 嵌套子容器, 属性注入, 基于名称的注入, 基于约定的注入, 就需要对依赖注入组件进行扩展; 官方提供的策略就是 提供扩展接口<code>IServiceProviderFactory&lt;TContainerBuilder&gt;</code>让我们自定义来实现.</p>
+<p>其接口定义如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IServiceProviderFactory</span><span class="p">&lt;</span><span class="n">TContainerBuilder</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Creates a container builder from an Microsoft.Extensions.DependencyInjection.IServiceCollection.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Parameters:
+</span><span class="c1"></span>    <span class="c1">//   services:
+</span><span class="c1"></span>    <span class="c1">//     The collection of services
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Returns:
+</span><span class="c1"></span>    <span class="c1">//     A container builder that can be used to create an System.IServiceProvider.
+</span><span class="c1"></span>    <span class="n">TContainerBuilder</span> <span class="n">CreateBuilder</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">);</span>
+    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Summary:
+</span><span class="c1"></span>    <span class="c1">//     Creates an System.IServiceProvider from the container builder.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Parameters:
+</span><span class="c1"></span>    <span class="c1">//   containerBuilder:
+</span><span class="c1"></span>    <span class="c1">//     The container builder
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Returns:
+</span><span class="c1"></span>    <span class="c1">//     An System.IServiceProvider
+</span><span class="c1"></span>    <span class="n">IServiceProvider</span> <span class="n">CreateServiceProvider</span><span class="p">(</span><span class="n">TContainerBuilder</span> <span class="n">containerBuilder</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在上面的定义中, 泛型类型参数TContainerBuilder表示自定义的容器构造器类型,  CreateBuilder方法实现了从IServiceCollection构造TContainerBuilder的能力,</p>
+<p>CreateServiceProvider提供了从TContainerBuilder构造IServiceProvider的能力, 最终应用程序通过IServiceProvider来获取服务, 而无需进行修改; 工作过程如图所示:</p>
+<p><img src="https://bomir.top/pics/dotnetCore/image-20211104155127601.png" alt="image-20211104155127601"></p>
+<p>实际上, 在开源社区已经由很多成熟的第三方依赖注入框架可供选择, 如<strong>Autofac</strong>, Unity, AspectCore(国人开发的优秀项目之一), 它们分别提供了上面接口的实现并提供了对应的扩展包:</p>
+<ul>
+<li>Autofac.Extensions.DependencyInjection</li>
+<li>Unity.Microsoft.DependencyInjection</li>
+<li>AspectCore.Extensions.DependencyInjection</li>
+</ul>
+<p>这些开源组件提供了详细的使用文档和示例代码, 可以通过阅读他们的源码来了解其设计原理;</p>
+<p>​	值得注意的是, 在ConfigureServices方法中注册服务仍然是有效的, 因此通常情况下可以通过ConfigureServices来注册服务, 仅对需要高级功能的服务调用ConfigureContainers方法来注册; 另外, 对于其他第三方组件需要修改ConfigureContainers方法的入参类型为组件提供的服务注册上下文类型;</p>
+<h4 id="在controller中获取服务">在Controller中获取服务</h4>
+<p>在netcore中, Controller是定义Web API的核心方法, 在Controller中获取服务有以下几种途径:</p>
+<ul>
+<li>使用构造函数参数</li>
+<li>使用HttpContext.RequestServices属性</li>
+<li>使用FromServicesAttribute标注Action的入参</li>
+</ul>
+<p>在实际的场景中, 建议的做法是:</p>
+<ul>
+<li>当Controller大部分Action都需要使用某个服务时, 使用构造函数注入该服务;</li>
+<li>仅有个别的Action需要使用某个服务时, 使用FromServicesAttribute为具体的Action注入服务;</li>
+<li>应尽量避免使用HttpContext.RequestServices来获取服务, 这样会使类难以编写测试;</li>
+</ul>
+<p>默认情况下, Controller实例的构造是由.netcore框架来负责的, 而不是由容器负责的, 因此当使用第三方组件来扩展其他能力(如AOP, 属性注入等)时, 对于Controller本身并不会生效. 如果要使用容器来负责Controller的构造, 需要在Startup类的ConfigureServices方法中加入AddControllersAsServices方法, 具体代码如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"> <span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+ <span class="p">{</span>
+     <span class="n">services</span><span class="p">.</span><span class="n">AddControllers</span><span class="p">().</span><span class="n">AddControllersAsServices</span><span class="p">();</span>   
+ <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bomir</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2020-07-12
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://bomir.top/tags/.netcore/">.netcore</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/rabbitmq-basic/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">RabbitMQ入门基础</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/mysql-ehancement/">
+            <span class="next-text nav-default">MySQL优化笔记</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Shaper-fox/hugoblogtalks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:jinchunw@385@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/Bicomir" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://bomir.top/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2021
+    <span class="heart">
+      
+      <i class="iconfont">        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        bomir
+        
+      </span>
+	  <span class="division">|</span>
+	  <span class="author">
+			<a href="http://beian.miit.gov.cn/">粤ICP备2021140392号-1</a>
+	  </span></span>
+  
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
