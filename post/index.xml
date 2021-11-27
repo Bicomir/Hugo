@@ -152,6 +152,15 @@
     </item>
     
     <item>
+      <title>改善C#代码的157个建议（12）- 规范开发行为</title>
+      <link>https://bomir.top/post/standardize-development-behavior/</link>
+      <pubDate>Sat, 12 Sep 2020 22:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/standardize-development-behavior/</guid>
+      <description>规范开发行为 建议154：不要过度设计，在敏捷中体会重构的乐趣 在以下几个情形， 我们不得不更改软件的设计： 如果项目是针对某个大型机构的，不同级别</description>
+    </item>
+    
+    <item>
       <title>RabbitMQ入门之Go语言教程-(5)</title>
       <link>https://bomir.top/post/rabbit-go-5/</link>
       <pubDate>Sat, 15 Aug 2020 21:19:05 +0000</pubDate>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/rabbit-go-3/</guid>
       <description>RabbitMQ官网的消息模型的第三种-发布/订阅模式 发布/订阅 (using the Go RabbitMQ client) ​ 在上一个教程中我们创建了一个work queue。work queu</description>
-    </item>
-    
-    <item>
-      <title>RabbitMQ入门之Go语言教程-(2)</title>
-      <link>https://bomir.top/post/rabbit-go-2/</link>
-      <pubDate>Tue, 11 Aug 2020 21:19:05 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/rabbit-go-2/</guid>
-      <description>RabbitMQ官网的消息模型的第二种-Work Queue（工作队列）； 第二种模型（Work Queue） 介绍 Work queues, 也被称为(Task queues), 任务模型</description>
     </item>
     
   </channel>
