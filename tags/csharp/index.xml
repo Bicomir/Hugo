@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>改善C#代码的157个建议（2）- 异步，多线程，任务和并行</title>
+      <link>https://bomir.top/post/async-multithread-taskandparallel/</link>
+      <pubDate>Wed, 23 Oct 2019 22:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/async-multithread-taskandparallel/</guid>
+      <description>本节内容 ​ 软件开发过程中， 多线程编码方面的工作看起来比较棘手的；由多线程的 传值、取值、资源同步、线程暂停、取消等操作会困扰每一个尝试编写此类</description>
+    </item>
+    
+    <item>
       <title>改善C#代码的157个建议（1）- 基本要素</title>
       <link>https://bomir.top/post/basic-language-elements/</link>
       <pubDate>Sat, 12 Oct 2019 22:19:05 +0000</pubDate>
