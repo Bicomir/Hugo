@@ -17,12 +17,30 @@
     </item>
     
     <item>
+      <title>改善C#代码的157个建议（2）- 集合与LINQ</title>
+      <link>https://bomir.top/post/collection_and_linq/</link>
+      <pubDate>Wed, 20 Nov 2019 22:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/collection_and_linq/</guid>
+      <description>集合和LINQ 建议16： 元素数量在可变的情况下不应该使用数组 ​ 在C#中，数组一旦被创建，长度就不能改变。如果我们需要一个动态且可变长度的集合</description>
+    </item>
+    
+    <item>
       <title>C#杂项聊一聊</title>
       <link>https://bomir.top/post/csharp-others-talk/</link>
       <pubDate>Sun, 10 Nov 2019 18:56:34 +0000</pubDate>
       
       <guid>https://bomir.top/post/csharp-others-talk/</guid>
       <description>C#是怎么跑起来的 C#源代码生成IL（中间语言）， CLR（公共语言运行时）翻译成 机器指令： 坏处 慢， 运行时， IL更易读更容易反编译 好处 跨平台 承</description>
+    </item>
+    
+    <item>
+      <title>改善C#代码的157个建议（6）- 异步，多线程，任务和并行</title>
+      <link>https://bomir.top/post/async-multithread-taskandparallel/</link>
+      <pubDate>Wed, 23 Oct 2019 22:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/async-multithread-taskandparallel/</guid>
+      <description>本节内容 ​ 软件开发过程中， 多线程编码方面的工作看起来比较棘手的；由多线程的 传值、取值、资源同步、线程暂停、取消等操作会困扰每一个尝试编写此类</description>
     </item>
     
     <item>

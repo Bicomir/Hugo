@@ -429,8 +429,22 @@
   </url>
   
   <url>
+    <loc>https://bomir.top/post/collection_and_linq/</loc>
+    <lastmod>2019-11-20T22:19:05+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://bomir.top/post/csharp-others-talk/</loc>
     <lastmod>2019-11-10T18:56:34+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://bomir.top/post/async-multithread-taskandparallel/</loc>
+    <lastmod>2019-10-23T22:19:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
