@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>改善C#代码的157个建议（8）- 成员设计 - Wallis</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="bomir" />
+  <meta name="description" content="成员设计 建议90：不要为抽象类提供公开的构造方法 首先，抽象类可以有构造方法。即便没有为抽象类指定构造方法，编译器也会为我们生成一个默认的pr" />
+
+  <meta name="keywords" content="Hugo, theme, jane" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0" />
+
+
+<link rel="canonical" href="https://bomir.top/post/member-design/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="改善C#代码的157个建议（8）- 成员设计" />
+<meta property="og:description" content="成员设计 建议90：不要为抽象类提供公开的构造方法 首先，抽象类可以有构造方法。即便没有为抽象类指定构造方法，编译器也会为我们生成一个默认的pr" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bomir.top/post/member-design/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-06-20T22:19:05+00:00" />
+<meta property="article:modified_time" content="2020-06-20T22:19:05+00:00" />
+
+<meta itemprop="name" content="改善C#代码的157个建议（8）- 成员设计">
+<meta itemprop="description" content="成员设计 建议90：不要为抽象类提供公开的构造方法 首先，抽象类可以有构造方法。即便没有为抽象类指定构造方法，编译器也会为我们生成一个默认的pr"><meta itemprop="datePublished" content="2020-06-20T22:19:05+00:00" />
+<meta itemprop="dateModified" content="2020-06-20T22:19:05+00:00" />
+<meta itemprop="wordCount" content="5541">
+<meta itemprop="keywords" content="CSharp," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="改善C#代码的157个建议（8）- 成员设计"/>
+<meta name="twitter:description" content="成员设计 建议90：不要为抽象类提供公开的构造方法 首先，抽象类可以有构造方法。即便没有为抽象类指定构造方法，编译器也会为我们生成一个默认的pr"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">秤流沙</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      秤流沙
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">改善C#代码的157个建议（8）- 成员设计</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-06-20" class="post-time">
+          2020-06-20
+        </time>
+        <div class="post-category">
+            <a href="https://bomir.top/categories/csharp/"> CSharp </a>
+            
+          </div>
+        <span class="more-meta"> 约 5541 字 </span>
+          <span class="more-meta"> 预计阅读 12 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#成员设计">成员设计</a>
+      <ul>
+        <li><a href="#建议90不要为抽象类提供公开的构造方法">建议90：不要为抽象类提供公开的构造方法</a></li>
+        <li><a href="#建议91可见字段应该重构为属性">建议91：可见字段应该重构为属性</a></li>
+        <li><a href="#建议92谨慎地将数组或者集合作为属性">建议92：谨慎地将数组或者集合作为属性</a></li>
+        <li><a href="#建议93构造方法应初始化主要属性和字段">建议93：构造方法应初始化主要属性和字段</a></li>
+        <li><a href="#建议94区别对待override和new">建议94：区别对待override和new</a></li>
+        <li><a href="#建议95避免在构造方法中调用虚成员">建议95：避免在构造方法中调用虚成员</a></li>
+        <li><a href="#建议96成员应优先考虑公开基类型或接口">建议96：成员应优先考虑公开基类型或接口</a></li>
+        <li><a href="#建议97优先考虑将基类型或接口作为参数传递">建议97：优先考虑将基类型或接口作为参数传递</a></li>
+        <li><a href="#建议98用params减少重复参数">建议98：用<code>params</code>减少重复参数</a></li>
+        <li><a href="#建议99重写时不应使用子类参数">建议99：重写时不应使用子类参数</a></li>
+        <li><a href="#建议100静态方法和实例方法没有区别">建议100：静态方法和实例方法没有区别</a></li>
+        <li><a href="#建议101使用扩展方法向现有类型添加方法">建议101：使用扩展方法，向现有类型“添加”方法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="成员设计">成员设计</h2>
+<h3 id="建议90不要为抽象类提供公开的构造方法">建议90：不要为抽象类提供公开的构造方法</h3>
+<p>首先，抽象类可以有构造方法。即便没有为抽象类指定构造方法，编译器也会为我们生成一个默认的protected的</p>
+<p>构造方法。下面是一个标准的最简单的抽象类:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">abstract</span> <span class="k">class</span> <span class="nc">MyAbstractClass</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="n">MyAbstractClass</span><span class="p">(){}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其次，抽象类的方法不应该是<code>public或internal</code>的。抽象类设计的本意是让子类去继承，而不是用于生成实例对象的。如果抽象类是<code>public或者internal</code>的，它对于其他类型来说就是可见的，而这时是不必要的，也是多余的。简而言之，抽象类只需要对子类可见就行了；</p>
+<h3 id="建议91可见字段应该重构为属性">建议91：可见字段应该重构为属性</h3>
+<p>字段和属性的本质区别就是，<strong>属性是方法</strong>；</p>
+<p>以下面这段代码为例， 是一个Person类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">Person</span>
+<span class="p">{</span>
+	<span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>    
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>经过编译器编译后，针对属性Name实际会生成一个private字段和两个public方法：</p>
+<p>使用<code>dnspy</code>进行反编译并进行查看：</p>
+<p><img src="https://bomir.top/pics/CSharpAdvice/image-20211215191106482.png" alt="image-20211215191106482"></p>
+<p><img src="https://bomir.top/pics/CSharpAdvice/image-20211215190722395.png" alt="image-20211215190722395"></p>
+<p><img src="https://bomir.top/pics/CSharpAdvice/image-20211215190738093.png" alt="image-20211215190738093"></p>
+<p>可见属性实际上是编译器给我们的语法糖。</p>
+<p>属性比字段具有以下优势：</p>
+<ol>
+<li>可以为属性添加代码。正是因为属性是方法，所以可以在方法内对设置或获取属性的过程进行更多精细化控制。例如：为属性添加<code>NameChanged</code>事件等。单凭字段是完成不了这样的功能的。</li>
+<li>可以让属性支持线程安全。要让属性变成线程安全的可以让类型自身去实现。而要让字段支持线程安全，就只能靠调用者本身来实现了。</li>
+<li>属性得到VS编译器的支持，还得到了实现自动属性这种功能。自动属性的特点在LINQ中得到了广泛应用，尤其是在匿名类中，它只能实现只读的自动属性，而不支持字段。</li>
+<li>从设计角度，也就是面向对象角度来看，公开的字段也应该使用属性。改变字段的状态，类型不会被通知到；而改变属性的值，类型支持则会被通知。</li>
+</ol>
+<p>综上所述，如果一个类型存在一个可见字段，那么它应该被重构为属性。当然，如果某个属性仅仅对内部可见，而不涉及以上4点内容，则建议使用字段。</p>
+<h3 id="建议92谨慎地将数组或者集合作为属性">建议92：谨慎地将数组或者集合作为属性</h3>
+<p>​		数组或集合作为属性会引起这样一个问题：如果属性是只读的，我们通常会认为它是不可以改变的，但是如果将只读属性应用于数组或者集合，而元素的内容和数量却仍旧可以随意改变；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice92</span>
+<span class="p">{</span>
+    <span class="k">internal</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Company</span> <span class="n">microsoft</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Company</span><span class="p">();</span>
+            <span class="n">microsoft</span><span class="p">.</span><span class="n">Employees</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Shaper fox&#34;</span><span class="p">;</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">microsoft</span><span class="p">.</span><span class="n">Employees</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">Employee</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">Company</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="n">Company</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Employees</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;()</span>
+            <span class="p">{</span>
+                <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Bill Gates&#34;</span> <span class="p">}</span>
+            <span class="p">};</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;</span> <span class="n">Employees</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在上面的代码中，我们可以随意对Employees进行集合操作，它不改变的只是自身的引用而已。</p>
+<p>如果某个类型含有集合概念的属性，那么他的可见性应该是private或protected，并且，它更应该是一个字段。类型对外只公开必要的方法来操作这个集合。</p>
+<h3 id="建议93构造方法应初始化主要属性和字段">建议93：构造方法应初始化主要属性和字段</h3>
+<p>类型的属性应该在构造方法调用完毕前完成其初始化工作。如果字段没有在初始化器中设置初始值，那么它就应该在构造方法里面初始化。类型一旦被初始化，那么就应该被认为具有完整的行为和属性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"> <span class="k">class</span> <span class="nc">Company</span>
+ <span class="p">{</span>
+     <span class="n">Employee</span> <span class="n">specialA</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;mike&#34;</span> <span class="p">};</span>
+     <span class="n">Employee</span> <span class="n">specialB</span><span class="p">;</span>
+     <span class="k">public</span> <span class="n">Employee</span> <span class="n">CEO</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+     <span class="k">public</span> <span class="n">Company</span><span class="p">()</span>
+     <span class="p">{</span>
+         <span class="n">CEO</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;steve&#34;</span> <span class="p">};</span>
+         <span class="n">specialB</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;rose&#34;</span> <span class="p">};</span>
+     <span class="p">}</span>
+
+ <span class="p">}</span>
+
+<span class="k">internal</span> <span class="k">class</span> <span class="nc">Employee</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在构造方法中，必须首先为CEO赋值；因为只要存在公司实体，就应该做到存在一名CEO；<code>specialA</code>的初始化如下所示：</p>
+<p><code> Employee specialA = new Employee() {Name = &quot;Mike&quot;};</code></p>
+<p>上面演示了一个字段初始化。实际上，初始化器也属于编译器的语法糖，它在经编译后，在构造方法的最开始处执行。也就是说，可以将初始化器理解为构造方法的一部分。</p>
+<p>类型的其他引用类型字段也应该在构造器中初始化，比如<code>specialB</code>，因为需要保证类型的其他地方用到该字段的时候不会因为它是null而产生混淆。</p>
+<h3 id="建议94区别对待override和new">建议94：区别对待override和new</h3>
+<p>override和new使类型体系因为继承而呈现出多态性。多态要求子类具有与基类同名的方法，override和new的作用就是：</p>
+<ul>
+<li>如果子类中的方法前面带有new关键字，则该方法被定义为独立于基类的方法；</li>
+<li>如果子类中的方法带有override关键字，则子类的对象将调用该方法，而不调用基类的方法；</li>
+</ul>
+<p>我们先来看一下继承体系的Demo：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice94</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Shape</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;base MethodVirtual call&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">void</span> <span class="n">Method</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;base method call&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">Cicle</span> <span class="p">:</span> <span class="n">Shape</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;cicle override MethodVirtual&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">Rectangle</span> <span class="p">:</span> <span class="n">Shape</span>
+    <span class="p">{</span>
+
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">Triangle</span> <span class="p">:</span> <span class="n">Shape</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">new</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;triangle new MethodVirtual&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">new</span> <span class="k">void</span> <span class="n">Method</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;triangle new Method&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">Diamond</span> <span class="p">:</span> <span class="n">Shape</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Diamond default MethodVirtual&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">void</span> <span class="n">Method</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Diamond default Method&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Shape是所有子类的父类，Circle类override父类的MethodVirtual，所以即便子类转型为Shape， 调用的还是子类的方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">Shape</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Circle</span><span class="p">();</span>
+<span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+<span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>输出也为：r</p>
+<blockquote>
+<p>circle override MethodVirtual
+base method call</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">Circle</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Circle</span><span class="p">();</span>
+<span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+<span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>circle override MethodVirtual
+base method call</p>
+</blockquote>
+<p>类型Rectangle没有对基类做任何处理，所以无论是否转型为Shape，调用的都是基类Shape的方法。
+类型Triangle将基类Shape的virtual方法和非virtual方法都new了一般，所以第一种方法为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">Shape</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Triangle</span><span class="p">();</span>
+<span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+<span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>因为子类通过new了父类的方法，故子类方法和基类方法完全没有关系了，只要s被转型为Shape，针对s调用的都是父类方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"> <span class="n">Triangle</span> <span class="n">triangle</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Triangle</span><span class="p">();</span>
+ <span class="n">triangle</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+ <span class="n">triangle</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>调用的都是子类的方法，输出为：</p>
+<blockquote>
+<p>triangle new MethodVirtual
+triangle new Method</p>
+</blockquote>
+<p>类型Diamond包含了两个和基类一模一样的方法，并且没有额外的修饰符。这在编译器中会提出警示。但是如果选择忽略这些警示，程序还是一样可以运行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">Shape</span> <span class="n">s</span><span class="p">=</span><span class="k">new</span> <span class="n">Diamond</span><span class="p">();</span>
+<span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+<span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>编译器会默认new的效果，所以输出和显示设置为new时一样。</p>
+<p>输出为：</p>
+<blockquote>
+<p>base MethodVirtual call
+base Method call</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#">  <span class="n">Diamond</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Diamond</span><span class="p">();</span>
+  <span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+  <span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>输出为：</p>
+<blockquote>
+<p>Diamond default MethodVirtual
+Diamond default Method</p>
+</blockquote>
+<h3 id="建议95避免在构造方法中调用虚成员">建议95：避免在构造方法中调用虚成员</h3>
+<p>在构造方法中调用虚方法会带来一些意想不到的错误，虽然这种方法不常见，但是还是需要注意这类陷阱；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice95</span>
+<span class="p">{</span>
+    <span class="k">internal</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">American</span> <span class="n">american</span> <span class="p">=</span> <span class="k">new</span> <span class="n">American</span><span class="p">();</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">Person</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="n">Person</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">InitSkin</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">protected</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">InitSkin</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NotImplementedException</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">American</span> <span class="p">:</span> <span class="n">Person</span>
+    <span class="p">{</span>
+        <span class="n">Race</span> <span class="n">race</span><span class="p">;</span>
+
+        <span class="k">public</span> <span class="n">American</span><span class="p">()</span> <span class="p">:</span> <span class="k">base</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">race</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Race</span><span class="p">()</span>
+            <span class="p">{</span>
+                <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;White&#34;</span>
+            <span class="p">};</span>
+        <span class="p">}</span>
+
+        <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="n">InitSkin</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">race</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">Race</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Object reference not set to an instance of an object.</code></p>
+<p>运行会出现异常NullReferenceException：未将对象引用设置到对象的实例。</p>
+<p>在调用者代码中，我们需要创建一个American的实例对象american。由于发现实例还存在一个基类Person，所以运行时会首先调用基类的构造方法。在构造方法中Person调用了虚方法InitSkin。由于是虚方法，所以会在运行时调用子类的InitSkin方法。子类的InitSkin方法中，需要打印出名字。而这个时候，方法的调用堆栈还一直在基类的构造方法内，也就是在子类的构造方法中的代码还完全没有执行：</p>
+<p><code>Race = new Race() { Name = &quot;White&quot; };</code></p>
+<p>所以会抛出异常。</p>
+<p>基于以上原因，建议不要在构造方法中调用虚成员。</p>
+<h3 id="建议96成员应优先考虑公开基类型或接口">建议96：成员应优先考虑公开基类型或接口</h3>
+<p>类型成员如果优先考虑公开基类型或接口，那么会让类型支持更多的应用场合。</p>
+<p><code>FCL</code>中最典型的例子是集合的功能操作。集合根据功能划分有多种类型，比如<code>List&lt;T&gt;、Dictionary&lt;TKey,TValue&gt;、HashSet&lt;T&gt;</code>等。以一个最简单的操作Empty（清空集合）为例。该功能要求我们删除集合中的所有元素，然后返回一个干净的集合。如果不返回基类型或接口的话，则要求我们为每一个集合类型都实现一个这样的方法。</p>
+<p>微软在<code>FCL</code>中实现了这样一个静态类型Enumerable，它有个静态方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;</span> <span class="n">Empty</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;()</span>
+<span class="p">{</span>
+     <span class="k">return</span> <span class="n">EmptyEnumerable</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;.</span><span class="n">Instance</span><span class="p">;</span>   
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>因为使用了泛型接口<code>IEnumerable</code>，所以现在所有的集合子类都可以实现自己的Empty方法了。我们应该体会这种编程模式带来的好处，并在自己的项目中灵活运用。</p>
+<h3 id="建议97优先考虑将基类型或接口作为参数传递">建议97：优先考虑将基类型或接口作为参数传递</h3>
+<p>除了公开基类型或接口外，方法的参数也应该考虑基类型或接口。</p>
+<p>以Enumerable类型为例，它的成员方法中只要涉及需要操作集合对象的地方，都要使用<code>IEnumerable</code>泛型接口，比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;</span> <span class="n">Take</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;</span> <span class="n">source</span><span class="p">,</span> <span class="kt">int</span> <span class="n">count</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">source</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="n">Error</span><span class="p">.</span><span class="n">ArgumentNull</span><span class="p">(</span><span class="s">&#34;source&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">TakeIterator</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;(</span><span class="n">source</span><span class="p">,</span> <span class="n">count</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>该方法用于获取集合指定数量的一个子集，正是因为存在这个扩展方法，我们才可以对所有的泛型集合进行Take操作；</p>
+<h3 id="建议98用params减少重复参数">建议98：用<code>params</code>减少重复参数</h3>
+<p>如果方法的参数数目不定，且参数类型一致，则可以使用<code>params</code>关键字减少重复参数的声明；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">void</span> <span class="n">Method1</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">,</span> <span class="kt">object</span> <span class="n">a</span><span class="p">){}</span>
+<span class="k">void</span> <span class="n">Method2</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">,</span> <span class="kt">object</span> <span class="n">a</span><span class="p">,</span> <span class="kt">object</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="k">void</span> <span class="n">Method3</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">,</span> <span class="kt">object</span> <span class="n">a</span><span class="p">,</span> <span class="kt">object</span> <span class="n">b</span><span class="p">,</span> <span class="kt">object</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里的3个方法可以合并成一个方法：</p>
+<p><code>void Method(string str, params object[] a) { }</code></p>
+<h3 id="建议99重写时不应使用子类参数">建议99：重写时不应使用子类参数</h3>
+<p>重写时，如果使用了子类参数，可能会偏离设计者的预期目标。比如，存在一个如下继承体系：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">Employee</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Manager</span> <span class="p">:</span> <span class="n">Employee</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>现在，类型<code>ManagerSalary</code>中的<code>SetSalary</code>方法重写了Salary中的相同方法，重写的方法采用一个子类参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">Salary</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="n">SetSalary</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+    	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;职员被设置了薪水。&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">ManagerSalary</span> <span class="p">:</span> <span class="n">Salary</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="n">SetSalary</span><span class="p">(</span><span class="n">Manager</span> <span class="n">m</span><span class="p">)</span>
+    <span class="p">{</span>
+    	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;经理被设置了薪水。&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>调用者的代码看起来如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ManagerSalary</span> <span class="n">m</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ManagerSalary</span><span class="p">();</span>
+    <span class="n">m</span><span class="p">.</span><span class="n">SetSalary</span><span class="p">(</span><span class="k">new</span> <span class="n">Employee</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>设计者</strong>的本意是要设置经理的薪水，可是实际调用的代码却是设置了员工的薪水。</p>
+<p>输出为：职员被设置了薪水。</p>
+<p>所以，在重写时，使用子类参数有一定风险，应当避免这种设计。正确的方法应当仍旧使用Employee类型参数，这起码能让编译器提醒我们要使用new关键字。</p>
+<h3 id="建议100静态方法和实例方法没有区别">建议100：静态方法和实例方法没有区别</h3>
+<p>​		静态方法在加载时机和内存使用上和实例方法完全一致。</p>
+<p>​		在这里，我们先引出一个概念“类型对象”。比如类型Person，我们都知道new Person() 会产生一个对象，这个对象叫做“实例对象”，它在运行时会加载到<code>GC Heap</code>上。而“类型对象”是指代表Person类型本身的那个对象，这个对象在第一次使用类型时被加载到<code>Loader Heap</code>上。类型对象包括其自身的指针、自身的同步索引块、静态字段，以及一个方法表。在这个方法表中，无论是静态方法还是实例方法都会被存储起来，当然，存储的是方法的记录项，方法本身是在调用时由运行时编译的。类型对象和实例对象在内存中的分布如下：</p>
+<p><img src="https://bomir.top/pics/CSharpAdvice/loadingHeap.png" alt=""></p>
+<p>​		如果一定要说静态方法和实例方法的区别，那它们之间唯一的区别就是，当我们需要使用实例方法的时候，首先应该有实例对象。我们不能绕开实例对象，直接从类型本身去调用实例方法。所以，从设计的角度来说，如果一个方法只跟类型本身有关系，那么它就应该被设计成静态方法，如果跟类型的实例对象有关系，那它就应该被设计成实例方法。</p>
+<p>​		静态方法被不少人误解的地方有：静态方法天然就是同步方法。即使是那些有一定开发经验的程序员，有时候也会犯这种常识性的错误。尽管微软声称FCL中大部分代码都被实现成线程安全了，但并不意味着代码天然就是同步的，要让静态方法线程安全，必须由程序员编写同步代码，而不是让编译器或运行时为我们做这些事情。</p>
+<p>​		要从设计的角度去理解静态方法和实例方法。离开了设计，它们没有区别。</p>
+<h3 id="建议101使用扩展方法向现有类型添加方法">建议101：使用扩展方法，向现有类型“添加”方法</h3>
+<p>​		考虑如何让一个sealed类型具备新的行为。以往我们会创建一个包装器类，然后为其添加方法，而这看上去一点儿也不优雅。我们也许会考虑修改设计，直接修改sealed类型，然后为其发布一个新的版本，但这依赖于你拥有全部的源码。更多的时候，我们会采取针对第三方公司提供的API进行编程的方式。对于我们来说，FCL是一组第三方公司（微软）提供给我们的最好的API。</p>
+<p>​	包装类的编码形式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Student</span> <span class="n">student</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">();</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">StudentConverter</span><span class="p">.</span><span class="n">GetSexString</span><span class="p">(</span><span class="n">student</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">StudentConverter</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">GetSexString</span><span class="p">(</span><span class="n">Student</span> <span class="n">student</span><span class="p">)</span>
+    <span class="p">{</span>
+    	<span class="k">return</span> <span class="n">student</span><span class="p">.</span><span class="n">GetSex</span><span class="p">()</span> <span class="p">==</span> <span class="k">true</span> <span class="p">?</span> <span class="s">&#34;男&#34;</span> <span class="p">:</span> <span class="s">&#34;女&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Student</span>
+<span class="p">{</span>
+	<span class="k">public</span> <span class="kt">bool</span> <span class="n">GetSex</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span> <span class="p">}</span> 
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到，Student类型只提供了一个<code>GetSex</code>方法，它返回了一个<code>bool</code>值的结果。我们需要的是要将一个<code>bool</code>值转换为一个字符串，<code>StudentConverter</code>就是为了满足需求而创建的一个包装器类。调用者的代码看起来就应该是这样的：</p>
+<p><code>Console.WriteLine(StudentConverter.GetSexString(student));</code></p>
+<p>但是我们知道，可以有更优美的形式让调用者像调用Student类型的实例方法一样来调用<code>GetSexString</code>了。这种更好的方式就是<strong>扩展方法</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Student</span> <span class="n">student</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">();</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">student</span><span class="p">.</span><span class="n">GetSexString</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">StudentExtension</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">GetSexString</span><span class="p">(</span><span class="k">this</span> <span class="n">Student</span> <span class="n">student</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">student</span><span class="p">.</span><span class="n">GetSex</span><span class="p">()</span> <span class="p">==</span> <span class="k">true</span> <span class="p">?</span> <span class="s">&#34;男&#34;</span> <span class="p">:</span> <span class="s">&#34;女?&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>扩展方法除了让调用着可以像调用类型自身的方法一样去调用扩展方法外，它还有一些其他的主要优点：</p>
+<ul>
+<li>可以扩展密封类型；</li>
+<li>可以扩展第三方程序集中的类型；</li>
+<li>扩展方法可以避免不必要的深度继承体系。</li>
+</ul>
+<p>扩展方法还有一些必须遵循的要求：</p>
+<ul>
+<li>扩展方法<strong>必须在静态类</strong>中，而且该类不能是一个嵌套类；</li>
+<li>扩展方法<strong>必须是静态</strong>的；</li>
+<li>扩展方法的第一个参数必须是要扩展的类型，而且必须加上this关键字；</li>
+<li>不支持扩展属性、事件。</li>
+</ul>
+<p>值得注意的一点是，扩展方法还能够扩展接口。这让接口看上去也是可以扩展的。扩展方法的这个特性被广泛应用于提供<code>LINQ</code>查询功能的<code>Enumerable</code>类和<code>Queryable</code>类中。以Enumerable为例，针对<code>IEnumerable&lt;T&gt;</code>接口提供了非常丰富的一种方法，如Select：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;</span> <span class="n">Select</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">,</span> <span class="n">TResult</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;</span> <span class="n">source</span><span class="p">,</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">,</span> <span class="n">TResult</span><span class="p">&gt;</span> <span class="n">selector</span><span class="p">)</span>
+<span class="p">{</span>
+ <span class="c1">//具体代码省略   
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>它相当于让继承自<code>IEnumerable&lt;T&gt;</code>接口的任何子类都拥有了Select方法，而这些Select方法在用者看来，就好像是<code>IEnumerable&lt;T&gt;</code>接口所声明的一样。</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bomir</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2020-06-20
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://bomir.top/tags/csharp/">CSharp</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/netcore-garbagecollection/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">.netcore垃圾回收</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/net-core-program_class/">
+            <span class="next-text nav-default">.netcore之Program类</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Shaper-fox/hugoblogtalks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:jinchunw@385@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/Bicomir" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://bomir.top/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2021
+    <span class="heart">
+      
+      <i class="iconfont">        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        bomir
+        
+      </span>
+	  <span class="division">|</span>
+	  <span class="author">
+			<a href="http://beian.miit.gov.cn/">粤ICP备2021140392号-1</a>
+	  </span></span>
+  
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

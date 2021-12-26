@@ -35,6 +35,15 @@
     </item>
     
     <item>
+      <title>改善C#代码的157个建议（8）- 成员设计</title>
+      <link>https://bomir.top/post/member-design/</link>
+      <pubDate>Sat, 20 Jun 2020 22:19:05 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/member-design/</guid>
+      <description>成员设计 建议90：不要为抽象类提供公开的构造方法 首先，抽象类可以有构造方法。即便没有为抽象类指定构造方法，编译器也会为我们生成一个默认的pr</description>
+    </item>
+    
+    <item>
       <title>.netcore之Program类</title>
       <link>https://bomir.top/post/net-core-program_class/</link>
       <pubDate>Mon, 25 May 2020 22:19:05 +0000</pubDate>
