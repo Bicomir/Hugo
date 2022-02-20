@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 09 May 2021 22:19:05 +0000</lastBuildDate><atom:link href="https://bomir.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Nov 2021 19:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker底层原理介绍</title>
       <link>https://bomir.top/post/docker-storage/</link>
@@ -23,6 +23,15 @@
       
       <guid>https://bomir.top/post/base-redis-distributedlock/</guid>
       <description>一、介绍 这篇博文讲介绍如何一步步构建一个基于Redis的分布式锁。会从最原始的版本开始，然后根据问题进行调整，最后完成一个较为合理的分布式锁</description>
+    </item>
+    
+    <item>
+      <title>泛型，委托和事件</title>
+      <link>https://bomir.top/post/generic-delegateandevent/</link>
+      <pubDate>Sat, 20 Nov 2021 19:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/generic-delegateandevent/</guid>
+      <description>泛型、委托和事件 ​ 泛型并不是C#语言一开始就带有的特性，而是在FCL2.0之后实现的新功能。基于泛型，我们得以将类型参数化，以便更大范围地进</description>
     </item>
     
     <item>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/rabbit-go-4/</guid>
       <description>RabbitMQ官网的消息模型的第四种-路由模式 路由(routing) (using the Go RabbitMQ client) 在上一教程中，我们构建了一个简单的日志记录系统。我们能够向许</description>
-    </item>
-    
-    <item>
-      <title>RabbitMQ入门之Go语言教程-(3)</title>
-      <link>https://bomir.top/post/rabbit-go-3/</link>
-      <pubDate>Wed, 12 Aug 2020 21:19:05 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/rabbit-go-3/</guid>
-      <description>RabbitMQ官网的消息模型的第三种-发布/订阅模式 发布/订阅 (using the Go RabbitMQ client) ​ 在上一个教程中我们创建了一个work queue。work queu</description>
     </item>
     
   </channel>

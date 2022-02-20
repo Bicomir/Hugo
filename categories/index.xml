@@ -6,7 +6,16 @@
     <description>Recent content in Categories on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 09 May 2021 22:19:05 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Nov 2021 19:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSharp</title>
+      <link>https://bomir.top/categories/csharp/</link>
+      <pubDate>Sat, 20 Nov 2021 19:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/categories/csharp/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>mysql</title>
       <link>https://bomir.top/categories/mysql/</link>
@@ -94,15 +103,6 @@
       <pubDate>Fri, 25 Sep 2020 22:19:05 +0000</pubDate>
       
       <guid>https://bomir.top/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CSharp</title>
-      <link>https://bomir.top/categories/csharp/</link>
-      <pubDate>Sat, 12 Sep 2020 22:19:05 +0000</pubDate>
-      
-      <guid>https://bomir.top/categories/csharp/</guid>
       <description></description>
     </item>
     

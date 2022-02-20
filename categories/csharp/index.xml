@@ -6,7 +6,16 @@
     <description>Recent content in CSharp on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 12 Sep 2020 22:19:05 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/csharp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Nov 2021 19:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/categories/csharp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>泛型，委托和事件</title>
+      <link>https://bomir.top/post/generic-delegateandevent/</link>
+      <pubDate>Sat, 20 Nov 2021 19:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/generic-delegateandevent/</guid>
+      <description>泛型、委托和事件 ​ 泛型并不是C#语言一开始就带有的特性，而是在FCL2.0之后实现的新功能。基于泛型，我们得以将类型参数化，以便更大范围地进</description>
+    </item>
+    
     <item>
       <title>改善C#代码的157个建议（12）- 规范开发行为</title>
       <link>https://bomir.top/post/standardize-development-behavior/</link>
