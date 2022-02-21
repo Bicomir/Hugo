@@ -1,0 +1,2838 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>改善C#代码的157个建议（3）- 泛型，委托和事件 - Wallis</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="bomir" />
+  <meta name="description" content="泛型、委托和事件 ​ 泛型并不是C#语言一开始就带有的特性，而是在FCL2.0之后实现的新功能。基于泛型，我们得以将类型参数化，以便更大范围地进" />
+
+  <meta name="keywords" content="Hugo, theme, jane" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0" />
+
+
+<link rel="canonical" href="https://bomir.top/post/generic-delegate-event/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="改善C#代码的157个建议（3）- 泛型，委托和事件" />
+<meta property="og:description" content="泛型、委托和事件 ​ 泛型并不是C#语言一开始就带有的特性，而是在FCL2.0之后实现的新功能。基于泛型，我们得以将类型参数化，以便更大范围地进" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bomir.top/post/generic-delegate-event/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-11-20T19:56:34+00:00" />
+<meta property="article:modified_time" content="2021-11-20T19:56:34+00:00" />
+
+<meta itemprop="name" content="改善C#代码的157个建议（3）- 泛型，委托和事件">
+<meta itemprop="description" content="泛型、委托和事件 ​ 泛型并不是C#语言一开始就带有的特性，而是在FCL2.0之后实现的新功能。基于泛型，我们得以将类型参数化，以便更大范围地进"><meta itemprop="datePublished" content="2021-11-20T19:56:34+00:00" />
+<meta itemprop="dateModified" content="2021-11-20T19:56:34+00:00" />
+<meta itemprop="wordCount" content="10412">
+<meta itemprop="keywords" content="CSharp," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="改善C#代码的157个建议（3）- 泛型，委托和事件"/>
+<meta name="twitter:description" content="泛型、委托和事件 ​ 泛型并不是C#语言一开始就带有的特性，而是在FCL2.0之后实现的新功能。基于泛型，我们得以将类型参数化，以便更大范围地进"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">秤流沙</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      秤流沙
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://bomir.top/about/">关于我</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://github.com/Bicomir" rel="noopener" target="_blank">
+              Github
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">改善C#代码的157个建议（3）- 泛型，委托和事件</h1>
+      
+      <div class="post-meta">
+        <time datetime="2021-11-20" class="post-time">
+          2021-11-20
+        </time>
+        <div class="post-category">
+            <a href="https://bomir.top/categories/csharp/"> CSharp </a>
+            
+          </div>
+        <span class="more-meta"> 约 10412 字 </span>
+          <span class="more-meta"> 预计阅读 21 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#泛型委托和事件">泛型、委托和事件</a>
+      <ul>
+        <li><a href="#建议32-总是优先考虑泛型">建议32 总是优先考虑泛型</a></li>
+        <li><a href="#建议33-避免在泛型类型中声明静态成员">建议33 避免在泛型类型中声明静态成员</a></li>
+        <li><a href="#建议34-为泛型参数设定约束">建议34 为泛型参数设定约束</a></li>
+        <li><a href="#建议35-使用default为泛型类型指定初始值">建议35 使用default为泛型类型指定初始值</a></li>
+        <li><a href="#建议36-使用fcl中的委托声明">建议36 使用FCL中的委托声明</a></li>
+        <li><a href="#建议37-使用lambda表达式代替方法和匿名方法">建议37 使用lambda表达式代替方法和匿名方法</a></li>
+        <li><a href="#建议38-小心闭包中的陷阱">建议38 小心闭包中的陷阱</a></li>
+        <li><a href="#建议39-了解委托的实质">建议39 了解委托的实质</a></li>
+        <li><a href="#建议40-使用event关键字对委托施加保护">建议40 使用event关键字对委托施加保护</a></li>
+        <li><a href="#建议41-实现标准的事件模型">建议41 实现标准的事件模型</a></li>
+        <li><a href="#建议42-使用泛型参数兼容泛型接口的不可变性">建议42 使用泛型参数兼容泛型接口的不可变性</a></li>
+        <li><a href="#建议43-让接口中的泛型参数支持协变">建议43 让接口中的泛型参数支持协变</a></li>
+        <li><a href="#建议44-理解委托中的协变">建议44 理解委托中的协变</a></li>
+        <li><a href="#建议45-为泛型类型参数指定逆变">建议45 为泛型类型参数指定逆变</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="泛型委托和事件">泛型、委托和事件</h2>
+<p>​		泛型并不是C#语言一开始就带有的特性，而是在<code>FCL2.0</code>之后实现的新功能。基于泛型，我们得以将类型参数化，以便更大范围地进行代码复用；同时，它减少了泛型类以及泛型方法中的转型，确保了类型的安全。委托本身是一种引用类型，它保存的是托管堆中对象的引用，只不过这个引用比较特殊，它是对方法的引用；</p>
+<p>​		事件本身也是委托，它是委托组，C#中提供了关键字event来加以区别。一旦我们开始编写稍微复杂的C#代码，就肯定离不开泛型/委托和事件。我们需要对这三个方面分别进行说明；</p>
+<h3 id="建议32-总是优先考虑泛型">建议32 总是优先考虑泛型</h3>
+<p>​		泛型的优点是多方面的，无论是泛型类还是泛型方法都同时具备可重用性，类型安全和高效率等特性，这些都是非泛型类和非泛型方法无法具备的；这条建议将从<strong>可重用性</strong>、<strong>类型安全</strong>和<strong>高效率</strong>三个方面来进行剖析在实际的编码过程中为何总是应该优先考虑泛型。</p>
+<p>(1) 可重用性， 比如简单的设计一个集合类，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">class</span> <span class="nc">MyList</span>
+<span class="p">{</span>
+    <span class="kt">int</span><span class="p">[]</span> <span class="n">items</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="k">this</span><span class="p">[</span><span class="kt">int</span> <span class="n">i</span><span class="p">]</span>
+    <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Count</span>
+    <span class="p">{</span>
+    	<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">items</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+	<span class="c1">////省略一些其他方法
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>​		该类型只支持整型，如果要让类型支持字符串，有一种方法是重新设计一个类。但是这两个类型的属性和方法都是非常接近的，如果有一种方法可以让类型接收一个通用的数据类型，这样就可以进行代码复用了，同时类型也只要一个就够了。泛型完成的就是这样的功能。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">class</span> <span class="nc">MyList</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="n">T</span><span class="p">[]</span> <span class="n">items</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="n">T</span> <span class="k">this</span><span class="p">[</span><span class="kt">int</span> <span class="n">i</span><span class="p">]</span>
+    <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Count</span>
+    <span class="p">{</span>
+    	<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">items</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">///省略其他方法
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>​		可以把T理解成一个占位符，那么在C#泛型编译生成的IL代码中，T就是一个占位符的角色。在运行时，即时编译器<code>(JIT)</code>会用实际代码中的输入的T类型来代替T，也就是说，在由JIT生成的本地代码中，已经使用了实际的数据类型。我们可以把<code>MyList&lt;int&gt;</code>和<code>MyList&lt;string&gt;</code>视作是两个完全不同的类型，但是，这仅是对本地代码而言的，对于实际的C#代码，它仅仅是拥有一个类型，那就是泛型类型<code>MyList&lt;T&gt;</code>。</p>
+<p>​		以上从代码重用性的角度来论证了泛型的优点。继续从类型<code>MyList&lt;T&gt;</code>的角度论述，如果不用泛型实现代码重用，另一种方法是让<code>MyList</code>的编码从object的角度去设计。在C#的世界中，所有类型（包括值类型和引用类型）都是继承自object,如果要让<code>MyList</code>足够通用，就需要让<code>MyList</code>针对object编码，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">class</span> <span class="nc">MyList</span>
+<span class="p">{</span>
+	<span class="kt">object</span><span class="p">[]</span> <span class="n">items</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">object</span> <span class="k">this</span><span class="p">[</span><span class="kt">int</span> <span class="n">i</span><span class="p">]</span>
+    <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Count</span>
+    <span class="p">{</span>
+    	<span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">items</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+	<span class="c1">////省略一些其他方法
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这会让以下代码编译通过：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">MyList</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyList</span><span class="p">();</span>
+<span class="n">list</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="m">123</span><span class="p">;</span>
+<span class="n">list</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="s">&#34;123&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>由上面两行代码带来的问题就是非”类型安全性“。该问题实际在<strong>建议20</strong> 中已经详细论述过了。让类型支持类型安全，可以让程序在编译期间就过滤掉部分Bug，同时也能让代码规避掉”转型为object类型“或“从object转型为实际类型”所带来的效率损耗。尤其是涉及的操作类型是值类型时，还会带来装箱和拆箱的性能损耗。</p>
+<p>例如，上文代码中的:  <code>list[1] = &quot;123&quot;;</code> 因为它首先转型为object， 继而存储到items这个object数组中去了；</p>
+<p>​		泛型为C#带来的是革命性的变化，FCL之后的很多功能都是借助泛型才得到了很好的实现，如LINQ。LINQ借助于泛型和扩展方法，有效地丰富了集合的查询功能，同时避免了代码爆炸并提升了操作的性能。我们在设计自己的类型时，应充分考虑到泛型的优点，让自己的类型成为泛型类。</p>
+<h3 id="建议33-避免在泛型类型中声明静态成员">建议33 避免在泛型类型中声明静态成员</h3>
+<p>​		在上一个建议中，已经解释了应该将<code>MyList&lt;int&gt;</code> 和<code>MyList&lt;string&gt;</code> 视作两个完全不同的类型，所以，不应将<code>MyList&lt;T&gt;</code>中的静态成员理解成为<code>MyList&lt;int&gt;</code>和<code>MyList&lt;string&gt;</code>共有的成员。</p>
+<p>​		对于一个非泛型类型，以下的代码很好理解：</p>
+<p>​</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">class</span> <span class="nc">MyList</span>
+<span class="p">{</span>
+	<span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">Count</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">MyList</span><span class="p">()</span>
+    <span class="p">{</span>
+    	<span class="n">Count</span><span class="p">++;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">MyList</span> <span class="n">myList1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyList</span><span class="p">();</span>
+        <span class="n">MyList</span> <span class="n">mylist2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyList</span><span class="p">();</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">MyList</span><span class="p">.</span><span class="n">Count</span><span class="p">);</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>结果返回为2. 如果将<code>MyList</code>换成泛型类型，看看下面的代码会输出什么呢？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice33</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">MyList</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">Count</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="k">public</span> <span class="n">MyList</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Count</span><span class="p">++;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">MyList</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">myList1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyList</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+            <span class="n">MyList</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">myList2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyList</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+
+            <span class="n">MyList</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">myList3</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyList</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">MyList</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;.</span><span class="n">Count</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">MyList</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;.</span><span class="n">Count</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>代码输出为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">2</span>
+<span class="n">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>实际上，随着你为T指定不同的数据类型，<code>MyList&lt;T&gt;</code>相应的也变成了不同的数据类型，在它们之间是不共享静态成员的。</p>
+<p>不过，从上文我们也觉察到了，若T所指定的数据类型是一致的，那么两个泛型对象间还是可以共享静态成员的，如上文的<code>myList1</code>和<code>myList2</code>。但是，为了规避因此而引起的混淆，仍旧建议在实际的编码工作中，尽量避免声明泛型类型的静态成员。</p>
+<p>上面举的例子是基于泛型类型的，非泛型类型中静态泛型方法看起来很接近该例子，但是应该始终这样来理解：</p>
+<p><strong>非泛型类型中的泛型方法并不会在运行时的本地代码中生成不同的类型。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice33</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">MyList</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">Count</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;()</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">Count</span><span class="p">++;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">MyList</span><span class="p">.</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;());</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">MyList</span><span class="p">.</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;());</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">MyList</span><span class="p">.</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;());</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>代码的输出结果是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="m">0</span>
+<span class="m">1</span>
+<span class="m">2</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="建议34-为泛型参数设定约束">建议34 为泛型参数设定约束</h3>
+<p>&ldquo;约束&quot;这个词可能会引起歧义，有些人可能认为对泛型参数设定约束是限制参数的使用，实际情况正好相反。没有“约束”的泛型参数作用很有限，倒是“约束”让泛型参数具有了更多的行为和属性。</p>
+<p>查看下面代码，我们会发现Compare<!-- raw HTML omitted -->方法的参数<code>t1</code>或参数<code>t2</code>仅仅具有object的属性和行为，所以几乎不能在方法中对它们进行任何的操作：</p>
+<p>我们尝试在泛型参数上设定约束，会发现，在加了约束之后，我们会发现参数<code>t1</code>或者参数<code>t2</code>会变成一个有用的对象。由于为其指定了对应的类型，<code>t1</code>和<code>t2</code>就是一个Salary类型了，在方法的内部，它拥有了<code>BaseSalary</code>和<code>Bonnus</code>，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">namespace</span> <span class="nn">Advice34</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Salary</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">BaseSalary</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Bonus</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">SalaryComputer</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Compare</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span> <span class="n">t1</span><span class="p">,</span> <span class="n">T</span> <span class="n">t2</span><span class="p">)</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">Salary</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">BaseSalary</span> <span class="p">&gt;</span> <span class="n">t2</span><span class="p">.</span><span class="n">BaseSalary</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="m">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">BaseSalary</span> <span class="p">==</span> <span class="n">t2</span><span class="p">.</span><span class="n">BaseSalary</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>那么可以为泛型参数指定哪些参数呢？</p>
+<ol>
+<li>
+<p>指定参数是值类型(除<code>Nullable</code>外)，可以有如下几种形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">void</span> <span class="n">Method1</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="k">struct</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>指定参数是引用类型，可以有如下形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">void</span> <span class="n">Method1</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="k">class</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">void</span> <span class="n">Method1</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">Salary</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>注意object不能用来作为约束；</strong></p>
+</li>
+<li>
+<p>指定参数具有无参数的公共构造函数，可以有如下形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"> <span class="k">public</span> <span class="k">void</span> <span class="n">Method2</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="k">new</span><span class="p">()</span>
+ <span class="p">{</span>
+
+ <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>注意<code>CLR</code>目前只支持无参构造方法约束；</p>
+</li>
+<li>
+<p>指定参数必须是指定的基类、或者派生自指定的基类；</p>
+</li>
+<li>
+<p>指定参数必须是指定的接口，或者实现指定的接口；</p>
+</li>
+<li>
+<p>指定T提供的类型参数必须是为U提供的参数，或者是派生自为U提供的参数；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">class</span> <span class="nc">Sample</span><span class="p">&lt;</span><span class="n">U</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="n">Method1</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">U</span>
+    <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在编程过程中应该考虑为泛型参数设定约束，约束使泛型参数成为一个实实在在的“对象”, 让它具有了我们想要的行为和属性，而不仅仅是一个object。</p>
+</li>
+</ol>
+<h3 id="建议35-使用default为泛型类型指定初始值">建议35 使用default为泛型类型指定初始值</h3>
+<p>有些算法，比如泛型集合List<!-- raw HTML omitted -->中的Find算法， 所查找的对象可能会是值类型，也可能会是引用类型；在这种算法的内部，我们常常会为这些值类型或者引用类型变量指定默认值。于是，问题来了：值类型变量的默认初始值时0值，而引用类型的变量的默认初始值时null值，显然，这会导致下面的编译出错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="n">T</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;()</span>
+<span class="p">{</span>
+    <span class="n">T</span> <span class="n">t</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>CS0403 Cannot convert null to type parameter 'T' because it could be a non-nullable value type. Consider using default('T') instead.</code></p>
+<p>无法将 null 转换为类型参数“T”，因为它可能是不可以为 null 的值类型。 请考虑改用 default(&lsquo;T&rsquo;)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="n">T</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;()</span>
+<span class="p">{</span>
+    <span class="n">T</span> <span class="n">t</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>CS0029 cannot implicitly convert type 'int' to 'T'</code>, 无法将类型&rsquo;int&rsquo;隐式转换为’T‘;</p>
+<p>因此，上述的代码可以改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="n">T</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;()</span>
+<span class="p">{</span>
+    <span class="n">T</span> <span class="n">t</span> <span class="p">=</span> <span class="k">default</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样，如果它在运行时碰到T是一个整型，那么运行时为其赋值为0；如果T在运行时是一个Person这样的引用类型，则会为其赋null值；</p>
+<p>下面展示一段Find的源码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[__DynamicallyInvokable]</span>
+<span class="k">public</span> <span class="n">T</span> <span class="n">Find</span><span class="p">(</span><span class="n">Predicate</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">match</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">match</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ThrowHelper</span><span class="p">.</span><span class="n">ThrowArgumentNullException</span><span class="p">(</span><span class="n">ExceptionArgument</span><span class="p">.</span><span class="n">match</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="k">this</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">match</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="m">_</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="m">_</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">default</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="建议36-使用fcl中的委托声明">建议36 使用FCL中的委托声明</h3>
+<p>FCL中存在3类这样的委托声明，它们分别是Action，Func，Predicate。尤其是在它们的泛型版本出来以后，已经能够满足我们在实际编码过程中的大部分编码的需求；</p>
+<ul>
+<li>Action表示接受0个或多个输入参数，执行一段代码，没有任何的返回值；</li>
+<li>Fun表示接受0个或多个输入参数，执行一段代码，带有返回值；</li>
+<li>Predicate表示定义一组条件并判定参数是否符合条件；</li>
+</ul>
+<p>Action的重载版本有17个，最多参数的重载有16个参数；</p>
+<p>Fun的重载版本有17个，最多参数的重载有16个参数；</p>
+<p>Note：很少方法的参数能够超过16个，如果真有这样的参数，首先要考虑自己的函数设计是不是有问题；另外，也可以采用params关键字来减少参数的声明。如：</p>
+<p><code>static void SomeMethod(params int[] i)</code></p>
+<p>表示该方法接受0个或多个整型参数；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice36</span>
+<span class="p">{</span>
+    <span class="k">internal</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">delegate</span> <span class="kt">int</span> <span class="n">AddHandler</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">);</span>
+        <span class="k">delegate</span> <span class="k">void</span> <span class="n">PrintHandler</span><span class="p">(</span><span class="kt">string</span> <span class="n">msg</span><span class="p">);</span>
+
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">AddHandler</span> <span class="k">add</span> <span class="p">=</span> <span class="n">Add</span><span class="p">;</span>
+            <span class="n">PrintHandler</span> <span class="n">print</span> <span class="p">=</span> <span class="n">Print</span><span class="p">;</span>
+
+            <span class="n">print</span><span class="p">(</span><span class="k">add</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">).</span><span class="n">ToString</span><span class="p">());</span>
+        <span class="p">}</span>
+
+        <span class="k">static</span> <span class="kt">int</span> <span class="n">Add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">i</span> <span class="p">+</span> <span class="n">j</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Print</span><span class="p">(</span><span class="kt">string</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>委托声明<code>AddHandler</code>和<code>PrintHandler</code>完全可以被Func与Action取代。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="k">add</span> <span class="p">=</span> <span class="n">Add</span><span class="p">;</span>
+
+<span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">print</span> <span class="p">=</span> <span class="n">Print</span><span class="p">;</span>
+
+<span class="n">print</span><span class="p">(</span><span class="k">add</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">).</span><span class="n">ToString</span><span class="p">());</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们应该习惯在代码中使用这类委托来代替自己的委托声明；</p>
+<p>除了Action， Func， 和Predicate外， FCL中还有用于表示特殊含义的委托声明；像下面的几种：</p>
+<p>用于表示注册事件方法的委托声明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="n">EventHandler</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">);</span>
+<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="n">EventHandler</span><span class="p">&lt;</span><span class="n">TEventArgs</span><span class="p">&gt;(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">TEventArgs</span> <span class="n">e</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>表示线程方法的委托声明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="n">ThreadStart</span><span class="p">();</span>
+<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="n">ParameterizedThreadStart</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>表示异步回调的委托声明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="n">AsyncCallback</span><span class="p">(</span><span class="n">IAsyncResult</span> <span class="n">ar</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在FCL中每一类委托声明都代表一类特殊的用途，虽然可以使用自己的委托声明来代替，但是这样做没必要，而且会让代码失去简洁性和标准性；在我们实现自己的委托声明前，应该首先查阅官方文档后确认有必要才这样做才比较好；</p>
+<h3 id="建议37-使用lambda表达式代替方法和匿名方法">建议37 使用lambda表达式代替方法和匿名方法</h3>
+<p>在上一条建议中， 我们使用了Func和Action委托， 实现了加法和加法结果的打印；</p>
+<p>实际上要完成相同相同的功能，还有很多种编码的方法。我们先来看一种中规中矩的，也是最繁琐的写法；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice37</span>
+<span class="p">{</span>
+    <span class="k">internal</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="k">add</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;(</span><span class="n">Add</span><span class="p">);</span>
+            <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">print</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">Print</span><span class="p">);</span>
+
+            <span class="n">print</span><span class="p">(</span><span class="k">add</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">).</span><span class="n">ToString</span><span class="p">());</span>
+        <span class="p">}</span>
+
+        <span class="k">static</span> <span class="kt">int</span> <span class="n">Add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">i</span> <span class="p">+</span> <span class="n">j</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Print</span><span class="p">(</span><span class="kt">string</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Note： 上面的语法虽然繁琐，但是我们可以从中加深对委托的理解；委托也是一种数据类型，跟任何FCL中的引用类型没有差别；</p>
+<p>也可以使用匿名方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice37</span>
+<span class="p">{</span>
+    <span class="k">internal</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="k">add</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;(</span><span class="k">delegate</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="n">i</span> <span class="p">+</span> <span class="n">j</span><span class="p">;</span>
+            <span class="p">});</span>
+
+            <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">print</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="k">delegate</span> <span class="p">(</span><span class="kt">string</span> <span class="n">msg</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+            <span class="p">});</span>
+
+            <span class="n">print</span><span class="p">(</span><span class="k">add</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">).</span><span class="n">ToString</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用匿名方法后，我们就不需要再在Main外额外声明两个方法了，可以直接在Main这个工作方法完成所有代码的编写，而不会影响代码的清晰性，实际上所有代码不超过3行的方法（条件是它不会被重用），我们都建议采用这种方式来编写；</p>
+<p>上面的改进版本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="k">add</span> <span class="p">=</span> <span class="k">delegate</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">i</span> <span class="p">+</span> <span class="n">j</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">print</span> <span class="p">=</span> <span class="k">delegate</span><span class="p">(</span><span class="kt">string</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="n">print</span><span class="p">(</span><span class="k">add</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">).</span><span class="n">ToString</span><span class="p">());</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>最终版本还是演化为使用lambda表达式的方式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="k">add</span> <span class="p">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">i</span> <span class="p">+</span> <span class="n">j</span><span class="p">;</span>
+
+<span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">print</span> <span class="p">=</span> <span class="n">msg</span> <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+
+<span class="n">print</span><span class="p">(</span><span class="k">add</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">).</span><span class="n">ToString</span><span class="p">());</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Lambda表达式操作符&rdquo;=&gt;&ldquo;的左侧是方法的参数， 右侧是方法体，其本质还是匿名方法。实际上，经过编译后的Lambda表达式就是一个匿名方法。（这点也可以用过反编译来验证）。我们应当在实际编码中熟练的运用lambda, 避免出现繁琐而不美观的代码；</p>
+<h3 id="建议38-小心闭包中的陷阱">建议38 小心闭包中的陷阱</h3>
+<p>观察一下下面的代码， 试着设想一下输出的代码时什么？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice38</span>
+<span class="p">{</span>
+    <span class="k">internal</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">List</span><span class="p">&lt;</span><span class="n">Action</span><span class="p">&gt;</span> <span class="n">lists</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Action</span><span class="p">&gt;();</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">5</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="n">Action</span> <span class="n">t</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span>
+                <span class="p">{</span>
+                    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+                <span class="p">};</span>
+                <span class="n">lists</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">t</span> <span class="k">in</span> <span class="n">lists</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">t</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们这段代码的预期是，让匿名方法（这里表现为lambda表达式）接受参数i, 并输出：</p>
+<p><code>0 1 2 3 4</code></p>
+<p>但是实际上的输出是： <code>5 5 5 5 5</code></p>
+<p>这段代码并不像看起来的那么简单，要完全理解运行时候的代码是如何运行的，首先我们得理解C#编译器为我们做了些什么？</p>
+<p>反编译查看IL代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="p">.</span><span class="n">method</span> <span class="k">private</span> <span class="n">hidebysig</span> <span class="k">static</span> <span class="k">void</span>  <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="n">cil</span> <span class="n">managed</span>
+<span class="p">{</span>
+  <span class="p">.</span><span class="n">entrypoint</span>
+  <span class="c1">// 代码大小       133 (0x85)
+</span><span class="c1"></span>  <span class="p">.</span><span class="n">maxstack</span>  <span class="m">3</span>
+  <span class="p">.</span><span class="n">locals</span> <span class="n">init</span> <span class="p">(</span><span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">.</span><span class="n">List</span><span class="err">`</span><span class="m">1</span><span class="p">&lt;</span><span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">&gt;</span> <span class="n">V_0</span><span class="p">,</span>
+           <span class="k">class</span> <span class="nc">Advice38</span><span class="p">.</span><span class="n">Program</span><span class="p">/</span><span class="err">&#39;</span><span class="p">&lt;&gt;</span><span class="n">c__DisplayClass0_0</span><span class="err">&#39;</span> <span class="n">V_1</span><span class="p">,</span>
+           <span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span> <span class="n">V_2</span><span class="p">,</span>
+           <span class="n">int32</span> <span class="n">V_3</span><span class="p">,</span>
+           <span class="kt">bool</span> <span class="n">V_4</span><span class="p">,</span>
+           <span class="n">valuetype</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">.</span><span class="n">List</span><span class="err">`</span><span class="m">1</span><span class="p">/</span><span class="n">Enumerator</span><span class="p">&lt;</span><span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">&gt;</span> <span class="n">V_5</span><span class="p">,</span>
+           <span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span> <span class="n">V_6</span><span class="p">)</span>
+  <span class="n">IL_0000</span><span class="p">:</span>  <span class="n">nop</span>
+  <span class="n">IL_0001</span><span class="p">:</span>  <span class="n">newobj</span>     <span class="n">instance</span> <span class="k">void</span> <span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">.</span><span class="n">List</span><span class="err">`</span><span class="m">1</span><span class="p">&lt;</span><span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">&gt;::.</span><span class="n">ctor</span><span class="p">()</span>
+  <span class="n">IL_0006</span><span class="p">:</span>  <span class="n">stloc</span><span class="p">.</span><span class="m">0</span>
+  <span class="n">IL_0007</span><span class="p">:</span>  <span class="n">newobj</span>     <span class="n">instance</span> <span class="k">void</span> <span class="n">Advice38</span><span class="p">.</span><span class="n">Program</span><span class="p">/</span><span class="err">&#39;</span><span class="p">&lt;&gt;</span><span class="n">c__DisplayClass0_0</span><span class="err">&#39;</span><span class="p">::.</span><span class="n">ctor</span><span class="p">()</span>
+  <span class="n">IL_000c</span><span class="p">:</span>  <span class="n">stloc</span><span class="p">.</span><span class="m">1</span>
+  <span class="n">IL_000d</span><span class="p">:</span>  <span class="n">ldloc</span><span class="p">.</span><span class="m">1</span>
+  <span class="n">IL_000e</span><span class="p">:</span>  <span class="n">ldc</span><span class="p">.</span><span class="n">i4</span><span class="p">.</span><span class="m">0</span>
+  <span class="n">IL_000f</span><span class="p">:</span>  <span class="n">stfld</span>      <span class="n">int32</span> <span class="n">Advice38</span><span class="p">.</span><span class="n">Program</span><span class="p">/</span><span class="err">&#39;</span><span class="p">&lt;&gt;</span><span class="n">c__DisplayClass0_0</span><span class="err">&#39;</span><span class="p">::</span><span class="n">i</span>
+  <span class="n">IL_0014</span><span class="p">:</span>  <span class="n">br</span><span class="p">.</span><span class="n">s</span>       <span class="n">IL_003d</span>
+  <span class="n">IL_0016</span><span class="p">:</span>  <span class="n">nop</span>
+  <span class="n">IL_0017</span><span class="p">:</span>  <span class="n">ldloc</span><span class="p">.</span><span class="m">1</span>
+  <span class="n">IL_0018</span><span class="p">:</span>  <span class="n">ldftn</span>      <span class="n">instance</span> <span class="k">void</span> <span class="n">Advice38</span><span class="p">.</span><span class="n">Program</span><span class="p">/</span><span class="err">&#39;</span><span class="p">&lt;&gt;</span><span class="n">c__DisplayClass0_0</span><span class="err">&#39;</span><span class="p">::</span><span class="err">&#39;</span><span class="p">&lt;</span><span class="n">Main</span><span class="p">&gt;</span><span class="n">b__0</span><span class="err">&#39;</span><span class="p">()</span>
+  <span class="n">IL_001e</span><span class="p">:</span>  <span class="n">newobj</span>     <span class="n">instance</span> <span class="k">void</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">::.</span><span class="n">ctor</span><span class="p">(</span><span class="kt">object</span><span class="p">,</span>
+                                                                    <span class="n">native</span> <span class="kt">int</span><span class="p">)</span>
+  <span class="n">IL_0023</span><span class="p">:</span>  <span class="n">stloc</span><span class="p">.</span><span class="m">2</span>
+  <span class="n">IL_0024</span><span class="p">:</span>  <span class="n">ldloc</span><span class="p">.</span><span class="m">0</span>
+  <span class="n">IL_0025</span><span class="p">:</span>  <span class="n">ldloc</span><span class="p">.</span><span class="m">2</span>
+  <span class="n">IL_0026</span><span class="p">:</span>  <span class="n">callvirt</span>   <span class="n">instance</span> <span class="k">void</span> <span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">.</span><span class="n">List</span><span class="err">`</span><span class="m">1</span><span class="p">&lt;</span><span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">&gt;::</span><span class="n">Add</span><span class="p">(!</span><span class="m">0</span><span class="p">)</span>
+  <span class="n">IL_002b</span><span class="p">:</span>  <span class="n">nop</span>
+  <span class="n">IL_002c</span><span class="p">:</span>  <span class="n">nop</span>
+  <span class="n">IL_002d</span><span class="p">:</span>  <span class="n">ldloc</span><span class="p">.</span><span class="m">1</span>
+  <span class="n">IL_002e</span><span class="p">:</span>  <span class="n">ldfld</span>      <span class="n">int32</span> <span class="n">Advice38</span><span class="p">.</span><span class="n">Program</span><span class="p">/</span><span class="err">&#39;</span><span class="p">&lt;&gt;</span><span class="n">c__DisplayClass0_0</span><span class="err">&#39;</span><span class="p">::</span><span class="n">i</span>
+  <span class="n">IL_0033</span><span class="p">:</span>  <span class="n">stloc</span><span class="p">.</span><span class="m">3</span>
+  <span class="n">IL_0034</span><span class="p">:</span>  <span class="n">ldloc</span><span class="p">.</span><span class="m">1</span>
+  <span class="n">IL_0035</span><span class="p">:</span>  <span class="n">ldloc</span><span class="p">.</span><span class="m">3</span>
+  <span class="n">IL_0036</span><span class="p">:</span>  <span class="n">ldc</span><span class="p">.</span><span class="n">i4</span><span class="p">.</span><span class="m">1</span>
+  <span class="n">IL_0037</span><span class="p">:</span>  <span class="k">add</span>
+  <span class="n">IL_0038</span><span class="p">:</span>  <span class="n">stfld</span>      <span class="n">int32</span> <span class="n">Advice38</span><span class="p">.</span><span class="n">Program</span><span class="p">/</span><span class="err">&#39;</span><span class="p">&lt;&gt;</span><span class="n">c__DisplayClass0_0</span><span class="err">&#39;</span><span class="p">::</span><span class="n">i</span>
+  <span class="n">IL_003d</span><span class="p">:</span>  <span class="n">ldloc</span><span class="p">.</span><span class="m">1</span>
+  <span class="n">IL_003e</span><span class="p">:</span>  <span class="n">ldfld</span>      <span class="n">int32</span> <span class="n">Advice38</span><span class="p">.</span><span class="n">Program</span><span class="p">/</span><span class="err">&#39;</span><span class="p">&lt;&gt;</span><span class="n">c__DisplayClass0_0</span><span class="err">&#39;</span><span class="p">::</span><span class="n">i</span>
+  <span class="n">IL_0043</span><span class="p">:</span>  <span class="n">ldc</span><span class="p">.</span><span class="n">i4</span><span class="p">.</span><span class="m">5</span>
+  <span class="n">IL_0044</span><span class="p">:</span>  <span class="n">clt</span>
+  <span class="n">IL_0046</span><span class="p">:</span>  <span class="n">stloc</span><span class="p">.</span><span class="n">s</span>    <span class="n">V_4</span>
+  <span class="n">IL_0048</span><span class="p">:</span>  <span class="n">ldloc</span><span class="p">.</span><span class="n">s</span>    <span class="n">V_4</span>
+  <span class="n">IL_004a</span><span class="p">:</span>  <span class="n">brtrue</span><span class="p">.</span><span class="n">s</span>   <span class="n">IL_0016</span>
+  <span class="n">IL_004c</span><span class="p">:</span>  <span class="n">nop</span>
+  <span class="n">IL_004d</span><span class="p">:</span>  <span class="n">ldloc</span><span class="p">.</span><span class="m">0</span>
+  <span class="n">IL_004e</span><span class="p">:</span>  <span class="n">callvirt</span>   <span class="n">instance</span> <span class="n">valuetype</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">.</span><span class="n">List</span><span class="err">`</span><span class="m">1</span><span class="p">/</span><span class="n">Enumerator</span><span class="p">&lt;!</span><span class="m">0</span><span class="p">&gt;</span> <span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">.</span><span class="n">List</span><span class="err">`</span><span class="m">1</span><span class="p">&lt;</span><span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">&gt;::</span><span class="n">GetEnumerator</span><span class="p">()</span>
+  <span class="n">IL_0053</span><span class="p">:</span>  <span class="n">stloc</span><span class="p">.</span><span class="n">s</span>    <span class="n">V_5</span>
+  <span class="p">.</span><span class="k">try</span>
+  <span class="p">{</span>
+    <span class="n">IL_0055</span><span class="p">:</span>  <span class="n">br</span><span class="p">.</span><span class="n">s</span>       <span class="n">IL_006a</span>
+    <span class="n">IL_0057</span><span class="p">:</span>  <span class="n">ldloca</span><span class="p">.</span><span class="n">s</span>   <span class="n">V_5</span>
+    <span class="n">IL_0059</span><span class="p">:</span>  <span class="n">call</span>       <span class="n">instance</span> <span class="p">!</span><span class="m">0</span> <span class="n">valuetype</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">.</span><span class="n">List</span><span class="err">`</span><span class="m">1</span><span class="p">/</span><span class="n">Enumerator</span><span class="p">&lt;</span><span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">&gt;::</span><span class="n">get_Current</span><span class="p">()</span>
+    <span class="n">IL_005e</span><span class="p">:</span>  <span class="n">stloc</span><span class="p">.</span><span class="n">s</span>    <span class="n">V_6</span>
+    <span class="n">IL_0060</span><span class="p">:</span>  <span class="n">nop</span>
+    <span class="n">IL_0061</span><span class="p">:</span>  <span class="n">ldloc</span><span class="p">.</span><span class="n">s</span>    <span class="n">V_6</span>
+    <span class="n">IL_0063</span><span class="p">:</span>  <span class="n">callvirt</span>   <span class="n">instance</span> <span class="k">void</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">::</span><span class="n">Invoke</span><span class="p">()</span>
+    <span class="n">IL_0068</span><span class="p">:</span>  <span class="n">nop</span>
+    <span class="n">IL_0069</span><span class="p">:</span>  <span class="n">nop</span>
+    <span class="n">IL_006a</span><span class="p">:</span>  <span class="n">ldloca</span><span class="p">.</span><span class="n">s</span>   <span class="n">V_5</span>
+    <span class="n">IL_006c</span><span class="p">:</span>  <span class="n">call</span>       <span class="n">instance</span> <span class="kt">bool</span> <span class="n">valuetype</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">.</span><span class="n">List</span><span class="err">`</span><span class="m">1</span><span class="p">/</span><span class="n">Enumerator</span><span class="p">&lt;</span><span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">&gt;::</span><span class="n">MoveNext</span><span class="p">()</span>
+    <span class="n">IL_0071</span><span class="p">:</span>  <span class="n">brtrue</span><span class="p">.</span><span class="n">s</span>   <span class="n">IL_0057</span>
+    <span class="n">IL_0073</span><span class="p">:</span>  <span class="n">leave</span><span class="p">.</span><span class="n">s</span>    <span class="n">IL_0084</span>
+  <span class="p">}</span>  <span class="c1">// end .try
+</span><span class="c1"></span>  <span class="k">finally</span>
+  <span class="p">{</span>
+    <span class="n">IL_0075</span><span class="p">:</span>  <span class="n">ldloca</span><span class="p">.</span><span class="n">s</span>   <span class="n">V_5</span>
+    <span class="n">IL_0077</span><span class="p">:</span>  <span class="n">constrained</span><span class="p">.</span> <span class="n">valuetype</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">.</span><span class="n">List</span><span class="err">`</span><span class="m">1</span><span class="p">/</span><span class="n">Enumerator</span><span class="p">&lt;</span><span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">&gt;</span>
+    <span class="n">IL_007d</span><span class="p">:</span>  <span class="n">callvirt</span>   <span class="n">instance</span> <span class="k">void</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">IDisposable</span><span class="p">::</span><span class="n">Dispose</span><span class="p">()</span>
+    <span class="n">IL_0082</span><span class="p">:</span>  <span class="n">nop</span>
+    <span class="n">IL_0083</span><span class="p">:</span>  <span class="n">endfinally</span>
+  <span class="p">}</span>  <span class="c1">// end handler
+</span><span class="c1"></span>  <span class="n">IL_0084</span><span class="p">:</span>  <span class="n">ret</span>
+<span class="p">}</span> <span class="c1">// end of method Program::Main
+</span></code></pre></td></tr></table>
+</div>
+</div><p>在 <code>IL_0007</code>行:  <code>newobj     instance void Advice38.Program/'&lt;&gt;c__DisplayClass0_0'::.ctor()</code>， 为我们创建了 一个类<code>&lt;&gt;c__DisplayClass0_0</code>， 并且在循环内部每次会为这个类的一个实例变量 i 赋值。</p>
+<p>这个类的IL代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="p">.</span><span class="k">class</span> <span class="nc">auto</span> <span class="n">ansi</span> <span class="k">sealed</span> <span class="n">nested</span> <span class="k">private</span> <span class="n">beforefieldinit</span> <span class="err">&#39;</span><span class="p">&lt;&gt;</span><span class="n">c__DisplayClass0_0</span><span class="err">&#39;</span>
+       <span class="n">extends</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Object</span>
+<span class="p">{</span>
+  <span class="p">.</span><span class="n">custom</span> <span class="n">instance</span> <span class="k">void</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Runtime</span><span class="p">.</span><span class="n">CompilerServices</span><span class="p">.</span><span class="n">CompilerGeneratedAttribute</span><span class="p">::.</span><span class="n">ctor</span><span class="p">()</span> <span class="p">=</span> <span class="p">(</span> <span class="m">01</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="p">)</span> 
+   
+  <span class="p">.</span><span class="n">method</span> <span class="n">assembly</span> <span class="n">hidebysig</span> <span class="n">instance</span> <span class="k">void</span> 
+        <span class="err">&#39;</span><span class="p">&lt;</span><span class="n">Main</span><span class="p">&gt;</span><span class="n">b__0</span><span class="err">&#39;</span><span class="p">()</span> <span class="n">cil</span> <span class="n">managed</span>
+<span class="p">{</span>
+  <span class="c1">// 代码大小       19 (0x13)
+</span><span class="c1"></span>  <span class="p">.</span><span class="n">maxstack</span>  <span class="m">8</span>
+  <span class="n">IL_0000</span><span class="p">:</span>  <span class="n">nop</span>
+  <span class="n">IL_0001</span><span class="p">:</span>  <span class="n">ldarg</span><span class="p">.</span><span class="m">0</span>
+  <span class="n">IL_0002</span><span class="p">:</span>  <span class="n">ldflda</span>     <span class="n">int32</span> <span class="n">Advice38</span><span class="p">.</span><span class="n">Program</span><span class="p">/</span><span class="err">&#39;</span><span class="p">&lt;&gt;</span><span class="n">c__DisplayClass0_0</span><span class="err">&#39;</span><span class="p">::</span><span class="n">i</span>
+  <span class="n">IL_0007</span><span class="p">:</span>  <span class="n">call</span>       <span class="n">instance</span> <span class="kt">string</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Int32</span><span class="p">::</span><span class="n">ToString</span><span class="p">()</span>
+  <span class="n">IL_000c</span><span class="p">:</span>  <span class="n">call</span>       <span class="k">void</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">::</span><span class="n">WriteLine</span><span class="p">(</span><span class="kt">string</span><span class="p">)</span>
+  <span class="n">IL_0011</span><span class="p">:</span>  <span class="n">nop</span>
+  <span class="n">IL_0012</span><span class="p">:</span>  <span class="n">ret</span>
+<span class="p">}</span> <span class="c1">// end of method &#39;&lt;&gt;c__DisplayClass0_0&#39;::&#39;&lt;Main&gt;b__0&#39;
+</span><span class="c1"></span>    
+    
+  <span class="p">.</span><span class="n">field</span> <span class="k">public</span> <span class="n">int32</span> <span class="n">i</span>
+<span class="p">}</span> <span class="c1">// end of class &#39;&lt;&gt;c__DisplayClass0_0&#39;
+</span><span class="c1"></span>
+<span class="c1">//ctor
+</span><span class="c1"></span><span class="p">.</span><span class="n">method</span> <span class="k">public</span> <span class="n">hidebysig</span> <span class="n">specialname</span> <span class="n">rtspecialname</span> 
+        <span class="n">instance</span> <span class="k">void</span>  <span class="p">.</span><span class="n">ctor</span><span class="p">()</span> <span class="n">cil</span> <span class="n">managed</span>
+<span class="p">{</span>
+  <span class="c1">// 代码大小       8 (0x8)
+</span><span class="c1"></span>  <span class="p">.</span><span class="n">maxstack</span>  <span class="m">8</span>
+  <span class="n">IL_0000</span><span class="p">:</span>  <span class="n">ldarg</span><span class="p">.</span><span class="m">0</span>
+  <span class="n">IL_0001</span><span class="p">:</span>  <span class="n">call</span>       <span class="n">instance</span> <span class="k">void</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">Object</span><span class="p">::.</span><span class="n">ctor</span><span class="p">()</span>
+  <span class="n">IL_0006</span><span class="p">:</span>  <span class="n">nop</span>
+  <span class="n">IL_0007</span><span class="p">:</span>  <span class="n">ret</span>
+<span class="p">}</span> <span class="c1">// end of method &#39;&lt;&gt;c__DisplayClass0_0&#39;::.ctor
+</span><span class="c1"></span>
+</code></pre></td></tr></table>
+</div>
+</div><p>经过分析，会发现前面的这段代码实际和下面这段代码是一致的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">List</span><span class="p">&lt;</span><span class="n">Action</span><span class="p">&gt;</span> <span class="n">lists</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Action</span><span class="p">&gt;();</span>
+    <span class="n">TempClass</span> <span class="n">tempClass</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TempClass</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">tempClass</span><span class="p">.</span><span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">tempClass</span><span class="p">.</span><span class="n">i</span> <span class="p">&lt;</span> <span class="m">5</span><span class="p">;</span> <span class="n">tempClass</span><span class="p">.</span><span class="n">i</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="n">Action</span> <span class="n">t</span> <span class="p">=</span> <span class="n">tempClass</span><span class="p">.</span><span class="n">TempFuc</span><span class="p">;</span>
+        <span class="n">lists</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="n">Action</span> <span class="n">t</span> <span class="k">in</span> <span class="n">lists</span><span class="p">)</span>
+    <span class="p">{</span>
+    	<span class="n">t</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">TempClass</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="n">TempFuc</span><span class="p">()</span>
+    <span class="p">{</span>
+    	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这段代码演示的就是闭包对象。所谓闭包对象，指的是上面这种情形中的TempClass对象（在第一段代码中，就是编译器为我们生成的&lt;&gt;c__DisplayClass0对象）。如果匿名方法（lambda表达式）引用了某个局部变量，编译器就会自动将该引用提升到闭包对象中，即将for循环中的变量 i 修改成了引用闭包对象的公共变量 i 。这样，即使代码执行离开了原局部变量 i 的作用域（如for循环），包含该闭包对象的作用域还存在。理解了这一点，就理解了代码的输出了。</p>
+<p>要实现本建议开始时所预期的输出，可以将闭包对象的产生放在for循环内部：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+ <span class="p">{</span>
+     <span class="n">List</span><span class="p">&lt;</span><span class="n">Action</span><span class="p">&gt;</span> <span class="n">lists</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Action</span><span class="p">&gt;();</span>
+     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">5</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+     <span class="p">{</span>
+         <span class="kt">int</span> <span class="n">temp</span> <span class="p">=</span> <span class="n">i</span><span class="p">;</span>
+         <span class="n">Action</span> <span class="n">t</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span>
+         <span class="p">{</span>
+         	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">temp</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+         <span class="p">};</span>
+         <span class="n">lists</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+         <span class="p">}</span>
+         <span class="k">foreach</span> <span class="p">(</span><span class="n">Action</span> <span class="n">t</span> <span class="k">in</span> <span class="n">lists</span><span class="p">)</span>
+         <span class="p">{</span>
+         	<span class="n">t</span><span class="p">();</span>
+         <span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>也可以这样改写代码， 和上面的一致：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">List</span><span class="p">&lt;</span><span class="n">Action</span><span class="p">&gt;</span> <span class="n">lists</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Action</span><span class="p">&gt;();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">5</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="n">TempClass</span> <span class="n">tempClass</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TempClass</span><span class="p">();</span>
+        <span class="n">tempClass</span><span class="p">.</span><span class="n">i</span> <span class="p">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="n">Action</span> <span class="n">t</span> <span class="p">=</span> <span class="n">tempClass</span><span class="p">.</span><span class="n">TempFuc</span><span class="p">;</span>
+        <span class="n">lists</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="n">Action</span> <span class="n">t</span> <span class="k">in</span> <span class="n">lists</span><span class="p">)</span>
+    <span class="p">{</span>
+    	<span class="n">t</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">TempClass</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="n">TempFuc</span><span class="p">()</span>
+    <span class="p">{</span>
+    	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="建议39-了解委托的实质">建议39 了解委托的实质</h3>
+<p>理解C#中的委托需要把握那两个要点：</p>
+<ol>
+<li>委托是方法指针；</li>
+<li>委托是一个类，当对其进行实例化的时候，要将引用方法作为它的构造方法的参数。</li>
+</ol>
+<p>设想这样一个场景：在点对点文件传输过程当中，我们要设计一个文件传输类，该传输类起码要满足下面几项功能：</p>
+<ul>
+<li>可以传输文件；</li>
+<li>可以按照按照百分制通知传输的进度；</li>
+<li>传输类能同时被控制台应用程序和WinForm应用程序使用；</li>
+</ul>
+<p>由于要让通知本身能够被控制台程序和WinForm程序使用，因此设计这个文件传输类在进行进度通知时，就不能显式调用；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;当前进度：&#34;</span><span class="p">+</span><span class="n">fileProgress</span><span class="p">);</span>
+
+<span class="c1">// or
+</span><span class="c1"></span>
+<span class="k">this</span><span class="p">.</span><span class="n">progressText</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="s">&#34;当前进度：&#34;</span> <span class="p">+</span> <span class="n">fileProgress</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>理想情况下，在需要通知的地方，全部将其置换成一个方法的指针，由调用者来决定该方法完成什么样的功能。这个方法指针在C#中就是委托。可以像下面那样声明委托：</p>
+<p><code>public delegate void FileUploadedHandler(int progress);</code></p>
+<p>这个文件传输类可以写成这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">FileUploader</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="n">FileUploadedHandler</span><span class="p">(</span><span class="kt">int</span> <span class="n">progress</span><span class="p">);</span>
+    <span class="k">public</span> <span class="n">FileUploadedHandler</span> <span class="n">FileUploaded</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="n">Upload</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">fileProgress</span> <span class="p">=</span> <span class="m">100</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">fileProgress</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">//传输代码，省略
+</span><span class="c1"></span>            <span class="n">fileProgress</span><span class="p">--;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">FileUploaded</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">FileUploaded</span><span class="p">(</span><span class="n">fileProgress</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>调用者在调用这个文件传输类的时候，应该同时为<code>FileUploaded</code>赋值，赋值过程中也就是将自身所具有的和委托声明相同的声明方法赋值给<code>FileUploaded</code>。这样，类型<code>FileUploader</code>在执行到下面的代码时，就是执行调用者自身的方法:</p>
+<p><code> FileUploaded(fileProgress);</code></p>
+<p>理解了”委托是方法指针“这一点后，再去理解委托实际上是一个类；</p>
+<p>实际上我们应该把<code>public delegate void FileUploadedHandler(int progress);</code> 理解成如下的一个类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice39</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">FileUploadedHandler</span> <span class="p">:</span> <span class="n">MulticastDelegate</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="n">FileUploadedHandler</span><span class="p">(</span><span class="kt">object</span> <span class="n">@object</span><span class="p">,</span> <span class="n">IntPtr</span> <span class="n">intPtr</span><span class="p">)</span>
+        <span class="p">{</span>
+
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">virtual</span> <span class="n">IAsyncResult</span> <span class="n">BeginInvoke</span><span class="p">(</span><span class="kt">int</span> <span class="n">progress</span><span class="p">,</span> <span class="n">AsyncCallback</span> <span class="n">callback</span><span class="p">,</span> <span class="kt">object</span> <span class="n">@object</span><span class="p">)</span>
+        <span class="p">{</span>
+
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">EndInvoke</span><span class="p">(</span><span class="n">IAsyncResult</span> <span class="n">result</span><span class="p">)</span>
+        <span class="p">{</span>
+
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">Invoke</span><span class="p">(</span><span class="kt">int</span> <span class="n">progress</span><span class="p">)</span>
+        <span class="p">{</span>
+
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>委托是一个类， 这个工作由编译器为我们完成， 使用ILDasm.exe查看， 我们可以看到IL代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="p">.</span><span class="k">class</span> <span class="nc">auto</span> <span class="n">ansi</span> <span class="k">sealed</span> <span class="n">nested</span> <span class="k">public</span> <span class="n">FileUploadedHandler</span>
+    <span class="n">extends</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">MulticastDelegate</span>
+<span class="p">{</span>
+    <span class="p">.</span><span class="n">method</span> <span class="k">public</span> <span class="n">hidebysig</span> <span class="n">specialname</span> <span class="n">rtspecialname</span> <span class="n">instance</span> <span class="k">void</span> <span class="p">.</span><span class="n">ctor</span><span class="p">(</span><span class="kt">object</span> <span class="err">&#39;</span><span class="kt">object</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">native</span> <span class="kt">int</span> <span class="err">&#39;</span><span class="n">method</span><span class="err">&#39;</span><span class="p">)</span> <span class="n">runtime</span> <span class="n">managed</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="p">.</span><span class="n">method</span> <span class="k">public</span> <span class="n">hidebysig</span> <span class="n">newslot</span> <span class="k">virtual</span> <span class="n">instance</span> <span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">IAsyncResult</span> <span class="n">BeginInvoke</span><span class="p">(</span><span class="n">int32</span> <span class="n">progress</span><span class="p">,</span> <span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">AsyncCallback</span> <span class="n">callback</span><span class="p">,</span> <span class="kt">object</span> <span class="err">&#39;</span><span class="kt">object</span><span class="err">&#39;</span><span class="p">)</span> <span class="n">runtime</span> <span class="n">managed</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="p">.</span><span class="n">method</span> <span class="k">public</span> <span class="n">hidebysig</span> <span class="n">newslot</span> <span class="k">virtual</span> <span class="n">instance</span> <span class="k">void</span> <span class="n">EndInvoke</span><span class="p">(</span><span class="k">class</span> <span class="p">[</span><span class="n">mscorlib</span><span class="p">]</span><span class="n">System</span><span class="p">.</span><span class="n">IAsyncResult</span> <span class="n">result</span><span class="p">)</span> <span class="n">runtime</span> <span class="n">managed</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="p">.</span><span class="n">method</span> <span class="k">public</span> <span class="n">hidebysig</span> <span class="n">newslot</span> <span class="k">virtual</span> <span class="n">instance</span> <span class="k">void</span> <span class="n">Invoke</span><span class="p">(</span><span class="n">int32</span> <span class="n">progress</span><span class="p">)</span> <span class="n">runtime</span> <span class="n">managed</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>调用委托方法， <code> FileUploaded(fileProgress);</code></p>
+<p>实际上是调用： <code> FileUploaded.Invoke(fileProgress);</code></p>
+<p>可以进一步的查看Upload方法的IL代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="p">.</span><span class="n">method</span> <span class="k">public</span> <span class="n">hidebysig</span> <span class="n">instance</span> <span class="k">void</span> <span class="n">Upload</span><span class="p">()</span> <span class="n">cil</span> <span class="n">managed</span>
+<span class="p">{</span>
+    <span class="p">.</span><span class="n">maxstack</span> <span class="m">2</span>
+    <span class="p">.</span><span class="n">locals</span> <span class="n">init</span> <span class="p">(</span>
+<span class="na">        [0]</span> <span class="n">int32</span> <span class="n">fileProgress</span><span class="p">,</span>
+<span class="na">        [1]</span> <span class="kt">bool</span> <span class="n">CS</span><span class="err">$</span><span class="m">4</span><span class="err">$</span><span class="m">0000</span><span class="p">)</span>
+    <span class="n">L_0000</span><span class="p">:</span> <span class="n">nop</span> 
+    <span class="n">L_0001</span><span class="p">:</span> <span class="n">ldc</span><span class="p">.</span><span class="n">i4</span><span class="p">.</span><span class="n">s</span> <span class="m">100</span>
+    <span class="n">L_0003</span><span class="p">:</span> <span class="n">stloc</span><span class="p">.</span><span class="m">0</span> 
+    <span class="n">L_0004</span><span class="p">:</span> <span class="n">br</span><span class="p">.</span><span class="n">s</span> <span class="n">L_0028</span>
+    <span class="n">L_0006</span><span class="p">:</span> <span class="n">nop</span> 
+    <span class="n">L_0007</span><span class="p">:</span> <span class="n">ldloc</span><span class="p">.</span><span class="m">0</span> 
+    <span class="n">L_0008</span><span class="p">:</span> <span class="n">ldc</span><span class="p">.</span><span class="n">i4</span><span class="p">.</span><span class="m">1</span> 
+    <span class="n">L_0009</span><span class="p">:</span> <span class="n">sub</span> 
+    <span class="n">L_000a</span><span class="p">:</span> <span class="n">stloc</span><span class="p">.</span><span class="m">0</span> 
+    <span class="n">L_000b</span><span class="p">:</span> <span class="n">ldarg</span><span class="p">.</span><span class="m">0</span> 
+    <span class="n">L_000c</span><span class="p">:</span> <span class="n">ldfld</span> <span class="k">class</span> <span class="nc">MyTest</span><span class="p">.</span><span class="n">FileUploader</span><span class="p">/</span><span class="n">FileUploadedHandler</span> <span class="n">MyTest</span><span class="p">.</span><span class="n">FileUploader</span><span class="p">::</span><span class="n">FileUploaded</span>
+    <span class="n">L_0011</span><span class="p">:</span> <span class="n">ldnull</span> 
+    <span class="n">L_0012</span><span class="p">:</span> <span class="n">ceq</span> 
+    <span class="n">L_0014</span><span class="p">:</span> <span class="n">stloc</span><span class="p">.</span><span class="m">1</span> 
+    <span class="n">L_0015</span><span class="p">:</span> <span class="n">ldloc</span><span class="p">.</span><span class="m">1</span> 
+    <span class="n">L_0016</span><span class="p">:</span> <span class="n">brtrue</span><span class="p">.</span><span class="n">s</span> <span class="n">L_0027</span>
+    <span class="n">L_0018</span><span class="p">:</span> <span class="n">nop</span> 
+    <span class="n">L_0019</span><span class="p">:</span> <span class="n">ldarg</span><span class="p">.</span><span class="m">0</span> 
+    <span class="n">L_001a</span><span class="p">:</span> <span class="n">ldfld</span> <span class="k">class</span> <span class="nc">MyTest</span><span class="p">.</span><span class="n">FileUploader</span><span class="p">/</span><span class="n">FileUploadedHandler</span> <span class="n">MyTest</span><span class="p">.</span><span class="n">FileUploader</span><span class="p">::</span><span class="n">FileUploaded</span>
+    <span class="n">L_001f</span><span class="p">:</span> <span class="n">ldloc</span><span class="p">.</span><span class="m">0</span> 
+    <span class="n">L_0020</span><span class="p">:</span> <span class="n">callvirt</span> <span class="n">instance</span> <span class="k">void</span> <span class="n">MyTest</span><span class="p">.</span><span class="n">FileUploader</span><span class="p">/</span><span class="n">FileUploadedHandler</span><span class="p">::</span><span class="n">Invoke</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">L_0025</span><span class="p">:</span> <span class="n">nop</span> 
+    <span class="n">L_0026</span><span class="p">:</span> <span class="n">nop</span> 
+    <span class="n">L_0027</span><span class="p">:</span> <span class="n">nop</span> 
+    <span class="n">L_0028</span><span class="p">:</span> <span class="n">ldloc</span><span class="p">.</span><span class="m">0</span> 
+    <span class="n">L_0029</span><span class="p">:</span> <span class="n">ldc</span><span class="p">.</span><span class="n">i4</span><span class="p">.</span><span class="m">0</span> 
+    <span class="n">L_002a</span><span class="p">:</span> <span class="n">cgt</span> 
+    <span class="n">L_002c</span><span class="p">:</span> <span class="n">stloc</span><span class="p">.</span><span class="m">1</span> 
+    <span class="n">L_002d</span><span class="p">:</span> <span class="n">ldloc</span><span class="p">.</span><span class="m">1</span> 
+    <span class="n">L_002e</span><span class="p">:</span> <span class="n">brtrue</span><span class="p">.</span><span class="n">s</span> <span class="n">L_0006</span>
+    <span class="n">L_0030</span><span class="p">:</span> <span class="n">ret</span> 
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到L_0020处调用Invoke方法。一句话：委托是一种数据类型，它用来传递方法。</p>
+<h3 id="建议40-使用event关键字对委托施加保护">建议40 使用event关键字对委托施加保护</h3>
+<p>上一个建议中实现了一个文件传输类：<code>FileUploader</code></p>
+<p>如果像这样调用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">FileUploader</span> <span class="n">f1</span><span class="p">=</span><span class="k">new</span> <span class="n">FileUploader</span><span class="p">();</span>
+    <span class="n">f1</span><span class="p">.</span><span class="n">FileUploaded</span> <span class="p">=</span> <span class="n">Progress</span><span class="p">;</span>
+    <span class="n">f1</span><span class="p">.</span><span class="n">FileUploaded</span> <span class="p">=</span> <span class="n">ProgressAnother</span><span class="p">;</span>
+    <span class="n">f1</span><span class="p">.</span><span class="n">Upload</span><span class="p">();</span>
+
+    <span class="n">Console</span><span class="p">.</span><span class="n">Read</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="n">Progress</span><span class="p">(</span><span class="kt">int</span> <span class="n">progress</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">progress</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="n">ProgressAnother</span><span class="p">(</span><span class="kt">int</span> <span class="n">progress</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;另一个方法：{0}&#34;</span><span class="p">,</span> <span class="n">progress</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上调用者代码本身是和<code>FileUploader</code>类一起的，这起码存在两个问题：</p>
+<ul>
+<li>如果在Main中另起一个工作线程，该工作线程则可以将FileProgress委托链置空；</li>
+</ul>
+<p>​	<code>f1.FileUploaded = null</code></p>
+<ul>
+<li>可以在外部调用<code>FileUploaded</code>， 例如：</li>
+</ul>
+<p>​	<code>f1.FileUploaded(10) ;</code></p>
+<p>这应该是不被允许的，**因为什么时候通知调用者，应该是<code>FileUploader</code>类自己的职责，而不是调用者本身来决定的。**event关键字正是在这种情况下被提出来的，它为委托加了保护。</p>
+<p>将 <code>public FileUploadedHandler FileUploaded;</code> 改为 <code>public event FileUploadedHandler FileUploaded;</code></p>
+<p>这样，上面提到的几种情况就会被阻止：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">f1</span><span class="p">.</span><span class="n">FileUploaded</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="n">f1</span><span class="p">.</span><span class="n">FileUploaded</span> <span class="p">=</span> <span class="n">Progress</span><span class="p">;</span>
+<span class="n">f1</span><span class="p">.</span><span class="n">FileUploaded</span> <span class="p">=</span> <span class="n">ProgressAnother</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上代码通过不了编译，事件<code>”MyTest.FileUploader.FileUploaded“</code>只能出现在 += 或 -=的左边；</p>
+<p>（从类型<code>“MyTest.FileUploader”</code>中使用时除外）</p>
+<h3 id="建议41-实现标准的事件模型">建议41 实现标准的事件模型</h3>
+<p>上一个建议中，实现了一个带事件通知的文件传输类FileUploader虽然已经满足需求，但却不符合C#的编码规范，查看一下EventHandler的原型声明:</p>
+<p><code>public delegate void EventHandler(object sender, EventArgs e);</code></p>
+<p>我们应该去了解Microsoft为事件模型设定的几个规范：</p>
+<ul>
+<li>委托类型的名称以EventHandler结束；</li>
+<li>委托原型返回值为void;</li>
+<li>委托原型具有两个参数： sender表示<strong>事件发送者</strong>， e表示<strong>事件参数</strong>；</li>
+</ul>
+<p>为了将<code>FileUploader</code>的修改得符合C#的编码规范，首先提供一个<code>FileUploadedEventArgs</code>类来保存进度信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">FileUploadedEventArgs</span> <span class="p">:</span> <span class="n">EventArgs</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">FileProgress</span><span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>而对FileUploader类型也做出相应修改：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">FileUploader</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">event</span> <span class="n">EventHandler</span><span class="p">&lt;</span><span class="n">FileUploadedEventArgs</span><span class="p">&gt;</span> <span class="n">FileUploaded</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="n">Upload</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">FileUploadedEventArgs</span> <span class="n">e</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FileUploadedEventArgs</span><span class="p">()</span> <span class="p">{</span> <span class="n">FileProgress</span> <span class="p">=</span> <span class="m">100</span> <span class="p">};</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">FileProgress</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">//传输代码，省略
+</span><span class="c1"></span>            <span class="n">e</span><span class="p">.</span><span class="n">FileProgress</span><span class="p">--;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">FileUploaded</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+            	<span class="n">FileUploaded</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>最终，调用代码看起来像下面这个样子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">FileUploader</span> <span class="n">f1</span><span class="p">=</span><span class="k">new</span> <span class="n">FileUploader</span><span class="p">();</span>
+    <span class="n">f1</span><span class="p">.</span><span class="n">FileUploaded</span> <span class="p">+=</span> <span class="n">f1_FileUploaded</span><span class="p">;</span>
+    <span class="n">f1</span><span class="p">.</span><span class="n">Upload</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="n">f1_FileUploaded</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">FileUploadedEventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">FileProgress</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="建议42-使用泛型参数兼容泛型接口的不可变性">建议42 使用泛型参数兼容泛型接口的不可变性</h3>
+<p><strong>让返回值类型返回比声明的类型派生程度更大的类型， 就是”协变“</strong>；协变不是一种新出现的计数，我们在以往编程中会不自觉的使用协变，以下的代码就是不自觉应用协变的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="n">Employee</span> <span class="n">GetAEmployee</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;我是雇员：&#34;</span><span class="p">+</span><span class="n">name</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Programmer</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="n">name</span> <span class="p">};</span><span class="c1">//Programmer是Employee的子类
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Programmer是Employee的子类，所以Programmer对象也是Employee对象。方法GetAEmployee返回一个Programmer的对象，也就是相当于返回一个Employee对象。</p>
+<p>由于协变是一种如此自然的应用，我们很可能写出如下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ISalary</span><span class="p">&lt;</span><span class="n">Programmer</span><span class="p">&gt;</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BaseSalaryCounter</span><span class="p">&lt;</span><span class="n">Programmer</span><span class="p">&gt;();</span>
+        <span class="n">PrintSalary</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="p">}</span>
+
+	<span class="k">static</span> <span class="k">void</span> <span class="n">PrintSalary</span><span class="p">(</span><span class="n">ISalary</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;</span> <span class="n">s</span><span class="p">)</span>        
+	<span class="p">{</span>            
+		<span class="n">s</span><span class="p">.</span><span class="n">Pay</span><span class="p">();</span>        
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">interface</span> <span class="n">ISalary</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="p">{</span>
+	<span class="k">void</span> <span class="n">Pay</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">BaseSalaryCounter</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">ISalary</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="n">Pay</span><span class="p">()</span>
+    <span class="p">{</span>
+    	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Pay base salary&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Employee</span>
+<span class="p">{</span>
+	<span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Programmer</span> <span class="p">:</span> <span class="n">Employee</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Manager</span> <span class="p">:</span> <span class="n">Employee</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在<code>PrintSalary</code>这个方法中，方法接收的类型是<code>ISalary&lt;Employee&gt;</code>。于是，我们想当然的认为<code>ISalary&lt;Programmer&gt;</code>必然也可以被<code>PrintSalary</code>方法接收的。事实却不然，代码会编译失败：</p>
+<p>无法从<code>“MyTest.ISalary&lt;MyTest.Programmer&gt;</code>”转换为“<code>MyTest.ISalary&lt;MyTest.Employee&gt;</code>”</p>
+<p>编译器对于接口和委托类型参数的检查是非常严格的，除非用关键字out特别声明，不然这段代码只会编译失败。要让<code>PrintSalary</code>完成需求，我们可以使用泛型类型参数：</p>
+<p>修改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">static</span> <span class="k">void</span> <span class="n">PrintSalary</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">ISalary</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">Pay</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Note：建议开头指出“协变”是针对返回值而言的，但是所举的这个例子并没有体现“返回值”这个概念。实际上，只要泛型类型参数在一个接口声明中不被用来作为方法的输入参数，我们就姑且把它看成是“返回值”类型的。所以，本建议中这种模式是满足“协变”定义的。但是，只要将T作为输入参数，就不满足“协变”定义了。</p>
+<h3 id="建议43-让接口中的泛型参数支持协变">建议43 让接口中的泛型参数支持协变</h3>
+<p>除了上述建议中提到的使用泛型参数兼容接口不可变性外，还有一种方法是为接口中的泛型声明out关键字来支持协变， 如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">interface</span> <span class="n">ISalary</span><span class="p">&lt;</span><span class="k">out</span> <span class="n">T</span><span class="p">&gt;</span>  <span class="c1">// 使用out关键字
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="k">void</span> <span class="n">Pay</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ISalary</span><span class="p">&lt;</span><span class="n">Programmer</span><span class="p">&gt;</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BaseSalaryCounter</span><span class="p">&lt;</span><span class="n">Programmer</span><span class="p">&gt;();</span>
+    <span class="n">ISalary</span><span class="p">&lt;</span><span class="n">Manager</span><span class="p">&gt;</span> <span class="n">t</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BaseSalaryCounter</span><span class="p">&lt;</span><span class="n">Manager</span><span class="p">&gt;();</span>
+    <span class="n">PrintSalary</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="n">PrintSalary</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="n">PrintSalary</span><span class="p">(</span><span class="n">ISalary</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;</span> <span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">Pay</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>​	out关键字是<code>FCL4.0</code>中新增的功能，它可以在泛型接口和委托中使用，用来让类型参数支持协变性。通过协变，可以使用比声明的参数派生类型更大的参数。</p>
+<p>​	以上这段代码在<code>FCL4.0</code>中以前的版本是不能编译通过的，因为IEnumerable<!-- raw HTML omitted -->这个接口在FCL中没有被声明为IEnumerable<!-- raw HTML omitted -->:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">IList</span><span class="p">&lt;</span><span class="n">Programmer</span><span class="p">&gt;</span> <span class="n">programmers</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Programmer</span><span class="p">&gt;();</span>
+    <span class="n">IList</span><span class="p">&lt;</span><span class="n">Manager</span><span class="p">&gt;</span> <span class="n">managers</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Manager</span><span class="p">&gt;();</span>
+    <span class="n">PrintPersonName</span><span class="p">(</span><span class="n">programmers</span><span class="p">);</span>
+    <span class="n">PrintPersonName</span><span class="p">(</span><span class="n">managers</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="n">PrintPersonName</span><span class="p">(</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;</span> <span class="n">persons</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">person</span> <span class="k">in</span> <span class="n">persons</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>​	<code>FCL4.0</code>对多个接口进行了修改以支持协变，如<code>IEnumerable&lt;out T&gt;, IEnumerator&lt;out T&gt;, IQueryable&lt;out T&gt;</code>等， 由于IEnumerable<!-- raw HTML omitted -->现在支持协变，因此第一段代码在<code>FCL4.0</code>能运行得很好；</p>
+<p>​	在我们自己得代码，如果要编写泛型接口，除非确定该接口中得泛型参数不涉及变体，否则都建议加上out关键字。协变增大了接口得可使用范围，而且几乎不会带来什么Side impact；</p>
+<h3 id="建议44-理解委托中的协变">建议44 理解委托中的协变</h3>
+<p>委托中的泛型变量是天然”部分“支持协变的，为什么说是“部分支持”呢？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Advice44</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">delegate</span> <span class="n">T</span> <span class="n">GetEmployeeHandler</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kt">string</span> <span class="n">name</span><span class="p">);</span>
+
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">GetEmployeeHandler</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;</span> <span class="n">getAEmployee</span> <span class="p">=</span> <span class="n">GetAManager</span><span class="p">;</span>
+            <span class="n">Employee</span> <span class="n">e</span> <span class="p">=</span> <span class="n">getAEmployee</span><span class="p">(</span><span class="s">&#34;bomin&#34;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">static</span> <span class="n">Manager</span> <span class="n">GetAManager</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;我是经理&#34;</span> <span class="p">+</span> <span class="n">name</span><span class="p">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Manager</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="n">name</span> <span class="p">};</span>
+        <span class="p">}</span>
+
+        <span class="k">static</span> <span class="n">Employee</span> <span class="n">GetAEmployee</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;我是雇员: &#34;</span> <span class="p">+</span> <span class="n">name</span><span class="p">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="n">name</span> <span class="p">};</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">Employee</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">Manager</span> <span class="p">:</span> <span class="n">Employee</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的<code>GetAManager</code>返回的是一个Manager，但是在使用中，其实是将其赋值给一个泛型参数为Employee的委托变量。因为存在下面一种情况，所以编译不过：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">GetEmployeeHanlder</span><span class="p">&lt;</span><span class="n">Manager</span><span class="p">&gt;</span> <span class="n">getAManager</span> <span class="p">=</span> <span class="n">GetAManager</span><span class="p">;</span>
+<span class="n">GetEmployeeHanlder</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;</span> <span class="n">getAEmployee</span> <span class="p">=</span> <span class="n">getAManager</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>要让上面的代码编译通过， 同样需要为委托中的泛型参数指定out关键字：</p>
+<p><code>public delegate T GetEmployeeHandler&lt;T&gt;(string name);</code></p>
+<p>除非考虑到该委托声明肯定不会用于可变性，否则，为委托中的泛型参数指定out关键字将会拓展该委托的应用，建议在实际编码过程中永远这样使用。实际上，<code>FCL4.0</code>中的一些委托声明已经用out关键字来让委托支持协变了，像我们常常会使用到的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">delegate</span> <span class="n">TResult</span> <span class="n">Func</span><span class="p">&lt;</span><span class="k">out</span> <span class="n">TResult</span><span class="p">&gt;();</span>
+
+<span class="k">public</span> <span class="k">delegate</span> <span class="n">TOutput</span> <span class="n">Converter</span><span class="p">&lt;</span><span class="k">in</span> <span class="n">TInput</span><span class="p">,</span> <span class="k">out</span> <span class="n">TOutput</span><span class="p">&gt;(</span><span class="n">TInput</span> <span class="n">input</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="建议45-为泛型类型参数指定逆变">建议45 为泛型类型参数指定逆变</h3>
+<p>逆变是指<strong>方法的参数可以是委托或泛型接口的参数类型的基类</strong>。<code>FCL4.0</code>支持逆变的常用委托有：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span> <span class="n">T</span><span class="p">,</span><span class="k">out</span> <span class="n">TResult</span><span class="p">&gt;</span>
+
+<span class="n">Predicate</span><span class="p">&lt;</span><span class="k">in</span> <span class="n">T</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>常用泛型接口有：</p>
+<p><code>IComparer&lt;in T&gt;</code></p>
+<p>以下示例演示了泛型类型参数执行逆变所带来的好处：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Programmer</span> <span class="n">p</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Programmer</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Mike&#34;</span> <span class="p">};</span>
+        <span class="n">Manager</span> <span class="n">m</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Manager</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Steve&#34;</span> <span class="p">};</span>
+        <span class="n">Test</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">static</span> <span class="k">void</span> <span class="n">Test</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">IMyComparable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">t1</span><span class="p">,</span> <span class="n">T</span> <span class="n">t2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 省略
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">interface</span> <span class="n">IMyComparable</span><span class="p">&lt;</span><span class="k">in</span> <span class="n">T</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">Compare</span><span class="p">(</span><span class="n">T</span> <span class="n">other</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Employee</span> <span class="p">:</span> <span class="n">IMyComparable</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Compare</span><span class="p">(</span><span class="n">Employee</span> <span class="n">other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Name</span><span class="p">.</span><span class="n">CompareTo</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Programmer</span> <span class="p">:</span> <span class="n">Employee</span><span class="p">,</span> <span class="n">IMyComparable</span><span class="p">&lt;</span><span class="n">Programmer</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Compare</span><span class="p">(</span><span class="n">Programmer</span> <span class="n">other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Name</span><span class="p">.</span><span class="n">CompareTo</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Manager</span> <span class="p">:</span> <span class="n">Employee</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的例子中，如果不为接口<code>IMyComparable</code>的泛型参数T指定in关键字，将会导致Test(p,m)编译错误。由于引入了接口的逆变性，这让方法Test支持了更多的场景。在<code>FCL4.0</code>之后的版本的实际编码中应该始终注意这一点。</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bomir</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2021-11-20
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://bomir.top/tags/csharp/">CSharp</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/base-redis-distributedlock/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">浅谈基于redis的分布式锁</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/mysql-mvcc/">
+            <span class="next-text nav-default">MySQL MVCC简单理解</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Shaper-fox/hugoblogtalks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:jinchunw@385@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/Bicomir" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://bomir.top/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        bomir
+        
+      </span>
+	  <span class="division">|</span>
+	  <span class="author">
+			<a href="http://beian.miit.gov.cn/">粤ICP备2021140392号-1</a>
+	  </span></span>
+  
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

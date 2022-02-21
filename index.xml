@@ -1248,11 +1248,11 @@ total &lt;span class=&#34;m&#34;&gt;12&lt;/span&gt;
     </item>
     
     <item>
-      <title>泛型，委托和事件</title>
-      <link>https://bomir.top/post/generic-delegateandevent/</link>
+      <title>改善C#代码的157个建议（3）- 泛型，委托和事件</title>
+      <link>https://bomir.top/post/generic-delegate-event/</link>
       <pubDate>Sat, 20 Nov 2021 19:56:34 +0000</pubDate>
       
-      <guid>https://bomir.top/post/generic-delegateandevent/</guid>
+      <guid>https://bomir.top/post/generic-delegate-event/</guid>
       
         <description>&lt;h2 id=&#34;泛型委托和事件&#34;&gt;泛型、委托和事件&lt;/h2&gt;
 &lt;p&gt;​		泛型并不是C#语言一开始就带有的特性，而是在&lt;code&gt;FCL2.0&lt;/code&gt;之后实现的新功能。基于泛型，我们得以将类型参数化，以便更大范围地进行代码复用；同时，它减少了泛型类以及泛型方法中的转型，确保了类型的安全。委托本身是一种引用类型，它保存的是托管堆中对象的引用，只不过这个引用比较特殊，它是对方法的引用；&lt;/p&gt;
