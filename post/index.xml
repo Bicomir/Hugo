@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Wallis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 20 Nov 2021 19:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Feb 2022 18:56:34 +0000</lastBuildDate><atom:link href="https://bomir.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker底层原理介绍</title>
       <link>https://bomir.top/post/docker-storage/</link>
@@ -23,6 +23,15 @@
       
       <guid>https://bomir.top/post/base-redis-distributedlock/</guid>
       <description>一、介绍 这篇博文讲介绍如何一步步构建一个基于Redis的分布式锁。会从最原始的版本开始，然后根据问题进行调整，最后完成一个较为合理的分布式锁</description>
+    </item>
+    
+    <item>
+      <title>删除排序链表中的重复元素</title>
+      <link>https://bomir.top/post/remove-duplicates/</link>
+      <pubDate>Thu, 10 Feb 2022 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/remove-duplicates/</guid>
+      <description>删除排序链表中的重复元素 来源 leetcode83.删除排序链表中的元素 给定一个已排序的链表的头 head ， 删除所有重复的元素，使每个元素只出现一次 。</description>
     </item>
     
     <item>
@@ -176,15 +185,6 @@
       
       <guid>https://bomir.top/post/rabbit-go-5/</guid>
       <description>RabbitMQ官网的消息模型的第五种-Topic topic交换器 topic(主题)交换器 ​ 发送到topic交换器的消息不能具有随意的rou</description>
-    </item>
-    
-    <item>
-      <title>RabbitMQ入门之Go语言教程-(4)</title>
-      <link>https://bomir.top/post/rabbit-go-4/</link>
-      <pubDate>Fri, 14 Aug 2020 21:19:05 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/rabbit-go-4/</guid>
-      <description>RabbitMQ官网的消息模型的第四种-路由模式 路由(routing) (using the Go RabbitMQ client) 在上一教程中，我们构建了一个简单的日志记录系统。我们能够向许</description>
     </item>
     
   </channel>
