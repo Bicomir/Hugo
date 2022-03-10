@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>移除元素</title>
+      <link>https://bomir.top/post/remove-element/</link>
+      <pubDate>Tue, 10 Mar 2020 18:56:34 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/remove-element/</guid>
+      <description>移除元素 来源 leetcode-27 移除元素 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。 不要使用额外的数组空间，你</description>
+    </item>
+    
+    <item>
       <title>用两个栈实现队列</title>
       <link>https://bomir.top/post/queue-with-twostacks/</link>
       <pubDate>Tue, 09 Apr 2019 18:56:34 +0000</pubDate>
