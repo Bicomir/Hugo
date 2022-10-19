@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/git-start/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -417,7 +417,7 @@
 <p>​	假设有这么个故事是这样展开的，有个程序员刚去上班，每天产品经理会给他布置任务，任务以bash demo命名。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -593,181 +593,181 @@
 </span><span class="lnt">174
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 1.第一天产品经理bash demo任务完成
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-Untracked files:
-  (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)
-
-        bash_demo.txt
-
-nothing added to commit but untracked files present (use &#34;git add&#34; to track)
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git add bash_demo.txt
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-Changes to be committed:
-  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
-
-        new file:   bash_demo.txt
-
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git commit -m &#34;bash 1st commit&#34;
-[master 9adb6ec] bash 1st commit
- 1 file changed, 1 insertion(+)
- create mode 100644 bash_demo.txt
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-nothing to commit, working tree clean
-# 2.事情不是那么简单，下午增加了临时任务，并要求下班前完成,
-下班前把东西放到了暂存区。
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-Changes not staged for commit:
-  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
-  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
-
-        modified:   bash_demo.txt
-
-no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git add bash_demo.txt
-
-# 3.第二天上班，被产品经理告知昨天附加需求多余，要求改回。
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-Changes to be committed:
-  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
-        modified:   bash_demo.txt
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git reset HEAD bash_demo.txt
-Unstaged changes after reset:
-M       bash_demo.txt
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-Changes not staged for commit:
-  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
-  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
-
-        modified:   bash_demo.txt
-
-no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git checkout -- bash_demo.txt
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-nothing to commit, working tree clean
-# 4.将附加任务改回后，并开始第二天的任务。
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-Changes not staged for commit:
-  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
-  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
-
-        modified:   bash_demo.txt
-
-no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git add bash_demo.txt
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-Changes to be committed:
-  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
-
-        modified:   bash_demo.txt
-
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git commit -m &#34;2nd commit&#34;
-[master 1111222] 2nd commit
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-nothing to commit, working tree clean
-# 5.被产品经理告知第二天的需求其实不需要，需要第一个版本。
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git log
-commit 111122203a20e045217ff59323edcfeb8f12cc92 (HEAD -&gt; master)
-Author: Bicomir &lt;18120570301@163.com&gt;
-Date:   Mon Jul 8 20:09:53 2019 +0800
-
-    2nd commit
-
-commit 9adb6ec069364e8e09e726aed9109b70e8ab86be
-Author: Bicomir &lt;18120570301@163.com&gt;
-Date:   Mon Jul 8 19:58:42 2019 +0800
-
-    bash 1st commit
-
-commit e8fe36664ee4f613126382440f58f5b30799c30b
-Author: Bicomir &lt;18120570301@163.com&gt;
-Date:   Mon Jul 8 19:43:06 2019 +0800
-
-    repo2 1st commit
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git rests --hard
-git: &#39;rests&#39; is not a git command. See &#39;git --help&#39;.
-
-The most similar command is
-        reset
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git reset --hard 9adb6ec069364e8e09e726aed9109b70e8ab86be
-HEAD is now at 9adb6ec bash 1st commit
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-nothing to commit, working tree clean
-# 第三天，被产品经理告知，bash demo这个需求不需要，要求删除。
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git rm bash_demo.txt
-rm &#39;bash_demo.txt&#39;
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ ls -a
-./  ../  .git/  test.txt
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-Changes to be committed:
-  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
-
-        deleted:    bash_demo.txt
-
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git commit -m &#34;delete bash_demo&#34;
-[master 311da2e] delete bash_demo
- 1 file changed, 1 deletion(-)
- delete mode 100644 bash_demo.txt
-
-wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
-$ git status
-On branch master
-nothing to commit, working tree clean
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 1.第一天产品经理bash demo任务完成
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">Untracked files:
+</span></span><span class="line"><span class="cl">  (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nothing added to commit but untracked files present (use &#34;git add&#34; to track)
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git add bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">Changes to be committed:
+</span></span><span class="line"><span class="cl">  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        new file:   bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git commit -m &#34;bash 1st commit&#34;
+</span></span><span class="line"><span class="cl">[master 9adb6ec] bash 1st commit
+</span></span><span class="line"><span class="cl"> 1 file changed, 1 insertion(+)
+</span></span><span class="line"><span class="cl"> create mode 100644 bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">nothing to commit, working tree clean
+</span></span><span class="line"><span class="cl"># 2.事情不是那么简单，下午增加了临时任务，并要求下班前完成,
+</span></span><span class="line"><span class="cl">下班前把东西放到了暂存区。
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">Changes not staged for commit:
+</span></span><span class="line"><span class="cl">  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
+</span></span><span class="line"><span class="cl">  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        modified:   bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git add bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 3.第二天上班，被产品经理告知昨天附加需求多余，要求改回。
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">Changes to be committed:
+</span></span><span class="line"><span class="cl">  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
+</span></span><span class="line"><span class="cl">        modified:   bash_demo.txt
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git reset HEAD bash_demo.txt
+</span></span><span class="line"><span class="cl">Unstaged changes after reset:
+</span></span><span class="line"><span class="cl">M       bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">Changes not staged for commit:
+</span></span><span class="line"><span class="cl">  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
+</span></span><span class="line"><span class="cl">  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        modified:   bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git checkout -- bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">nothing to commit, working tree clean
+</span></span><span class="line"><span class="cl"># 4.将附加任务改回后，并开始第二天的任务。
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">Changes not staged for commit:
+</span></span><span class="line"><span class="cl">  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
+</span></span><span class="line"><span class="cl">  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        modified:   bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git add bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">Changes to be committed:
+</span></span><span class="line"><span class="cl">  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        modified:   bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git commit -m &#34;2nd commit&#34;
+</span></span><span class="line"><span class="cl">[master 1111222] 2nd commit
+</span></span><span class="line"><span class="cl"> 1 file changed, 2 insertions(+), 1 deletion(-)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">nothing to commit, working tree clean
+</span></span><span class="line"><span class="cl"># 5.被产品经理告知第二天的需求其实不需要，需要第一个版本。
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git log
+</span></span><span class="line"><span class="cl">commit 111122203a20e045217ff59323edcfeb8f12cc92 (HEAD -&gt; master)
+</span></span><span class="line"><span class="cl">Author: Bicomir &lt;18120570301@163.com&gt;
+</span></span><span class="line"><span class="cl">Date:   Mon Jul 8 20:09:53 2019 +0800
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    2nd commit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">commit 9adb6ec069364e8e09e726aed9109b70e8ab86be
+</span></span><span class="line"><span class="cl">Author: Bicomir &lt;18120570301@163.com&gt;
+</span></span><span class="line"><span class="cl">Date:   Mon Jul 8 19:58:42 2019 +0800
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    bash 1st commit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">commit e8fe36664ee4f613126382440f58f5b30799c30b
+</span></span><span class="line"><span class="cl">Author: Bicomir &lt;18120570301@163.com&gt;
+</span></span><span class="line"><span class="cl">Date:   Mon Jul 8 19:43:06 2019 +0800
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    repo2 1st commit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git rests --hard
+</span></span><span class="line"><span class="cl">git: &#39;rests&#39; is not a git command. See &#39;git --help&#39;.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">The most similar command is
+</span></span><span class="line"><span class="cl">        reset
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git reset --hard 9adb6ec069364e8e09e726aed9109b70e8ab86be
+</span></span><span class="line"><span class="cl">HEAD is now at 9adb6ec bash 1st commit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">nothing to commit, working tree clean
+</span></span><span class="line"><span class="cl"># 第三天，被产品经理告知，bash demo这个需求不需要，要求删除。
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git rm bash_demo.txt
+</span></span><span class="line"><span class="cl">rm &#39;bash_demo.txt&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ ls -a
+</span></span><span class="line"><span class="cl">./  ../  .git/  test.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">Changes to be committed:
+</span></span><span class="line"><span class="cl">  (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        deleted:    bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git commit -m &#34;delete bash_demo&#34;
+</span></span><span class="line"><span class="cl">[master 311da2e] delete bash_demo
+</span></span><span class="line"><span class="cl"> 1 file changed, 1 deletion(-)
+</span></span><span class="line"><span class="cl"> delete mode 100644 bash_demo.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wjq@LAPTOP-H1TBSSQ3 MINGW64 /d/git_Demo (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">nothing to commit, working tree clean
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="http://m.qpic.cn/psb?/V11LBpl80UoTHW/3Wnao1ErGHjLwJhR6csmZnFDUGFWlTJD7TVNEJCE15w!/b/dL8AAAAAAAAA&amp;bo=xQKjAQAAAAADB0c!&amp;rf=viewer_4" alt=""></p>
 <h2 id="本地与远程仓库">本地与远程仓库</h2>
@@ -788,7 +788,7 @@ nothing to commit, working tree clean
 <h2 id="标签管理">标签管理</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -804,21 +804,21 @@ nothing to commit, working tree clean
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 查看所有标签
-git tag
-
-# 创建标签
-git tag name
-
-# 指定提交信息
-git tag -a name -m &#34;comment&#34;
-
-# 删除标签
-git tag -d name
-
-# 标签发布
-git push origin name
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 查看所有标签
+</span></span><span class="line"><span class="cl">git tag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 创建标签
+</span></span><span class="line"><span class="cl">git tag name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 指定提交信息
+</span></span><span class="line"><span class="cl">git tag -a name -m &#34;comment&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 删除标签
+</span></span><span class="line"><span class="cl">git tag -d name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 标签发布
+</span></span><span class="line"><span class="cl">git push origin name
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	<code>git tag -&gt; git push</code>,以向远端仓库推送一个标签V1.0.1为例，命令如下:</p>
 <p>​	<code>git tag</code></p>
@@ -832,7 +832,7 @@ git push origin name
 <p><img src="http://m.qpic.cn/psb?/V11LBpl80UoTHW/MSfht2iCZOQzjRGvE2Lu2wGNShY2.qwvMTwHQZ7OWUg!/b/dLgAAAAAAAAA&amp;bo=OQN3AQAAAAADB24!&amp;rf=viewer_4" alt=""></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -855,28 +855,28 @@ git push origin name
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 第一次任务
-git init
-git status
-echo &#34;first branch demo&#34; &gt;&gt; branch.txt
-git status
-git add branch.txt
-git commit -m &#34;first branch commit&#34;
-git status
-# 需要创建分支
-git branch feature_x   # 创建分支
-git branch # 查看当前分支
-git cheakout feature_x # 切换分支
-echo &#34;new feature add&#34; &gt;&gt; branch.txt
-git add branch,txt
-git commit -m &#34;new feature add&#34;
-git status
-# 新代码合并到master分支上
-git cheakout master
-git merge feature_x
-cat branch.txt
-git branch -d feature_x # 删除分支
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 第一次任务
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git status
+</span></span><span class="line"><span class="cl">echo &#34;first branch demo&#34; &gt;&gt; branch.txt
+</span></span><span class="line"><span class="cl">git status
+</span></span><span class="line"><span class="cl">git add branch.txt
+</span></span><span class="line"><span class="cl">git commit -m &#34;first branch commit&#34;
+</span></span><span class="line"><span class="cl">git status
+</span></span><span class="line"><span class="cl"># 需要创建分支
+</span></span><span class="line"><span class="cl">git branch feature_x   # 创建分支
+</span></span><span class="line"><span class="cl">git branch # 查看当前分支
+</span></span><span class="line"><span class="cl">git cheakout feature_x # 切换分支
+</span></span><span class="line"><span class="cl">echo &#34;new feature add&#34; &gt;&gt; branch.txt
+</span></span><span class="line"><span class="cl">git add branch,txt
+</span></span><span class="line"><span class="cl">git commit -m &#34;new feature add&#34;
+</span></span><span class="line"><span class="cl">git status
+</span></span><span class="line"><span class="cl"># 新代码合并到master分支上
+</span></span><span class="line"><span class="cl">git cheakout master
+</span></span><span class="line"><span class="cl">git merge feature_x
+</span></span><span class="line"><span class="cl">cat branch.txt
+</span></span><span class="line"><span class="cl">git branch -d feature_x # 删除分支
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	建议平时为提高开发效率使用source tree,高级的一些用法用命令行。</p>
 <p>​	在这里，只是记录了常见的git命令，实际上高级玩家的玩法会复杂的多，后期再逐步积累吧，</p>
@@ -917,7 +917,7 @@ git branch -d feature_x # 删除分支
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/frount-end-share/">
+          <a class="prev" href="/post/frount-end-materials/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -927,7 +927,7 @@ git branch -d feature_x # 删除分支
 </svg>
 
             </i>
-            <span class="prev-text nav-default">前端面试题-来自分享</span>
+            <span class="prev-text nav-default">前端学习资料</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         

@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/member-design/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -391,17 +391,17 @@
 <p>构造方法。下面是一个标准的最简单的抽象类:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">abstract</span> <span class="k">class</span> <span class="nc">MyAbstractClass</span>
-<span class="p">{</span>
-    <span class="k">protected</span> <span class="n">MyAbstractClass</span><span class="p">(){}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">abstract</span> <span class="k">class</span> <span class="nc">MyAbstractClass</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="n">MyAbstractClass</span><span class="p">(){}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其次，抽象类的方法不应该是<code>public或internal</code>的。抽象类设计的本意是让子类去继承，而不是用于生成实例对象的。如果抽象类是<code>public或者internal</code>的，它对于其他类型来说就是可见的，而这时是不必要的，也是多余的。简而言之，抽象类只需要对子类可见就行了；</p>
 <h3 id="建议91可见字段应该重构为属性">建议91：可见字段应该重构为属性</h3>
@@ -409,17 +409,17 @@
 <p>以下面这段代码为例， 是一个Person类型：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">Person</span>
-<span class="p">{</span>
-	<span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>    
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Person</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>经过编译器编译后，针对属性Name实际会生成一个private字段和两个public方法：</p>
 <p>使用<code>dnspy</code>进行反编译并进行查看：</p>
@@ -439,7 +439,7 @@
 <p>​		数组或集合作为属性会引起这样一个问题：如果属性是只读的，我们通常会认为它是不可以改变的，但是如果将只读属性应用于数组或者集合，而元素的内容和数量却仍旧可以随意改变；</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -479,45 +479,45 @@
 </span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">Advice92</span>
-<span class="p">{</span>
-    <span class="k">internal</span> <span class="k">class</span> <span class="nc">Program</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">Company</span> <span class="n">microsoft</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Company</span><span class="p">();</span>
-            <span class="n">microsoft</span><span class="p">.</span><span class="n">Employees</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Shaper fox&#34;</span><span class="p">;</span>
-            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">microsoft</span><span class="p">.</span><span class="n">Employees</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">class</span> <span class="nc">Employee</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">class</span> <span class="nc">Company</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="n">Company</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Employees</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;()</span>
-            <span class="p">{</span>
-                <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Bill Gates&#34;</span> <span class="p">}</span>
-            <span class="p">};</span>
-        <span class="p">}</span>
-
-        <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;</span> <span class="n">Employees</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">Advice92</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">internal</span> <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Company</span> <span class="n">microsoft</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Company</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">microsoft</span><span class="p">.</span><span class="n">Employees</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Shaper fox&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">microsoft</span><span class="p">.</span><span class="n">Employees</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Employee</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Company</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="n">Company</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Employees</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Bill Gates&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;</span> <span class="n">Employees</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在上面的代码中，我们可以随意对Employees进行集合操作，它不改变的只是自身的引用而已。</p>
 <p>如果某个类型含有集合概念的属性，那么他的可见性应该是private或protected，并且，它更应该是一个字段。类型对外只公开必要的方法来操作这个集合。</p>
@@ -525,7 +525,7 @@
 <p>类型的属性应该在构造方法调用完毕前完成其初始化工作。如果字段没有在初始化器中设置初始值，那么它就应该在构造方法里面初始化。类型一旦被初始化，那么就应该被认为具有完整的行为和属性。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -545,25 +545,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"> <span class="k">class</span> <span class="nc">Company</span>
- <span class="p">{</span>
-     <span class="n">Employee</span> <span class="n">specialA</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;mike&#34;</span> <span class="p">};</span>
-     <span class="n">Employee</span> <span class="n">specialB</span><span class="p">;</span>
-     <span class="k">public</span> <span class="n">Employee</span> <span class="n">CEO</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-
-     <span class="k">public</span> <span class="n">Company</span><span class="p">()</span>
-     <span class="p">{</span>
-         <span class="n">CEO</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;steve&#34;</span> <span class="p">};</span>
-         <span class="n">specialB</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;rose&#34;</span> <span class="p">};</span>
-     <span class="p">}</span>
-
- <span class="p">}</span>
-
-<span class="k">internal</span> <span class="k">class</span> <span class="nc">Employee</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"> <span class="k">class</span> <span class="nc">Company</span>
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">Employee</span> <span class="n">specialA</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;mike&#34;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">     <span class="n">Employee</span> <span class="n">specialB</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">public</span> <span class="n">Employee</span> <span class="n">CEO</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">     <span class="k">public</span> <span class="n">Company</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">     <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="n">CEO</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;steve&#34;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">         <span class="n">specialB</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;rose&#34;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">internal</span> <span class="k">class</span> <span class="nc">Employee</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在构造方法中，必须首先为CEO赋值；因为只要存在公司实体，就应该做到存在一名CEO；<code>specialA</code>的初始化如下所示：</p>
 <p><code> Employee specialA = new Employee() {Name = &quot;Mike&quot;};</code></p>
@@ -578,7 +578,7 @@
 <p>我们先来看一下继承体系的Demo：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -636,76 +636,76 @@
 </span><span class="lnt">56
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">Advice94</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">Shape</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;base MethodVirtual call&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="k">public</span> <span class="k">void</span> <span class="n">Method</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;base method call&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">class</span> <span class="nc">Cicle</span> <span class="p">:</span> <span class="n">Shape</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;cicle override MethodVirtual&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">class</span> <span class="nc">Rectangle</span> <span class="p">:</span> <span class="n">Shape</span>
-    <span class="p">{</span>
-
-    <span class="p">}</span>
-
-    <span class="k">class</span> <span class="nc">Triangle</span> <span class="p">:</span> <span class="n">Shape</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="k">new</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;triangle new MethodVirtual&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="k">public</span> <span class="k">new</span> <span class="k">void</span> <span class="n">Method</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;triangle new Method&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">class</span> <span class="nc">Diamond</span> <span class="p">:</span> <span class="n">Shape</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Diamond default MethodVirtual&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="k">public</span> <span class="k">void</span> <span class="n">Method</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Diamond default Method&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">Advice94</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">class</span> <span class="nc">Shape</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;base MethodVirtual call&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">void</span> <span class="n">Method</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;base method call&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Cicle</span> <span class="p">:</span> <span class="n">Shape</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;cicle override MethodVirtual&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Rectangle</span> <span class="p">:</span> <span class="n">Shape</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Triangle</span> <span class="p">:</span> <span class="n">Shape</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">new</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;triangle new MethodVirtual&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">new</span> <span class="k">void</span> <span class="n">Method</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;triangle new Method&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Diamond</span> <span class="p">:</span> <span class="n">Shape</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">void</span> <span class="n">MethodVirtual</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Diamond default MethodVirtual&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">void</span> <span class="n">Method</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Diamond default Method&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Shape是所有子类的父类，Circle类override父类的MethodVirtual，所以即便子类转型为Shape， 调用的还是子类的方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">Shape</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Circle</span><span class="p">();</span>
-<span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
-<span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">Shape</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Circle</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出也为：r</p>
 <blockquote>
@@ -714,15 +714,15 @@ base method call</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">Circle</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Circle</span><span class="p">();</span>
-<span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
-<span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">Circle</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Circle</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>circle override MethodVirtual
@@ -732,28 +732,28 @@ base method call</p>
 类型Triangle将基类Shape的virtual方法和非virtual方法都new了一般，所以第一种方法为：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">Shape</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Triangle</span><span class="p">();</span>
-<span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
-<span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">Shape</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Triangle</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>因为子类通过new了父类的方法，故子类方法和基类方法完全没有关系了，只要s被转型为Shape，针对s调用的都是父类方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"> <span class="n">Triangle</span> <span class="n">triangle</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Triangle</span><span class="p">();</span>
- <span class="n">triangle</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
- <span class="n">triangle</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"> <span class="n">Triangle</span> <span class="n">triangle</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Triangle</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"> <span class="n">triangle</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"> <span class="n">triangle</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>调用的都是子类的方法，输出为：</p>
 <blockquote>
@@ -763,15 +763,15 @@ triangle new Method</p>
 <p>类型Diamond包含了两个和基类一模一样的方法，并且没有额外的修饰符。这在编译器中会提出警示。但是如果选择忽略这些警示，程序还是一样可以运行。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">Shape</span> <span class="n">s</span><span class="p">=</span><span class="k">new</span> <span class="n">Diamond</span><span class="p">();</span>
-<span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
-<span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">Shape</span> <span class="n">s</span><span class="p">=</span><span class="k">new</span> <span class="n">Diamond</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>编译器会默认new的效果，所以输出和显示设置为new时一样。</p>
 <p>输出为：</p>
@@ -781,15 +781,15 @@ base Method call</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#">  <span class="n">Diamond</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Diamond</span><span class="p">();</span>
-  <span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
-  <span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl">  <span class="n">Diamond</span> <span class="n">s</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Diamond</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">s</span><span class="p">.</span><span class="n">MethodVirtual</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">s</span><span class="p">.</span><span class="n">Method</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出为：</p>
 <blockquote>
@@ -800,7 +800,7 @@ Diamond default Method</p>
 <p>在构造方法中调用虚方法会带来一些意想不到的错误，虽然这种方法不常见，但是还是需要注意这类陷阱；</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -852,57 +852,57 @@ Diamond default Method</p>
 </span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">Advice95</span>
-<span class="p">{</span>
-    <span class="k">internal</span> <span class="k">class</span> <span class="nc">Program</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">American</span> <span class="n">american</span> <span class="p">=</span> <span class="k">new</span> <span class="n">American</span><span class="p">();</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">class</span> <span class="nc">Person</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="n">Person</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">InitSkin</span><span class="p">();</span>
-        <span class="p">}</span>
-
-        <span class="k">protected</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">InitSkin</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">NotImplementedException</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">class</span> <span class="nc">American</span> <span class="p">:</span> <span class="n">Person</span>
-    <span class="p">{</span>
-        <span class="n">Race</span> <span class="n">race</span><span class="p">;</span>
-
-        <span class="k">public</span> <span class="n">American</span><span class="p">()</span> <span class="p">:</span> <span class="k">base</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">race</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Race</span><span class="p">()</span>
-            <span class="p">{</span>
-                <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;White&#34;</span>
-            <span class="p">};</span>
-        <span class="p">}</span>
-
-        <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="n">InitSkin</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">race</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
-        <span class="p">}</span>
-
-    <span class="p">}</span>
-
-    <span class="k">class</span> <span class="nc">Race</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">Advice95</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">internal</span> <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">American</span> <span class="n">american</span> <span class="p">=</span> <span class="k">new</span> <span class="n">American</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Person</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="n">Person</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">InitSkin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">protected</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">InitSkin</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">NotImplementedException</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">American</span> <span class="p">:</span> <span class="n">Person</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Race</span> <span class="n">race</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="n">American</span><span class="p">()</span> <span class="p">:</span> <span class="k">base</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">race</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Race</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;White&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="n">InitSkin</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">race</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Race</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Object reference not set to an instance of an object.</code></p>
 <p>运行会出现异常NullReferenceException：未将对象引用设置到对象的实例。</p>
@@ -916,17 +916,17 @@ Diamond default Method</p>
 <p>微软在<code>FCL</code>中实现了这样一个静态类型Enumerable，它有个静态方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;</span> <span class="n">Empty</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;()</span>
-<span class="p">{</span>
-     <span class="k">return</span> <span class="n">EmptyEnumerable</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;.</span><span class="n">Instance</span><span class="p">;</span>   
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;</span> <span class="n">Empty</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="n">EmptyEnumerable</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;.</span><span class="n">Instance</span><span class="p">;</span>   
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>因为使用了泛型接口<code>IEnumerable</code>，所以现在所有的集合子类都可以实现自己的Empty方法了。我们应该体会这种编程模式带来的好处，并在自己的项目中灵活运用。</p>
 <h3 id="建议97优先考虑将基类型或接口作为参数传递">建议97：优先考虑将基类型或接口作为参数传递</h3>
@@ -934,7 +934,7 @@ Diamond default Method</p>
 <p>以Enumerable类型为例，它的成员方法中只要涉及需要操作集合对象的地方，都要使用<code>IEnumerable</code>泛型接口，比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -944,30 +944,30 @@ Diamond default Method</p>
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;</span> <span class="n">Take</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;</span> <span class="n">source</span><span class="p">,</span> <span class="kt">int</span> <span class="n">count</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">source</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">throw</span> <span class="n">Error</span><span class="p">.</span><span class="n">ArgumentNull</span><span class="p">(</span><span class="s">&#34;source&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">TakeIterator</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;(</span><span class="n">source</span><span class="p">,</span> <span class="n">count</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;</span> <span class="n">Take</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;</span> <span class="n">source</span><span class="p">,</span> <span class="kt">int</span> <span class="n">count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">source</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="n">Error</span><span class="p">.</span><span class="n">ArgumentNull</span><span class="p">(</span><span class="s">&#34;source&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">TakeIterator</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;(</span><span class="n">source</span><span class="p">,</span> <span class="n">count</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>该方法用于获取集合指定数量的一个子集，正是因为存在这个扩展方法，我们才可以对所有的泛型集合进行Take操作；</p>
 <h3 id="建议98用params减少重复参数">建议98：用<code>params</code>减少重复参数</h3>
 <p>如果方法的参数数目不定，且参数类型一致，则可以使用<code>params</code>关键字减少重复参数的声明；</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">void</span> <span class="n">Method1</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">,</span> <span class="kt">object</span> <span class="n">a</span><span class="p">){}</span>
-<span class="k">void</span> <span class="n">Method2</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">,</span> <span class="kt">object</span> <span class="n">a</span><span class="p">,</span> <span class="kt">object</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
-<span class="k">void</span> <span class="n">Method3</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">,</span> <span class="kt">object</span> <span class="n">a</span><span class="p">,</span> <span class="kt">object</span> <span class="n">b</span><span class="p">,</span> <span class="kt">object</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">void</span> <span class="n">Method1</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">,</span> <span class="kt">object</span> <span class="n">a</span><span class="p">){}</span>
+</span></span><span class="line"><span class="cl"><span class="k">void</span> <span class="n">Method2</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">,</span> <span class="kt">object</span> <span class="n">a</span><span class="p">,</span> <span class="kt">object</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">void</span> <span class="n">Method3</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">,</span> <span class="kt">object</span> <span class="n">a</span><span class="p">,</span> <span class="kt">object</span> <span class="n">b</span><span class="p">,</span> <span class="kt">object</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里的3个方法可以合并成一个方法：</p>
 <p><code>void Method(string str, params object[] a) { }</code></p>
@@ -975,7 +975,7 @@ Diamond default Method</p>
 <p>重写时，如果使用了子类参数，可能会偏离设计者的预期目标。比如，存在一个如下继承体系：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -984,19 +984,19 @@ Diamond default Method</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">Employee</span>
-<span class="p">{</span>
-<span class="p">}</span>
-
-<span class="k">class</span> <span class="nc">Manager</span> <span class="p">:</span> <span class="n">Employee</span>
-<span class="p">{</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Employee</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Manager</span> <span class="p">:</span> <span class="n">Employee</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>现在，类型<code>ManagerSalary</code>中的<code>SetSalary</code>方法重写了Salary中的相同方法，重写的方法采用一个子类参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1013,39 +1013,39 @@ Diamond default Method</p>
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">Salary</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="n">SetSalary</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span>
-    <span class="p">{</span>
-    	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;职员被设置了薪水。&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">class</span> <span class="nc">ManagerSalary</span> <span class="p">:</span> <span class="n">Salary</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="n">SetSalary</span><span class="p">(</span><span class="n">Manager</span> <span class="n">m</span><span class="p">)</span>
-    <span class="p">{</span>
-    	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;经理被设置了薪水。&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Salary</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">SetSalary</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;职员被设置了薪水。&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ManagerSalary</span> <span class="p">:</span> <span class="n">Salary</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">SetSalary</span><span class="p">(</span><span class="n">Manager</span> <span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;经理被设置了薪水。&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>调用者的代码看起来如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">ManagerSalary</span> <span class="n">m</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ManagerSalary</span><span class="p">();</span>
-    <span class="n">m</span><span class="p">.</span><span class="n">SetSalary</span><span class="p">(</span><span class="k">new</span> <span class="n">Employee</span><span class="p">());</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ManagerSalary</span> <span class="n">m</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ManagerSalary</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span><span class="p">.</span><span class="n">SetSalary</span><span class="p">(</span><span class="k">new</span> <span class="n">Employee</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>设计者</strong>的本意是要设置经理的薪水，可是实际调用的代码却是设置了员工的薪水。</p>
 <p>输出为：职员被设置了薪水。</p>
@@ -1062,7 +1062,7 @@ Diamond default Method</p>
 <p>​	包装类的编码形式如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1085,35 +1085,35 @@ Diamond default Method</p>
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">Program</span>
-<span class="p">{</span>
-    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Student</span> <span class="n">student</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">();</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">StudentConverter</span><span class="p">.</span><span class="n">GetSexString</span><span class="p">(</span><span class="n">student</span><span class="p">));</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">StudentConverter</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">GetSexString</span><span class="p">(</span><span class="n">Student</span> <span class="n">student</span><span class="p">)</span>
-    <span class="p">{</span>
-    	<span class="k">return</span> <span class="n">student</span><span class="p">.</span><span class="n">GetSex</span><span class="p">()</span> <span class="p">==</span> <span class="k">true</span> <span class="p">?</span> <span class="s">&#34;男&#34;</span> <span class="p">:</span> <span class="s">&#34;女&#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">Student</span>
-<span class="p">{</span>
-	<span class="k">public</span> <span class="kt">bool</span> <span class="n">GetSex</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span> <span class="p">}</span> 
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Student</span> <span class="n">student</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">StudentConverter</span><span class="p">.</span><span class="n">GetSexString</span><span class="p">(</span><span class="n">student</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">StudentConverter</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">GetSexString</span><span class="p">(</span><span class="n">Student</span> <span class="n">student</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    	<span class="k">return</span> <span class="n">student</span><span class="p">.</span><span class="n">GetSex</span><span class="p">()</span> <span class="p">==</span> <span class="k">true</span> <span class="p">?</span> <span class="s">&#34;男&#34;</span> <span class="p">:</span> <span class="s">&#34;女&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Student</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">public</span> <span class="kt">bool</span> <span class="n">GetSex</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以看到，Student类型只提供了一个<code>GetSex</code>方法，它返回了一个<code>bool</code>值的结果。我们需要的是要将一个<code>bool</code>值转换为一个字符串，<code>StudentConverter</code>就是为了满足需求而创建的一个包装器类。调用者的代码看起来就应该是这样的：</p>
 <p><code>Console.WriteLine(StudentConverter.GetSexString(student));</code></p>
 <p>但是我们知道，可以有更优美的形式让调用者像调用Student类型的实例方法一样来调用<code>GetSexString</code>了。这种更好的方式就是<strong>扩展方法</strong>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1131,23 +1131,23 @@ Diamond default Method</p>
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">Program</span>
-<span class="p">{</span>
-    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Student</span> <span class="n">student</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">();</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">student</span><span class="p">.</span><span class="n">GetSexString</span><span class="p">());</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">StudentExtension</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">GetSexString</span><span class="p">(</span><span class="k">this</span> <span class="n">Student</span> <span class="n">student</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="n">student</span><span class="p">.</span><span class="n">GetSex</span><span class="p">()</span> <span class="p">==</span> <span class="k">true</span> <span class="p">?</span> <span class="s">&#34;男&#34;</span> <span class="p">:</span> <span class="s">&#34;女?&#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Student</span> <span class="n">student</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">student</span><span class="p">.</span><span class="n">GetSexString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">StudentExtension</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">GetSexString</span><span class="p">(</span><span class="k">this</span> <span class="n">Student</span> <span class="n">student</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">student</span><span class="p">.</span><span class="n">GetSex</span><span class="p">()</span> <span class="p">==</span> <span class="k">true</span> <span class="p">?</span> <span class="s">&#34;男&#34;</span> <span class="p">:</span> <span class="s">&#34;女?&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>扩展方法除了让调用着可以像调用类型自身的方法一样去调用扩展方法外，它还有一些其他的主要优点：</p>
 <ul>
@@ -1165,17 +1165,17 @@ Diamond default Method</p>
 <p>值得注意的一点是，扩展方法还能够扩展接口。这让接口看上去也是可以扩展的。扩展方法的这个特性被广泛应用于提供<code>LINQ</code>查询功能的<code>Enumerable</code>类和<code>Queryable</code>类中。以Enumerable为例，针对<code>IEnumerable&lt;T&gt;</code>接口提供了非常丰富的一种方法，如Select：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;</span> <span class="n">Select</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">,</span> <span class="n">TResult</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;</span> <span class="n">source</span><span class="p">,</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">,</span> <span class="n">TResult</span><span class="p">&gt;</span> <span class="n">selector</span><span class="p">)</span>
-<span class="p">{</span>
- <span class="c1">//具体代码省略   
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TResult</span><span class="p">&gt;</span> <span class="n">Select</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">,</span> <span class="n">TResult</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">&gt;</span> <span class="n">source</span><span class="p">,</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">,</span> <span class="n">TResult</span><span class="p">&gt;</span> <span class="n">selector</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">//具体代码省略   </span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>它相当于让继承自<code>IEnumerable&lt;T&gt;</code>接口的任何子类都拥有了Select方法，而这些Select方法在用者看来，就好像是<code>IEnumerable&lt;T&gt;</code>接口所声明的一样。</p>
 

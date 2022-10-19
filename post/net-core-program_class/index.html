@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/net-core-program_class/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -69,7 +69,7 @@
 <meta itemprop="name" content=".netcore之Program类">
 <meta itemprop="description" content="ASP.NET Core 启动和配置 Program类，Main方法 Startup类 其中很核心的思想是(Dependency Injection，依赖注入)； 还有Io"><meta itemprop="datePublished" content="2020-05-25T22:19:05+00:00" />
 <meta itemprop="dateModified" content="2020-05-25T22:19:05+00:00" />
-<meta itemprop="wordCount" content="1986">
+<meta itemprop="wordCount" content="1978">
 <meta itemprop="keywords" content="dotnetcore," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=".netcore之Program类"/>
 <meta name="twitter:description" content="ASP.NET Core 启动和配置 Program类，Main方法 Startup类 其中很核心的思想是(Dependency Injection，依赖注入)； 还有Io"/>
@@ -344,7 +344,7 @@
             <a href="https://bomir.top/categories/csharp/"> CSharp </a>
             
           </div>
-        <span class="more-meta"> 约 1986 字 </span>
+        <span class="more-meta"> 约 1978 字 </span>
           <span class="more-meta"> 预计阅读 4 分钟 </span>
 
         
@@ -409,7 +409,7 @@
 <p>该方法的最终目的和意义就是使用 <strong>CreateWebHostBuilder</strong> 方法返回的 <strong>IWebHostBuilder</strong> 接口类型对象来构建(<strong>Build</strong>)一个 <strong>WebServe</strong> 然后运行(<strong>Run</strong>)这个 <strong>WebServe</strong>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -421,17 +421,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
-<span class="p">{</span>
-　　<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-　　<span class="p">{</span>
-　　　　<span class="n">CreateWebHostBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">).</span><span class="n">Build</span><span class="p">().</span><span class="n">Run</span><span class="p">();</span>
-　　<span class="p">}</span>
-　　<span class="k">public</span> <span class="k">static</span> <span class="n">IWebHostBuilder</span> <span class="n">CreateWebHostBuilder</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">=&gt;</span>
-　　　　<span class="n">WebHost</span><span class="p">.</span><span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-　　　　<span class="p">.</span><span class="n">UseStartup</span><span class="p">&lt;</span><span class="n">Startup</span><span class="p">&gt;();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">　　<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">　　<span class="p">{</span>
+</span></span><span class="line"><span class="cl">　　　　<span class="n">CreateWebHostBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">).</span><span class="n">Build</span><span class="p">().</span><span class="n">Run</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">　　<span class="p">}</span>
+</span></span><span class="line"><span class="cl">　　<span class="k">public</span> <span class="k">static</span> <span class="n">IWebHostBuilder</span> <span class="n">CreateWebHostBuilder</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">　　　　<span class="n">WebHost</span><span class="p">.</span><span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">　　　　<span class="p">.</span><span class="n">UseStartup</span><span class="p">&lt;</span><span class="n">Startup</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>CreateWebHostBuilder</strong> 方法返回的对象是静态类<strong>WebHost</strong> 的静态方法 <strong>CreateDefaultBuilder</strong> 方法返回的。</p>
 <p>在 <strong>CreateWebHostBuilder</strong> 方法中我们可以看到一个 <strong>lambda</strong> 表达式，他返回了 WebHost.CreateDefaultBuilder(args).UseStartup<!-- raw HTML omitted -->();</p>
@@ -441,7 +441,7 @@
 <p>而 <strong>WebHostBuilder</strong> 类就实现了我们所需要返回的的 <strong>IWebHostBuilder</strong> 接口类型。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -487,58 +487,58 @@
 </span><span class="lnt">44
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="n">IWebHostBuilder</span> <span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">var</span> <span class="n">builder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WebHostBuilder</span><span class="p">();</span>
-    <span class="k">if</span> <span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="n">GetSetting</span><span class="p">(</span><span class="n">WebHostDefaults</span><span class="p">.</span><span class="n">ContentRootKey</span><span class="p">)))</span>
-    <span class="p">{</span>
-        <span class="n">builder</span><span class="p">.</span><span class="n">UseContentRoot</span><span class="p">(</span><span class="n">Directory</span><span class="p">.</span><span class="n">GetCurrentDirectory</span><span class="p">());</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">args</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">builder</span><span class="p">.</span><span class="n">UseConfiguration</span><span class="p">(</span><span class="k">new</span> <span class="n">ConfigurationBuilder</span><span class="p">().</span><span class="n">AddCommandLine</span><span class="p">(</span><span class="n">args</span><span class="p">).</span><span class="n">Build</span><span class="p">());</span>
-    <span class="p">}</span>
-    <span class="n">builder</span><span class="p">.</span><span class="n">ConfigureAppConfiguration</span><span class="p">((</span><span class="n">hostingContext</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="p">=&gt;</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">env</span> <span class="p">=</span> <span class="n">hostingContext</span><span class="p">.</span><span class="n">HostingEnvironment</span><span class="p">;</span>
-        <span class="n">config</span><span class="p">.</span><span class="n">AddJsonFile</span><span class="p">(</span><span class="s">&#34;appsettings.json&#34;</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span> <span class="n">reloadOnChange</span><span class="p">:</span> <span class="k">true</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">AddJsonFile</span><span class="p">(</span><span class="s">$&#34;appsettings.{env.EnvironmentName}.json&#34;</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span> <span class="n">reloadOnChange</span><span class="p">:</span> <span class="k">true</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">IsDevelopment</span><span class="p">())</span>
-        <span class="p">{</span>
-            <span class="kt">var</span> <span class="n">appAssembly</span> <span class="p">=</span> <span class="n">Assembly</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="k">new</span> <span class="n">AssemblyName</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">ApplicationName</span><span class="p">));</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">appAssembly</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">config</span><span class="p">.</span><span class="n">AddUserSecrets</span><span class="p">(</span><span class="n">appAssembly</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="k">true</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="n">config</span><span class="p">.</span><span class="n">AddEnvironmentVariables</span><span class="p">();</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">args</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">config</span><span class="p">.</span><span class="n">AddCommandLine</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="n">ConfigureLogging</span><span class="p">((</span><span class="n">hostingContext</span><span class="p">,</span> <span class="n">logging</span><span class="p">)</span> <span class="p">=&gt;</span>
-    <span class="p">{</span>
-        <span class="n">logging</span><span class="p">.</span><span class="n">AddConfiguration</span><span class="p">(</span><span class="n">hostingContext</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="s">&#34;Logging&#34;</span><span class="p">));</span>
-        <span class="n">logging</span><span class="p">.</span><span class="n">AddConsole</span><span class="p">();</span>
-        <span class="n">logging</span><span class="p">.</span><span class="n">AddDebug</span><span class="p">();</span>
-        <span class="n">logging</span><span class="p">.</span><span class="n">AddEventSourceLogger</span><span class="p">();</span>
-    <span class="p">}).</span>
-    <span class="n">UseDefaultServiceProvider</span><span class="p">((</span><span class="n">context</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span> <span class="p">=&gt;</span>
-    <span class="p">{</span>
-        <span class="n">options</span><span class="p">.</span><span class="n">ValidateScopes</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">HostingEnvironment</span><span class="p">.</span><span class="n">IsDevelopment</span><span class="p">();</span>
-    <span class="p">});</span>
-    <span class="n">ConfigureWebDefaults</span><span class="p">(</span><span class="n">builder</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">builder</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">IWebHostBuilder</span> <span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">builder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WebHostBuilder</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="n">GetSetting</span><span class="p">(</span><span class="n">WebHostDefaults</span><span class="p">.</span><span class="n">ContentRootKey</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">builder</span><span class="p">.</span><span class="n">UseContentRoot</span><span class="p">(</span><span class="n">Directory</span><span class="p">.</span><span class="n">GetCurrentDirectory</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">args</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">builder</span><span class="p">.</span><span class="n">UseConfiguration</span><span class="p">(</span><span class="k">new</span> <span class="n">ConfigurationBuilder</span><span class="p">().</span><span class="n">AddCommandLine</span><span class="p">(</span><span class="n">args</span><span class="p">).</span><span class="n">Build</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">builder</span><span class="p">.</span><span class="n">ConfigureAppConfiguration</span><span class="p">((</span><span class="n">hostingContext</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">env</span> <span class="p">=</span> <span class="n">hostingContext</span><span class="p">.</span><span class="n">HostingEnvironment</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span><span class="p">.</span><span class="n">AddJsonFile</span><span class="p">(</span><span class="s">&#34;appsettings.json&#34;</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span> <span class="n">reloadOnChange</span><span class="p">:</span> <span class="k">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">.</span><span class="n">AddJsonFile</span><span class="p">(</span><span class="s">$&#34;appsettings.{env.EnvironmentName}.json&#34;</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span> <span class="n">reloadOnChange</span><span class="p">:</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">IsDevelopment</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">appAssembly</span> <span class="p">=</span> <span class="n">Assembly</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="k">new</span> <span class="n">AssemblyName</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">ApplicationName</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">appAssembly</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">config</span><span class="p">.</span><span class="n">AddUserSecrets</span><span class="p">(</span><span class="n">appAssembly</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span><span class="p">.</span><span class="n">AddEnvironmentVariables</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">args</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">config</span><span class="p">.</span><span class="n">AddCommandLine</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="n">ConfigureLogging</span><span class="p">((</span><span class="n">hostingContext</span><span class="p">,</span> <span class="n">logging</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logging</span><span class="p">.</span><span class="n">AddConfiguration</span><span class="p">(</span><span class="n">hostingContext</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="s">&#34;Logging&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logging</span><span class="p">.</span><span class="n">AddConsole</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logging</span><span class="p">.</span><span class="n">AddDebug</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logging</span><span class="p">.</span><span class="n">AddEventSourceLogger</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}).</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UseDefaultServiceProvider</span><span class="p">((</span><span class="n">context</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">options</span><span class="p">.</span><span class="n">ValidateScopes</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">HostingEnvironment</span><span class="p">.</span><span class="n">IsDevelopment</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ConfigureWebDefaults</span><span class="p">(</span><span class="n">builder</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">builder</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="configurewebdefaults-方法的源码"><strong>ConfigureWebDefaults 方法的源码</strong></h3>
 <p>在方法的末尾，调用了 ConfigureWebDefaults(builder); 方法。</p>
 <p>该方法详细地配置了默认的 <strong>builder</strong> 的各种设置，我们也来看一下完整的源码实现。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -568,35 +568,35 @@
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">internal</span> <span class="k">static</span> <span class="k">void</span> <span class="n">ConfigureWebDefaults</span><span class="p">(</span><span class="n">IWebHostBuilder</span> <span class="n">builder</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">builder</span><span class="p">.</span><span class="n">UseKestrel</span><span class="p">((</span><span class="n">builderContext</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span> <span class="p">=&gt;</span>
-    <span class="p">{</span>
-        <span class="n">options</span><span class="p">.</span><span class="n">Configure</span><span class="p">(</span><span class="n">builderContext</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="s">&#34;Kestrel&#34;</span><span class="p">));</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="n">ConfigureServices</span><span class="p">((</span><span class="n">hostingContext</span><span class="p">,</span> <span class="n">services</span><span class="p">)</span> <span class="p">=&gt;</span>
-    <span class="p">{</span>
-        <span class="c1">// Fallback
-</span><span class="c1"></span>        <span class="n">services</span><span class="p">.</span><span class="n">PostConfigure</span><span class="p">&lt;</span><span class="n">HostFilteringOptions</span><span class="p">&gt;(</span><span class="n">options</span> <span class="p">=&gt;</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">options</span><span class="p">.</span><span class="n">AllowedHosts</span> <span class="p">==</span> <span class="k">null</span> <span class="p">||</span> <span class="n">options</span><span class="p">.</span><span class="n">AllowedHosts</span><span class="p">.</span><span class="n">Count</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="c1">// &#34;AllowedHosts&#34;: &#34;localhost;127.0.0.1;[::1]&#34;
-</span><span class="c1"></span>                <span class="kt">var</span> <span class="n">hosts</span> <span class="p">=</span> <span class="n">hostingContext</span><span class="p">.</span><span class="n">Configuration</span><span class="p">[</span><span class="s">&#34;AllowedHosts&#34;</span><span class="p">]?.</span><span class="n">Split</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="sc">&#39;;&#39;</span> <span class="p">},</span> <span class="n">StringSplitOptions</span><span class="p">.</span><span class="n">RemoveEmptyEntries</span><span class="p">);</span>
-                <span class="c1">// Fall back to &#34;*&#34; to disable.
-</span><span class="c1"></span>                <span class="n">options</span><span class="p">.</span><span class="n">AllowedHosts</span> <span class="p">=</span> <span class="p">(</span><span class="n">hosts</span><span class="p">?.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span> <span class="p">?</span> <span class="n">hosts</span> <span class="p">:</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="s">&#34;*&#34;</span> <span class="p">});</span>
-            <span class="p">}</span>
-        <span class="p">});</span>
-        <span class="c1">// Change notification
-</span><span class="c1"></span>        <span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IOptionsChangeTokenSource</span><span class="p">&lt;</span><span class="n">HostFilteringOptions</span><span class="p">&gt;&gt;(</span>
-                    <span class="k">new</span> <span class="n">ConfigurationChangeTokenSource</span><span class="p">&lt;</span><span class="n">HostFilteringOptions</span><span class="p">&gt;(</span><span class="n">hostingContext</span><span class="p">.</span><span class="n">Configuration</span><span class="p">));</span>
-
-        <span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">IStartupFilter</span><span class="p">,</span> <span class="n">HostFilteringStartupFilter</span><span class="p">&gt;();</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="n">UseIIS</span><span class="p">()</span>
-    <span class="p">.</span><span class="n">UseIISIntegration</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">internal</span> <span class="k">static</span> <span class="k">void</span> <span class="n">ConfigureWebDefaults</span><span class="p">(</span><span class="n">IWebHostBuilder</span> <span class="n">builder</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">builder</span><span class="p">.</span><span class="n">UseKestrel</span><span class="p">((</span><span class="n">builderContext</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">options</span><span class="p">.</span><span class="n">Configure</span><span class="p">(</span><span class="n">builderContext</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="s">&#34;Kestrel&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="n">ConfigureServices</span><span class="p">((</span><span class="n">hostingContext</span><span class="p">,</span> <span class="n">services</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Fallback</span>
+</span></span><span class="line"><span class="cl">        <span class="n">services</span><span class="p">.</span><span class="n">PostConfigure</span><span class="p">&lt;</span><span class="n">HostFilteringOptions</span><span class="p">&gt;(</span><span class="n">options</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">options</span><span class="p">.</span><span class="n">AllowedHosts</span> <span class="p">==</span> <span class="k">null</span> <span class="p">||</span> <span class="n">options</span><span class="p">.</span><span class="n">AllowedHosts</span><span class="p">.</span><span class="n">Count</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// &#34;AllowedHosts&#34;: &#34;localhost;127.0.0.1;[::1]&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">hosts</span> <span class="p">=</span> <span class="n">hostingContext</span><span class="p">.</span><span class="n">Configuration</span><span class="p">[</span><span class="s">&#34;AllowedHosts&#34;</span><span class="p">]?.</span><span class="n">Split</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="sc">&#39;;&#39;</span> <span class="p">},</span> <span class="n">StringSplitOptions</span><span class="p">.</span><span class="n">RemoveEmptyEntries</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// Fall back to &#34;*&#34; to disable.</span>
+</span></span><span class="line"><span class="cl">                <span class="n">options</span><span class="p">.</span><span class="n">AllowedHosts</span> <span class="p">=</span> <span class="p">(</span><span class="n">hosts</span><span class="p">?.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span> <span class="p">?</span> <span class="n">hosts</span> <span class="p">:</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="s">&#34;*&#34;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Change notification</span>
+</span></span><span class="line"><span class="cl">        <span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IOptionsChangeTokenSource</span><span class="p">&lt;</span><span class="n">HostFilteringOptions</span><span class="p">&gt;&gt;(</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">new</span> <span class="n">ConfigurationChangeTokenSource</span><span class="p">&lt;</span><span class="n">HostFilteringOptions</span><span class="p">&gt;(</span><span class="n">hostingContext</span><span class="p">.</span><span class="n">Configuration</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">IStartupFilter</span><span class="p">,</span> <span class="n">HostFilteringStartupFilter</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="n">UseIIS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="n">UseIISIntegration</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="builder-的默认配置"><strong>builder 的默认配置</strong></h3>
 <p><strong>1.使用 Kestrel Web Serve</strong></p>
@@ -618,7 +618,7 @@
 <p>打开 <strong>appsettings.json</strong> 文件，我们可以看到默认生成的配置如下所示。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -628,25 +628,25 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="p">{</span>
-  <span class="s">&#34;Logging&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">&#34;LogLevel&#34;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s">&#34;Default&#34;</span><span class="p">:</span> <span class="s">&#34;Warning&#34;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="s">&#34;AllowedHost&#34;</span><span class="p">:</span> <span class="s">&#34;*&#34;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Logging&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;LogLevel&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;Default&#34;</span><span class="p">:</span> <span class="s">&#34;Warning&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;AllowedHost&#34;</span><span class="p">:</span> <span class="s">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="获取配置信息的方法和顺序"><strong>获取配置信息的方法和顺序</strong></h3>
 <p>回到 <strong>CreateDefaultBuilder</strong> 方法，我们可以找到这一句代码。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">config</span><span class="p">.</span><span class="n">AddJsonFile</span><span class="p">(</span><span class="s">&#34;appsettings.json&#34;</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span> <span class="n">reloadOnChange</span><span class="p">:</span> <span class="k">true</span><span class="p">).</span><span class="n">AddJsonFile</span><span class="p">(</span><span class="s">$&#34;appsettings.{env.EnvironmentName}.json&#34;</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span> <span class="n">reloadOnChange</span><span class="p">:</span> <span class="k">true</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">config</span><span class="p">.</span><span class="n">AddJsonFile</span><span class="p">(</span><span class="s">&#34;appsettings.json&#34;</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span> <span class="n">reloadOnChange</span><span class="p">:</span> <span class="k">true</span><span class="p">).</span><span class="n">AddJsonFile</span><span class="p">(</span><span class="s">$&#34;appsettings.{env.EnvironmentName}.json&#34;</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span> <span class="n">reloadOnChange</span><span class="p">:</span> <span class="k">true</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中，<strong>config</strong> 是 builder.ConfigureAppConfiguration() 调用的 lambda 表达式参数   (hostingContext, config) =&gt;{}  ，其设置了配置文件的具体名称。</p>
 <p>注意，<strong>config</strong> 调用 <strong>AddJsonFile</strong> 方法，调用了两次，第二个 <strong>json</strong> 文件是系统环境变量为名的json文件，默认是 <strong>Devolopment</strong>，也就是前面提到的 <strong>appsettings.Development.json</strong>。</p>

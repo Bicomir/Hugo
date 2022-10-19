@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/scrapy-simple-learning/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -473,7 +473,7 @@
 <p>在items.py中；</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -495,34 +495,34 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scrapy</span>
-
-<span class="k">class</span> <span class="nc">DoubanItem</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Item</span><span class="p">):</span>
-    <span class="c1"># define the fields for your item here like:</span>
-    <span class="c1"># name = scrapy.Field()</span>
-    
-    <span class="c1"># 序号</span>
-    <span class="n">serial_number</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
-    <span class="c1"># 电影的名称</span>
-    <span class="n">movie_name</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
-    <span class="c1"># 电影的介绍</span>
-    <span class="n">introduce</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
-    <span class="c1"># 电影的星级</span>
-    <span class="n">star</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
-    <span class="c1"># 电影的评论数</span>
-    <span class="n">evaluate</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
-    <span class="c1"># 电影的描述</span>
-    <span class="n">describe</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
-    
-    
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">scrapy</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DoubanItem</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Item</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># define the fields for your item here like:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># name = scrapy.Field()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 序号</span>
+</span></span><span class="line"><span class="cl">    <span class="n">serial_number</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 电影的名称</span>
+</span></span><span class="line"><span class="cl">    <span class="n">movie_name</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 电影的介绍</span>
+</span></span><span class="line"><span class="cl">    <span class="n">introduce</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 电影的星级</span>
+</span></span><span class="line"><span class="cl">    <span class="n">star</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 电影的评论数</span>
+</span></span><span class="line"><span class="cl">    <span class="n">evaluate</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 电影的描述</span>
+</span></span><span class="line"><span class="cl">    <span class="n">describe</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>3）制作爬虫</p>
 <p>进行爬虫的spider的编写</p>
 <p>douban_spider.py</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -562,45 +562,45 @@
 </span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*-</span>
-<span class="kn">import</span> <span class="nn">scrapy</span>
-<span class="kn">from</span> <span class="nn">douban.items</span> <span class="kn">import</span> <span class="n">DoubanItem</span>
-
-<span class="k">class</span> <span class="nc">DoubanSpiderSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;douban_spider&#39;</span>  <span class="c1"># 爬虫名(不能和项目名重复)</span>
-    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;movie.douban.com&#39;</span><span class="p">]</span>  <span class="c1"># 允许抓取域名</span>
-    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://movie.douban.com/top250&#39;</span><span class="p">]</span>  <span class="c1"># 入口url,扔到调度器里面去</span>
-
-    <span class="c1"># 默认的解析方法</span>
-    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
-        <span class="c1"># 循环电影的条目</span>
-        <span class="n">movie_list</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;//div[@class=&#39;article&#39;]//ol[@class=&#39;grid_view&#39;]/li&#34;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i_item</span> <span class="ow">in</span> <span class="n">movie_list</span><span class="p">:</span>
-            <span class="c1"># print(i_item)</span>
-            <span class="n">douban_item</span> <span class="o">=</span> <span class="n">DoubanItem</span><span class="p">()</span>
-
-            <span class="c1"># 写详细的xpath,进行数据的解析</span>
-            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;serial_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;item&#39;]//em//text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
-            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;movie_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;info&#39;]/div[@class=&#39;hd&#39;]/a/span[1]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;info&#39;]/div[@class=&#39;bd&#39;]/p[1]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
-
-            <span class="c1"># 多行数据的处理</span>
-            <span class="k">for</span> <span class="n">i_content</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
-                <span class="n">content_s</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i_content</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-                <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;introduce&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_s</span>
-
-            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;star&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//span[@class=&#39;rating_num&#39;]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
-            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;star&#39;]//span[4]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
-            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;describe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//p[@class=&#39;quote&#39;]/span/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
-
-            <span class="k">yield</span> <span class="n">douban_item</span>  <span class="c1">#把数据yield到管道里面去</span>
-
-        <span class="c1"># 解析下一页规则，取得是后页的xpath</span>
-        <span class="n">next_link</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;//span[@class=&#39;next&#39;]/link/@href&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">next_link</span><span class="p">:</span>
-            <span class="n">next_link</span> <span class="o">=</span> <span class="n">next_link</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="k">yield</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s2">&#34;https://movie.douban.com/top250&#34;</span><span class="o">+</span><span class="n">next_link</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">scrapy</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">douban.items</span> <span class="kn">import</span> <span class="n">DoubanItem</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DoubanSpiderSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;douban_spider&#39;</span>  <span class="c1"># 爬虫名(不能和项目名重复)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;movie.douban.com&#39;</span><span class="p">]</span>  <span class="c1"># 允许抓取域名</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://movie.douban.com/top250&#39;</span><span class="p">]</span>  <span class="c1"># 入口url,扔到调度器里面去</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 默认的解析方法</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 循环电影的条目</span>
+</span></span><span class="line"><span class="cl">        <span class="n">movie_list</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;//div[@class=&#39;article&#39;]//ol[@class=&#39;grid_view&#39;]/li&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i_item</span> <span class="ow">in</span> <span class="n">movie_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># print(i_item)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">douban_item</span> <span class="o">=</span> <span class="n">DoubanItem</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1"># 写详细的xpath,进行数据的解析</span>
+</span></span><span class="line"><span class="cl">            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;serial_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;item&#39;]//em//text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;movie_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;info&#39;]/div[@class=&#39;hd&#39;]/a/span[1]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">content</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;info&#39;]/div[@class=&#39;bd&#39;]/p[1]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1"># 多行数据的处理</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i_content</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">content_s</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i_content</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">                <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;introduce&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_s</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;star&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//span[@class=&#39;rating_num&#39;]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//div[@class=&#39;star&#39;]//span[4]/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">douban_item</span><span class="p">[</span><span class="s1">&#39;describe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//p[@class=&#39;quote&#39;]/span/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">douban_item</span>  <span class="c1">#把数据yield到管道里面去</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 解析下一页规则，取得是后页的xpath</span>
+</span></span><span class="line"><span class="cl">        <span class="n">next_link</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;//span[@class=&#39;next&#39;]/link/@href&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">next_link</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_link</span> <span class="o">=</span> <span class="n">next_link</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s2">&#34;https://movie.douban.com/top250&#34;</span><span class="o">+</span><span class="n">next_link</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>启动scrapy爬虫</strong></p>
 <p>scrapy crawl douban_spider</p>
@@ -608,13 +608,13 @@
 <p>在pycharm里面做一个启动程序:在main.py</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">scrapy</span> <span class="kn">import</span> <span class="n">cmdline</span>
-<span class="n">cmdline</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;scrapy crawl douban_spider&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scrapy</span> <span class="kn">import</span> <span class="n">cmdline</span>
+</span></span><span class="line"><span class="cl"><span class="n">cmdline</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;scrapy crawl douban_spider&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

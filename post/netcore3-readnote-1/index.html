@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/netcore3-readnote-1/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -399,13 +399,13 @@
 <p>要用到依赖注入框架， 就需要使用以下两个包：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Microsoft.Extensions.DependencyInjection.Abstractions;
-Microsoft.Extensions.DependencyInjection;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Microsoft.Extensions.DependencyInjection.Abstractions;
+</span></span><span class="line"><span class="cl">Microsoft.Extensions.DependencyInjection;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中 <code>Microsoft.Extensions.DependencyInjection.Abstractions</code>包含了依赖注入框架核心接口的定义，<code>Microsoft.Extensions.DependencyInjection</code>包含了框架的具体实现，这种将接口定义和具体实现放在不同包的模式叫做<strong>接口实现分离模式</strong>， 其好处是组件的使用者可以只依赖抽象的定义包，可以在运行时决定使用哪种具体的实现，这与依赖注入的核心思想是一致的。后面的配置组件，选项组件和日志组件，也都是在组件的设定初期就设定用户会使用依赖注入来管理对象</p>
 <p>依赖注入框架类型的主要命名空间为<code>Microsoft.Extensions.DependencyInjection</code>, 其中核心的类型是ServiceDescriptor, ServiceCollection, ServiceProvider. 下图也揭示了这三个类之间的关系和DI框架的使用过程;</p>
@@ -414,7 +414,7 @@ Microsoft.Extensions.DependencyInjection;
 <p>ServiceDescriptor类包含服务的类型, 生命周期和构造方式等信息. ServiceCollection是ServiceDescriptor的集合, 通过BuildServiceProvider方法可以获得服务容器ServiceProvider, 通过ServiceProvider的GetService方法可以获得注册服务的实例;</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -424,15 +424,15 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">ServiceDescriptor</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="n">Type</span> <span class="n">ImplementationType</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">public</span> <span class="kt">object</span> <span class="n">ImplementationInstance</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">public</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">IServiceProvider</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">ImplementationFactory</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">public</span> <span class="n">ServiceLifetime</span> <span class="n">Lifetime</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">public</span> <span class="n">Type</span> <span class="n">ServiceType</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">ServiceDescriptor</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">Type</span> <span class="n">ImplementationType</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">object</span> <span class="n">ImplementationInstance</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">IServiceProvider</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">ImplementationFactory</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">ServiceLifetime</span> <span class="n">Lifetime</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">Type</span> <span class="n">ServiceType</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>实际上, 这个只是列出了ServiceDescriptor的主要定义, 其中ServiceType是要注册的类型, 也就是将来要获取的类型; 既可以是接口, 也可以是抽象类, 也可以是普通的类型; 属性ImplementationType表明实际要创建的类型, 属性ImplementationInstance表明注册时候已经获取了类型实例并将它注册进来, 将来要获取的时候将ImplementationInstance返回给调用者即可; 属性ImplementationFactory表示注册了一个用于创建ServiceType指定的类型的工厂, 当需要从容器获取时, 由这个工厂负责创建类型实例;</p>
 <p>总结起来就是, 可以有3种方式获得目标类型(ServiceType)的实例:</p>
@@ -446,7 +446,7 @@ Microsoft.Extensions.DependencyInjection;
 <p>看一下IServiceCollection的定义, 没有包含任何特别的方法, 仅仅是一个ServiceDescriptor的集合, 在组件的实现包Microsoft.Extensions.DependencyInjection中, 类ServiceCollection实现了IServiceCollection接口:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -470,40 +470,40 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IServiceCollection</span> <span class="p">:</span> <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">,</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;</span>
-<span class="p">{</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">ServiceCollection</span> <span class="p">:</span> <span class="n">IServiceCollection</span><span class="p">,</span> <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">,</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="n">ServiceCollection</span><span class="p">();</span>
-
-    <span class="k">public</span> <span class="n">ServiceDescriptor</span> <span class="k">this</span><span class="p">[</span><span class="kt">int</span> <span class="n">index</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-
-    <span class="k">public</span> <span class="kt">int</span> <span class="n">Count</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsReadOnly</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="n">Clear</span><span class="p">();</span>
-    <span class="k">public</span> <span class="kt">bool</span> <span class="n">Contains</span><span class="p">(</span><span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="n">CopyTo</span><span class="p">(</span><span class="n">ServiceDescriptor</span><span class="p">[]</span> <span class="n">array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arrayIndex</span><span class="p">);</span>
-    <span class="k">public</span> <span class="n">IEnumerator</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;</span> <span class="n">GetEnumerator</span><span class="p">();</span>
-    <span class="k">public</span> <span class="kt">int</span> <span class="n">IndexOf</span><span class="p">(</span><span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="n">Insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
-    <span class="k">public</span> <span class="kt">bool</span> <span class="n">Remove</span><span class="p">(</span><span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="n">RemoveAt</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">interface</span> <span class="nc">IServiceCollection</span> <span class="p">:</span> <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">,</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">ServiceCollection</span> <span class="p">:</span> <span class="n">IServiceCollection</span><span class="p">,</span> <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;,</span> <span class="n">IEnumerable</span><span class="p">,</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">ServiceCollection</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">ServiceDescriptor</span> <span class="k">this</span><span class="p">[</span><span class="kt">int</span> <span class="n">index</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">Count</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsReadOnly</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">Clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">bool</span> <span class="n">Contains</span><span class="p">(</span><span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">CopyTo</span><span class="p">(</span><span class="n">ServiceDescriptor</span><span class="p">[]</span> <span class="n">array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arrayIndex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">IEnumerator</span><span class="p">&lt;</span><span class="n">ServiceDescriptor</span><span class="p">&gt;</span> <span class="n">GetEnumerator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">IndexOf</span><span class="p">(</span><span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">Insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">bool</span> <span class="n">Remove</span><span class="p">(</span><span class="n">ServiceDescriptor</span> <span class="n">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">RemoveAt</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>最直接的方式就是 创建ServiceDescriptor实例, 并通过Add方法添加到IServiceCollection中,</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="kt">var</span> <span class="n">serviceDescriptor</span> <span class="p">=</span> <span class="n">ServiceDescriptor</span><span class="p">.</span><span class="n">Singleton</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">,</span> <span class="n">MyService</span><span class="p">&gt;();</span>
-<span class="n">services</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">serviceDescriptor</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">serviceDescriptor</span> <span class="p">=</span> <span class="n">ServiceDescriptor</span><span class="p">.</span><span class="n">Singleton</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">,</span> <span class="n">MyService</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">services</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">serviceDescriptor</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>另外提供了一组扩展方法来快速注册服务, 并给出备注说明:</p>
 <ul>
@@ -514,7 +514,7 @@ Microsoft.Extensions.DependencyInjection;
 <p>这些不同生命周期的服务注册方法都提供了多种重载, 支持用户按类型, 按实例, 按工厂方法的方式来定义服务的构造方式;</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -530,21 +530,21 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">IServiceCollection</span> <span class="n">services</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ServiceCollection</span><span class="p">();</span>
-
-<span class="c1">// 指定实例
-</span><span class="c1"></span><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="k">new</span> <span class="n">MyService</span><span class="p">());</span>
-
-<span class="c1">// 指定类型
-</span><span class="c1"></span><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">,</span> <span class="n">MyService</span><span class="p">&gt;();</span>
-
-<span class="c1">// 工厂模式
-</span><span class="c1"></span><span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="n">provider</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">MyService</span><span class="p">());</span>
-
-<span class="c1">// 工厂模式， 从容器中获取
-</span><span class="c1"></span><span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="n">provider</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">MyService</span><span class="p">());</span>
-<span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="n">provider</span> <span class="p">=&gt;</span> <span class="n">provider</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">MyService</span><span class="p">&gt;());</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">IServiceCollection</span> <span class="n">services</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ServiceCollection</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 指定实例</span>
+</span></span><span class="line"><span class="cl"><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="k">new</span> <span class="n">MyService</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 指定类型</span>
+</span></span><span class="line"><span class="cl"><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">,</span> <span class="n">MyService</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 工厂模式</span>
+</span></span><span class="line"><span class="cl"><span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="n">provider</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">MyService</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 工厂模式， 从容器中获取</span>
+</span></span><span class="line"><span class="cl"><span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="n">provider</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">MyService</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;(</span><span class="n">provider</span> <span class="p">=&gt;</span> <span class="n">provider</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">MyService</span><span class="p">&gt;());</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​		需要注意的是, 指定已有实例的方式仅支持单例模式;</p>
 <p>工厂模式使用了委托<code>Func&lt;IServiceProvider, object&gt;</code>, 其入参是一个IServiceProvider, 实际上就是当前容器实例;</p>
@@ -556,7 +556,7 @@ Microsoft.Extensions.DependencyInjection;
 <p>接口IServiceProvider位于System命名空间下, 是一个拥有很长历史的接口(在.NETFramework1.1版本就存在了), 并且在很多针对特定场景的实现中, 它的定义只有一个GetService方法, 入参是服务的类型, 返回值是服务的实例;</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -573,27 +573,27 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IServiceProvider</span>
-<span class="p">{</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Gets the service object of the specified type.
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Parameters:
-</span><span class="c1"></span>    <span class="c1">//   serviceType:
-</span><span class="c1"></span>    <span class="c1">//     An object that specifies the type of service object to get.
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Returns:
-</span><span class="c1"></span>    <span class="c1">//     A service object of type serviceType. -or- null if there is no service object
-</span><span class="c1"></span>    <span class="c1">//     of type serviceType.
-</span><span class="c1"></span>    <span class="kt">object</span> <span class="n">GetService</span><span class="p">(</span><span class="n">Type</span> <span class="n">serviceType</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">interface</span> <span class="nc">IServiceProvider</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Gets the service object of the specified type.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Parameters:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//   serviceType:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     An object that specifies the type of service object to get.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Returns:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     A service object of type serviceType. -or- null if there is no service object</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     of type serviceType.</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">object</span> <span class="n">GetService</span><span class="p">(</span><span class="n">Type</span> <span class="n">serviceType</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​		在依赖注入组件中, 由类ServiceProvider实现了IServiceProvider, 它位于Microsoft.Extensions.DependencyInjection包中, 同时类<code>ServiceProviderServiceExtensions</code>提供了一组扩展方法, 让开发者可以更方便编写获取实例的代码, 尤其是泛型方法, 它可以直接获得特定类型的返回值, 而无需进行类型转换;</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -608,60 +608,60 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="err">假设已经注册好的服务也获得了</span><span class="n">IServiceProvider实例</span><span class="p">:</span> 
-<span class="n">IServiceCollection</span> <span class="n">services</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ServiceCollection</span><span class="p">();</span>
-<span class="c1">// 忽略服务注册的代码
-</span><span class="c1"></span>
-<span class="n">IServiceProvider</span> <span class="n">serviceProvider</span> <span class="p">=</span> <span class="n">services</span><span class="p">.</span><span class="n">BuildServiceProvider</span><span class="p">();</span>
-
-<span class="err">获取服务实例的代码如下：</span>
-
-<span class="c1">// 指定类型获取服务实例
-</span><span class="c1"></span><span class="kt">object</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IMyService</span><span class="p">));</span>
-
-<span class="c1">// 泛型方法指定类型获取服务实例
-</span><span class="c1"></span><span class="n">IMyService</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="err">假设已经注册好的服务也获得了</span><span class="n">IServiceProvider实例</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl"><span class="n">IServiceCollection</span> <span class="n">services</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ServiceCollection</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 忽略服务注册的代码</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">IServiceProvider</span> <span class="n">serviceProvider</span> <span class="p">=</span> <span class="n">services</span><span class="p">.</span><span class="n">BuildServiceProvider</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">获取服务实例的代码如下：</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 指定类型获取服务实例</span>
+</span></span><span class="line"><span class="cl"><span class="kt">object</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IMyService</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 泛型方法指定类型获取服务实例</span>
+</span></span><span class="line"><span class="cl"><span class="n">IMyService</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面的代码中, 如果要获取的服务类型没有注册在容器中,, 则返回null; 如果我们期望在服务未被注册的情形下抛出异常而不是返回null,</p>
 <p>则可以调用GetRequiredService方法. 如果服务未被注册, 则会抛出异常InvalidOperationException并显示服务未被注册. GetRequiredService方法在服务不可为空的场景下非常有用, 有了该方法我们就无需重复地编写验证空服务的代码:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// 指定类型获取服务实例
-</span><span class="c1"></span><span class="kt">object</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IMyService</span><span class="p">));</span>
-
-<span class="c1">// 泛型方法指定类型获取服务实例
-</span><span class="c1"></span><span class="n">IMyService</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="c1">// 指定类型获取服务实例</span>
+</span></span><span class="line"><span class="cl"><span class="kt">object</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IMyService</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 泛型方法指定类型获取服务实例</span>
+</span></span><span class="line"><span class="cl"><span class="n">IMyService</span> <span class="n">myService</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">IMyService</span><span class="p">&gt;();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在实际的应用程序中, 当我们为同一类型重复注册, GetService方法会以最后注册的生命周期和构造方法为准. 我们也可以通过复数方法GetServices来获得一个实例集合, 它对应了为同一类型的多个注册:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// 指定类型, 获取object实例集合
-</span><span class="c1"></span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;</span> <span class="n">myServiceList</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IMyService</span><span class="p">));</span>
-
-<span class="c1">// 泛型方法, 获取指定类型的实例集合
-</span><span class="c1"></span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">myServiceList</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="c1">// 指定类型, 获取object实例集合</span>
+</span></span><span class="line"><span class="cl"><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;</span> <span class="n">myServiceList</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IMyService</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 泛型方法, 获取指定类型的实例集合</span>
+</span></span><span class="line"><span class="cl"><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">myServiceList</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在ASP.NET Core应用中, 我们可以看到Startup类的Configure有一个IApplicationBuilder类型的入参:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -678,27 +678,27 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">Startup</span>
-<span class="p">{</span>
-    <span class="c1">// some code
-</span><span class="c1"></span>	 <span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
-     <span class="p">{</span>
-		<span class="c1">// 服务注册
-</span><span class="c1"></span>     <span class="p">}</span>
-    
-     <span class="k">public</span> <span class="k">void</span> <span class="n">Configure</span><span class="p">(</span><span class="n">IApplicationBuilder</span> <span class="n">app</span><span class="p">,</span> <span class="n">IWebHostEnvironment</span> <span class="n">env</span><span class="p">)</span>
-     <span class="p">{</span>
-          <span class="c1">// 根容器
-</span><span class="c1"></span>          <span class="kt">var</span> <span class="n">rootServiceProvider</span> <span class="p">=</span> <span class="n">app</span><span class="p">.</span><span class="n">ApplicationServices</span><span class="p">;</span> 
-         <span class="c1">// some code
-</span><span class="c1"></span>     <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Startup</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// some code</span>
+</span></span><span class="line"><span class="cl">	 <span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 服务注册</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">     <span class="k">public</span> <span class="k">void</span> <span class="n">Configure</span><span class="p">(</span><span class="n">IApplicationBuilder</span> <span class="n">app</span><span class="p">,</span> <span class="n">IWebHostEnvironment</span> <span class="n">env</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">// 根容器</span>
+</span></span><span class="line"><span class="cl">          <span class="kt">var</span> <span class="n">rootServiceProvider</span> <span class="p">=</span> <span class="n">app</span><span class="p">.</span><span class="n">ApplicationServices</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">         <span class="c1">// some code</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>查看一下IApplicationBuilder接口的代码, 它有一个IServiceProvider类型的属性ApplicationServices, 这个属性就是应用程序的根容器实例. 当我们类访问根容器时, 可以通过接口IApplicationBuilder来获取根容器的实例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -743,57 +743,57 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">43
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IApplicationBuilder</span>
-<span class="p">{</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Gets or sets the System.IServiceProvider that provides access to the application&#39;s
-</span><span class="c1"></span>    <span class="c1">//     service container.
-</span><span class="c1"></span>    <span class="n">IServiceProvider</span> <span class="n">ApplicationServices</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Gets a key/value collection that can be used to share data between middleware.
-</span><span class="c1"></span>    <span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">Properties</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Gets the set of HTTP features the application&#39;s server provides.
-</span><span class="c1"></span>    <span class="n">IFeatureCollection</span> <span class="n">ServerFeatures</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Builds the delegate used by this application to process HTTP requests.
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Returns:
-</span><span class="c1"></span>    <span class="c1">//     The request handling delegate.
-</span><span class="c1"></span>    <span class="n">RequestDelegate</span> <span class="n">Build</span><span class="p">();</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Creates a new Microsoft.AspNetCore.Builder.IApplicationBuilder that shares the
-</span><span class="c1"></span>    <span class="c1">//     Microsoft.AspNetCore.Builder.IApplicationBuilder.Properties of this Microsoft.AspNetCore.Builder.IApplicationBuilder.
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Returns:
-</span><span class="c1"></span>    <span class="c1">//     The new Microsoft.AspNetCore.Builder.IApplicationBuilder.
-</span><span class="c1"></span>    <span class="n">IApplicationBuilder</span> <span class="n">New</span><span class="p">();</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Adds a middleware delegate to the application&#39;s request pipeline.
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Parameters:
-</span><span class="c1"></span>    <span class="c1">//   middleware:
-</span><span class="c1"></span>    <span class="c1">//     The middleware delegate.
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Returns:
-</span><span class="c1"></span>    <span class="c1">//     The Microsoft.AspNetCore.Builder.IApplicationBuilder.
-</span><span class="c1"></span>    <span class="n">IApplicationBuilder</span> <span class="n">Use</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">RequestDelegate</span><span class="p">,</span> <span class="n">RequestDelegate</span><span class="p">&gt;</span> <span class="n">middleware</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">interface</span> <span class="nc">IApplicationBuilder</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Gets or sets the System.IServiceProvider that provides access to the application&#39;s</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     service container.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IServiceProvider</span> <span class="n">ApplicationServices</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Gets a key/value collection that can be used to share data between middleware.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">Properties</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Gets the set of HTTP features the application&#39;s server provides.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IFeatureCollection</span> <span class="n">ServerFeatures</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Builds the delegate used by this application to process HTTP requests.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Returns:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     The request handling delegate.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">RequestDelegate</span> <span class="n">Build</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Creates a new Microsoft.AspNetCore.Builder.IApplicationBuilder that shares the</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Microsoft.AspNetCore.Builder.IApplicationBuilder.Properties of this Microsoft.AspNetCore.Builder.IApplicationBuilder.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Returns:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     The new Microsoft.AspNetCore.Builder.IApplicationBuilder.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IApplicationBuilder</span> <span class="n">New</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Adds a middleware delegate to the application&#39;s request pipeline.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Parameters:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//   middleware:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     The middleware delegate.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Returns:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     The Microsoft.AspNetCore.Builder.IApplicationBuilder.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IApplicationBuilder</span> <span class="n">Use</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">RequestDelegate</span><span class="p">,</span> <span class="n">RequestDelegate</span><span class="p">&gt;</span> <span class="n">middleware</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="作用域与生命周期">作用域与生命周期</h4>
 <p>​		要理解生命周期, 先要去了解概念-Scope(范围的意思), 也就是作用域; Scope本身具有一个生命周期, 就是从它被&quot;创建&quot;到被&quot;回收释放&quot;这个周期. 在Scope生存期间, 将一些对象与其关联, 当Scope回收释放时, 同时也释放与其关联的对象, 就能达到相应的效果, 这些对象的生命周期和Scope的相同, 或者可以理解为这些对象的生命周期由Scope决定;</p>
 <p>​		在依赖注入组件中, 我们将由ServiceCollection通过BuildServiceProvider构造的IServiceProvider实例称为&quot;根容器&quot;,  对应的依赖注入组件提供了一个接口IServiceScope来表示&quot;子作用域&quot;, 我们可以通过扩展方法CreateScope来创建IServiceScope实例.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -802,19 +802,19 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IServiceScope</span> <span class="p">:</span> <span class="n">IDisposable</span>
-<span class="p">{</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     The System.IServiceProvider used to resolve dependencies from the scope.
-</span><span class="c1"></span>    <span class="n">IServiceProvider</span> <span class="n">ServiceProvider</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">interface</span> <span class="nc">IServiceScope</span> <span class="p">:</span> <span class="n">IDisposable</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     The System.IServiceProvider used to resolve dependencies from the scope.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IServiceProvider</span> <span class="n">ServiceProvider</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>下面的代码定义了创建IServiceScope的方法:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -823,20 +823,20 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">IServiceCollection</span> <span class="n">services</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ServiceCollection</span><span class="p">();</span>
-
-<span class="c1">// ignore service register code here
-</span><span class="c1"></span><span class="n">IServiceProvider</span> <span class="n">serviceProvider</span> <span class="p">=</span> <span class="n">services</span><span class="p">.</span><span class="n">BuildServiceProvider</span><span class="p">();</span>
-
-<span class="c1">// 创建了子容器
-</span><span class="c1"></span><span class="n">IServiceScope</span> <span class="n">scope</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">CreateScope</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">IServiceCollection</span> <span class="n">services</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ServiceCollection</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// ignore service register code here</span>
+</span></span><span class="line"><span class="cl"><span class="n">IServiceProvider</span> <span class="n">serviceProvider</span> <span class="p">=</span> <span class="n">services</span><span class="p">.</span><span class="n">BuildServiceProvider</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 创建了子容器</span>
+</span></span><span class="line"><span class="cl"><span class="n">IServiceScope</span> <span class="n">scope</span> <span class="p">=</span> <span class="n">serviceProvider</span><span class="p">.</span><span class="n">CreateScope</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​		实际上IServiceScope的实例是由接口IServiceScopeFactory来负责创建的, 上面示例代码中的扩展方法CreateScope的内部实现逻辑是从IServiceScopeFactory, 然后调用IServiceScopeFactory的CreateScope, 当我们构造好一个IServiceProvider容器时, 其内部实际上已经注入了IServiceScopeFactory, 这一切在依赖注入的内部实现了;</p>
 <p>​	来看一下IServiceScopeFactory的定义:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -853,27 +853,27 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IServiceScopeFactory</span>
-<span class="p">{</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Create an Microsoft.Extensions.DependencyInjection.IServiceScope which contains
-</span><span class="c1"></span>    <span class="c1">//     an System.IServiceProvider used to resolve dependencies from a newly created
-</span><span class="c1"></span>    <span class="c1">//     scope.
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Returns:
-</span><span class="c1"></span>    <span class="c1">//     An Microsoft.Extensions.DependencyInjection.IServiceScope controlling the lifetime
-</span><span class="c1"></span>    <span class="c1">//     of the scope. Once this is disposed, any scoped services that have been resolved
-</span><span class="c1"></span>    <span class="c1">//     from the Microsoft.Extensions.DependencyInjection.IServiceScope.ServiceProvider
-</span><span class="c1"></span>    <span class="c1">//     will also be disposed.
-</span><span class="c1"></span>    <span class="n">IServiceScope</span> <span class="n">CreateScope</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">interface</span> <span class="nc">IServiceScopeFactory</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Create an Microsoft.Extensions.DependencyInjection.IServiceScope which contains</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     an System.IServiceProvider used to resolve dependencies from a newly created</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     scope.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Returns:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     An Microsoft.Extensions.DependencyInjection.IServiceScope controlling the lifetime</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     of the scope. Once this is disposed, any scoped services that have been resolved</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     from the Microsoft.Extensions.DependencyInjection.IServiceScope.ServiceProvider</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     will also be disposed.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IServiceScope</span> <span class="n">CreateScope</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>前面展示的ServiceDescriptor的定义中, 其生命周期由枚举ServiceLifetime来定义:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -894,26 +894,26 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">enum</span> <span class="n">ServiceLifetime</span>
-<span class="p">{</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Specifies that a single instance of the service will be created.
-</span><span class="c1"></span>    <span class="n">Singleton</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Specifies that a new instance of the service will be created for each scope.
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Remarks:
-</span><span class="c1"></span>    <span class="c1">//     In ASP.NET Core applications a scope is created around each server request.
-</span><span class="c1"></span>    <span class="n">Scoped</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Specifies that a new instance of the service will be created every time it is
-</span><span class="c1"></span>    <span class="c1">//     requested.
-</span><span class="c1"></span>    <span class="n">Transient</span> <span class="p">=</span> <span class="m">2</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">enum</span> <span class="n">ServiceLifetime</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Specifies that a single instance of the service will be created.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Singleton</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Specifies that a new instance of the service will be created for each scope.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Remarks:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     In ASP.NET Core applications a scope is created around each server request.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Scoped</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Specifies that a new instance of the service will be created every time it is</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     requested.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Transient</span> <span class="p">=</span> <span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里说到的生命周期决定了我们调用GetService来获取服务实例时的行为:</p>
 <ul>
@@ -933,7 +933,7 @@ Microsoft.Extensions.DependencyInjection;
 <p>在.netcore中, 框架会为每个HTTP请求创建一个Scope, 这样可以为不同的请求创建其需要的服务, 避免请求之间的相互影响, 例如将数据库连接对象注册为Scoped, 类型HttpContext表示一个Http请求的上下文,  可以通过它的RequiredServices属性来访问请求子容器:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -992,64 +992,64 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">57
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">HttpContext</span>
-<span class="p">{</span>
-        <span class="k">protected</span> <span class="n">HttpContext</span><span class="p">();</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Gets information about the underlying connection for this request.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">ConnectionInfo</span> <span class="n">Connection</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Gets the collection of HTTP features provided by the server and middleware available
-</span><span class="c1"></span>        <span class="c1">//     on this request.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">IFeatureCollection</span> <span class="n">Features</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Gets or sets a key/value collection that can be used to share data within the
-</span><span class="c1"></span>        <span class="c1">//     scope of this request.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">Items</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Gets the Microsoft.AspNetCore.Http.HttpRequest object for this request.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">HttpRequest</span> <span class="n">Request</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Notifies when the connection underlying this request is aborted and thus request
-</span><span class="c1"></span>        <span class="c1">//     operations should be cancelled.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">CancellationToken</span> <span class="n">RequestAborted</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Gets or sets the System.IServiceProvider that provides access to the request&#39;s
-</span><span class="c1"></span>        <span class="c1">//     service container.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">IServiceProvider</span> <span class="n">RequestServices</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Gets the Microsoft.AspNetCore.Http.HttpResponse object for this request.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">HttpResponse</span> <span class="n">Response</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Gets or sets the object used to manage user session data for this request.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">ISession</span> <span class="n">Session</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Gets or sets a unique identifier to represent this request in trace logs.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="kt">string</span> <span class="n">TraceIdentifier</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Gets or sets the user for this request.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">ClaimsPrincipal</span> <span class="n">User</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Gets an object that manages the establishment of WebSocket connections for this
-</span><span class="c1"></span>        <span class="c1">//     request.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="n">WebSocketManager</span> <span class="n">WebSockets</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
-        <span class="c1">//
-</span><span class="c1"></span>        <span class="c1">// Summary:
-</span><span class="c1"></span>        <span class="c1">//     Aborts the connection underlying this request.
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="n">Abort</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">HttpContext</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">protected</span> <span class="n">HttpContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Gets information about the underlying connection for this request.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="n">ConnectionInfo</span> <span class="n">Connection</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Gets the collection of HTTP features provided by the server and middleware available</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     on this request.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="n">IFeatureCollection</span> <span class="n">Features</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Gets or sets a key/value collection that can be used to share data within the</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     scope of this request.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">Items</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Gets the Microsoft.AspNetCore.Http.HttpRequest object for this request.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="n">HttpRequest</span> <span class="n">Request</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Notifies when the connection underlying this request is aborted and thus request</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     operations should be cancelled.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="n">CancellationToken</span> <span class="n">RequestAborted</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Gets or sets the System.IServiceProvider that provides access to the request&#39;s</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     service container.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="n">IServiceProvider</span> <span class="n">RequestServices</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Gets the Microsoft.AspNetCore.Http.HttpResponse object for this request.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="n">HttpResponse</span> <span class="n">Response</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Gets or sets the object used to manage user session data for this request.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="n">ISession</span> <span class="n">Session</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Gets or sets a unique identifier to represent this request in trace logs.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="kt">string</span> <span class="n">TraceIdentifier</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Gets or sets the user for this request.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="n">ClaimsPrincipal</span> <span class="n">User</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Gets an object that manages the establishment of WebSocket connections for this</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     request.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="n">WebSocketManager</span> <span class="n">WebSockets</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">//</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     Aborts the connection underlying this request.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="n">Abort</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="idisposable与生命周期">IDisposable与生命周期</h4>
 <p>​	C#是类型安全的语言, 通常不需关心对象的回收, 由垃圾回收机制(GC)来负责回收那些不再使用的对象实例, 但是垃圾回收机制回收对象并不是实时的, 因此当对象使用了网络链接, 线程, 文件等资源时, 就需要在使用完成后立即释放这些资源, 以避免资源耗尽的情况; 一般约定类型实现IDispoable接口来表示其使用了系统资源, 需要在使用完成之后调用Dispose方法来主动释放资源;</p>
@@ -1102,7 +1102,7 @@ Microsoft.Extensions.DependencyInjection;
 <p>其接口定义如下:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1129,32 +1129,32 @@ Microsoft.Extensions.DependencyInjection;
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IServiceProviderFactory</span><span class="p">&lt;</span><span class="n">TContainerBuilder</span><span class="p">&gt;</span>
-<span class="p">{</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Creates a container builder from an Microsoft.Extensions.DependencyInjection.IServiceCollection.
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Parameters:
-</span><span class="c1"></span>    <span class="c1">//   services:
-</span><span class="c1"></span>    <span class="c1">//     The collection of services
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Returns:
-</span><span class="c1"></span>    <span class="c1">//     A container builder that can be used to create an System.IServiceProvider.
-</span><span class="c1"></span>    <span class="n">TContainerBuilder</span> <span class="n">CreateBuilder</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">);</span>
-    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Summary:
-</span><span class="c1"></span>    <span class="c1">//     Creates an System.IServiceProvider from the container builder.
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Parameters:
-</span><span class="c1"></span>    <span class="c1">//   containerBuilder:
-</span><span class="c1"></span>    <span class="c1">//     The container builder
-</span><span class="c1"></span>    <span class="c1">//
-</span><span class="c1"></span>    <span class="c1">// Returns:
-</span><span class="c1"></span>    <span class="c1">//     An System.IServiceProvider
-</span><span class="c1"></span>    <span class="n">IServiceProvider</span> <span class="n">CreateServiceProvider</span><span class="p">(</span><span class="n">TContainerBuilder</span> <span class="n">containerBuilder</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">interface</span> <span class="nc">IServiceProviderFactory</span><span class="p">&lt;</span><span class="n">TContainerBuilder</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Creates a container builder from an Microsoft.Extensions.DependencyInjection.IServiceCollection.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Parameters:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//   services:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     The collection of services</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Returns:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     A container builder that can be used to create an System.IServiceProvider.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TContainerBuilder</span> <span class="n">CreateBuilder</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Summary:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     Creates an System.IServiceProvider from the container builder.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Parameters:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//   containerBuilder:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     The container builder</span>
+</span></span><span class="line"><span class="cl">    <span class="p">//</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Returns:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//     An System.IServiceProvider</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IServiceProvider</span> <span class="n">CreateServiceProvider</span><span class="p">(</span><span class="n">TContainerBuilder</span> <span class="n">containerBuilder</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在上面的定义中, 泛型类型参数TContainerBuilder表示自定义的容器构造器类型,  CreateBuilder方法实现了从IServiceCollection构造TContainerBuilder的能力,</p>
 <p>CreateServiceProvider提供了从TContainerBuilder构造IServiceProvider的能力, 最终应用程序通过IServiceProvider来获取服务, 而无需进行修改; 工作过程如图所示:</p>
@@ -1183,17 +1183,17 @@ Microsoft.Extensions.DependencyInjection;
 <p>默认情况下, Controller实例的构造是由.netcore框架来负责的, 而不是由容器负责的, 因此当使用第三方组件来扩展其他能力(如AOP, 属性注入等)时, 对于Controller本身并不会生效. 如果要使用容器来负责Controller的构造, 需要在Startup类的ConfigureServices方法中加入AddControllersAsServices方法, 具体代码如下:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"> <span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
- <span class="p">{</span>
-     <span class="n">services</span><span class="p">.</span><span class="n">AddControllers</span><span class="p">().</span><span class="n">AddControllersAsServices</span><span class="p">();</span>   
- <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"> <span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">services</span><span class="p">.</span><span class="n">AddControllers</span><span class="p">().</span><span class="n">AddControllersAsServices</span><span class="p">();</span>   
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

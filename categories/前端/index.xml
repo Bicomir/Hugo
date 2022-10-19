@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>前端面试题-来自分享</title>
+      <link>https://bomir.top/post/frount-end-share/</link>
+      <pubDate>Sun, 06 May 2018 17:17:14 +0000</pubDate>
+      
+      <guid>https://bomir.top/post/frount-end-share/</guid>
+      <description>==1. 如何解决跨域问题== JSONP： 原理是：动态插入script标签，通过script标签引入一个js文件，这个js文件载入成功后会执行我们在</description>
+    </item>
+    
+    <item>
       <title>前端其他问题-来自分享</title>
       <link>https://bomir.top/post/frount-end-others/</link>
       <pubDate>Sun, 06 May 2018 17:17:14 +0000</pubDate>
@@ -32,15 +41,6 @@
       
       <guid>https://bomir.top/post/frount-end-materials/</guid>
       <description>前端知识结构 https://github.com/JacksonTian/fks 前端入门：https://github.com/qiu-deqing/FE-learning 博客： https://www.xuanfengge.com https://www.w3cplus.com/ https://www.w3ctech.com/ http://www.css88.com/ https://www.qianduan.net/ http://www.ruanyifeng.com/blog/ http://javascript.ruanyifeng.com/ http://es6.ruanyifeng.com/ 书籍：htt</description>
-    </item>
-    
-    <item>
-      <title>前端面试题-来自分享</title>
-      <link>https://bomir.top/post/frount-end-share/</link>
-      <pubDate>Sun, 06 May 2018 17:17:14 +0000</pubDate>
-      
-      <guid>https://bomir.top/post/frount-end-share/</guid>
-      <description>==1. 如何解决跨域问题== JSONP： 原理是：动态插入script标签，通过script标签引入一个js文件，这个js文件载入成功后会执行我们在</description>
     </item>
     
   </channel>

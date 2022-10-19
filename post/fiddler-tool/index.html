@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/fiddler-tool/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -870,61 +870,61 @@ HTTP/1.1中定义了5类状态码， 状态码由三位数字组成，第一个�
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">static</span> <span class="kd">function</span> <span class="nx">OnBeforeRequest</span><span class="p">(</span><span class="nx">oSession</span><span class="o">:</span> <span class="nx">Session</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">static</span> <span class="kd">function</span> <span class="nx">OnBeforeRequest</span><span class="p">(</span><span class="nx">oSession</span><span class="o">:</span> <span class="nx">Session</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>在这个方法中修改修改Response的内容</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">static</span> <span class="kd">function</span> <span class="nx">OnBeforeResponse</span><span class="p">(</span><span class="nx">oSession</span><span class="o">:</span> <span class="nx">Session</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">static</span> <span class="kd">function</span> <span class="nx">OnBeforeResponse</span><span class="p">(</span><span class="nx">oSession</span><span class="o">:</span> <span class="nx">Session</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>在IP Main方法中添加</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">FiddlerObject</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">lvSessions</span><span class="p">.</span><span class="nx">AddBoundColumn</span><span class="p">(</span><span class="s2">&#34;HostIP&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="s2">&#34;x-hostIP&#34;</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">FiddlerObject</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">lvSessions</span><span class="p">.</span><span class="nx">AddBoundColumn</span><span class="p">(</span><span class="s2">&#34;HostIP&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="s2">&#34;x-hostIP&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>请求，响应延迟 在OnBeforeRequest 添加</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">oSession</span><span class="p">[</span><span class="s2">&#34;request-trickle-delay&#34;</span><span class="p">]</span>  <span class="o">=</span> <span class="s2">&#34;3000&#34;</span><span class="p">;</span> 
-<span class="nx">oSession</span><span class="p">[</span><span class="s2">&#34;response-trickle-delay&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;3000&#34;</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">oSession</span><span class="p">[</span><span class="s2">&#34;request-trickle-delay&#34;</span><span class="p">]</span>  <span class="o">=</span> <span class="s2">&#34;3000&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">oSession</span><span class="p">[</span><span class="s2">&#34;response-trickle-delay&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;3000&#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>我们可以控制Session在Fiddler中显示的样式，把这段脚本放在OnBeforeRequest(oSession: Session) 方法下，并且点击&quot;Save script&quot;, 这样所有的cnblogs的会话都会显示红色.</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"> <span class="k">if</span> <span class="p">(</span><span class="nx">oSession</span><span class="p">.</span><span class="nx">HostnameIs</span><span class="p">(</span><span class="s2">&#34;www.cnblogs.com&#34;</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nx">oSession</span><span class="p">[</span><span class="s2">&#34;ui-color&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
-        <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"> <span class="k">if</span> <span class="p">(</span><span class="nx">oSession</span><span class="p">.</span><span class="nx">HostnameIs</span><span class="p">(</span><span class="s2">&#34;www.cnblogs.com&#34;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">oSession</span><span class="p">[</span><span class="s2">&#34;ui-color&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Fiddler Script中修改Cookie
@@ -932,7 +932,7 @@ Cookie其实就是request 中的一个header,注意:FiddlerScript不能直接删
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -946,48 +946,48 @@ Cookie其实就是request 中的一个header,注意:FiddlerScript不能直接删
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">static</span> <span class="kd">function</span> <span class="nx">OnBeforeRequest</span><span class="p">(</span><span class="nx">oSession</span><span class="o">:</span> <span class="nx">Session</span><span class="p">)</span> 
-<span class="p">{</span> 
-     <span class="k">if</span> <span class="p">(</span><span class="nx">oSession</span><span class="p">.</span><span class="nx">HostnameIs</span><span class="p">(</span><span class="s1">&#39;www.example.com&#39;</span><span class="p">)</span>
-       <span class="o">&amp;&amp;</span> <span class="nx">oSession</span><span class="p">.</span><span class="nx">uriContains</span><span class="p">(</span><span class="s1">&#39;pagewithCookie&#39;</span><span class="p">)</span> 
-       <span class="o">&amp;&amp;</span> <span class="nx">oSession</span><span class="p">.</span><span class="nx">oRequest</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">Contains</span><span class="p">(</span><span class="s2">&#34;Cookie&#34;</span><span class="p">))</span> 
-     <span class="p">{</span> 
-         <span class="kd">var</span> <span class="nx">sCookie</span> <span class="o">=</span> <span class="nx">oSession</span><span class="p">.</span><span class="nx">oRequest</span><span class="p">[</span><span class="s2">&#34;Cookie&#34;</span><span class="p">];</span> 
-         
-         <span class="c1">// 用replace方法或者正则表达式的方法去操作cookie的string
-</span><span class="c1"></span>         <span class="nx">sCookie</span> <span class="o">=</span> <span class="nx">sCookie</span><span class="p">.</span><span class="nx">Replace</span><span class="p">(</span><span class="s2">&#34;cookieName=&#34;</span><span class="p">,</span> <span class="s2">&#34;ignoreme=&#34;</span><span class="p">);</span> 
-         <span class="nx">oSession</span><span class="p">.</span><span class="nx">oRequest</span><span class="p">[</span><span class="s2">&#34;Cookie&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">sCookie</span><span class="p">;</span> 
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">static</span> <span class="kd">function</span> <span class="nx">OnBeforeRequest</span><span class="p">(</span><span class="nx">oSession</span><span class="o">:</span> <span class="nx">Session</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="p">(</span><span class="nx">oSession</span><span class="p">.</span><span class="nx">HostnameIs</span><span class="p">(</span><span class="s1">&#39;www.example.com&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="o">&amp;&amp;</span> <span class="nx">oSession</span><span class="p">.</span><span class="nx">uriContains</span><span class="p">(</span><span class="s1">&#39;pagewithCookie&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">       <span class="o">&amp;&amp;</span> <span class="nx">oSession</span><span class="p">.</span><span class="nx">oRequest</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">Contains</span><span class="p">(</span><span class="s2">&#34;Cookie&#34;</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl">     <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">         <span class="kd">var</span> <span class="nx">sCookie</span> <span class="o">=</span> <span class="nx">oSession</span><span class="p">.</span><span class="nx">oRequest</span><span class="p">[</span><span class="s2">&#34;Cookie&#34;</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">         <span class="c1">// 用replace方法或者正则表达式的方法去操作cookie的string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>         <span class="nx">sCookie</span> <span class="o">=</span> <span class="nx">sCookie</span><span class="p">.</span><span class="nx">Replace</span><span class="p">(</span><span class="s2">&#34;cookieName=&#34;</span><span class="p">,</span> <span class="s2">&#34;ignoreme=&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">         <span class="nx">oSession</span><span class="p">.</span><span class="nx">oRequest</span><span class="p">[</span><span class="s2">&#34;Cookie&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">sCookie</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>删除所有的cookie</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">oSession</span><span class="p">.</span><span class="nx">oRequest</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">Remove</span><span class="p">(</span><span class="s2">&#34;Cookie&#34;</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">oSession</span><span class="p">.</span><span class="nx">oRequest</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">Remove</span><span class="p">(</span><span class="s2">&#34;Cookie&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>新建cookie</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">oSession</span><span class="p">.</span><span class="nx">oRequest</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="s2">&#34;Cookie&#34;</span><span class="p">,</span> <span class="s2">&#34;username=testname;testpassword=P@ssword1&#34;</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">oSession</span><span class="p">.</span><span class="nx">oRequest</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="s2">&#34;Cookie&#34;</span><span class="p">,</span> <span class="s2">&#34;username=testname;testpassword=P@ssword1&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Fiddler Script中修改Request 中的body</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1006,24 +1006,24 @@ Cookie其实就是request 中的一个header,注意:FiddlerScript不能直接删
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">static</span> <span class="kd">function</span> <span class="nx">OnBeforeRequest</span><span class="p">(</span><span class="nx">oSession</span><span class="o">:</span> <span class="nx">Session</span><span class="p">)</span> 
-<span class="p">{</span> 
-    <span class="k">if</span><span class="p">(</span><span class="nx">oSession</span><span class="p">.</span><span class="nx">uriContains</span><span class="p">(</span><span class="s2">&#34;http://www.cnblogs.com/&#34;</span><span class="p">))</span>
-    <span class="p">{</span>
-        <span class="c1">// 获取Request中的body字符串
-</span><span class="c1"></span>        <span class="kd">var</span> <span class="nx">strBody</span><span class="o">=</span><span class="nx">oSession</span><span class="p">.</span><span class="nx">GetRequestBodyAsString</span><span class="p">();</span>
-        
-        <span class="c1">// 用正则表达式或者replace方法去修改string
-</span><span class="c1"></span>        <span class="nx">strBody</span><span class="o">=</span><span class="nx">strBody</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;1111&#34;</span><span class="p">,</span><span class="s2">&#34;2222&#34;</span><span class="p">);</span>
-        
-        <span class="c1">// 弹个对话框检查下修改后的body               
-</span><span class="c1"></span>        <span class="nx">FiddlerObject</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="nx">strBody</span><span class="p">);</span>
-        
-        <span class="c1">// 将修改后的body，重新写回Request中
-</span><span class="c1"></span>        <span class="nx">oSession</span><span class="p">.</span><span class="nx">utilSetRequestBody</span><span class="p">(</span><span class="nx">strBody</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">static</span> <span class="kd">function</span> <span class="nx">OnBeforeRequest</span><span class="p">(</span><span class="nx">oSession</span><span class="o">:</span> <span class="nx">Session</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">oSession</span><span class="p">.</span><span class="nx">uriContains</span><span class="p">(</span><span class="s2">&#34;http://www.cnblogs.com/&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获取Request中的body字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kd">var</span> <span class="nx">strBody</span><span class="o">=</span><span class="nx">oSession</span><span class="p">.</span><span class="nx">GetRequestBodyAsString</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// 用正则表达式或者replace方法去修改string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">strBody</span><span class="o">=</span><span class="nx">strBody</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;1111&#34;</span><span class="p">,</span><span class="s2">&#34;2222&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// 弹个对话框检查下修改后的body               
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">FiddlerObject</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="nx">strBody</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// 将修改后的body，重新写回Request中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">oSession</span><span class="p">.</span><span class="nx">utilSetRequestBody</span><span class="p">(</span><span class="nx">strBody</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><a href="https://visualstudiogallery.msdn.microsoft.com/872d27ee-38c7-4a97-98dc-0d8a431cc2ed">Vs插件</a></p>
 <h5 id="三方插件">三方插件</h5>

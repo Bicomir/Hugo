@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/tail-to-head/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -69,7 +69,7 @@
 <meta itemprop="name" content="从尾到头打印链表">
 <meta itemprop="description" content="从尾到头打印链表 来源： https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035 描述 输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。 如输入{1,2,3}的链表如下图: 返回"><meta itemprop="datePublished" content="2019-01-20T18:56:34+00:00" />
 <meta itemprop="dateModified" content="2019-01-20T18:56:34+00:00" />
-<meta itemprop="wordCount" content="1338">
+<meta itemprop="wordCount" content="1337">
 <meta itemprop="keywords" content="剑指offer," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="从尾到头打印链表"/>
 <meta name="twitter:description" content="从尾到头打印链表 来源： https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035 描述 输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。 如输入{1,2,3}的链表如下图: 返回"/>
@@ -344,7 +344,7 @@
             <a href="https://bomir.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"> 数据结构和算法 </a>
             
           </div>
-        <span class="more-meta"> 约 1338 字 </span>
+        <span class="more-meta"> 约 1337 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
 
         
@@ -386,24 +386,24 @@
 <h2 id="示例1">示例1</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">输入：<span class="o">{</span>1,2,3<span class="o">}</span>
-返回值：<span class="o">[</span>3,2,1<span class="o">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">输入：<span class="o">{</span>1,2,3<span class="o">}</span>
+</span></span><span class="line"><span class="cl">返回值：<span class="o">[</span>3,2,1<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="示例2">示例2</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">输入：<span class="o">{</span>67,0,24,58<span class="o">}</span>
-返回值：<span class="o">[</span>58,24,0,67<span class="o">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">输入：<span class="o">{</span>67,0,24,58<span class="o">}</span>
+</span></span><span class="line"><span class="cl">返回值：<span class="o">[</span>58,24,0,67<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="思路">思路</h2>
 <blockquote>
@@ -413,7 +413,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -428,31 +428,29 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 定义链表结构
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">ListNode</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">Val</span>  <span class="kt">int</span>
-	<span class="nx">Next</span> <span class="o">*</span><span class="nx">ListNode</span>
-<span class="p">}</span>
-
-<span class="c1">// 打印链表
-</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="nf">readLink</span><span class="p">()</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">result</span> <span class="p">[]</span><span class="kt">int</span>
-	<span class="k">for</span> <span class="nx">l</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">result</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">l</span><span class="p">.</span><span class="nx">Val</span><span class="p">)</span>
-		<span class="nx">l</span> <span class="p">=</span> <span class="nx">l</span><span class="p">.</span><span class="nx">Next</span>
-	<span class="p">}</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 定义链表结构
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">ListNode</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Val</span>  <span class="kt">int</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Next</span> <span class="o">*</span><span class="nx">ListNode</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 打印链表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="nf">readLink</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">result</span> <span class="p">[]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">l</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">result</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">l</span><span class="p">.</span><span class="nx">Val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">l</span> <span class="p">=</span> <span class="nx">l</span><span class="p">.</span><span class="nx">Next</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>ps: my ugly code</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -521,79 +519,79 @@
 </span><span class="lnt">67
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-<span class="kn">import</span> <span class="p">.</span> <span class="s">&#34;nc_tools&#34;</span>
-<span class="kn">import</span> <span class="s">&#34;errors&#34;</span>
-<span class="cm">/*
-</span><span class="cm"> * type ListNode struct{
-</span><span class="cm"> *   Val int
-</span><span class="cm"> *   Next *ListNode
-</span><span class="cm"> * }
-</span><span class="cm"> */</span>
-
-<span class="cm">/**
-</span><span class="cm"> * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
-</span><span class="cm"> * 
-</span><span class="cm"> * @param head ListNode类 
-</span><span class="cm"> * @return int整型一维数组
-</span><span class="cm">*/</span><span class="c1">// 实现一个栈
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Stack</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span>
-
-<span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="o">*</span><span class="nx">Stack</span><span class="p">)</span> <span class="nf">Push</span><span class="p">(</span><span class="nx">value</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
-	<span class="o">*</span><span class="nx">stack</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="o">*</span><span class="nx">stack</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="nx">Stack</span><span class="p">)</span> <span class="nf">Top</span><span class="p">()</span> <span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;Out of index, len is 0&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="nx">stack</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="kc">nil</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="o">*</span><span class="nx">Stack</span><span class="p">)</span> <span class="nf">Pop</span><span class="p">()</span> <span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">theStack</span> <span class="o">:=</span> <span class="o">*</span><span class="nx">stack</span>
-	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">theStack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;out of index, len is 0&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-
-	<span class="nx">value</span> <span class="o">:=</span> <span class="nx">theStack</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">theStack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-	<span class="o">*</span><span class="nx">stack</span> <span class="p">=</span> <span class="nx">theStack</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">theStack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-	<span class="k">return</span> <span class="nx">value</span><span class="p">,</span> <span class="kc">nil</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="nx">Stack</span><span class="p">)</span> <span class="nf">IsEmpty</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
-	<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
-<span class="p">}</span>
-
-
-<span class="kd">func</span> <span class="nf">printListFromTailToHead</span><span class="p">(</span> <span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
-    <span class="c1">// write code here
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">nodeStack</span> <span class="nx">Stack</span>
-	<span class="kd">var</span> <span class="nx">pNode</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">ListNode</span><span class="p">)</span>
-	<span class="nx">pNode</span> <span class="p">=</span> <span class="nx">head</span>
-	<span class="k">for</span> <span class="nx">pNode</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">nodeStack</span><span class="p">.</span><span class="nf">Push</span><span class="p">(</span><span class="nx">pNode</span><span class="p">)</span>
-		<span class="nx">pNode</span> <span class="p">=</span> <span class="nx">pNode</span><span class="p">.</span><span class="nx">Next</span>
-	<span class="p">}</span>
-
-	<span class="kd">var</span> <span class="nx">res</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nodeStack</span><span class="p">))</span>
-	<span class="nx">index</span> <span class="o">:=</span> <span class="mi">0</span>
-	<span class="k">for</span> <span class="p">!</span><span class="nx">nodeStack</span><span class="p">.</span><span class="nf">IsEmpty</span><span class="p">()</span> <span class="p">{</span>
-		<span class="nx">top</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">nodeStack</span><span class="p">.</span><span class="nf">Top</span><span class="p">()</span>
-		<span class="nx">node</span> <span class="o">:=</span> <span class="nx">top</span><span class="p">.(</span><span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span>
-
-		<span class="nx">res</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="p">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">Val</span>
-		<span class="nx">_</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">nodeStack</span><span class="p">.</span><span class="nf">Pop</span><span class="p">()</span>
-		<span class="nx">index</span><span class="o">++</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="nx">res</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">.</span> <span class="s">&#34;nc_tools&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;errors&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * type ListNode struct{
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *   Val int
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *   Next *ListNode
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * }
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param head ListNode类 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return int整型一维数组
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span><span class="c1">// 实现一个栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Stack</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="o">*</span><span class="nx">Stack</span><span class="p">)</span> <span class="nf">Push</span><span class="p">(</span><span class="nx">value</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="nx">stack</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="o">*</span><span class="nx">stack</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="nx">Stack</span><span class="p">)</span> <span class="nf">Top</span><span class="p">()</span> <span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;Out of index, len is 0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">stack</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="o">*</span><span class="nx">Stack</span><span class="p">)</span> <span class="nf">Pop</span><span class="p">()</span> <span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">theStack</span> <span class="o">:=</span> <span class="o">*</span><span class="nx">stack</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">theStack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;out of index, len is 0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">value</span> <span class="o">:=</span> <span class="nx">theStack</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">theStack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="nx">stack</span> <span class="p">=</span> <span class="nx">theStack</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">theStack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">value</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">stack</span> <span class="nx">Stack</span><span class="p">)</span> <span class="nf">IsEmpty</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">printListFromTailToHead</span><span class="p">(</span> <span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span> <span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// write code here
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">nodeStack</span> <span class="nx">Stack</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">pNode</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">ListNode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">pNode</span> <span class="p">=</span> <span class="nx">head</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">pNode</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">nodeStack</span><span class="p">.</span><span class="nf">Push</span><span class="p">(</span><span class="nx">pNode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">pNode</span> <span class="p">=</span> <span class="nx">pNode</span><span class="p">.</span><span class="nx">Next</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">res</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nodeStack</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">index</span> <span class="o">:=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">!</span><span class="nx">nodeStack</span><span class="p">.</span><span class="nf">IsEmpty</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">top</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">nodeStack</span><span class="p">.</span><span class="nf">Top</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">node</span> <span class="o">:=</span> <span class="nx">top</span><span class="p">.(</span><span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">res</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="p">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">Val</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">_</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">nodeStack</span><span class="p">.</span><span class="nf">Pop</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">index</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">res</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	既然都已经用栈来实现了这个函数，我们知道递归本质上就是一个栈结构；很自然的想到了用递归来实现，要想实现反过来输出链表，每访问一个结点的时候，先递归输出它后面的结点，再输出该结点自身， 这样链表的输出结果就反过来了；</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -603,15 +601,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">printListFromTailToHead_Recursively</span><span class="p">(</span><span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="nx">head</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
-		<span class="k">if</span> <span class="nx">head</span><span class="p">.</span><span class="nx">Next</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
-			<span class="nf">printListFromTailToHead_Recursively</span><span class="p">(</span><span class="nx">head</span><span class="p">.</span><span class="nx">Next</span><span class="p">)</span>
-		<span class="p">}</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">head</span><span class="p">.</span><span class="nx">Val</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">printListFromTailToHead_Recursively</span><span class="p">(</span><span class="nx">head</span> <span class="o">*</span><span class="nx">ListNode</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">head</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">head</span><span class="p">.</span><span class="nx">Next</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">printListFromTailToHead_Recursively</span><span class="p">(</span><span class="nx">head</span><span class="p">.</span><span class="nx">Next</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">head</span><span class="p">.</span><span class="nx">Val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面用递归实现的看起简单， 但是是不是就没什么问题？ 答案是否定的；</p>
 <p>当链表非常长的时候，就会导致函数的调用层级很深，进而有可能导致函数的调用栈溢出；相比起来，显式的用栈基于循环实现的代码的鲁棒性要更好一些；</p>
@@ -632,7 +630,7 @@
 <h2 id="高手解法与赏析">高手解法与赏析</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -658,31 +656,31 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/*
-</span><span class="cm">a.实际上是一种往列表头部插入的一个思路了；
-</span><span class="cm">
-</span><span class="cm">b.ArrayList 中有个方法是 add(index,value)，可以指定 index 位置插入 value 值
-</span><span class="cm">所以我们在遍历 listNode 的同时将每个遇到的值插入到 list 的 0 位置，最后输出 listNode 即可得到逆序链表；
-</span><span class="cm">
-</span><span class="cm">c.复杂度
-</span><span class="cm">时间复杂度：O(n)
-</span><span class="cm">空间复杂度：O(n)
-</span><span class="cm">
-</span><span class="cm">*/</span>
-
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">printListFromTailToHead</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">listNode</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-        <span class="n">ListNode</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">listNode</span><span class="o">;</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">tmp</span><span class="o">!=</span><span class="kc">null</span><span class="o">){</span>
-            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">tmp</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
-            <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">a.实际上是一种往列表头部插入的一个思路了；
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">b.ArrayList 中有个方法是 add(index,value)，可以指定 index 位置插入 value 值
+</span></span></span><span class="line"><span class="cl"><span class="cm">所以我们在遍历 listNode 的同时将每个遇到的值插入到 list 的 0 位置，最后输出 listNode 即可得到逆序链表；
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">c.复杂度
+</span></span></span><span class="line"><span class="cl"><span class="cm">时间复杂度：O(n)
+</span></span></span><span class="line"><span class="cl"><span class="cm">空间复杂度：O(n)
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">printListFromTailToHead</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">listNode</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">listNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="o">(</span><span class="n">tmp</span><span class="o">!=</span><span class="kc">null</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">tmp</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

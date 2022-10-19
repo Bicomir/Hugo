@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/net-core-startup_class/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -389,7 +389,7 @@
 <p><a href=""><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -403,19 +403,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">){}</span>
-<span class="k">public</span> <span class="k">void</span> <span class="n">Configure</span><span class="p">(</span><span class="n">IApplicationBuilder</span> <span class="n">app</span><span class="p">,</span> <span class="n">IHostingEnvironment</span> <span class="n">env</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">IsDevelopment</span><span class="p">())</span>
-    <span class="p">{</span>
-        <span class="n">app</span><span class="p">.</span><span class="n">UseDeveloperExceptionPage</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="k">async</span> <span class="p">(</span><span class="n">context</span><span class="p">)</span> <span class="p">=&gt;</span>
-    <span class="p">{</span>
-        <span class="k">await</span> <span class="n">context</span><span class="p">.</span><span class="n">Response</span><span class="p">.</span><span class="n">WriteAsync</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">);</span>
-    <span class="p">});</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">){}</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">Configure</span><span class="p">(</span><span class="n">IApplicationBuilder</span> <span class="n">app</span><span class="p">,</span> <span class="n">IHostingEnvironment</span> <span class="n">env</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">IsDevelopment</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">app</span><span class="p">.</span><span class="n">UseDeveloperExceptionPage</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="k">async</span> <span class="p">(</span><span class="n">context</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">context</span><span class="p">.</span><span class="n">Response</span><span class="p">.</span><span class="n">WriteAsync</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>1.ConfigureServices方法</strong></p>
 <p>ConfigureServices方法是用来注册服务的，Configure方法是用来使用中间件的。</p>
@@ -427,12 +427,12 @@
 <p><img src="https://img-blog.csdn.net/20171220204106257?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvb25seV95dV95eQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
 <p>比如说. 用户认证（Authentication）中间件，MVC中间件，StaticFiles, 日志中间件等等;</p>
 <p>Configure方法配置了Http请求处理的管道，每个Http请求到达之后，会按照Configure方法中的组件来决定如何处理这些请求。</p>
-<p>其中的app.Run方法以及匿名函数，就是不管什么请求到达这里，都会返回 context.Response.WriteAsync(&ldquo;Hello World!&quot;) 响应。</p>
+<p>其中的app.Run方法以及匿名函数，就是不管什么请求到达这里，都会返回 context.Response.WriteAsync(&ldquo;Hello World!&rdquo;) 响应。</p>
 <h3 id="注册服务演示">注册服务演示</h3>
 <p>我们先创建一个IWelcomeService接口以及实现该接口的WelcomeService类</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -445,44 +445,44 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IWelcomeService</span>
-<span class="p">{</span>
-    <span class="kt">string</span> <span class="n">GetMessage</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">public</span> <span class="k">class</span> <span class="nc">WelcomeService</span> <span class="p">:</span> <span class="n">IWelcomeService</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">GetMessage</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="s">&#34;Hello from IWelcomeService&#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">interface</span> <span class="nc">IWelcomeService</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">GetMessage</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">WelcomeService</span> <span class="p">:</span> <span class="n">IWelcomeService</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">string</span> <span class="n">GetMessage</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Hello from IWelcomeService&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后在Startup类Configure方法中使用该接口类型对象，调用接口的GetMessage方法输出</p>
 <p>事实上，运行后我们会发现直接使用是不行的，因为该类型刚还有在ConfigureServices方法中注册。</p>
 <p>下面我们就在ConfigureServices方法中注册接口和实现类。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">public void ConfigureServices(IServiceCollection services)
-{
-    services.AddSingleton&lt;IWelcomeService, WelcomeService&gt;();
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">public void ConfigureServices(IServiceCollection services)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    services.AddSingleton&lt;IWelcomeService, WelcomeService&gt;();
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行后的结果</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Hello from IWelcomeService
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Hello from IWelcomeService
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="注册服务的几种形式">注册服务的几种形式</h3>
 <p>注册服务时，我们使用的是AddSingleton方法，这是以单例的形式依赖注入对象，单例就是指该类型只有一个实例，具体含义和用法可以自行百度。</p>
@@ -507,7 +507,7 @@
 <p>其返回类型也是ReuquestDelegate。ReuquestDelegate类型就是一段可执行的代码，例如下方代码，返回了一个异步Task，Task返回了httpContext对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -523,38 +523,38 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">app</span><span class="p">.</span><span class="n">Use</span><span class="p">(</span><span class="n">next</span> <span class="p">=&gt;</span> 
-<span class="p">{</span>
-    <span class="k">return</span> <span class="k">async</span> <span class="n">httpContext</span> <span class="p">=&gt;</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">httpContext</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">StartsWithSegments</span><span class="p">(</span><span class="s">&#34;/first&#34;</span><span class="p">))</span>
-        <span class="p">{</span>
-            <span class="k">await</span> <span class="n">httpContext</span><span class="p">.</span><span class="n">Response</span><span class="p">.</span><span class="n">WriteAsync</span><span class="p">(</span><span class="s">&#34;First!&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">else</span>
-        <span class="p">{</span>
-            <span class="k">await</span> <span class="n">next</span><span class="p">(</span><span class="n">httpContext</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">app</span><span class="p">.</span><span class="n">Use</span><span class="p">(</span><span class="n">next</span> <span class="p">=&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">async</span> <span class="n">httpContext</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">httpContext</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">StartsWithSegments</span><span class="p">(</span><span class="s">&#34;/first&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">await</span> <span class="n">httpContext</span><span class="p">.</span><span class="n">Response</span><span class="p">.</span><span class="n">WriteAsync</span><span class="p">(</span><span class="s">&#34;First!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">await</span> <span class="n">next</span><span class="p">(</span><span class="n">httpContext</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="异常页面的中间件">异常页面的中间件</h3>
 <p>下方代码首先判断当前环境是不是开发环境，如果是，当出现错误时就会使用开发者异常页面中间件。</p>
 <p>因为开发者需要详细的错误信息，但是这些信息不能直接暴露，否则会被黑客轻易利用，因此只能在开发者环境下才需要调用开发者异常页面中间件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">if (env.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">if (env.IsDevelopment())
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    app.UseDeveloperExceptionPage();
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="判断环境和自定义环境">判断环境和自定义环境</h3>
 <ol>

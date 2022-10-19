@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/redis-interview-1/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -69,7 +69,7 @@
 <meta itemprop="name" content="redis面试连环炮I">
 <meta itemprop="description" content="Redis的面试连环炮I 面试题 Redis和Memcache有什么区别 Redis的线程模型是什么？ Redis的数据类型及应用场景？ 为什么单线程"><meta itemprop="datePublished" content="2020-11-21T22:19:05+00:00" />
 <meta itemprop="dateModified" content="2020-11-21T22:19:05+00:00" />
-<meta itemprop="wordCount" content="17354">
+<meta itemprop="wordCount" content="17353">
 <meta itemprop="keywords" content="redis," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="redis面试连环炮I"/>
 <meta name="twitter:description" content="Redis的面试连环炮I 面试题 Redis和Memcache有什么区别 Redis的线程模型是什么？ Redis的数据类型及应用场景？ 为什么单线程"/>
@@ -344,7 +344,7 @@
             <a href="https://bomir.top/categories/nosql/"> Nosql </a>
             
           </div>
-        <span class="more-meta"> 约 17354 字 </span>
+        <span class="more-meta"> 约 17353 字 </span>
           <span class="more-meta"> 预计阅读 35 分钟 </span>
 
         
@@ -486,7 +486,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -494,13 +494,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">key</span><span class="o">=</span><span class="m">150</span>
-<span class="nv">value</span><span class="o">={</span>
-  <span class="s2">&#34;id&#34;</span>: 150,
-  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;张三&#34;</span>,
-  <span class="s2">&#34;age&#34;</span>: 20,  
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nv">key</span><span class="o">=</span><span class="m">150</span>
+</span></span><span class="line"><span class="cl"><span class="nv">value</span><span class="o">={</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;id&#34;</span>: 150,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;张三&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;age&#34;</span>: 20,  
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Hash类的数据结构，主要用来存放一些对象，把一些简单的对象给缓存起来，后续操作的时候，你可以直接仅仅修改这个对象中某个字段的值。</li>
@@ -539,7 +539,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -564,30 +564,30 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">bomir@morn:~$ redis-cli
-127.0.0.1:6379&gt; 
-127.0.0.1:6379&gt; zadd board <span class="m">85</span> zhangsan
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-127.0.0.1:6379&gt; zadd board <span class="m">72</span> wangwu
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-127.0.0.1:6379&gt; zadd board <span class="m">96</span> lisi
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-127.0.0.1:6379&gt; zadd board <span class="m">62</span> zhaoliu
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-127.0.0.1:6379&gt; zrevrange board <span class="m">0</span> <span class="m">3</span>
-1<span class="o">)</span> <span class="s2">&#34;lisi&#34;</span>
-2<span class="o">)</span> <span class="s2">&#34;zhangsan&#34;</span>
-3<span class="o">)</span> <span class="s2">&#34;wangwu&#34;</span>
-4<span class="o">)</span> <span class="s2">&#34;zhaoliu&#34;</span>
-127.0.0.1:6379&gt; zrank board wangwu
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-127.0.0.1:6379&gt; zrank board zhaoliu
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">0</span>
-127.0.0.1:6379&gt; zrank board lisi
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">3</span>
-127.0.0.1:6379&gt; zrank board zhangsan
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">2</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">bomir@morn:~$ redis-cli
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; 
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; zadd board <span class="m">85</span> zhangsan
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; zadd board <span class="m">72</span> wangwu
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; zadd board <span class="m">96</span> lisi
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; zadd board <span class="m">62</span> zhaoliu
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; zrevrange board <span class="m">0</span> <span class="m">3</span>
+</span></span><span class="line"><span class="cl">1<span class="o">)</span> <span class="s2">&#34;lisi&#34;</span>
+</span></span><span class="line"><span class="cl">2<span class="o">)</span> <span class="s2">&#34;zhangsan&#34;</span>
+</span></span><span class="line"><span class="cl">3<span class="o">)</span> <span class="s2">&#34;wangwu&#34;</span>
+</span></span><span class="line"><span class="cl">4<span class="o">)</span> <span class="s2">&#34;zhaoliu&#34;</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; zrank board wangwu
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; zrank board zhaoliu
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; zrank board lisi
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">3</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; zrank board zhangsan
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">2</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="redis持久化对于生产环境的意义">Redis持久化对于生产环境的意义</h2>
 <p>故障发生时候会怎么样？</p>
@@ -714,13 +714,13 @@
 <p>那既然内存是有限的，比如redis就只能用10个G，你要是往里面写了20个G的数据，会咋办？当然会干掉10个G的数据，然后就保留10个G的数据了。那干掉哪些数据？保留哪些数据？当然是干掉不常用的数据，保留常用的数据了。所以说，这是缓存的一个最基本的概念，数据是会过期的，要么是你自己设置个过期时间，要么是redis自己给干掉。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">set</span> key value 过期时间（1小时）
-set进去的key，1小时之后就没了，就失效了
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">set</span> key value 过期时间（1小时）
+</span></span><span class="line"><span class="cl">set进去的key，1小时之后就没了，就失效了
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="数据明明都过期了怎么还占用着内存啊">数据明明都过期了，怎么还占用着内存啊？</h3>
 <p>还有一种就是如果你设置好了一个过期时间，你知道redis是怎么给你弄成过期的吗？什么时候删除掉？如果你不知道，之前有个学员就问了，为啥好多数据明明应该过期了，结果发现redis内存占用还是很高？那是因为你不知道redis是怎么删除那些过期key的。</p>
@@ -738,7 +738,7 @@ set进去的key，1小时之后就没了，就失效了
 <p>如果redis的内存占用过多的时候，此时会进行内存淘汰，有如下一些策略：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -747,14 +747,14 @@ set进去的key，1小时之后就没了，就失效了
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">redis 10个key，现在已经满了，redis需要删除掉5个key
-
-1个key，最近1分钟被查询了100次
-
-1个key，最近10分钟被查询了50次
-
-1个key，最近1个小时倍查询了1次
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">redis 10个key，现在已经满了，redis需要删除掉5个key
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1个key，最近1分钟被查询了100次
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1个key，最近10分钟被查询了50次
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1个key，最近1个小时倍查询了1次
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>1）noeviction：当内存不足以容纳新写入数据时，新写入操作会报错，这个一般没人用吧，实在是太恶心了</p>
 <p>2）allkeys-lru：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的key（这个是最常用的）</p>
@@ -767,7 +767,7 @@ set进去的key，1小时之后就没了，就失效了
 <p>Java版本的LRU</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -782,26 +782,24 @@ set进去的key，1小时之后就没了，就失效了
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Java" data-lang="Java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LRUCache</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="o">{</span>
-    
-	<span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">CACHE_SIZE</span><span class="o">;</span>
-
-    <span class="c1">// 这里就是传递进来最多能缓存多少数据
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="nf">LRUCache</span><span class="o">(</span><span class="kt">int</span> <span class="n">cacheSize</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">cacheSize</span> <span class="o">/</span> <span class="n">0</span><span class="o">.</span><span class="na">75</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">75f</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span> <span class="c1">// 这块就是设置一个hashmap的初始大小，同时最后一个true指的是让linkedhashmap按照访问顺序来进行排序，最近访问的放在头，最老访问的就在尾
-</span><span class="c1"></span>        <span class="n">CACHE_SIZE</span> <span class="o">=</span> <span class="n">cacheSize</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">removeEldestEntry</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span> <span class="n">eldest</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">CACHE_SIZE</span><span class="o">;</span> <span class="c1">// 这个意思就是说当map中的数据量大于指定的缓存个数的时候，就自动删除最老的数据
-</span><span class="c1"></span>    <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LRUCache</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">CACHE_SIZE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 这里就是传递进来最多能缓存多少数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="nf">LRUCache</span><span class="o">(</span><span class="kt">int</span> <span class="n">cacheSize</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">cacheSize</span> <span class="o">/</span> <span class="n">0</span><span class="o">.</span><span class="na">75</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">75f</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span> <span class="c1">// 这块就是设置一个hashmap的初始大小，同时最后一个true指的是让linkedhashmap按照访问顺序来进行排序，最近访问的放在头，最老访问的就在尾
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">CACHE_SIZE</span> <span class="o">=</span> <span class="n">cacheSize</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">removeEldestEntry</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span> <span class="n">eldest</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">CACHE_SIZE</span><span class="o">;</span> <span class="c1">// 这个意思就是说当map中的数据量大于指定的缓存个数的时候，就自动删除最老的数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="如何保证redis的高并发及高可用">如何保证Redis的高并发及高可用？</h2>
 <p>如何保证Redis的高并发和高可用？</p>
@@ -863,15 +861,15 @@ set进去的key，1小时之后就没了，就失效了
 <p>master在内存中直接创建rdb，然后发送给slave，不会在自己本地落地磁盘了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">repl-diskless-sync
-<span class="c1"># 等待一定时长再开始复制，因为要等更多slave重新连接过来</span>
-repl-diskless-sync-delay
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">repl-diskless-sync
+</span></span><span class="line"><span class="cl"><span class="c1"># 等待一定时长再开始复制，因为要等更多slave重新连接过来</span>
+</span></span><span class="line"><span class="cl">repl-diskless-sync-delay
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>过期Key的处理</p>
 <p>slave不会过期key, 只会等待master过期key, 如果master过期了一个key, 或者通过LRU淘汰了一个key, 那么会模拟一条del命令发送给salve；</p>
@@ -977,24 +975,24 @@ backlog主要是用来做全量复制中断候的增量复制的</p>
 <p>如果哨兵集群仅仅部署了个2个哨兵实例，s1 和 s2，quorum=1</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">+----+         +----+
-<span class="p">|</span> M1 <span class="p">|</span>---------<span class="p">|</span> R1 <span class="p">|</span>
-<span class="p">|</span> S1 <span class="p">|</span>         <span class="p">|</span> S2 <span class="p">|</span>
-+----+         +----+
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">+----+         +----+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> M1 <span class="p">|</span>---------<span class="p">|</span> R1 <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> S1 <span class="p">|</span>         <span class="p">|</span> S2 <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+----+         +----+
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Configuration: quorum = 1</p>
 <p>master宕机，s1和s2中只要有1个哨兵认为master宕机就可以还行切换，同时s1和s2中会选举出一个哨兵来执行故障转移同时这个时候，需要majority，也就是大多数哨兵都是运行的，2个哨兵的majority就是2（2的majority=2，3的majority=2，5的majority=3，4的majority=2），2个哨兵都运行着，就可以允许执行故障转移但是如果整个M1和S1运行的机器宕机了，那么哨兵只有1个了，此时就没有majority来允许执行故障转移，虽然另外一台机器还有一个R1，但是故障转移不会执行</p>
 <h3 id="经典的3节点哨兵集群">经典的3节点哨兵集群</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1005,16 +1003,16 @@ backlog主要是用来做全量复制中断候的增量复制的</p>
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">       +----+
-       <span class="p">|</span> M1 <span class="p">|</span>
-       <span class="p">|</span> S1 <span class="p">|</span>
-       +----+
-          <span class="p">|</span>
-+----+    <span class="p">|</span>    +----+
-<span class="p">|</span> R2 <span class="p">|</span>----+----<span class="p">|</span> R3 <span class="p">|</span>
-<span class="p">|</span> S2 <span class="p">|</span>         <span class="p">|</span> S3 <span class="p">|</span>
-+----+         +----+
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">       +----+
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> M1 <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> S1 <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       +----+
+</span></span><span class="line"><span class="cl">          <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+----+    <span class="p">|</span>    +----+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> R2 <span class="p">|</span>----+----<span class="p">|</span> R3 <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> S2 <span class="p">|</span>         <span class="p">|</span> S3 <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+----+         +----+
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Configuration: quorum = 2，majority</p>
 <p>如果M1所在机器宕机了，那么三个哨兵还剩下2个，S2和S3可以一致认为master宕机，然后选举出一个来执行故障转移，同时3个哨兵的majority是2，所以还剩下的2个哨兵运行着，就可以允许执行故障转移</p>
@@ -1032,13 +1030,13 @@ backlog主要是用来做全量复制中断候的增量复制的</p>
 <h4 id="解决异步复制和脑裂导致数据丢失">解决异步复制和脑裂导致数据丢失</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">min-slaves-to-write <span class="m">1</span>
-min-slaves-max-lag <span class="m">10</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">min-slaves-to-write <span class="m">1</span>
+</span></span><span class="line"><span class="cl">min-slaves-max-lag <span class="m">10</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>要求至少有1个slave，数据复制和同步的延迟不能超过10秒</p>
 <p>如果说一旦所有的slave，数据复制和同步的延迟都超过了10秒钟，那么这个时候，master就不会再接收任何请求了，上面两个配置可以减少异步复制和脑裂导致的数据丢失;</p>
@@ -1078,11 +1076,11 @@ min-slaves-max-lag <span class="m">10</span>
 <p>如果一个slave跟master断开连接已经超过了down-after-milliseconds的10倍，外加master宕机的时长，那么slave就被认为不适合选举为master</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="p">(</span><span class="n">down</span><span class="o">-</span><span class="n">after</span><span class="o">-</span><span class="n">milliseconds</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="n">milliseconds_since_master_is_in_SDOWN_state</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="p">(</span><span class="n">down</span><span class="o">-</span><span class="n">after</span><span class="o">-</span><span class="n">milliseconds</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="n">milliseconds_since_master_is_in_SDOWN_state</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>接下来会对slave进行排序</p>
 <ol>

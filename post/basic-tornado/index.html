@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/basic-tornado/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -69,7 +69,7 @@
 <meta itemprop="name" content="浅谈Tornado">
 <meta itemprop="description" content="高并发处理框架—Tornado Tornado介绍 ​ Tornado是一个可扩展的非阻塞式Web服务器及其相关工具的开源版本。Tornado每秒"><meta itemprop="datePublished" content="2019-07-03T17:51:08+00:00" />
 <meta itemprop="dateModified" content="2019-07-03T17:51:08+00:00" />
-<meta itemprop="wordCount" content="11451">
+<meta itemprop="wordCount" content="11452">
 <meta itemprop="keywords" content="Tornado," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="浅谈Tornado"/>
 <meta name="twitter:description" content="高并发处理框架—Tornado Tornado介绍 ​ Tornado是一个可扩展的非阻塞式Web服务器及其相关工具的开源版本。Tornado每秒"/>
@@ -344,7 +344,7 @@
             <a href="https://bomir.top/categories/python/"> Python </a>
             
           </div>
-        <span class="more-meta"> 约 11451 字 </span>
+        <span class="more-meta"> 约 11452 字 </span>
           <span class="more-meta"> 预计阅读 23 分钟 </span>
 
         
@@ -410,7 +410,7 @@
 <p>​	根据<em>Unix Network Programing</em> 一书中的定义，同步I/O操作(<em>synchronous I/O operation</em>)导致请求进程阻塞，直到I/O操作完成；异步I/O操作（asynchronous I/O operation）不导致请求进程阻塞。在Python中，同步I/O可以被理解为一个被调用的I/O函数会阻塞调用函数的执行，而异步I/O则不会阻塞调用函数的执行。代码举例如下:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -418,19 +418,19 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">HTTPClient</span>			<span class="c1">#Tornado的HTTP客户端</span>
-
-<span class="k">def</span> <span class="nf">synchronous_visit</span><span class="p">():</span>
-    <span class="n">http_client</span> <span class="o">=</span> <span class="n">HTTPClient</span><span class="p">()</span>
-	<span class="n">response</span> <span class="o">=</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.baidu.com&#34;</span><span class="p">)</span>	<span class="c1">#阻塞，直到对www.baidu.com访问完成</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">HTTPClient</span>			<span class="c1">#Tornado的HTTP客户端</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">synchronous_visit</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http_client</span> <span class="o">=</span> <span class="n">HTTPClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="n">response</span> <span class="o">=</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.baidu.com&#34;</span><span class="p">)</span>	<span class="c1">#阻塞，直到对www.baidu.com访问完成</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	HTTPClient是Tornado的同步访问HTTP客户端。上述代码中的synchronous_visit()函数使用了典型的同步I/O操作访问www.baidu.com网站，该函数的执行时间取决于网络速度、对方服务器响应速度等，只有等到对www.baidu.com的访问完成后并获取到结果后，才能完成对synchronous_visit函数的执行。</p>
 <p>​	而使用异步I/O访问www.baidu.com网站的函数无需等待访问完成才能返回，譬如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -440,15 +440,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">AsyncHTTPClient</span>
-
-<span class="k">def</span> <span class="nf">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
-    
-<span class="k">def</span> <span class="nf">asynchronous_visit</span><span class="p">():</span>
-    <span class="n">http_client</span> <span class="o">=</span> <span class="n">AsyncHTTPClient</span><span class="p">()</span>
-    <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.baidu.com&#34;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">handle_response</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">AsyncHTTPClient</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">asynchronous_visit</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http_client</span> <span class="o">=</span> <span class="n">AsyncHTTPClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.baidu.com&#34;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">handle_response</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	AsyncHTTPClient是Tornado的异步访问HTTP客户端。在上述代码的asynchronous_visit函数中使用AsyncHTTPClient对第三方网站进行异步访问，http_client.fetch()函数会在调用后立刻返回而无需等待实际返回的完成，从而导致asynchronous_visit()也会立刻执行完成。当对www.baidu.com的访问实际完成后，AsyncHTTPClient会调用callback参数指定的函数，开发者可以在其中写入处理访问结果的逻辑代码。</p>
 <h5 id="yield关键字">yield关键字</h5>
@@ -458,18 +458,18 @@
 <p>​	Python中最常使用迭代器的场景是循环语句for，它用迭代器封装集合，并且逐个访问集合元素以执行循环体。比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>		<span class="c1">#range返回一个列表</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>		<span class="c1">#range返回一个列表</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	其中的range()返回一个包含所指定元素的集合，而for语句将其封装一个迭代器后访问，使用iter()调用可以将列表、集合转换为迭代器，比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -479,20 +479,20 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">wjq</span><span class="nd">@Ubuntu</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">python</span>
-<span class="n">Python</span> <span class="mf">2.7.12</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Jul</span> <span class="mi">18</span> <span class="mi">2016</span><span class="p">,</span> <span class="mi">15</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">52</span><span class="p">)</span> 
-<span class="p">[</span><span class="n">GCC</span> <span class="mf">4.8.4</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux2</span>
-<span class="n">Type</span> <span class="s2">&#34;help&#34;</span><span class="p">,</span> <span class="s2">&#34;copyright&#34;</span><span class="p">,</span> <span class="s2">&#34;credits&#34;</span> <span class="ow">or</span> <span class="s2">&#34;license&#34;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="o">&lt;</span><span class="n">listiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fd46be79050</span><span class="o">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wjq</span><span class="nd">@Ubuntu</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">python</span>
+</span></span><span class="line"><span class="cl"><span class="n">Python</span> <span class="mf">2.7.12</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Jul</span> <span class="mi">18</span> <span class="mi">2016</span><span class="p">,</span> <span class="mi">15</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">52</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">GCC</span> <span class="mf">4.8.4</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux2</span>
+</span></span><span class="line"><span class="cl"><span class="n">Type</span> <span class="s2">&#34;help&#34;</span><span class="p">,</span> <span class="s2">&#34;copyright&#34;</span><span class="p">,</span> <span class="s2">&#34;credits&#34;</span> <span class="ow">or</span> <span class="s2">&#34;license&#34;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">listiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fd46be79050</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	其中，t就是迭代器。迭代器与普通的Python对象的区别是迭代器有一个next()方法，每次调用该方法可以返回一个元素。调用者可以通过不断调用next()方法来逐个访问集合元素。比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -503,21 +503,21 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
-<span class="mi">0</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
-<span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
-<span class="mi">2</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
-<span class="o">...</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	调用者可以一直这样调用next()方法来访问迭代器，直到next()方法返回StopIteration异常以表示迭代已经完成，比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -528,22 +528,22 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
-<span class="mi">4</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
-<span class="mi">5</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
-<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">StopIteration</span>
-<span class="o">&gt;&gt;&gt;</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="ne">StopIteration</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	<strong>2. 使用yield</strong></p>
 <p>​	迭代器在Python编程中适用范围很广，开发者可以使用yield定制自己的迭代器。<em><strong>调用任何定义中包含yield关键字的函数都不会执行该函数，而是会获得一个对应该函数的迭代器。</strong></em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -559,26 +559,26 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">code</span> <span class="n">example</span><span class="p">:</span>
-<span class="c1">#!/usr/bin/env python</span>
-<span class="c1">#-*- coding:utf-8 -*-</span>
-
-<span class="k">def</span> <span class="nf">demoIterator</span><span class="p">():</span>     <span class="c1">#定义一个迭代器函数</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;first call of next()&#34;</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="mi">1</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;second call of next()&#34;</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="mi">3</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;third call of next()&#34;</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="mi">9</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">demoIterator</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">code</span> <span class="n">example</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">demoIterator</span><span class="p">():</span>     <span class="c1">#定义一个迭代器函数</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;first call of next()&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">yield</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;second call of next()&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">yield</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;third call of next()&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">yield</span> <span class="mi">9</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">demoIterator</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	执行该部分代码结果如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -587,14 +587,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ssh</span><span class="p">:</span><span class="o">//</span><span class="n">wjq</span><span class="o">@</span><span class="mf">59.68.29</span><span class="o">.</span><span class="n">xx</span><span class="p">:</span><span class="mi">22</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wjq</span><span class="o">/</span><span class="n">TornadoWork</span><span class="o">/</span><span class="n">tor_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">-</span><span class="n">u</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wjq</span><span class="o">/</span><span class="n">TornadoWork</span><span class="o">/</span><span class="n">tornado_0</span><span class="o">/</span><span class="n">temp</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="mf">7_1.</span><span class="n">py</span>
-<span class="n">first</span> <span class="n">call</span> <span class="n">of</span> <span class="nb">next</span><span class="p">()</span>
-<span class="mi">1</span>
-<span class="n">second</span> <span class="n">call</span> <span class="n">of</span> <span class="nb">next</span><span class="p">()</span>
-<span class="mi">3</span>
-<span class="n">third</span> <span class="n">call</span> <span class="n">of</span> <span class="nb">next</span><span class="p">()</span>
-<span class="mi">9</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">ssh</span><span class="p">:</span><span class="o">//</span><span class="n">wjq</span><span class="o">@</span><span class="mf">59.68.29</span><span class="o">.</span><span class="n">xx</span><span class="p">:</span><span class="mi">22</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wjq</span><span class="o">/</span><span class="n">TornadoWork</span><span class="o">/</span><span class="n">tor_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">-</span><span class="n">u</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wjq</span><span class="o">/</span><span class="n">TornadoWork</span><span class="o">/</span><span class="n">tornado_0</span><span class="o">/</span><span class="n">temp</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="mf">7_1.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="n">first</span> <span class="n">call</span> <span class="n">of</span> <span class="nb">next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">second</span> <span class="n">call</span> <span class="n">of</span> <span class="nb">next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">third</span> <span class="n">call</span> <span class="n">of</span> <span class="nb">next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="mi">9</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	每次调用迭代器的next()函数，将执行迭代器函数。并返回yield的结果作为迭代返回元素。当迭代器函数return时，迭代器会抛出StopIteration异常使迭代终止。</p>
 <p>​	注：在Python中，使用yield关键字定义的迭代器也被称为&quot;生成器&quot;。</p>
@@ -604,7 +604,7 @@
 <p>​	使用协程技术开发网页访问的代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -614,15 +614,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>			<span class="c1">#引入协程库gen</span>
-<span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">AsyncHTTPClient</span>
-
-<span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>					<span class="c1">#使用gen.coroutine修饰器</span>
-<span class="k">def</span> <span class="nf">coroutine_visit</span><span class="p">():</span>
-    <span class="n">http_client</span> <span class="o">=</span> <span class="n">AsyncHTTPClient</span><span class="p">()</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.baidu.com&#34;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>			<span class="c1">#引入协程库gen</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">AsyncHTTPClient</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>					<span class="c1">#使用gen.coroutine修饰器</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">coroutine_visit</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http_client</span> <span class="o">=</span> <span class="n">AsyncHTTPClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.baidu.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	本例中仍然使用异步客户端AsyncHTTPClient进行页面访问，使用@gen.coroutine表明用装饰器声明这是一个协程函数。由于yield关键字的使用，使得代码中不用再编写回调函数用于处理访问结果，而可以直接在yield语句的后面编写结果处理语句。</p>
 <p>​	<strong>2.  编写协程函数</strong></p>
@@ -641,7 +641,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -650,19 +650,19 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>				<span class="c1"># 引入协程库gen</span>
-
-<span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
-<span class="k">def</span> <span class="nf">outer_coroutine</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;start call another coroutine&#34;</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="n">coroutine_visit</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;end of outer_coroutine&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>				<span class="c1"># 引入协程库gen</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">outer_coroutine</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;start call another coroutine&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">yield</span> <span class="n">coroutine_visit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;end of outer_coroutine&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	本例中coroutine_visit和outer_coroutine都是协程函数，所以它们之间可以通过yield关键字进行调用。IOLoop是Tornado的主事件循环对象，Tornado程序通过它监听外部客户端的访问请求，并执行相应的操作。当程序尚未进入IOLoop的running状态时，可以通过run_sync()函数调用协程函数。比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -670,20 +670,20 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">tornado.ioloop</span> <span class="kn">import</span> <span class="n">IOLoop</span>		<span class="c1">#引入IOLoop对象</span>
-
-<span class="k">def</span> <span class="nf">func_normal</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;start to call a coroutine&#34;</span><span class="p">)</span>
-	<span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">run_sync</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">coroutine_visit</span><span class="p">())</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;end of calling a coroutine&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado.ioloop</span> <span class="kn">import</span> <span class="n">IOLoop</span>		<span class="c1">#引入IOLoop对象</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func_normal</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;start to call a coroutine&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">run_sync</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">coroutine_visit</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;end of calling a coroutine&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	此处无需过分了解IOLoop，后面会逐步了解IOLoop的具体概念及应用方法。</p>
 <p>​	上例中引用tornado.ioloop包中的IOLoop对象，之后在普通函数中使用run_sync()函数调用经过lambda封装的协程函数。run_sync()函数将阻塞当前函数的执行，直到被调用的协程执行完成。</p>
 <p>​	事实上，Tornado要求协程函数在IOLoop的runing状态中才能被调用，只不过run_sync函数自动完成了启动、停止IOLoop的步骤，它的实现逻辑为：启动IOLoop—&gt;调用被lambda封装的协程函数—&gt;停止IOLoop。当Tornado程序已经处于running状态时的协程函数的调用示例如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -691,13 +691,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">tornado.ioloop</span> <span class="kn">import</span> <span class="n">IOLoop</span>		<span class="c1">#引入IOLoop对象</span>
-
-<span class="k">def</span> <span class="nf">func_normal</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;start to call a coroutine&#34;</span><span class="p">)</span>
-    <span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">spawn_callback</span><span class="p">(</span><span class="n">coroutine_visit</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;end of calling a coroutine&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado.ioloop</span> <span class="kn">import</span> <span class="n">IOLoop</span>		<span class="c1">#引入IOLoop对象</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func_normal</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;start to call a coroutine&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">spawn_callback</span><span class="p">(</span><span class="n">coroutine_visit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;end of calling a coroutine&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	本例中spawn_callback()函数将不会等待被调用协程执行完成。所以spawn_callback()之前和之后的print语句将会被连续执行，而coroutine_visit本身将会由IOLoop在合适的时机进行调用。</p>
 <p>​	IOLoop的spawn_callback()函数没有为开发者提供获取协程函数调用返回值的方法，所以只能用spawn_callback()调用没有返回值的协程函数。</p>
@@ -705,7 +705,7 @@
 <p>​	在协程中直接调用阻塞函数会影响协程本身的性能，所以Tornado提供了在协程中利用线程池调度阻塞函数，从而不影响协程本身继续执行的方法。示例如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -720,20 +720,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
-
-<span class="n">thread_tool</span> <span class="o">=</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">mySleep</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="kn">import</span> <span class="nn">time</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
-<span class="k">def</span> <span class="nf">call_blocking</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;start of call_blocking&#34;</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="n">thread_pool</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">mySleep</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;end of call_blocking&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">thread_tool</span> <span class="o">=</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">mySleep</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">call_blocking</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;start of call_blocking&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">yield</span> <span class="n">thread_pool</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">mySleep</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;end of call_blocking&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	代码中首先引用了concurrent.futures中的ThreadPoolExecutor类，并实例化了一个有两个线程的线程池thread_pool。在需要调用阻塞函数的协程call_blocking中，使用thread_pool.submit调用阻塞函数，并通过yield返回。这样便不会阻塞协程所在线程的继续执行，也保证了阻塞函数前后代码的执行顺序。</p>
 <p>​	<strong>4.  在协程中等待多个异步调用</strong></p>
@@ -741,7 +741,7 @@
 <p>​	使用列表方式传递多个异步调用的示例代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -756,26 +756,26 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>		<span class="c1"># 引入协程库</span>
-<span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">AsyncHTTPClient</span>
-
-<span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>				<span class="c1"># 使用gen.coroutine修饰器</span>
-<span class="k">def</span> <span class="nf">coroutine_visit</span><span class="p">():</span>
-    <span class="n">http_client</span> <span class="o">=</span> <span class="n">AsyncHTTPClient</span><span class="p">()</span>
-    <span class="n">list_response</span> <span class="o">=</span> <span class="k">yield</span><span class="p">[</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.baidu.com&#34;</span><span class="p">),</span>
-                         <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.sina.com&#34;</span><span class="p">),</span>
-                        <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.163.com&#34;</span><span class="p">),</span>
-                        <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.google.com&#34;</span><span class="p">)</span>
-                         <span class="p">]</span>
-   <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">list_response</span><span class="p">:</span>
-       <span class="nb">print</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>		<span class="c1"># 引入协程库</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">AsyncHTTPClient</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>				<span class="c1"># 使用gen.coroutine修饰器</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">coroutine_visit</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http_client</span> <span class="o">=</span> <span class="n">AsyncHTTPClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list_response</span> <span class="o">=</span> <span class="k">yield</span><span class="p">[</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.baidu.com&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                         <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.sina.com&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.163.com&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.google.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                         <span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">list_response</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">       <span class="nb">print</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	在代码中仍然用@gen.coroutine装饰器定义协程，在需要yield的地方用列表传递若干个异步调用，只有在列表中的所有调用都执行完成后，yield才会返回并继续执行。yield以列表形式返回N个调用的输出结果，可以通过for语句逐个访问。</p>
 <p>​	使用字典方式传递多个异步调用的示例代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -789,19 +789,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>		<span class="c1"># 引入协程库</span>
-<span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">AsyncHTTPClient</span>
-
-<span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>				<span class="c1"># 使用gen.coroutine修饰器</span>
-<span class="k">def</span> <span class="nf">coroutine_visit</span><span class="p">():</span>
-    <span class="n">http_client</span> <span class="o">=</span> <span class="n">AsyncHTTPClient</span><span class="p">()</span>
-    <span class="n">dict_response</span> <span class="o">=</span> <span class="k">yield</span><span class="p">[</span> <span class="s2">&#34;baidu&#34;</span><span class="p">:</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.baidu.com&#34;</span><span class="p">),</span>
-                         <span class="s2">&#34;sina&#34;</span><span class="p">:</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.sina.com&#34;</span><span class="p">),</span>
-                        <span class="s2">&#34;163&#34;</span><span class="p">:</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.163.com&#34;</span><span class="p">),</span>
-                        <span class="s2">&#34;google&#34;</span><span class="p">:</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.google.com&#34;</span><span class="p">)</span>
-                         <span class="p">]</span>
- <span class="nb">print</span> <span class="n">dict_response</span><span class="p">[</span><span class="s2">&#34;sina&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">body</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>		<span class="c1"># 引入协程库</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">AsyncHTTPClient</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>				<span class="c1"># 使用gen.coroutine修饰器</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">coroutine_visit</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http_client</span> <span class="o">=</span> <span class="n">AsyncHTTPClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dict_response</span> <span class="o">=</span> <span class="k">yield</span><span class="p">[</span> <span class="s2">&#34;baidu&#34;</span><span class="p">:</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.baidu.com&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                         <span class="s2">&#34;sina&#34;</span><span class="p">:</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.sina.com&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                        <span class="s2">&#34;163&#34;</span><span class="p">:</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.163.com&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                        <span class="s2">&#34;google&#34;</span><span class="p">:</span> <span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;www.google.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                         <span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="nb">print</span> <span class="n">dict_response</span><span class="p">[</span><span class="s2">&#34;sina&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">body</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	本例中以字典形式给yield关键字传递异步调用要求，并且Tornado以字典形式返回异步调用的结果。</p>
 <h3 id="tornado框架知识">Tornado框架知识</h3>
@@ -863,7 +863,7 @@
 <h4 id="简单tornado示例">简单Tornado示例</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -886,28 +886,28 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#-*- coding:utf-8 -*-</span>
-<span class="kn">import</span> <span class="nn">tornado.httpserver</span>
-<span class="kn">import</span> <span class="nn">tornado.ioloop</span>
-<span class="kn">import</span> <span class="nn">tornado.web</span>
-
-<span class="kn">from</span> <span class="nn">tornado.options</span> <span class="kn">import</span> <span class="n">define</span><span class="p">,</span><span class="n">options</span>
-<span class="n">define</span><span class="p">(</span><span class="s2">&#34;port&#34;</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span><span class="n">help</span><span class="o">=</span><span class="s2">&#34;run on the given port&#34;</span><span class="p">,</span><span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="s1">&#39;&#39;&#39;主路由处理类&#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="s1">&#39;&#39;&#39;对应http的get请求方式&#39;&#39;&#39;</span>
-        <span class="n">greeting</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s1">&#39;greeting&#39;</span><span class="p">,</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">greeting</span> <span class="o">+</span> <span class="s1">&#39;, tornado!&#39;</span><span class="p">)</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">parse_command_line</span><span class="p">()</span>
-    <span class="n">app</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">(</span><span class="n">handlers</span><span class="o">=</span><span class="p">[(</span><span class="sa">r</span><span class="s2">&#34;/&#34;</span><span class="p">,</span><span class="n">IndexHandler</span><span class="p">)])</span>
-    <span class="n">http_server</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">httpserver</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-    <span class="n">http_server</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
-    <span class="n">tornado</span><span class="o">.</span><span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#-*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.httpserver</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.ioloop</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.web</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado.options</span> <span class="kn">import</span> <span class="n">define</span><span class="p">,</span><span class="n">options</span>
+</span></span><span class="line"><span class="cl"><span class="n">define</span><span class="p">(</span><span class="s2">&#34;port&#34;</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span><span class="n">help</span><span class="o">=</span><span class="s2">&#34;run on the given port&#34;</span><span class="p">,</span><span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&#39;&#39;主路由处理类&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;&#39;&#39;对应http的get请求方式&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">greeting</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s1">&#39;greeting&#39;</span><span class="p">,</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">greeting</span> <span class="o">+</span> <span class="s1">&#39;, tornado!&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">parse_command_line</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">(</span><span class="n">handlers</span><span class="o">=</span><span class="p">[(</span><span class="sa">r</span><span class="s2">&#34;/&#34;</span><span class="p">,</span><span class="n">IndexHandler</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http_server</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">httpserver</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http_server</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tornado</span><span class="o">.</span><span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上述代码解释说明：</p>
 <p><strong>tornado的基础Web框架模块</strong></p>
@@ -943,7 +943,7 @@
 <p>​	通过编写hellowowld学习Tornado网站的基本结构：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -962,24 +962,24 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tornado.ioloop</span>
-<span class="kn">import</span> <span class="nn">tornado.web</span>
-
-<span class="k">class</span> <span class="nc">MainHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;Hello World!&#34;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">make_app</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">([(</span><span class="sa">r</span><span class="s2">&#34;/&#34;</span><span class="p">,</span><span class="n">MainHandler</span><span class="p">),])</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">app</span> <span class="o">=</span> <span class="n">make_app</span><span class="p">()</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">8888</span><span class="p">)</span>
-    <span class="n">tornado</span><span class="o">.</span><span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.ioloop</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.web</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;Hello World!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">make_app</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">([(</span><span class="sa">r</span><span class="s2">&#34;/&#34;</span><span class="p">,</span><span class="n">MainHandler</span><span class="p">),])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span> <span class="o">=</span> <span class="n">make_app</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">8888</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tornado</span><span class="o">.</span><span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	下面逐行解析上面的代码做了些什么。</p>
 <p>​	(1) 首先是通过import语句引入tornado包中ioloop和web类。引入这两个类是Tornado程序的基础。</p>
@@ -998,17 +998,17 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Handlers</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span><span class="n">MainHandler</span><span class="p">),</span>					<span class="c1">#只匹配根路径</span>
-            <span class="p">(</span><span class="s2">&#34;/entry&#34;</span><span class="p">,</span><span class="n">EntryHandler</span><span class="p">),</span>			<span class="c1">#只匹配/entry</span>
-            <span class="p">(</span><span class="s2">&#34;/entry/2015&#34;</span><span class="p">,</span><span class="n">Entry2015Handler</span><span class="p">)</span>	<span class="c1">#只匹配/entry/2015</span>
-           <span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Handlers</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span><span class="n">MainHandler</span><span class="p">),</span>					<span class="c1">#只匹配根路径</span>
+</span></span><span class="line"><span class="cl">            <span class="p">(</span><span class="s2">&#34;/entry&#34;</span><span class="p">,</span><span class="n">EntryHandler</span><span class="p">),</span>			<span class="c1">#只匹配/entry</span>
+</span></span><span class="line"><span class="cl">            <span class="p">(</span><span class="s2">&#34;/entry/2015&#34;</span><span class="p">,</span><span class="n">Entry2015Handler</span><span class="p">)</span>	<span class="c1">#只匹配/entry/2015</span>
+</span></span><span class="line"><span class="cl">           <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><strong>参数字串路径</strong></li>
@@ -1016,7 +1016,7 @@
 <p>​        参数字串可以将具备一定模式的路径映射到同一个RequestHandler中处理，其中路径中的参数部分用小括号&quot;()&ldquo;标识，下面是一个参数路径的例子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1027,16 +1027,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># url handler</span>
-<span class="n">handlers</span> <span class="o">=</span> <span class="p">[(</span><span class="sa">r</span><span class="s2">&#34;/entry/([^/]+)&#34;</span><span class="p">,</span><span class="n">EntryHandler</span><span class="p">),]</span>
-
-<span class="k">class</span> <span class="nc">EntryHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">slug</span><span class="p">):</span>
-        <span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM entries WHERE slug = </span><span class="si">%s</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">slug</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">entry</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s2">&#34;entry.html&#34;</span><span class="p">,</span><span class="n">entry</span><span class="o">=</span><span class="n">entry</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># url handler</span>
+</span></span><span class="line"><span class="cl"><span class="n">handlers</span> <span class="o">=</span> <span class="p">[(</span><span class="sa">r</span><span class="s2">&#34;/entry/([^/]+)&#34;</span><span class="p">,</span><span class="n">EntryHandler</span><span class="p">),]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">EntryHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">slug</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM entries WHERE slug = </span><span class="si">%s</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">slug</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">entry</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s2">&#34;entry.html&#34;</span><span class="p">,</span><span class="n">entry</span><span class="o">=</span><span class="n">entry</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	例中用 <code>&quot;/entry/([^/]+)&quot;</code> 定义以/entry/开头的URL模式。小括号的内容是正则表达式，URL尾部的变量部分以参数形式传递给RequestHandler中的get()函数，本例中将该参数命名为slug。</p>
 <ul>
@@ -1045,19 +1045,19 @@
 <p>​       之前例子中的<code>handlers = [(r&quot;/entry/([^/]+)&quot;,EntryHandler),]</code>模式定义了客户端必须输入路径参数。比如，其能够匹配如下路径：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">/</span><span class="n">entry</span><span class="o">/</span><span class="n">abc</span>
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">/</span><span class="n">entry</span><span class="o">/</span><span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">10</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">/</span><span class="n">entry</span><span class="o">/</span><span class="n">abc</span>
+</span></span><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">.</span><span class="n">xx</span><span class="o">/</span><span class="n">entry</span><span class="o">/</span><span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">10</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	但是其无法匹配，<code>http://xx.xx.xx.xx/entry</code> ，</p>
 <p>​	对于需要匹配客户端未传入时的路径，则需要用如下方法改变URL路径和对get()函数的定义：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1068,16 +1068,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># url handler</span>
-<span class="n">handlers</span> <span class="o">=</span> <span class="p">[(</span><span class="sa">r</span><span class="s2">&#34;/entry/([^/]*)&#34;</span><span class="p">,</span><span class="n">EntryHandler</span><span class="p">),]</span>
-
-<span class="k">class</span> <span class="nc">EntryHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">slug</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">):</span>
-        <span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM entries WHERE slug = </span><span class="si">%s</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">slug</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">entry</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s2">&#34;entry.html&#34;</span><span class="p">,</span><span class="n">entry</span><span class="o">=</span><span class="n">entry</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># url handler</span>
+</span></span><span class="line"><span class="cl"><span class="n">handlers</span> <span class="o">=</span> <span class="p">[(</span><span class="sa">r</span><span class="s2">&#34;/entry/([^/]*)&#34;</span><span class="p">,</span><span class="n">EntryHandler</span><span class="p">),]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">EntryHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">slug</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM entries WHERE slug = </span><span class="si">%s</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">slug</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">entry</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s2">&#34;entry.html&#34;</span><span class="p">,</span><span class="n">entry</span><span class="o">=</span><span class="n">entry</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	本例中首先用星号&rdquo;*&ldquo;取代加号&rdquo;+&ldquo;定义了URL模式，然后为RequestHandler子类的get()函数的slug参数配置了默认值default。</p>
 <ul>
@@ -1088,7 +1088,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1097,14 +1097,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">handlers</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/(\d</span><span class="si">{4}</span><span class="s1">)/(\d</span><span class="si">{2}</span><span class="s1">)/(\d</span><span class="si">{2}</span><span class="s1">)/([a-zA-Z\-0-9\.:,_]+)/?&#39;</span><span class="p">,</span><span class="n">DetailHandler</span><span class="p">)</span>
-<span class="p">]</span>
-
-<span class="k">class</span> <span class="nc">DetailHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">slug</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%d</span><span class="s2">-</span><span class="si">%d</span><span class="s2">-</span><span class="si">%d</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">slug</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">handlers</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/(\d</span><span class="si">{4}</span><span class="s1">)/(\d</span><span class="si">{2}</span><span class="s1">)/(\d</span><span class="si">{2}</span><span class="s1">)/([a-zA-Z\-0-9\.:,_]+)/?&#39;</span><span class="p">,</span><span class="n">DetailHandler</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DetailHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">slug</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%d</span><span class="s2">-</span><span class="si">%d</span><span class="s2">-</span><span class="si">%d</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">slug</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	本例中的URL模式定义了year、month、day、slug等4个参数。</p>
 <h4 id="requesthandler">RequestHandler</h4>
@@ -1117,7 +1117,7 @@
 <p>​	该方法被子类重写，实现了RequestHandler子类实例的初始化过程。可以将该函数传递参数，参数来源于配置URL映射时的定义。比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1133,21 +1133,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">tornado.web</span> <span class="kn">import</span> <span class="n">RequestHandler</span>
-<span class="kn">from</span> <span class="nn">tornado.web</span> <span class="kn">import</span> <span class="n">Application</span>
-
-<span class="k">class</span> <span class="nc">ProfileHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">database</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">database</span>
-    
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-    
-    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">([(</span><span class="sa">r</span><span class="s1">&#39;/account&#39;</span><span class="p">,</span><span class="n">ProfileHandler</span><span class="p">,</span><span class="nb">dict</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s2">&#34;c:</span><span class="se">\\</span><span class="s2">example.db&#34;</span><span class="p">)),])</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado.web</span> <span class="kn">import</span> <span class="n">RequestHandler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tornado.web</span> <span class="kn">import</span> <span class="n">Application</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ProfileHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">database</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">database</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">([(</span><span class="sa">r</span><span class="s1">&#39;/account&#39;</span><span class="p">,</span><span class="n">ProfileHandler</span><span class="p">,</span><span class="nb">dict</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s2">&#34;c:</span><span class="se">\\</span><span class="s2">example.db&#34;</span><span class="p">)),])</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	本例中的initialize有参数database，该参数由Application定义URL映射时以dict形式给出。</p>
 <p>​	（2）RequestHandler.prepare()、RequestHandler.on_finish()</p>
@@ -1191,7 +1191,7 @@
 <p>​	返回tornado.httputil.HTTPServerRequest对象实例的属性，通过该对象可以获取关于HTTP请求的一切信息。比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1199,13 +1199,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tornado.web</span>
-
-<span class="k">class</span> <span class="nc">DetailHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
-        <span class="n">remote_ip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">remote_ip</span>				<span class="c1">#获取客户端IP地址</span>
-        <span class="n">host</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">host</span>						<span class="c1">#获取请求的主机地址</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.web</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DetailHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="n">remote_ip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">remote_ip</span>				<span class="c1">#获取客户端IP地址</span>
+</span></span><span class="line"><span class="cl">        <span class="n">host</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">host</span>						<span class="c1">#获取请求的主机地址</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	常用的httputil.HTTPServerRequest对象属性如下表所示：</p>
 <table>
@@ -1280,7 +1280,7 @@
 <p>​	以键值对的方式配置HTTP Response中的HTTP头参数。使用set_header配置的Header值将覆盖之前配置的Header，比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1288,31 +1288,31 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tornado.web</span>
-<span class="k">class</span> <span class="nc">DetailHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;NUMBER&#34;</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;LANGUAGE&#34;</span><span class="p">,</span><span class="s2">&#34;France&#34;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;LANGUAGE&#34;</span><span class="p">,</span><span class="s2">&#34;Chinese&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.web</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DetailHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;NUMBER&#34;</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;LANGUAGE&#34;</span><span class="p">,</span><span class="s2">&#34;France&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;LANGUAGE&#34;</span><span class="p">,</span><span class="s2">&#34;Chinese&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><pre><code>本例中的get()函数调用了3次set_header，但是只配置了两个header参数，最后的HTTP Header中的参数将会是：
 </code></pre>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">NUMBER</span><span class="p">:</span> <span class="mi">9</span>
-<span class="n">LANGUAGE</span><span class="p">:</span> <span class="n">Chinese</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">NUMBER</span><span class="p">:</span> <span class="mi">9</span>
+</span></span><span class="line"><span class="cl"><span class="n">LANGUAGE</span><span class="p">:</span> <span class="n">Chinese</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	(3)RequestHandler.add_header(name,value)</p>
 <p>​	以键值对的方式设置HTTP Response中的HTTP头参数。与set_header不同的是add_header配置的Header值将不会覆盖之前配置的Header，比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1320,26 +1320,26 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tornado.web</span>
-<span class="k">class</span> <span class="nc">DetailHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;NUMBER&#34;</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;LANGUAGE&#34;</span><span class="p">,</span><span class="s2">&#34;France&#34;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;LANGUAGE&#34;</span><span class="p">,</span><span class="s2">&#34;Chinese&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.web</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DetailHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;NUMBER&#34;</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;LANGUAGE&#34;</span><span class="p">,</span><span class="s2">&#34;France&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;LANGUAGE&#34;</span><span class="p">,</span><span class="s2">&#34;Chinese&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	最后HTTP Header中的参数将会是：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">NUMBER</span><span class="p">:</span> <span class="mi">8</span>
-<span class="n">LANGUAGE</span><span class="p">:</span> <span class="n">France</span>   
-<span class="n">LANGUAGE</span><span class="p">:</span> <span class="n">Chinese</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">NUMBER</span><span class="p">:</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl"><span class="n">LANGUAGE</span><span class="p">:</span> <span class="n">France</span>   
+</span></span><span class="line"><span class="cl"><span class="n">LANGUAGE</span><span class="p">:</span> <span class="n">Chinese</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	(4)RequestHandler.write(chunk)</p>
 <p>​	将给定的块作为HTTP Body发送给客户端。在一般情况下，用本函数输出字符串给客户端，如果给定的块是一个字典，则会将这个块以JSON格式发送给客户端，同时将HTTP header中的Content_type设置成application/json。</p>
@@ -1350,26 +1350,26 @@
 <p>​	用给定的参数渲染模板，可以在本函数中传入模板文件名称和模板参数，比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tornado.web</span>
-<span class="k">class</span> <span class="nc">MainHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Python&#34;</span><span class="p">,</span><span class="s2">&#34;C++&#34;</span><span class="p">,</span><span class="s2">&#34;Java&#34;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s2">&#34;template.html&#34;</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&#34;Tornado Template&#34;</span><span class="p">,</span><span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.web</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Python&#34;</span><span class="p">,</span><span class="s2">&#34;C++&#34;</span><span class="p">,</span><span class="s2">&#34;Java&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s2">&#34;template.html&#34;</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&#34;Tornado Template&#34;</span><span class="p">,</span><span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	render()的第1个参数是对模板文件的命名，之后以命名参数的形式传入多个模板参数。Tornado的基本模板语法和Django相同，功能上弱化，高级过滤器不可用。</p>
 <p>​	(7) RequestHandler.redirect(url,permanent=False,status=None)</p>
 <p>​	进行页面重定向。在RequestHandler处理过程中，可以随时调用redirect()函数进行页面重定向，比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1387,30 +1387,30 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tornado.web</span>
-
-<span class="k">class</span> <span class="nc">LoginHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s2">&#34;login.html&#34;</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s2">&#34;next&#34;</span><span class="p">,</span><span class="s2">&#34;/&#34;</span><span class="p">))</span>
-    
-    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">username</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;username&#34;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
-        <span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;password&#34;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
-        <span class="n">auth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">auth</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">set_current_user</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s2">&#34;next&#34;</span><span class="p">,</span><span class="sa">u</span><span class="s2">&#34;/&#34;</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">error_msg</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&#34;?error=&#34;</span> <span class="o">+</span> <span class="n">tornado</span><span class="o">.</span><span class="n">escape</span><span class="o">.</span><span class="n">url_escape</span><span class="p">(</span><span class="s2">&#34;Login incorrect.&#34;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="sa">u</span><span class="s2">&#34;/login&#34;</span> <span class="o">+</span> <span class="n">error_msg</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.web</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LoginHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s2">&#34;login.html&#34;</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s2">&#34;next&#34;</span><span class="p">,</span><span class="s2">&#34;/&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">username</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;username&#34;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;password&#34;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">auth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">auth</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">set_current_user</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s2">&#34;next&#34;</span><span class="p">,</span><span class="sa">u</span><span class="s2">&#34;/&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">error_msg</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&#34;?error=&#34;</span> <span class="o">+</span> <span class="n">tornado</span><span class="o">.</span><span class="n">escape</span><span class="o">.</span><span class="n">url_escape</span><span class="p">(</span><span class="s2">&#34;Login incorrect.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="sa">u</span><span class="s2">&#34;/login&#34;</span> <span class="o">+</span> <span class="n">error_msg</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	在本例LoginHandler的post处理函数中，根据验证是否成功将客户端重定向到不同的页面，如果成功则重定向到next参数所指向的URL；如果不成功，则重定向到&rdquo;/login&quot;页面。</p>
 <p>​	(8) RequestHandler.clear()</p>
 <p>​	清空所有在本次请求中之前写入的Header和Body内容，比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1418,13 +1418,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tornado.web</span>
-<span class="k">class</span> <span class="nc">DetailHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;NUMBER&#34;</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;LANGUAGE&#34;</span><span class="p">,</span><span class="s2">&#34;France&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.web</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DetailHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;NUMBER&#34;</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&#34;LANGUAGE&#34;</span><span class="p">,</span><span class="s2">&#34;France&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	(9) RequestHandler.set_cookie(name,value)</p>
 <p>​	按键值对设置Response中的Cookie值。</p>
@@ -1445,7 +1445,7 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1460,20 +1460,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tornado.web</span>
-<span class="kn">import</span> <span class="nn">tornado.httpclient</span>
-
-<span class="k">class</span> <span class="nc">MainHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="nd">@tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">asynchronous</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">http</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">httpclient</span><span class="o">.</span><span class="n">AsyncHTTPClient</span><span class="p">()</span>
-        <span class="n">http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;http://www.baidu.com&#34;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">on_respinse</span><span class="p">())</span>
-        
-    <span class="k">def</span> <span class="nf">on_resoponse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">response</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">error</span><span class="p">:</span><span class="k">raise</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.web</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.httpclient</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">asynchronous</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">http</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">httpclient</span><span class="o">.</span><span class="n">AsyncHTTPClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;http://www.baidu.com&#34;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">on_respinse</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">on_resoponse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">response</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">error</span><span class="p">:</span><span class="k">raise</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	本例中用装饰器tornado.web.asynchronous定义了HTTP访问处理函数get()。这样，当get()函数返回时，对该HTTP访问的请求尚未完成，所以Tornado无法发送HTTP Response给客户端。只有当在随后的on_response()中的finish()函数被调用时，Tornado才知道本次处理已完成，可以发送给Response给客户端。</p>
 <p>​	异步编程虽然提高了服务器的并发能力，但编程方法繁琐。</p>
@@ -1481,7 +1481,7 @@
 <p>​	协程的编程方法示例如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1491,15 +1491,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tornado.web</span>
-<span class="kn">import</span> <span class="nn">tornado.httpclient</span>
-<span class="k">class</span> <span class="nc">MainHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="nd">@tornado</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">coroutine</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
-        <span class="n">http</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">httpclient</span><span class="o">.</span><span class="n">AsyncHTTPClient</span><span class="p">()</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;http://www.baidu.com&#34;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.web</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tornado.httpclient</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@tornado</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">coroutine</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="n">http</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">httpclient</span><span class="o">.</span><span class="n">AsyncHTTPClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;http://www.baidu.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	本例中展示仍然是一个转发网站内容的处理器，代码量与相应的同步版本差不多。协程化的关键技术点如下。</p>
 <ul>

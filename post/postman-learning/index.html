@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/postman-learning/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -391,59 +391,59 @@
 <p><strong>3.接口请求流程</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html">1.GET请求
-(1)GET请求：点击Params，输入参数及value，可输入多个，即时显示在URL链接上。所以，GET请求的请求头与请求参数如在接口文档中无特别声明时，可以不填。
-(2)响应示例：有请求的响应状态码，响应时间，以及响应大小
-(3)响应体示例：响应的格式可以有多种，一般情况下，我们自定义接口的话是json格式的响应体。
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">1.GET请求
+</span></span><span class="line"><span class="cl">(1)GET请求：点击Params，输入参数及value，可输入多个，即时显示在URL链接上。所以，GET请求的请求头与请求参数如在接口文档中无特别声明时，可以不填。
+</span></span><span class="line"><span class="cl">(2)响应示例：有请求的响应状态码，响应时间，以及响应大小
+</span></span><span class="line"><span class="cl">(3)响应体示例：响应的格式可以有多种，一般情况下，我们自定义接口的话是json格式的响应体。
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">2. POST请求
-POST请求一：表单提交
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2. POST请求
+</span></span><span class="line"><span class="cl">POST请求一：表单提交
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	在下图示例中设置了请求方法，请求URL，请求参数，但是没有设置请求头。在我的使用过程中，请求头是根据请求参数的形式自动生成的请求头中的Content-Type与请求参数的格式之间是有关联关系，比如：</p>
 <p><img src="https://img-blog.csdn.net/20180524000345232?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z4YmluMTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html">2. POST请求
-POST请求二：json提交
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">2. POST请求
+</span></span><span class="line"><span class="cl">POST请求二：json提交
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	当我们选择JSON(application/json) 是会自动帮我们设置 headers 为 application/json。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">2. POST请求
-POST请求三：xml提交
-POST请求四：二进制文件提交
-其它请求方式如PUT,DELETE 大致流程和GET,POST 差不多，这里就不一一举例说明了.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2. POST请求
+</span></span><span class="line"><span class="cl">POST请求三：xml提交
+</span></span><span class="line"><span class="cl">POST请求四：二进制文件提交
+</span></span><span class="line"><span class="cl">其它请求方式如PUT,DELETE 大致流程和GET,POST 差不多，这里就不一一举例说明了.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>4.身份验证Authentication</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -454,16 +454,16 @@ POST请求四：二进制文件提交
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">1、Basic Auth
-	基础的验证，所以会比较简单，会直接把用户名、密码的信息放在请求的Header中。
-2、Digest Auth
-	要比Basic Auth复杂的多。使用当前填写的值生成，authoriz
-ation header。所以在生成header之前要确保设置的正确性。如果当前的header已经存在，postman会移除之前的header。
-3、OAuth 1.0
-	postman的OAuth helper让你签署支持OAuth1.0基于身份验证的请求。OAuth不用获取access token,你需要去API提供者获取的。OAuth 1.0可以在header或者查询参数中设置value。
-4、OAuth 2.0
-	postman支持获得OAuth 2.0 token并添加到requests中。
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1、Basic Auth
+</span></span><span class="line"><span class="cl">	基础的验证，所以会比较简单，会直接把用户名、密码的信息放在请求的Header中。
+</span></span><span class="line"><span class="cl">2、Digest Auth
+</span></span><span class="line"><span class="cl">	要比Basic Auth复杂的多。使用当前填写的值生成，authoriz
+</span></span><span class="line"><span class="cl">ation header。所以在生成header之前要确保设置的正确性。如果当前的header已经存在，postman会移除之前的header。
+</span></span><span class="line"><span class="cl">3、OAuth 1.0
+</span></span><span class="line"><span class="cl">	postman的OAuth helper让你签署支持OAuth1.0基于身份验证的请求。OAuth不用获取access token,你需要去API提供者获取的。OAuth 1.0可以在header或者查询参数中设置value。
+</span></span><span class="line"><span class="cl">4、OAuth 2.0
+</span></span><span class="line"><span class="cl">	postman支持获得OAuth 2.0 token并添加到requests中。
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="实测一个查询手机号码归属地接口">实测一个查询手机号码归属地接口</h2>
 <p><strong>1.接口测试</strong></p>
@@ -582,7 +582,7 @@ ation header。所以在生成header之前要确保设置的正确性。如果�
 <p>==<strong>JSON返回示例</strong>==</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -597,20 +597,20 @@ ation header。所以在生成header之前要确保设置的正确性。如果�
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="p">{</span>
-    <span class="nt">&#34;resultcode&#34;</span><span class="p">:</span> <span class="s2">&#34;200&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;reason&#34;</span><span class="p">:</span> <span class="s2">&#34;Return Successd!&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;province&#34;</span><span class="p">:</span> <span class="s2">&#34;湖北&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;city&#34;</span><span class="p">:</span> <span class="s2">&#34;武汉&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;areacode&#34;</span><span class="p">:</span> <span class="s2">&#34;027&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;zip&#34;</span><span class="p">:</span> <span class="s2">&#34;430000&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;company&#34;</span><span class="p">:</span> <span class="s2">&#34;电信&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;card&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
-    <span class="p">},</span>
-    <span class="nt">&#34;error_code&#34;</span><span class="p">:</span> <span class="mi">0</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JSON" data-lang="JSON"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;resultcode&#34;</span><span class="p">:</span> <span class="s2">&#34;200&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;reason&#34;</span><span class="p">:</span> <span class="s2">&#34;Return Successd!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;province&#34;</span><span class="p">:</span> <span class="s2">&#34;湖北&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;city&#34;</span><span class="p">:</span> <span class="s2">&#34;武汉&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;areacode&#34;</span><span class="p">:</span> <span class="s2">&#34;027&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;zip&#34;</span><span class="p">:</span> <span class="s2">&#34;430000&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;company&#34;</span><span class="p">:</span> <span class="s2">&#34;电信&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;card&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;error_code&#34;</span><span class="p">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>==<strong>服务级错误码参照(error_code)</strong>==</p>
 <table>

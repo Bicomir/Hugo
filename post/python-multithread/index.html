@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/python-multithread/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -458,7 +458,7 @@
 <h5 id="没有线程支持的情况">没有线程支持的情况</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -483,30 +483,30 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*-</span>
-<span class="c1">#onethr.py</span>
-<span class="c1">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span><span class="n">ctime</span>
-
-<span class="k">def</span> <span class="nf">loop0</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop0 at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop0 done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
-
-<span class="k">def</span> <span class="nf">loop1</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop1 at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop1 done at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;starting at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
-    <span class="n">loop0</span><span class="p">()</span>
-    <span class="n">loop1</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;all done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#onethr.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span><span class="n">ctime</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">loop0</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop0 at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop0 done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">loop1</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop1 at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop1 done at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;starting at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">loop0</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">loop1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;all done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	我们会使用time.sleep()函数来演示线程是怎样工作的。time.sleep()需要一个浮点型参数，来指定&quot;睡眠&quot;的时间(单位秒)。这就意味着，程序的运行会被挂起指定的时间。</p>
 <p>​	我们要创建两个&quot;计时循环&quot;。一个睡眠4秒钟，一个睡眠2秒钟，分别是loop0()和loop1().（我们命名为&quot;loop0&quot;和&quot;loop1&quot;表示我们将有一个循环的序列）。</p>
@@ -571,7 +571,7 @@
 <p>​</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -598,32 +598,32 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*-</span>
-<span class="c1">#!/usr/bin/env python</span>
-<span class="c1">#mtsleep1.py</span>
-<span class="kn">import</span> <span class="nn">thread</span>  <span class="c1">#需要python2环境</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span><span class="n">ctime</span>
-
-<span class="k">def</span> <span class="nf">loop0</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop0 at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop0 done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
-
-<span class="k">def</span> <span class="nf">loop1</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop1 at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop1 done at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;starting at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
-    <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">loop0</span><span class="p">,())</span>
-    <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">loop1</span><span class="p">,())</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;all done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#mtsleep1.py</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">thread</span>  <span class="c1">#需要python2环境</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span><span class="n">ctime</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">loop0</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop0 at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop0 done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">loop1</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start loop1 at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop1 done at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;starting at:&#39;</span><span class="p">,</span> <span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">loop0</span><span class="p">,())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">loop1</span><span class="p">,())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;all done at:&#39;</span><span class="p">,</span><span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	这个程序的输出与之前的输出大不相同，之前是运行了6,7秒，而现在则是4秒，是最长的循环的运行时间和其它代码的时间之和。睡眠4秒和睡眠2秒是并发执行的，这样就使得总的运行时间被缩短了。loop1在loop0前面就结束了，而且程序多了一个sleep(6)的函数调用。为什么要加入sleep(6)，这是因为如果没有让主线程停下来，那主线程就会运行下一条语句，显示&quot;all done&quot;，然后就关闭了运行着的loop0()和loop1()的两个线程，退出了。</p>
 <p>​	的确这里应该有更好的管理线程的办法，而不是在主线程里面做一个额外的延时6s的操作。也就是说，我们要写让主线程停下来等所有子线程结束之后再继续运行的代码，这也是线程需要同步的原因。用sleep()函数做线程的同步操作是不可靠的，因为如果有循环的执行时间不能事先确定的话，这可能会造成主线程过早或过晚退出，这就要用到锁了。</p>

@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/rabbit-go-4/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -389,7 +389,7 @@
 <p>在前面的示例中，我们已经在创建绑定。你可能会想起以下代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -397,19 +397,19 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
-  <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue name
-</span><span class="c1"></span>  <span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// routing key
-</span><span class="c1"></span>  <span class="s">&#34;logs&#34;</span><span class="p">,</span> <span class="c1">// exchange
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>
-  <span class="kc">nil</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s">&#34;logs&#34;</span><span class="p">,</span> <span class="c1">// exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="kc">nil</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>绑定是交换器和队列之间的关系。这可以简单地理解为：队列对来自此交换器的消息感兴趣。</p>
 <p>绑定可以采用额外的<code>routing_key</code>参数。为了避免与<code>Channel.Publish</code>参数混淆，我们将其称为<code>binding key</code>。这是我们如何使用键创建绑定的方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -417,13 +417,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
-  <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>    <span class="c1">// queue name
-</span><span class="c1"></span>  <span class="s">&#34;black&#34;</span><span class="p">,</span>   <span class="c1">// routing key
-</span><span class="c1"></span>  <span class="s">&#34;logs&#34;</span><span class="p">,</span>    <span class="c1">// exchange
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>
-  <span class="kc">nil</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>    <span class="c1">// queue name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s">&#34;black&#34;</span><span class="p">,</span>   <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s">&#34;logs&#34;</span><span class="p">,</span>    <span class="c1">// exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="kc">nil</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>绑定密钥的含义取决于交换器的类型。我们以前使用的<code>fanout</code>交换器只是忽略了这个值。</p>
 <h3 id="direct交换器">Direct交换器</h3>
@@ -442,7 +442,7 @@
 <p>与以前一样，我们需要首先创建一个交换器：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -453,21 +453,21 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
-  <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
-</span><span class="c1"></span>  <span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
-</span><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
-</span><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
-</span><span class="c1"></span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们已经准备好发送一条消息：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -490,35 +490,35 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
-  <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
-</span><span class="c1"></span>  <span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
-</span><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
-</span><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
-</span><span class="c1"></span><span class="p">)</span>
-<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare an exchange&#34;</span><span class="p">)</span>
-
-<span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
-  <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span>         <span class="c1">// exchange
-</span><span class="c1"></span>  <span class="nf">severityFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">),</span> <span class="c1">// routing key
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// mandatory
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// immediate
-</span><span class="c1"></span>  <span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
-    <span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
-    <span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
-<span class="p">})</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare an exchange&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span>         <span class="c1">// exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">severityFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">),</span> <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// mandatory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// immediate
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>为了简化问题，我们假设“严重性”可以是“info”、“warning”、“error”之一。</p>
 <h3 id="订阅">订阅</h3>
 <p>接收消息的工作方式与上一教程一样，但有一个例外——我们将为感兴趣的每种严重性（日志级别）创建一个新的绑定。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -546,33 +546,33 @@
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
-  <span class="s">&#34;&#34;</span><span class="p">,</span>    <span class="c1">// name
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// durable
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// delete when unused
-</span><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>  <span class="c1">// exclusive
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// no-wait
-</span><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>   <span class="c1">// arguments
-</span><span class="c1"></span><span class="p">)</span>
-<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare a queue&#34;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span> <span class="p">{</span>
-  <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Usage: %s [info] [warning] [error]&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-  <span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="c1">// 建立多个绑定关系
-</span><span class="c1"></span><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">s</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="p">{</span>
-  <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Binding queue %s to exchange %s with routing key %s&#34;</span><span class="p">,</span>
-     <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
-  <span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
-    <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>        <span class="c1">// queue name
-</span><span class="c1"></span>    <span class="nx">s</span><span class="p">,</span>             <span class="c1">// routing key
-</span><span class="c1"></span>    <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// exchange
-</span><span class="c1"></span>    <span class="kc">false</span><span class="p">,</span>
-    <span class="kc">nil</span><span class="p">)</span>
-  <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to bind a queue&#34;</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;&#34;</span><span class="p">,</span>    <span class="c1">// name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// durable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// delete when unused
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>  <span class="c1">// exclusive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>   <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare a queue&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Usage: %s [info] [warning] [error]&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 建立多个绑定关系
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">s</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Binding queue %s to exchange %s with routing key %s&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">     <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>        <span class="c1">// queue name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">s</span><span class="p">,</span>             <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to bind a queue&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="完整demo">完整demo</h3>
 <p>1.Routing之订阅模型-Direct(直连)</p>
@@ -602,7 +602,7 @@
 <p><code>producer.go</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -676,84 +676,84 @@
 </span><span class="lnt">72
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;log&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-	<span class="s">&#34;strings&#34;</span>
-	<span class="s">&#34;github.com/streadway/amqp&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span>  <span class="p">{</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s : %s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// 产生日志
-</span><span class="c1"></span>	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672&#34;</span><span class="p">)</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to connect to RabbitMQ&#34;</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-
-	<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Channel</span><span class="p">()</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to open a channel&#34;</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-
-	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
-		<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
-</span><span class="c1"></span>		<span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
-</span><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
-</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
-</span><span class="c1"></span>	<span class="p">)</span>
-
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare an exchange&#34;</span><span class="p">)</span>
-
-	<span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
-		<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span>         <span class="c1">// exchange
-</span><span class="c1"></span>		<span class="nf">severityFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">),</span> <span class="c1">// routing key
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// mandatory
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// immediate
-</span><span class="c1"></span>		<span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
-			<span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
-			<span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
-		<span class="p">})</span>
-
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to publish a message&#34;</span><span class="p">)</span>
-
-	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [x] Sent %s&#34;</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>  <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span><span class="p">{</span>
-		<span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
-	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-		<span class="nx">s</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="nx">s</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">severityFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>  <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span><span class="p">{</span>
-		<span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;info&#34;</span>
-	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-		<span class="nx">s</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="nx">s</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;strings&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/streadway/amqp&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s : %s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 产生日志
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to connect to RabbitMQ&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Channel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to open a channel&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare an exchange&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span>         <span class="c1">// exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nf">severityFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">),</span> <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// mandatory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// immediate
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to publish a message&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [x] Sent %s&#34;</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">s</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">s</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">severityFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;info&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">s</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">s</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>consumer.go</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -837,89 +837,89 @@
 </span><span class="lnt">82
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;log&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-	<span class="s">&#34;github.com/streadway/amqp&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s: %s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672&#34;</span><span class="p">)</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to connect to RabbitMQ&#34;</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-
-	<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Channel</span><span class="p">()</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to open a channel&#34;</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-
-	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
-		<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
-</span><span class="c1"></span>		<span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
-</span><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
-</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
-</span><span class="c1"></span>	<span class="p">)</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare an exchange&#34;</span><span class="p">)</span>
-
-	<span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
-		<span class="s">&#34;&#34;</span><span class="p">,</span>    <span class="c1">// name
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// durable
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// delete when unused
-</span><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>  <span class="c1">// exclusive
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// no-wait
-</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>   <span class="c1">// arguments
-</span><span class="c1"></span>	<span class="p">)</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare a queue&#34;</span><span class="p">)</span>
-
-	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Usage: %s [info] [warning] [error]&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-		<span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">s</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Binding queue %s to exchange %s with routing key %s&#34;</span><span class="p">,</span>
-			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
-		<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
-			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>        <span class="c1">// queue name
-</span><span class="c1"></span>			<span class="nx">s</span><span class="p">,</span>             <span class="c1">// routing key
-</span><span class="c1"></span>			<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// exchange
-</span><span class="c1"></span>			<span class="kc">false</span><span class="p">,</span>
-			<span class="kc">nil</span><span class="p">)</span>
-		<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to bind a queue&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-
-	<span class="nx">msgs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Consume</span><span class="p">(</span>
-		<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue
-</span><span class="c1"></span>		<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// consumer
-</span><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>   <span class="c1">// auto ack
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// exclusive
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no local
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no wait
-</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>    <span class="c1">// args
-</span><span class="c1"></span>	<span class="p">)</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to register a consumer&#34;</span><span class="p">)</span>
-
-	<span class="nx">forever</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
-
-	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">for</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">msgs</span> <span class="p">{</span>
-			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [x] %s&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
-		<span class="p">}</span>
-	<span class="p">}()</span>
-
-	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [*] Waiting for logs. To exit press CTRL+C&#34;</span><span class="p">)</span>
-	<span class="o">&lt;-</span><span class="nx">forever</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/streadway/amqp&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s: %s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to connect to RabbitMQ&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Channel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to open a channel&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="s">&#34;direct&#34;</span><span class="p">,</span>      <span class="c1">// type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>          <span class="c1">// durable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// auto-deleted
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// internal
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>         <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>           <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare an exchange&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;&#34;</span><span class="p">,</span>    <span class="c1">// name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// durable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// delete when unused
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>  <span class="c1">// exclusive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span> <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>   <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare a queue&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Usage: %s [info] [warning] [error]&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">s</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Binding queue %s to exchange %s with routing key %s&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>        <span class="c1">// queue name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">s</span><span class="p">,</span>             <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="s">&#34;logs_direct&#34;</span><span class="p">,</span> <span class="c1">// exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to bind a queue&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">msgs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Consume</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// consumer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>   <span class="c1">// auto ack
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// exclusive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no local
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>    <span class="c1">// args
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to register a consumer&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">forever</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">msgs</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [x] %s&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [*] Waiting for logs. To exit press CTRL+C&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="o">&lt;-</span><span class="nx">forever</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>测试</strong></p>
 <p>如果我们只想将“warning”和“err”（而不是“info”）级别的日志消息保存到文件中，只需打开控制台并输入：</p>

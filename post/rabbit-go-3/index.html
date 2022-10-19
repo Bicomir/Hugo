@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/rabbit-go-3/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -398,7 +398,7 @@
 <p>有几种交换机类型可用：<code>direct</code>, <code>topic</code>, <code>headers</code> 和 <code>fanout</code>。我们将着重讨论最后一个——<code>fanout</code>。让我们创建一个这种类型的交换机，并给它起个名字叫<code>logs</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -409,16 +409,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
-  <span class="s">&#34;logs&#34;</span><span class="p">,</span>   <span class="c1">// name
-</span><span class="c1"></span>  <span class="s">&#34;fanout&#34;</span><span class="p">,</span> <span class="c1">// type
-</span><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>     <span class="c1">// durable
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// auto-deleted
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// internal
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// no-wait
-</span><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>      <span class="c1">// arguments
-</span><span class="c1"></span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;logs&#34;</span><span class="p">,</span>   <span class="c1">// name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s">&#34;fanout&#34;</span><span class="p">,</span> <span class="c1">// type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>     <span class="c1">// durable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// auto-deleted
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// internal
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>      <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="第三种模型fanout">第三种模型（fanout）</h4>
 <p>fanout  扇出， 也称为广播；</p>
@@ -443,7 +443,7 @@
 <p>回想一下我们之前是怎么发布消息的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -454,22 +454,22 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
-   <span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// exchange
-</span><span class="c1"></span>   <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// routing key
-</span><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">// mandatory
-</span><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">// immediate
-</span><span class="c1"></span>   <span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
-     <span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
-     <span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
- <span class="p">})</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">   <span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">// mandatory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">// immediate
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">     <span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="p">})</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在这里，我们使用的是默认或者无名称的交换机， 消息将以<code>route_key</code>参数指定的名称路由到队列（如果存在）。</p>
 <p>现在，我们可以改为发布到我们的命名交换机:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -492,28 +492,28 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
-  <span class="s">&#34;logs&#34;</span><span class="p">,</span>   <span class="c1">// 使用命名的交换器
-</span><span class="c1"></span>  <span class="s">&#34;fanout&#34;</span><span class="p">,</span> <span class="c1">// 交换器类型
-</span><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>     <span class="c1">// durable
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// auto-deleted
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// internal
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// no-wait
-</span><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>      <span class="c1">// arguments
-</span><span class="c1"></span><span class="p">)</span>
-<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare an exchange&#34;</span><span class="p">)</span>
-
-<span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
-  <span class="s">&#34;logs&#34;</span><span class="p">,</span> <span class="c1">// exchange
-</span><span class="c1"></span>  <span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// routing key
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>  <span class="c1">// mandatory
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>  <span class="c1">// immediate
-</span><span class="c1"></span>  <span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
-          <span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
-          <span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
-  <span class="p">})</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">ExchangeDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;logs&#34;</span><span class="p">,</span>   <span class="c1">// 使用命名的交换器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s">&#34;fanout&#34;</span><span class="p">,</span> <span class="c1">// 交换器类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>     <span class="c1">// durable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// auto-deleted
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// internal
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>      <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare an exchange&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;logs&#34;</span><span class="p">,</span> <span class="c1">// exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>  <span class="c1">// mandatory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>  <span class="c1">// immediate
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="临时队列">临时队列</h3>
 <p>​	之前我们使用的是具有特定名称的队列(用过的&quot;hello&quot;和&quot;work&quot;)，能够命名队列对我们来说至关重要——我们需要将Worker指向同一个队列。当你想在生产者和消费者之间共享队列时，给队列一个名称非常重要。</p>
@@ -522,7 +522,7 @@
 <p>​	在<a href="http://godoc.org/github.com/streadway/amqp">amqp</a>客户端中，当我们传递一个空字符串作为队列名称时，我们将使用随机生成的名称创建一个非持久队列：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -532,15 +532,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
-  <span class="s">&#34;&#34;</span><span class="p">,</span>    <span class="c1">// name, 空字符串作为队列名称
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// durable， 非持久队列
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// delete when unused
-</span><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>  <span class="c1">// exclusive， 独占队列，当前声明的队列连接关闭后即被删除
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// no-wait
-</span><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>   <span class="c1">// arguments
-</span><span class="c1"></span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;&#34;</span><span class="p">,</span>    <span class="c1">// name, 空字符串作为队列名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// durable， 非持久队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// delete when unused
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">true</span><span class="p">,</span>  <span class="c1">// exclusive， 独占队列，当前声明的队列连接关闭后即被删除
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">nil</span><span class="p">,</span>   <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上述方法返回时，生成的队列实例包含RabbitMQ生成的随机队列名称。例如，它可能看起来像<code>amq.gen-JzTY20BRgKO-HjmUJj0wLg</code>。</p>
 <p>当声明它的连接关闭时，该队列将被删除，因为它被声明为独占。</p>
@@ -550,7 +550,7 @@
 <p>我们已经创建了一个扇出交换机和一个队列。现在我们需要告诉交换机将消息发送到我们的队列。交换机和队列之间的关系称为<strong>绑定</strong>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -559,14 +559,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
-  <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue name
-</span><span class="c1"></span>  <span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// routing key
-</span><span class="c1"></span>  <span class="s">&#34;logs&#34;</span><span class="p">,</span> <span class="c1">// exchange
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>
-  <span class="kc">nil</span><span class="p">,</span>
-<span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueBind</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s">&#34;logs&#34;</span><span class="p">,</span> <span class="c1">// exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="kc">nil</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>从现在开始，<code>logs</code>交换机将会把消息添加到我们的队列中。</p>
 <p><strong>列出绑定关系</strong></p>

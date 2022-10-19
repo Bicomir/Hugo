@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/top-command-learn/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -388,7 +388,7 @@
 <p>让我们来分析一下，上面显示的内容代表什么意义，以及各块的内容的含义。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -400,17 +400,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">top - 12:03:11 up  1:49,  <span class="m">2</span> users,  load average: 0.00, 0.00, 0.00
-Tasks: <span class="m">319</span> total,   <span class="m">1</span> running, <span class="m">221</span> sleeping,   <span class="m">0</span> stopped,   <span class="m">0</span> zombie
-top - 12:12:05 up  1:58,  <span class="m">2</span> users,  load average: 0.00, 0.00, 0.00
-Tasks: <span class="m">317</span> total,   <span class="m">1</span> running, <span class="m">221</span> sleeping,   <span class="m">0</span> stopped,   <span class="m">0</span> zombie
-%Cpu<span class="o">(</span>s<span class="o">)</span>:  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
-KiB Mem :  <span class="m">4292528</span> total,  <span class="m">1665160</span> free,  <span class="m">1373796</span> used,  <span class="m">1253572</span> buff/cache
-KiB Swap:  <span class="m">3999740</span> total,  <span class="m">3999740</span> free,        <span class="m">0</span> used.  <span class="m">2632412</span> avail Mem 
-
-   PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                                                                 
-    <span class="m">11</span> root      <span class="m">20</span>   <span class="m">0</span>       <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> I   0.3  0.0   0:10.95 rcu_sched                                             
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">top - 12:03:11 up  1:49,  <span class="m">2</span> users,  load average: 0.00, 0.00, 0.00
+</span></span><span class="line"><span class="cl">Tasks: <span class="m">319</span> total,   <span class="m">1</span> running, <span class="m">221</span> sleeping,   <span class="m">0</span> stopped,   <span class="m">0</span> zombie
+</span></span><span class="line"><span class="cl">top - 12:12:05 up  1:58,  <span class="m">2</span> users,  load average: 0.00, 0.00, 0.00
+</span></span><span class="line"><span class="cl">Tasks: <span class="m">317</span> total,   <span class="m">1</span> running, <span class="m">221</span> sleeping,   <span class="m">0</span> stopped,   <span class="m">0</span> zombie
+</span></span><span class="line"><span class="cl">%Cpu<span class="o">(</span>s<span class="o">)</span>:  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+</span></span><span class="line"><span class="cl">KiB Mem :  <span class="m">4292528</span> total,  <span class="m">1665160</span> free,  <span class="m">1373796</span> used,  <span class="m">1253572</span> buff/cache
+</span></span><span class="line"><span class="cl">KiB Swap:  <span class="m">3999740</span> total,  <span class="m">3999740</span> free,        <span class="m">0</span> used.  <span class="m">2632412</span> avail Mem 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                                                                 
+</span></span><span class="line"><span class="cl">    <span class="m">11</span> root      <span class="m">20</span>   <span class="m">0</span>       <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> I   0.3  0.0   0:10.95 rcu_sched                                             
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="基本参数含义">基本参数含义</h2>
 <h3 id="字段说明">字段说明</h3>
@@ -436,67 +436,67 @@ cache是Linux把读取频率高的数据，放到内存中，减少I/O。Linux�
 <p>首行：系统的整体情况概览</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">名称            系统运行3时:46分            系统负载：1分钟/5分钟/15分钟级
-top - 19:25:37 up  3:46,  <span class="m">2</span> users,  load average: 0.00, 0.05, 0.10
-     系统当前时间         当前登录用户数2人       对于单核CPU 1.0表示满负载
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">名称            系统运行3时:46分            系统负载：1分钟/5分钟/15分钟级
+</span></span><span class="line"><span class="cl">top - 19:25:37 up  3:46,  <span class="m">2</span> users,  load average: 0.00, 0.05, 0.10
+</span></span><span class="line"><span class="cl">     系统当前时间         当前登录用户数2人       对于单核CPU 1.0表示满负载
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>第2行：进程状态</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">进程总任务数：97个     运行进程1个  96个当前睡眠状态  停止进程0个    僵尸进程0个
-Tasks:  <span class="m">97</span> total,   <span class="m">1</span> running,  <span class="m">96</span> sleeping,   <span class="m">0</span> stopped,   <span class="m">0</span> zombie
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">进程总任务数：97个     运行进程1个  96个当前睡眠状态  停止进程0个    僵尸进程0个
+</span></span><span class="line"><span class="cl">Tasks:  <span class="m">97</span> total,   <span class="m">1</span> running,  <span class="m">96</span> sleeping,   <span class="m">0</span> stopped,   <span class="m">0</span> zombie
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>第3行：CPU状态</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">Cpu占用比： 用户空间  内核空间  用户定义优先级  空闲   等待IO   硬中断    软中断     虚拟机
-%Cpu<span class="o">(</span>s<span class="o">)</span>:  1.0 us,  1.0 sy,  0.0 ni, 98.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">Cpu占用比： 用户空间  内核空间  用户定义优先级  空闲   等待IO   硬中断    软中断     虚拟机
+</span></span><span class="line"><span class="cl">%Cpu<span class="o">(</span>s<span class="o">)</span>:  1.0 us,  1.0 sy,  0.0 ni, 98.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>第3-4行： 内存和Swap交换区状态</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">单位 物理内存         总量            空闲           已使用           内核缓存用量
-KiB Mem :  <span class="m">1014720</span> total,   <span class="m">207632</span> free,   <span class="m">313624</span> used,   <span class="m">493464</span> buff/cache
-    交换区           总量            空闲           已使用              可用内存
-KiB Swap:  <span class="m">4095996</span> total,  <span class="m">3379452</span> free,   <span class="m">716544</span> used.   <span class="m">534020</span> avail Mem
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">单位 物理内存         总量            空闲           已使用           内核缓存用量
+</span></span><span class="line"><span class="cl">KiB Mem :  <span class="m">1014720</span> total,   <span class="m">207632</span> free,   <span class="m">313624</span> used,   <span class="m">493464</span> buff/cache
+</span></span><span class="line"><span class="cl">    交换区           总量            空闲           已使用              可用内存
+</span></span><span class="line"><span class="cl">KiB Swap:  <span class="m">4095996</span> total,  <span class="m">3379452</span> free,   <span class="m">716544</span> used.   <span class="m">534020</span> avail Mem
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后需要了解的</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">进程ID      优先级 Nice值 虚拟内存 物理内存 共享内存 CPU  内存    CPU总时间 命令
-  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
- <span class="m">3548</span> mysql     <span class="m">20</span>   <span class="m">0</span>  <span class="m">985096</span>   <span class="m">5548</span>   <span class="m">1560</span> S  0.3  0.5   0:06.74 mysql
-                                          进程状态
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">进程ID      优先级 Nice值 虚拟内存 物理内存 共享内存 CPU  内存    CPU总时间 命令
+</span></span><span class="line"><span class="cl">  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+</span></span><span class="line"><span class="cl"> <span class="m">3548</span> mysql     <span class="m">20</span>   <span class="m">0</span>  <span class="m">985096</span>   <span class="m">5548</span>   <span class="m">1560</span> S  0.3  0.5   0:06.74 mysql
+</span></span><span class="line"><span class="cl">                                          进程状态
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>NI 负值表示高优先级，正值表示低优先级</p>

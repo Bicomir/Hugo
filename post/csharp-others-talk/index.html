@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/csharp-others-talk/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -69,7 +69,7 @@
 <meta itemprop="name" content="C#杂项聊一聊">
 <meta itemprop="description" content="C#是怎么跑起来的 C#源代码生成IL（中间语言）， CLR（公共语言运行时）翻译成 机器指令： 坏处 慢， 运行时， IL更易读更容易反编译 好处 跨平台 承"><meta itemprop="datePublished" content="2019-11-10T18:56:34+00:00" />
 <meta itemprop="dateModified" content="2019-11-10T18:56:34+00:00" />
-<meta itemprop="wordCount" content="2738">
+<meta itemprop="wordCount" content="2736">
 <meta itemprop="keywords" content="CSharp," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="C#杂项聊一聊"/>
 <meta name="twitter:description" content="C#是怎么跑起来的 C#源代码生成IL（中间语言）， CLR（公共语言运行时）翻译成 机器指令： 坏处 慢， 运行时， IL更易读更容易反编译 好处 跨平台 承"/>
@@ -344,7 +344,7 @@
             <a href="https://bomir.top/categories/csharp/"> CSharp </a>
             
           </div>
-        <span class="more-meta"> 约 2738 字 </span>
+        <span class="more-meta"> 约 2736 字 </span>
           <span class="more-meta"> 预计阅读 6 分钟 </span>
 
         
@@ -447,7 +447,7 @@
 <h4 id="version10"><strong>Version1.0</strong></h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -478,47 +478,45 @@
 </span><span class="lnt">29
 </span><span class="lnt">30
 </span><span class="lnt">31
-</span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">static</span> <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">LambdaDemo</span>
-<span class="p">{</span>
-    <span class="k">class</span> <span class="nc">Program</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">void</span> <span class="n">DoSomething</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">do_sth</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Bomir&#34;</span><span class="p">;</span>
-                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">do_sth</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-                <span class="n">WriteLine</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="kt">string</span> <span class="n">BomirLoveFSC</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">name</span> <span class="p">+</span> <span class="s">&#34;喜欢FSC&#34;</span><span class="p">;</span>
-                <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="n">DoSomething</span><span class="p">(</span><span class="n">BomirLoveFSC</span><span class="p">);</span>
-            <span class="n">ReadLine</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">static</span> <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">LambdaDemo</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">void</span> <span class="n">DoSomething</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">do_sth</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Bomir&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">do_sth</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">WriteLine</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kt">string</span> <span class="n">BomirLoveFSC</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">name</span> <span class="p">+</span> <span class="s">&#34;喜欢FSC&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">DoSomething</span><span class="p">(</span><span class="n">BomirLoveFSC</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="version20"><strong>Version2.0</strong></h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -549,41 +547,41 @@
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">static</span> <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">LambdaDemo</span>
-<span class="p">{</span>
-    <span class="k">class</span> <span class="nc">Program</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">void</span> <span class="n">DoSomething</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">do_sth</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Bomir&#34;</span><span class="p">;</span>
-                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">do_sth</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-                <span class="n">WriteLine</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="n">DoSomething</span>
-            <span class="p">(</span>
-                <span class="k">delegate</span> <span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">name</span> <span class="p">+</span> <span class="s">&#34;喜欢FSC&#34;</span><span class="p">;</span>
-                    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-                <span class="p">}</span>
-            <span class="p">);</span>
-
-            <span class="n">ReadLine</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">static</span> <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">LambdaDemo</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">void</span> <span class="n">DoSomething</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">do_sth</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Bomir&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">do_sth</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">WriteLine</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">DoSomething</span>
+</span></span><span class="line"><span class="cl">            <span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="k">delegate</span> <span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">name</span> <span class="p">+</span> <span class="s">&#34;喜欢FSC&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="version30"><strong>Version3.0</strong></h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -607,35 +605,35 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">static</span> <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">LambdaDemo</span>
-<span class="p">{</span>
-    <span class="k">class</span> <span class="nc">Program</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">void</span> <span class="n">DoSomething</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">do_sth</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Bomir&#34;</span><span class="p">;</span>
-                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">do_sth</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-                <span class="n">WriteLine</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="n">DoSomething</span><span class="p">(</span><span class="n">name</span> <span class="p">=&gt;</span> <span class="n">name</span> <span class="p">+</span> <span class="s">&#34;喜欢FSC&#34;</span><span class="p">);</span>
-
-            <span class="n">ReadLine</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">static</span> <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">LambdaDemo</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">void</span> <span class="n">DoSomething</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">do_sth</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Bomir&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">do_sth</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">WriteLine</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">DoSomething</span><span class="p">(</span><span class="n">name</span> <span class="p">=&gt;</span> <span class="n">name</span> <span class="p">+</span> <span class="s">&#34;喜欢FSC&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>由Linq带来的扩展方法</strong></p>
 <p>Where<!-- raw HTML omitted -->(IEnumerable<!-- raw HTML omitted -->, Func&lt;Tsource, Boolean&gt;),</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -670,46 +668,44 @@
 </span><span class="lnt">33
 </span><span class="lnt">34
 </span><span class="lnt">35
-</span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">static</span> <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">LambdaDemo</span>
-<span class="p">{</span>
-    <span class="k">class</span> <span class="nc">Program</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">&gt;</span>
-            <span class="p">{</span>
-                <span class="k">new</span> <span class="n">Person</span><span class="p">{</span> <span class="n">age</span> <span class="p">=</span> <span class="m">17</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;张三&#34;</span><span class="p">},</span>
-                <span class="k">new</span> <span class="n">Person</span><span class="p">{</span> <span class="n">age</span> <span class="p">=</span> <span class="m">33</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;李四&#34;</span><span class="p">},</span>
-                <span class="k">new</span> <span class="n">Person</span><span class="p">{</span> <span class="n">age</span> <span class="p">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;王五&#34;</span><span class="p">},</span>
-                <span class="k">new</span> <span class="n">Person</span><span class="p">{</span> <span class="n">age</span> <span class="p">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;赵六&#34;</span><span class="p">},</span>
-                <span class="k">new</span> <span class="n">Person</span><span class="p">{</span> <span class="n">age</span> <span class="p">=</span> <span class="m">38</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;唐三&#34;</span><span class="p">},</span>
-
-            <span class="p">};</span>
-
-            <span class="n">list</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">age</span> <span class="p">&gt;</span> <span class="m">18</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">ToList</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;{c.name}&#34;</span><span class="p">));</span>
-
-            <span class="n">ReadLine</span><span class="p">();</span>
-        <span class="p">}</span>
-
-        <span class="k">class</span> <span class="nc">Person</span>
-        <span class="p">{</span>
-            <span class="k">public</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
-            <span class="k">public</span> <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">static</span> <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">LambdaDemo</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">Person</span><span class="p">{</span> <span class="n">age</span> <span class="p">=</span> <span class="m">17</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;张三&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">Person</span><span class="p">{</span> <span class="n">age</span> <span class="p">=</span> <span class="m">33</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;李四&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">Person</span><span class="p">{</span> <span class="n">age</span> <span class="p">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;王五&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">Person</span><span class="p">{</span> <span class="n">age</span> <span class="p">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;赵六&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">Person</span><span class="p">{</span> <span class="n">age</span> <span class="p">=</span> <span class="m">38</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;唐三&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">list</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">age</span> <span class="p">&gt;</span> <span class="m">18</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">.</span><span class="n">ToList</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                <span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;{c.name}&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">class</span> <span class="nc">Person</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">public</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">public</span> <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>集合论</strong></p>
 <h2 id="委托">委托</h2>

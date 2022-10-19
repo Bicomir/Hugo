@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/remove-duplicates/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -380,29 +380,29 @@
 <p>来源  <a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/">leetcode83.删除排序链表中的元素</a></p>
 <p>给定一个已排序的链表的头 <code>head</code> ， <em>删除所有重复的元素，使每个元素只出现一次</em> 。返回 <em>已排序的链表</em> 。</p>
 <p>case1:</p>
-<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-plaintext" data-lang="plaintext">输入：head = [1,1,2]
-输出：[1,2,3]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">输入：head = [1,1,2]
+</span></span><span class="line"><span class="cl">输出：[1,2,3]
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>case2:</p>
-<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-plaintext" data-lang="plaintext">输入：head = [1,1,2,3,3]
-输出：[1,2,3]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">输入：head = [1,1,2,3,3]
+</span></span><span class="line"><span class="cl">输出：[1,2,3]
+</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h2 id="思路">思路</h2>
@@ -412,7 +412,7 @@
 <p>my ugly code</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -443,38 +443,38 @@
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="n">ListNode</span> <span class="n">DeleteDuplicates</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> 
-            <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
-            
-        <span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">head</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">list</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">head</span><span class="p">.</span><span class="n">val</span><span class="p">);</span>
-            <span class="n">head</span> <span class="p">=</span> <span class="n">head</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="n">list</span><span class="p">.</span><span class="n">Sort</span><span class="p">();</span>
-
-        <span class="n">HashSet</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">duplicates</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;(</span><span class="n">list</span><span class="p">);</span>
-
-        <span class="n">list</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
-        <span class="n">list</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="n">duplicates</span><span class="p">);</span>
-
-        <span class="n">List</span><span class="p">&lt;</span><span class="n">ListNode</span><span class="p">&gt;</span> <span class="n">listNode</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">ListNode</span><span class="p">&gt;();</span>
-        <span class="n">list</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">listNode</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">x</span><span class="p">)));</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">listNode</span><span class="p">.</span><span class="n">Count</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
-        <span class="p">{</span>
-            <span class="n">listNode</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">next</span> <span class="p">=</span> <span class="n">listNode</span><span class="p">[</span><span class="n">i</span> <span class="p">+</span> <span class="m">1</span><span class="p">];</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">listNode</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">ListNode</span> <span class="n">DeleteDuplicates</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">head</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">list</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">head</span><span class="p">.</span><span class="n">val</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">head</span> <span class="p">=</span> <span class="n">head</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="p">.</span><span class="n">Sort</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">HashSet</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">duplicates</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;(</span><span class="n">list</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="n">duplicates</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="p">&lt;</span><span class="n">ListNode</span><span class="p">&gt;</span> <span class="n">listNode</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">ListNode</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">listNode</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">x</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">listNode</span><span class="p">.</span><span class="n">Count</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">listNode</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">next</span> <span class="p">=</span> <span class="n">listNode</span><span class="p">[</span><span class="n">i</span> <span class="p">+</span> <span class="m">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">listNode</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted --></p>
+</div><!-- raw HTML omitted -->
 <p>虽然AC了，但明显上述代码效率就不高，经历了多次循环，而且相关实现代码重复啰嗦；这主要是没有利用到题目给的“链表是排好序”的特点，那么重复的元素应当在链表中的位置是连续的；</p>
 <h2 id="高手思路赏析">高手思路赏析</h2>
 <h3 id="解题思路">解题思路</h3>
@@ -484,7 +484,7 @@
 <p>当遍历到链表的最后一个节点时，<code>cur.next</code>为空节点，如果不加以判断，访问<code>cur.next</code>对应的元素就会产生运行错误。因此我们只需要遍历到链表的最后一个节点，而不需要遍历完整整个链表。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -506,34 +506,34 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">static</span> <span class="n">ListNode</span> <span class="n">deleteDuplicates</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
-
-    <span class="kt">var</span> <span class="n">current</span> <span class="p">=</span> <span class="n">head</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="n">next</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="n">val</span> <span class="p">==</span> <span class="n">current</span><span class="p">.</span><span class="n">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">current</span><span class="p">.</span><span class="n">next</span> <span class="p">=</span> <span class="n">current</span><span class="p">.</span><span class="n">next</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">else</span>
-        <span class="p">{</span>
-            <span class="n">current</span> <span class="p">=</span> <span class="n">current</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">static</span> <span class="n">ListNode</span> <span class="n">deleteDuplicates</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">current</span> <span class="p">=</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="n">next</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="n">val</span> <span class="p">==</span> <span class="n">current</span><span class="p">.</span><span class="n">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span><span class="p">.</span><span class="n">next</span> <span class="p">=</span> <span class="n">current</span><span class="p">.</span><span class="n">next</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span> <span class="p">=</span> <span class="n">current</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="复杂度分析">复杂度分析</h3>
 <ul>
 <li>时间复杂度：O(n)，其中 n 是链表的长度。</li>
 <li>空间复杂度：O(1)。</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <p>另外给出一个递归版本的简易写法：</p>
 <ol>
 <li>找终止条件：当head指向链表只剩一个元素的时候，自然是不可能重复的，因此return</li>
@@ -542,7 +542,7 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -554,17 +554,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="n">ListNode</span> <span class="n">DeleteDuplicates</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">head</span> <span class="p">==</span> <span class="k">null</span> <span class="p">||</span> <span class="n">head</span><span class="p">.</span><span class="n">next</span> <span class="p">==</span> <span class="k">null</span><span class="p">){</span>
-            <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="n">head</span><span class="p">.</span><span class="n">next</span> <span class="p">=</span> <span class="n">DeleteDuplicates</span><span class="p">(</span><span class="n">head</span><span class="p">.</span><span class="n">next</span><span class="p">);</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">head</span><span class="p">.</span><span class="n">val</span> <span class="p">==</span> <span class="n">head</span><span class="p">.</span><span class="n">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span> <span class="n">head</span> <span class="p">=</span> <span class="n">head</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">ListNode</span> <span class="n">DeleteDuplicates</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">head</span> <span class="p">==</span> <span class="k">null</span> <span class="p">||</span> <span class="n">head</span><span class="p">.</span><span class="n">next</span> <span class="p">==</span> <span class="k">null</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">head</span><span class="p">.</span><span class="n">next</span> <span class="p">=</span> <span class="n">DeleteDuplicates</span><span class="p">(</span><span class="n">head</span><span class="p">.</span><span class="n">next</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">head</span><span class="p">.</span><span class="n">val</span> <span class="p">==</span> <span class="n">head</span><span class="p">.</span><span class="n">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span> <span class="n">head</span> <span class="p">=</span> <span class="n">head</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

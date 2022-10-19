@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/base-redis-distributedlock/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -69,7 +69,7 @@
 <meta itemprop="name" content="浅谈基于redis的分布式锁">
 <meta itemprop="description" content="一、介绍 这篇博文讲介绍如何一步步构建一个基于Redis的分布式锁。会从最原始的版本开始，然后根据问题进行调整，最后完成一个较为合理的分布式锁"><meta itemprop="datePublished" content="2021-01-12T21:19:05+00:00" />
 <meta itemprop="dateModified" content="2021-01-12T21:19:05+00:00" />
-<meta itemprop="wordCount" content="4283">
+<meta itemprop="wordCount" content="4280">
 <meta itemprop="keywords" content="redis," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="浅谈基于redis的分布式锁"/>
 <meta name="twitter:description" content="一、介绍 这篇博文讲介绍如何一步步构建一个基于Redis的分布式锁。会从最原始的版本开始，然后根据问题进行调整，最后完成一个较为合理的分布式锁"/>
@@ -344,7 +344,7 @@
             <a href="https://bomir.top/categories/nosql/"> Nosql </a>
             
           </div>
-        <span class="more-meta"> 约 4283 字 </span>
+        <span class="more-meta"> 约 4280 字 </span>
           <span class="more-meta"> 预计阅读 9 分钟 </span>
 
         
@@ -418,7 +418,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -433,26 +433,24 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">Redis.SingleLock</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LockConstants</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">Ok</span> <span class="o">=</span> <span class="s">&#34;OK&#34;</span><span class="o">;</span>
-
-    <span class="cm">/** NX|XX, NX -- Only set the key if it does not already exist. XX -- Only set the key if it already exist. **/</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">NOT_EXIST</span> <span class="o">=</span> <span class="s">&#34;NX&#34;</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">EXIST</span> <span class="o">=</span> <span class="s">&#34;XX&#34;</span><span class="o">;</span>
-
-    <span class="cm">/** expx EX|PX, expire time units: EX = seconds; PX = milliseconds **/</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SECONDS</span> <span class="o">=</span> <span class="s">&#34;EX&#34;</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">MILLISECONDS</span> <span class="o">=</span> <span class="s">&#34;PX&#34;</span><span class="o">;</span>
-
-    <span class="kd">private</span> <span class="nf">LockConstants</span><span class="o">()</span> <span class="o">{}</span>
-<span class="o">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">Redis.SingleLock</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LockConstants</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">Ok</span> <span class="o">=</span> <span class="s">&#34;OK&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/** NX|XX, NX -- Only set the key if it does not already exist. XX -- Only set the key if it already exist. **/</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">NOT_EXIST</span> <span class="o">=</span> <span class="s">&#34;NX&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">EXIST</span> <span class="o">=</span> <span class="s">&#34;XX&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/** expx EX|PX, expire time units: EX = seconds; PX = milliseconds **/</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SECONDS</span> <span class="o">=</span> <span class="s">&#34;EX&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">MILLISECONDS</span> <span class="o">=</span> <span class="s">&#34;PX&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="nf">LockConstants</span><span class="o">()</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>定义锁的抽象类</li>
@@ -460,7 +458,7 @@
 <p>抽象类RedisLock实现java.util.concurrent包下的Lock接口，然后对一些方法提供默认实现，子类只需实现lock方法和unlock方法即可。代码如下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -507,64 +505,62 @@
 </span><span class="lnt">45
 </span><span class="lnt">46
 </span><span class="lnt">47
-</span><span class="lnt">48
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">Redis.SingleLock</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">redis.clients.jedis.Jedis</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.util.concurrent.locks.Condition</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.concurrent.locks.Lock</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">RedisLock</span> <span class="kd">implements</span> <span class="n">Lock</span> <span class="o">{</span>
-
-    <span class="kd">protected</span> <span class="n">Jedis</span> <span class="n">jedis</span><span class="o">;</span>
-    <span class="kd">protected</span> <span class="n">String</span> <span class="n">lockKey</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">RedisLock</span><span class="o">(</span><span class="n">Jedis</span> <span class="n">jedis</span><span class="o">,</span> <span class="n">String</span> <span class="n">lockKey</span><span class="o">){</span>
-        <span class="c1">// this(jedis, lockKey);
-</span><span class="c1"></span>        <span class="n">jedis</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">;</span>
-        <span class="n">lockKey</span> <span class="o">=</span> <span class="n">lockKey</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sleepBySecond</span><span class="o">(</span><span class="kt">int</span> <span class="n">second</span><span class="o">){</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">second</span> <span class="o">*</span> <span class="n">1000</span><span class="o">);</span>
-
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
-            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">lockInterruptibly</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
-
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">Condition</span> <span class="nf">newCondition</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">tryLock</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="o">}</span>
-    
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">tryLock</span><span class="o">(</span><span class="kt">long</span> <span class="n">time</span><span class="o">,</span> <span class="n">TimeUnit</span> <span class="n">unit</span><span class="o">){</span>
-        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">Redis.SingleLock</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">redis.clients.jedis.Jedis</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.concurrent.locks.Condition</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.concurrent.locks.Lock</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">RedisLock</span> <span class="kd">implements</span> <span class="n">Lock</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="n">Jedis</span> <span class="n">jedis</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="n">String</span> <span class="n">lockKey</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">RedisLock</span><span class="o">(</span><span class="n">Jedis</span> <span class="n">jedis</span><span class="o">,</span> <span class="n">String</span> <span class="n">lockKey</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// this(jedis, lockKey);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">jedis</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lockKey</span> <span class="o">=</span> <span class="n">lockKey</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sleepBySecond</span><span class="o">(</span><span class="kt">int</span> <span class="n">second</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">second</span> <span class="o">*</span> <span class="n">1000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">lockInterruptibly</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Condition</span> <span class="nf">newCondition</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">tryLock</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">tryLock</span><span class="o">(</span><span class="kt">long</span> <span class="n">time</span><span class="o">,</span> <span class="n">TimeUnit</span> <span class="n">unit</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="32-最基础的版本1">3.2 最基础的版本1</h2>
 <p>先来一个最基础的版本，代码如下:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -601,48 +597,46 @@
 </span><span class="lnt">35
 </span><span class="lnt">36
 </span><span class="lnt">37
-</span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">Redis.SingleLock</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">redis.clients.jedis.Jedis</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.util.concurrent.TimeUnit</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">redis.clients.jedis.params.SetParams</span><span class="o">;</span>
-
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LockCase1</span> <span class="kd">extends</span> <span class="n">RedisLock</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="nf">LockCase1</span><span class="o">(</span><span class="n">Jedis</span> <span class="n">jedis</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">(</span><span class="n">jedis</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">lock</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">SetParams</span> <span class="n">ss</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SetParams</span><span class="o">();</span>
-            <span class="n">String</span> <span class="n">ressult</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">lockKey</span><span class="o">,</span> <span class="s">&#34;value&#34;</span><span class="o">,</span> <span class="n">ss</span><span class="o">.</span><span class="na">nx</span><span class="o">());</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">LockConstants</span><span class="o">.</span><span class="na">Ok</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">ressult</span><span class="o">))</span> <span class="o">{</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;加锁成功&#34;</span><span class="o">);</span>
-                <span class="k">break</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">tryLock</span><span class="o">(</span><span class="kt">long</span> <span class="n">time</span><span class="o">,</span> <span class="n">TimeUnit</span> <span class="n">unit</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">unlock</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">jedis</span><span class="o">.</span><span class="na">del</span><span class="o">(</span><span class="n">lockKey</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">Redis.SingleLock</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">redis.clients.jedis.Jedis</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.concurrent.TimeUnit</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">redis.clients.jedis.params.SetParams</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LockCase1</span> <span class="kd">extends</span> <span class="n">RedisLock</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">LockCase1</span><span class="o">(</span><span class="n">Jedis</span> <span class="n">jedis</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">jedis</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">lock</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SetParams</span> <span class="n">ss</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SetParams</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">String</span> <span class="n">ressult</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">lockKey</span><span class="o">,</span> <span class="s">&#34;value&#34;</span><span class="o">,</span> <span class="n">ss</span><span class="o">.</span><span class="na">nx</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">LockConstants</span><span class="o">.</span><span class="na">Ok</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">ressult</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;加锁成功&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">tryLock</span><span class="o">(</span><span class="kt">long</span> <span class="n">time</span><span class="o">,</span> <span class="n">TimeUnit</span> <span class="n">unit</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">unlock</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">jedis</span><span class="o">.</span><span class="na">del</span><span class="o">(</span><span class="n">lockKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>LockCase1类提供了lock和unlock方法。
 其中lock方法也就是在reids客户端执行如下命令:</p>
@@ -655,7 +649,7 @@
 <p>可以通过设置过期时间来解决这个问题:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -666,16 +660,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">lock</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">){</span>
-        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">lockKey</span><span class="o">,</span> <span class="s">&#34;value&#34;</span><span class="o">,</span> <span class="n">NOT_EXIST</span><span class="o">,</span><span class="n">SECONDS</span><span class="o">,</span><span class="n">30</span><span class="o">);</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">OK</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">result</span><span class="o">)){</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()+</span><span class="s">&#34;加锁成功!&#34;</span><span class="o">);</span>
-            <span class="k">break</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">lock</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">lockKey</span><span class="o">,</span> <span class="s">&#34;value&#34;</span><span class="o">,</span> <span class="n">NOT_EXIST</span><span class="o">,</span><span class="n">SECONDS</span><span class="o">,</span><span class="n">30</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="o">(</span><span class="n">OK</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">result</span><span class="o">)){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()+</span><span class="s">&#34;加锁成功!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>类似的Redis命令如下:</p>
 <p><code>SET lockKey value NX EX 30</code></p>
@@ -703,7 +697,7 @@
 <p>抽象类RedisLock增加lockValue字段，lockValue字段的默认值为UUID随机值假设当前线程ID。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -722,29 +716,29 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">RedisLock</span> <span class="kd">implements</span> <span class="n">Lock</span> <span class="o">{</span>
-
-    <span class="c1">//...
-</span><span class="c1"></span>    <span class="kd">protected</span> <span class="n">String</span> <span class="n">lockValue</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">RedisLock</span><span class="o">(</span><span class="n">Jedis</span> <span class="n">jedis</span><span class="o">,</span><span class="n">String</span> <span class="n">lockKey</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">(</span><span class="n">jedis</span><span class="o">,</span> <span class="n">lockKey</span><span class="o">,</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">()+</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">());</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="nf">RedisLock</span><span class="o">(</span><span class="n">Jedis</span> <span class="n">jedis</span><span class="o">,</span> <span class="n">String</span> <span class="n">lockKey</span><span class="o">,</span> <span class="n">String</span> <span class="n">lockValue</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">jedis</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">lockKey</span> <span class="o">=</span> <span class="n">lockKey</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">lockValue</span> <span class="o">=</span> <span class="n">lockValue</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">//...
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">RedisLock</span> <span class="kd">implements</span> <span class="n">Lock</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">protected</span> <span class="n">String</span> <span class="n">lockValue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">RedisLock</span><span class="o">(</span><span class="n">Jedis</span> <span class="n">jedis</span><span class="o">,</span><span class="n">String</span> <span class="n">lockKey</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">(</span><span class="n">jedis</span><span class="o">,</span> <span class="n">lockKey</span><span class="o">,</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">()+</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">RedisLock</span><span class="o">(</span><span class="n">Jedis</span> <span class="n">jedis</span><span class="o">,</span> <span class="n">String</span> <span class="n">lockKey</span><span class="o">,</span> <span class="n">String</span> <span class="n">lockValue</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">jedis</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">lockKey</span> <span class="o">=</span> <span class="n">lockKey</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">lockValue</span> <span class="o">=</span> <span class="n">lockValue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>加锁代码：</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -755,21 +749,21 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">lock</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">){</span>
-        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">lockKey</span><span class="o">,</span> <span class="n">lockValue</span><span class="o">,</span> <span class="n">NOT_EXIST</span><span class="o">,</span><span class="n">SECONDS</span><span class="o">,</span><span class="n">30</span><span class="o">);</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">OK</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">result</span><span class="o">)){</span> 					           
-            	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()+</span><span class="s">&#34;加锁成功!&#34;</span><span class="o">);</span>
-            <span class="k">break</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">lock</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">lockKey</span><span class="o">,</span> <span class="n">lockValue</span><span class="o">,</span> <span class="n">NOT_EXIST</span><span class="o">,</span><span class="n">SECONDS</span><span class="o">,</span><span class="n">30</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="o">(</span><span class="n">OK</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">result</span><span class="o">)){</span> 					           
+</span></span><span class="line"><span class="cl">            	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()+</span><span class="s">&#34;加锁成功!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>解锁代码：</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -777,13 +771,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">unlock</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">String</span> <span class="n">lockValue</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">lockKey</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">lockValue</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">lockValue</span><span class="o">)){</span>
-    	<span class="n">jedis</span><span class="o">.</span><span class="na">del</span><span class="o">(</span><span class="n">lockKey</span><span class="o">);</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">unlock</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">lockValue</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">lockKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">lockValue</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">lockValue</span><span class="o">)){</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">jedis</span><span class="o">.</span><span class="na">del</span><span class="o">(</span><span class="n">lockKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这时看看加锁代码，好像没有什么问题啊。
 再来看看解锁的代码，这里的解锁操作包含三步操作：获取值、判断和删除锁。这时你有没有想到在多线程环境下的<code>i++</code>操作?</p>
@@ -805,24 +799,24 @@
 <p>lua脚本内容如下:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kr">if</span> <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;get&#34;</span><span class="p">,</span><span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="kr">then</span>
-    <span class="kr">return</span> <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;del&#34;</span><span class="p">,</span><span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="kr">else</span>
-    <span class="kr">return</span> <span class="mi">0</span>
-<span class="kr">end</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;get&#34;</span><span class="p">,</span><span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;del&#34;</span><span class="p">,</span><span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="kr">else</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这段Lua脚本在执行的时候要把的lockValue作为ARGV[1]的值传进去，把lockKey作为KEYS[1]的值传进去。现在来看看解锁的java代码:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -833,16 +827,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">unlock</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// 使用lua脚本进行原子删除操作
-</span><span class="c1"></span>    <span class="n">String</span> <span class="n">checkAndDelScript</span> <span class="o">=</span> <span class="s">&#34;if redis.call(&#39;get&#39;, KEYS[1]) == ARGV[1] then &#34;</span> <span class="o">+</span>
-                                <span class="s">&#34;return redis.call(&#39;del&#39;, KEYS[1]) &#34;</span> <span class="o">+</span>
-                                <span class="s">&#34;else &#34;</span> <span class="o">+</span>
-                                <span class="s">&#34;return 0 &#34;</span> <span class="o">+</span>
-                                <span class="s">&#34;end&#34;</span><span class="o">;</span>
-    <span class="n">jedis</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="n">checkAndDelScript</span><span class="o">,</span> <span class="n">1</span><span class="o">,</span> <span class="n">lockKey</span><span class="o">,</span> <span class="n">lockValue</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">unlock</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 使用lua脚本进行原子删除操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span> <span class="n">checkAndDelScript</span> <span class="o">=</span> <span class="s">&#34;if redis.call(&#39;get&#39;, KEYS[1]) == ARGV[1] then &#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                                <span class="s">&#34;return redis.call(&#39;del&#39;, KEYS[1]) &#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                                <span class="s">&#34;else &#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                                <span class="s">&#34;return 0 &#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                                <span class="s">&#34;end&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">jedis</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="n">checkAndDelScript</span><span class="o">,</span> <span class="n">1</span><span class="o">,</span> <span class="n">lockKey</span><span class="o">,</span> <span class="n">lockValue</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>好了，解锁操作也确保了原子性了，那么是不是单机Redis环境的分布式锁到此就完成了?
 别忘了<a href="https://www.cnblogs.com/fixzd/p/9479970.html#%E7%89%88%E6%9C%AC2-%E8%AE%BE%E7%BD%AE%E9%94%81%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4">版本2-设置锁的过期时间</a>还有一个，过期时间如何保证大于业务执行时间问题没有解决。</p>
@@ -851,7 +845,7 @@
 再增加一个scheduleExpirationRenewal方法用于开启刷新过期时间的线程。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -887,46 +881,46 @@
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">RedisLock</span> <span class="kd">implements</span> <span class="n">Lock</span> <span class="o">{</span>
-	<span class="c1">//...
-</span><span class="c1"></span>
-    <span class="kd">protected</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">isOpenExpirationRenewal</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-
-    <span class="cm">/**
-</span><span class="cm">     * 开启定时刷新
-</span><span class="cm">     */</span>
-    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">scheduleExpirationRenewal</span><span class="o">(){</span>
-        <span class="n">Thread</span> <span class="n">renewalThread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">ExpirationRenewal</span><span class="o">());</span>
-        <span class="n">renewalThread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="cm">/**
-</span><span class="cm">     * 刷新key的过期时间
-</span><span class="cm">     */</span>
-    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">ExpirationRenewal</span> <span class="kd">implements</span> <span class="n">Runnable</span><span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-            <span class="k">while</span> <span class="o">(</span><span class="n">isOpenExpirationRenewal</span><span class="o">){</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;执行延迟失效时间中...&#34;</span><span class="o">);</span>
-
-                <span class="n">String</span> <span class="n">checkAndExpireScript</span> <span class="o">=</span> <span class="s">&#34;if redis.call(&#39;get&#39;, KEYS[1]) == ARGV[1] then &#34;</span> <span class="o">+</span>
-                        <span class="s">&#34;return redis.call(&#39;expire&#39;,KEYS[1],ARGV[2]) &#34;</span> <span class="o">+</span>
-                        <span class="s">&#34;else &#34;</span> <span class="o">+</span>
-                        <span class="s">&#34;return 0 end&#34;</span><span class="o">;</span>
-                <span class="n">jedis</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="n">checkAndExpireScript</span><span class="o">,</span> <span class="n">1</span><span class="o">,</span> <span class="n">lockKey</span><span class="o">,</span> <span class="n">lockValue</span><span class="o">,</span> <span class="s">&#34;30&#34;</span><span class="o">);</span>
-
-                <span class="c1">//休眠10秒
-</span><span class="c1"></span>                <span class="n">sleepBySencond</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">RedisLock</span> <span class="kd">implements</span> <span class="n">Lock</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">isOpenExpirationRenewal</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 开启定时刷新
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">scheduleExpirationRenewal</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Thread</span> <span class="n">renewalThread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">ExpirationRenewal</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">renewalThread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 刷新key的过期时间
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">ExpirationRenewal</span> <span class="kd">implements</span> <span class="n">Runnable</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="o">(</span><span class="n">isOpenExpirationRenewal</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;执行延迟失效时间中...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="n">String</span> <span class="n">checkAndExpireScript</span> <span class="o">=</span> <span class="s">&#34;if redis.call(&#39;get&#39;, KEYS[1]) == ARGV[1] then &#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                        <span class="s">&#34;return redis.call(&#39;expire&#39;,KEYS[1],ARGV[2]) &#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                        <span class="s">&#34;else &#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                        <span class="s">&#34;return 0 end&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">jedis</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="n">checkAndExpireScript</span><span class="o">,</span> <span class="n">1</span><span class="o">,</span> <span class="n">lockKey</span><span class="o">,</span> <span class="n">lockValue</span><span class="o">,</span> <span class="s">&#34;30&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="c1">//休眠10秒
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">sleepBySencond</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>加锁代码在获取锁成功后将isOpenExpirationRenewal置为true，并且调用scheduleExpirationRenewal方法，开启刷新过期时间的线程。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -944,44 +938,44 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">lock</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">lockKey</span><span class="o">,</span> <span class="n">lockValue</span><span class="o">,</span> <span class="n">NOT_EXIST</span><span class="o">,</span> <span class="n">SECONDS</span><span class="o">,</span> <span class="n">30</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">OK</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">result</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;线程id:&#34;</span><span class="o">+</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;加锁成功!时间:&#34;</span><span class="o">+</span><span class="n">LocalTime</span><span class="o">.</span><span class="na">now</span><span class="o">());</span>
-
-            <span class="c1">//开启定时刷新过期时间
-</span><span class="c1"></span>            <span class="n">isOpenExpirationRenewal</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="n">scheduleExpirationRenewal</span><span class="o">();</span>
-            <span class="k">break</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;线程id:&#34;</span><span class="o">+</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;获取锁失败，休眠10秒!时间:&#34;</span><span class="o">+</span><span class="n">LocalTime</span><span class="o">.</span><span class="na">now</span><span class="o">());</span>
-        <span class="c1">//休眠10秒
-</span><span class="c1"></span>        <span class="n">sleepBySencond</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">lock</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">jedis</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">lockKey</span><span class="o">,</span> <span class="n">lockValue</span><span class="o">,</span> <span class="n">NOT_EXIST</span><span class="o">,</span> <span class="n">SECONDS</span><span class="o">,</span> <span class="n">30</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">OK</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">result</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;线程id:&#34;</span><span class="o">+</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;加锁成功!时间:&#34;</span><span class="o">+</span><span class="n">LocalTime</span><span class="o">.</span><span class="na">now</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//开启定时刷新过期时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">isOpenExpirationRenewal</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">scheduleExpirationRenewal</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;线程id:&#34;</span><span class="o">+</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;获取锁失败，休眠10秒!时间:&#34;</span><span class="o">+</span><span class="n">LocalTime</span><span class="o">.</span><span class="na">now</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//休眠10秒
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">sleepBySencond</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>解锁代码增加一行代码，将isOpenExpirationRenewal属性置为false，停止刷新过期时间的线程轮询。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">unlock</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">//...
-</span><span class="c1"></span>    <span class="n">isOpenExpirationRenewal</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">unlock</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">isOpenExpirationRenewal</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="37-测试">3.7 测试</h2>
 <p>测试代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1009,33 +1003,33 @@
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testLockCase5</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">//定义线程池
-</span><span class="c1"></span>    <span class="n">ThreadPoolExecutor</span> <span class="n">pool</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadPoolExecutor</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">10</span><span class="o">,</span>
-                                                    <span class="n">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">,</span>  <span class="k">new</span> <span class="n">SynchronousQueue</span><span class="o">&lt;&gt;());</span>
-
-    <span class="c1">//添加10个线程获取锁
-</span><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="n">pool</span><span class="o">.</span><span class="na">submit</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="n">Jedis</span> <span class="n">jedis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jedis</span><span class="o">(</span><span class="s">&#34;localhost&#34;</span><span class="o">);</span>
-                <span class="n">LockCase5</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LockCase5</span><span class="o">(</span><span class="n">jedis</span><span class="o">,</span> <span class="n">lockName</span><span class="o">);</span>
-                <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
-
-                <span class="c1">//模拟业务执行15秒
-</span><span class="c1"></span>                <span class="n">lock</span><span class="o">.</span><span class="na">sleepBySencond</span><span class="o">(</span><span class="n">15</span><span class="o">);</span>
-
-                <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
-    <span class="o">}</span>
-
-    <span class="c1">//当线程池中的线程数为0时，退出
-</span><span class="c1"></span>    <span class="k">while</span> <span class="o">(</span><span class="n">pool</span><span class="o">.</span><span class="na">getPoolSize</span><span class="o">()</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testLockCase5</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//定义线程池
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ThreadPoolExecutor</span> <span class="n">pool</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadPoolExecutor</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">10</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                                    <span class="n">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">,</span>  <span class="k">new</span> <span class="n">SynchronousQueue</span><span class="o">&lt;&gt;());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//添加10个线程获取锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pool</span><span class="o">.</span><span class="na">submit</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Jedis</span> <span class="n">jedis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jedis</span><span class="o">(</span><span class="s">&#34;localhost&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">LockCase5</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LockCase5</span><span class="o">(</span><span class="n">jedis</span><span class="o">,</span> <span class="n">lockName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="c1">//模拟业务执行15秒
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">lock</span><span class="o">.</span><span class="na">sleepBySencond</span><span class="o">(</span><span class="n">15</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//当线程池中的线程数为0时，退出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="o">(</span><span class="n">pool</span><span class="o">.</span><span class="na">getPoolSize</span><span class="o">()</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>依照参考博客博主的思路， 基于Redis的分布式就介绍完了。那就是锁的重入，那么分布式锁的重入该如何实现呢？这里就留一个坑了。参考Redisson的可重入锁的实现，https://www.jianshu.com/p/47fd7f86c848。</p>
 <h1 id="四集群redis的分布式锁">四、集群Redis的分布式锁</h1>

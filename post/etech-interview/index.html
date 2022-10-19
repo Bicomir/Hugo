@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/etech-interview/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -555,7 +555,7 @@
 <p>单例模式实现代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -563,18 +563,18 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Singleton</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="o">();</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Singleton</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>单例模式调用代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -583,21 +583,21 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">public</span> <span class="err">class</span> <span class="err">Lesson</span> <span class="p">{</span>
-    <span class="err">public</span> <span class="err">static</span> <span class="err">void</span> <span class="err">main(String[]</span> <span class="err">args)</span> <span class="err">{</span>
-        <span class="err">Singleton</span> <span class="err">singleton1</span> <span class="err">=</span> <span class="err">Singleton.getInstance();</span>
-        <span class="err">Singleton</span> <span class="err">singleton2</span> <span class="err">=</span> <span class="err">Singleton.getInstance();</span>
-        <span class="err">System.out.println(singleton1</span> <span class="err">==</span> <span class="err">singleton2);</span> 
-    <span class="p">}</span>
-<span class="err">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">public</span> <span class="err">class</span> <span class="err">Lesson</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">public</span> <span class="err">static</span> <span class="err">void</span> <span class="err">main(String[]</span> <span class="err">args)</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl">        <span class="err">Singleton</span> <span class="err">singleton1</span> <span class="err">=</span> <span class="err">Singleton.getInstance();</span>
+</span></span><span class="line"><span class="cl">        <span class="err">Singleton</span> <span class="err">singleton2</span> <span class="err">=</span> <span class="err">Singleton.getInstance();</span>
+</span></span><span class="line"><span class="cl">        <span class="err">System.out.println(singleton1</span> <span class="err">==</span> <span class="err">singleton2);</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>程序的输出结果：true</p>
 <p>可以看出以上单例模式是在类加载的时候就创建了，这样会影响程序的启动速度，那如何实现单例模式的延迟加载？在使用时再创建？</p>
 <p>单例延迟加载代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -609,23 +609,23 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//</span> <span class="err">单例模式-延迟加载版</span>
-<span class="err">class</span> <span class="err">SinletonLazy</span> <span class="p">{</span>
-    <span class="err">private</span> <span class="err">static</span> <span class="err">SingletonLazy</span> <span class="err">instance;</span>
-    <span class="err">public</span> <span class="err">static</span> <span class="err">SingletonLazy</span> <span class="err">getInstance()</span> <span class="err">{</span>
-        <span class="err">if</span> <span class="err">(instance</span> <span class="err">==</span> <span class="err">null)</span> <span class="err">{</span>
-            <span class="err">instance</span> <span class="err">=</span> <span class="err">new</span> <span class="err">SingletonLazy();</span>
-        <span class="p">}</span>
-        <span class="err">return</span> <span class="err">instance;</span>
-    <span class="err">}</span>
-<span class="err">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// 单例模式-延迟加载版
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">class</span> <span class="err">SinletonLazy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">private</span> <span class="err">static</span> <span class="err">SingletonLazy</span> <span class="err">instance;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">public</span> <span class="err">static</span> <span class="err">SingletonLazy</span> <span class="err">getInstance()</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl">        <span class="err">if</span> <span class="err">(instance</span> <span class="err">==</span> <span class="err">null)</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl">            <span class="err">instance</span> <span class="err">=</span> <span class="err">new</span> <span class="err">SingletonLazy();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="err">return</span> <span class="err">instance;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>以上为非线程安全的，单例模式如何支持多线程？</p>
 <p>使用 synchronized 来保证，单例模式的线程安全代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -636,16 +636,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">class</span> <span class="err">SingletonLazy</span> <span class="p">{</span>
-    <span class="err">private</span> <span class="err">static</span> <span class="err">SingletonLazy</span> <span class="err">instance;</span>
-    <span class="err">public</span> <span class="err">static</span> <span class="err">synchronized</span> <span class="err">SingletonLazy</span> <span class="err">getInstance()</span> <span class="err">{</span>
-        <span class="err">if</span> <span class="err">(instance</span> <span class="err">==</span> <span class="err">null)</span> <span class="err">{</span>
-            <span class="err">instance</span> <span class="err">=</span> <span class="err">new</span> <span class="err">SingletonLazy();</span>
-        <span class="p">}</span>
-        <span class="err">return</span> <span class="err">instance;</span>
-    <span class="err">}</span>
-<span class="err">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">class</span> <span class="err">SingletonLazy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">private</span> <span class="err">static</span> <span class="err">SingletonLazy</span> <span class="err">instance;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">public</span> <span class="err">static</span> <span class="err">synchronized</span> <span class="err">SingletonLazy</span> <span class="err">getInstance()</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl">        <span class="err">if</span> <span class="err">(instance</span> <span class="err">==</span> <span class="err">null)</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl">            <span class="err">instance</span> <span class="err">=</span> <span class="err">new</span> <span class="err">SingletonLazy();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="err">return</span> <span class="err">instance;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>工厂模式， 简单工厂模式， 抽象工厂</em></p>
 <p><strong>简单工厂模式</strong></p>
@@ -684,17 +684,17 @@ SELECT * FROM t WHERE id = 3</p>
 <p>5、尽量避免在字段开头模糊查询，会导致数据库引擎放弃索引进行全表扫描。如下：</p>
 <p>SELECT * FROM t WHERE username LIKE &lsquo;%li%&rsquo;</p>
 <p>优化方式：尽量在字段后面使用模糊查询。如下：</p>
-<p>SELECT * FROM t WHERE username LIKE &lsquo;li%&rsquo;</p>
+<p>SELECT * FROM t WHERE username LIKE &rsquo;li%'</p>
 <p>6、尽量避免进行null值的判断，会导致数据库引擎放弃索引进行全表扫描。如下：</p>
 <p>SELECT * FROM t WHERE score IS NULL</p>
 <p>优化方式：可以给字段添加默认值0，对0值进行判断。如下：</p>
 <p>SELECT * FROM t WHERE score = 0</p>
 <p>7、尽量避免在where条件中等号的左侧进行表达式、函数操作，会导致数据库引擎放弃索引进行全表扫描。如下：</p>
 <p>SELECT * FROM t2 WHERE score/10 = 9</p>
-<p>SELECT * FROM t2 WHERE SUBSTR(username,1,2) = &lsquo;li&rsquo;</p>
+<p>SELECT * FROM t2 WHERE SUBSTR(username,1,2) = &rsquo;li'</p>
 <p>优化方式：可以将表达式、函数操作移动到等号右侧。如下：</p>
 <p>SELECT * FROM t2 WHERE score = 10*9</p>
-<p>SELECT * FROM t2 WHERE username LIKE &lsquo;li%&rsquo;</p>
+<p>SELECT * FROM t2 WHERE username LIKE &rsquo;li%'</p>
 <p>8、当数据量大时，避免使用where 1=1的条件。通常为了方便拼装查询条件，我们会默认使用该条件，数据库引擎会放弃索引进行全表扫描。如下：</p>
 <p>SELECT * FROM t WHERE 1=1</p>
 <p>优化方式：用代码拼装sql时进行判断，没where加where，有where加and</p>

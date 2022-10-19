@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/redis-basic0/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -418,28 +418,28 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">incr key
-incrby key increment
-incrbyfloat key increment
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">incr key
+</span></span><span class="line"><span class="cl">incrby key increment
+</span></span><span class="line"><span class="cl">incrbyfloat key increment
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>设置数值数据减少指定范围的值</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">decr key
-decrby key increment
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">decr key
+</span></span><span class="line"><span class="cl">decrby key increment
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>string作为数值操作</strong></p>
 <ul>
@@ -474,13 +474,13 @@ decrby key increment
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">setex key seconds value
-psetex key milliseconds value
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">setex key seconds value
+</span></span><span class="line"><span class="cl">psetex key milliseconds value
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>秒， 毫秒</p>
 <blockquote>
@@ -573,7 +573,7 @@ OK
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -598,30 +598,30 @@ OK
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; hset user name zhangsan
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-127.0.0.1:6379&gt; hset user age <span class="m">38</span>
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-127.0.0.1:6379&gt; hset user weight <span class="m">80</span>
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-127.0.0.1:6379&gt; hgetall user
-1<span class="o">)</span> <span class="s2">&#34;name&#34;</span>
-2<span class="o">)</span> <span class="s2">&#34;zhangsan&#34;</span>
-3<span class="o">)</span> <span class="s2">&#34;age&#34;</span>
-4<span class="o">)</span> <span class="s2">&#34;38&#34;</span>
-5<span class="o">)</span> <span class="s2">&#34;weight&#34;</span>
-6<span class="o">)</span> <span class="s2">&#34;80&#34;</span>
-127.0.0.1:6379&gt; hget user name
-<span class="s2">&#34;zhangsan&#34;</span>
-127.0.0.1:6379&gt; hdel user weight
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-127.0.0.1:6379&gt; hgetall user
-1<span class="o">)</span> <span class="s2">&#34;name&#34;</span>
-2<span class="o">)</span> <span class="s2">&#34;zhangsan&#34;</span>
-3<span class="o">)</span> <span class="s2">&#34;age&#34;</span>
-4<span class="o">)</span> <span class="s2">&#34;38&#34;</span>
-127.0.0.1:6379&gt;   
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">127.0.0.1:6379&gt; hset user name zhangsan
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; hset user age <span class="m">38</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; hset user weight <span class="m">80</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; hgetall user
+</span></span><span class="line"><span class="cl">1<span class="o">)</span> <span class="s2">&#34;name&#34;</span>
+</span></span><span class="line"><span class="cl">2<span class="o">)</span> <span class="s2">&#34;zhangsan&#34;</span>
+</span></span><span class="line"><span class="cl">3<span class="o">)</span> <span class="s2">&#34;age&#34;</span>
+</span></span><span class="line"><span class="cl">4<span class="o">)</span> <span class="s2">&#34;38&#34;</span>
+</span></span><span class="line"><span class="cl">5<span class="o">)</span> <span class="s2">&#34;weight&#34;</span>
+</span></span><span class="line"><span class="cl">6<span class="o">)</span> <span class="s2">&#34;80&#34;</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; hget user name
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;zhangsan&#34;</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; hdel user weight
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; hgetall user
+</span></span><span class="line"><span class="cl">1<span class="o">)</span> <span class="s2">&#34;name&#34;</span>
+</span></span><span class="line"><span class="cl">2<span class="o">)</span> <span class="s2">&#34;zhangsan&#34;</span>
+</span></span><span class="line"><span class="cl">3<span class="o">)</span> <span class="s2">&#34;age&#34;</span>
+</span></span><span class="line"><span class="cl">4<span class="o">)</span> <span class="s2">&#34;38&#34;</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt;   
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -647,26 +647,26 @@ OK
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">hkeys key
-hvals key
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hkeys key
+</span></span><span class="line"><span class="cl">hvals key
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>设置指定字段的数值数据增加指定范围的值</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">hincrby key field increment
-hincrbyfloat key field increment
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hincrby key field increment
+</span></span><span class="line"><span class="cl">hincrbyfloat key field increment
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="C:%5CUsers%5Cwjq%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1615904006771.png" alt="1615904006771"></p>
 <h4 id="hash类型应用场景">hash类型应用场景</h4>
@@ -802,55 +802,55 @@ hincrbyfloat key field increment
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">sadd key member1 [member2]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sadd key member1 [member2]
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>获取全部数据</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">smembers key
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">smembers key
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>删除数据</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">srem key member1 [member2]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">srem key member1 [member2]
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>获取集合数据总量</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">scard key
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scard key
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>判断集合中是否包含指定数据</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">sismember key member
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sismember key member
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="set类型数据扩展操作">Set类型数据扩展操作</h3>
 <p><strong>业务场景</strong></p>
@@ -949,61 +949,61 @@ hincrbyfloat key field increment
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">zadd key score1 member1 [score2 member2]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">zadd key score1 member1 [score2 member2]
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>获取全部数据</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">zrange key start stop [WITHSCORES]
-zrevrange key start stop [WITHSCORES]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">zrange key start stop [WITHSCORES]
+</span></span><span class="line"><span class="cl">zrevrange key start stop [WITHSCORES]
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>删除数据</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">zrem key member [member...]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">zrem key member [member...]
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>按条件获取数据</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">zrangebyscore key min max [WITHSCOES] [LIMIT]
-zreverangebyscore key min max [WITHSCOES]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">zrangebyscore key min max [WITHSCOES] [LIMIT]
+</span></span><span class="line"><span class="cl">zreverangebyscore key min max [WITHSCOES]
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>条件删除数据</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="n">zremrangebyrank</span> <span class="n">key</span> <span class="n">start</span> <span class="n">stop</span>
-<span class="n">zremrangebyscore</span> <span class="n">key</span> <span class="n">min</span> <span class="n">max</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">zremrangebyrank</span> <span class="n">key</span> <span class="n">start</span> <span class="n">stop</span>
+</span></span><span class="line"><span class="cl"><span class="n">zremrangebyscore</span> <span class="n">key</span> <span class="n">min</span> <span class="n">max</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>min与max用于限定搜索查询的条件;</p>
@@ -1015,26 +1015,26 @@ zreverangebyscore key min max [WITHSCOES]
 <p>获取集合数据总量</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">zcard key
-zcount key min max
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">zcard key
+</span></span><span class="line"><span class="cl">zcount key min max
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
 <p>集合交，并操作</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">zinterstore destination numkeys key <span class="o">[</span>key ...<span class="o">]</span>
-zunionstore destination numkeys key <span class="o">[</span>key ...<span class="o">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">zinterstore destination numkeys key <span class="o">[</span>key ...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">zunionstore destination numkeys key <span class="o">[</span>key ...<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcWp5.5BzlMKZ4kOlHNpSPlqZpOX454xj1DbSGVlxyCuFS2qeaWgQtV4o*j6VyzGojl8n8uT*4F4f1xPdMOxWYmU!/b&amp;bo=cgKMAQAAAAADJ*8!&amp;rf=viewer_4" alt="1616419839622"></p>
 </li>
@@ -1053,26 +1053,26 @@ zunionstore destination numkeys key <span class="o">[</span>key ...<span class="
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">zrank key member
-zrevrank key member
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">zrank key member
+</span></span><span class="line"><span class="cl">zrevrank key member
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>score值获取与修改</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">zscore key member
-zincrby key increment member
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">zscore key member
+</span></span><span class="line"><span class="cl">zincrby key increment member
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>**Tips：**redis应用于计数器组合排序功能的排名</p>
 <p><img src="http://m.qpic.cn/psc?/V51iBgVW47ZN4r3Xp0p23muz7m49bhbj/45NBuzDIW489QBoVep5mcbKSiBC*5qS3BPInf0owb4kzGuUygZjh3Cwu5ZqwiwmrQpsryuVIB6wB9bK15n3QyO*z7wj.CevM7t2AovTn8b4!/b&amp;bo=kgM1AQAAAAADJ6c!&amp;rf=viewer_4" alt="1616420622508"></p>

@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/redis-basic1/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -69,7 +69,7 @@
 <meta itemprop="name" content="了解redis">
 <meta itemprop="description" content="Redis.conf详解 1.配置文件 unit单位对大小写不敏感； 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 1) The server is not binding explicitly to a set of addresses using the # &#34;bind&#34; directive. # 2) No"><meta itemprop="datePublished" content="2020-10-12T22:19:05+00:00" />
 <meta itemprop="dateModified" content="2020-10-12T22:19:05+00:00" />
-<meta itemprop="wordCount" content="7494">
+<meta itemprop="wordCount" content="7492">
 <meta itemprop="keywords" content="redis," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="了解redis"/>
 <meta name="twitter:description" content="Redis.conf详解 1.配置文件 unit单位对大小写不敏感； 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 1) The server is not binding explicitly to a set of addresses using the # &#34;bind&#34; directive. # 2) No"/>
@@ -344,7 +344,7 @@
             <a href="https://bomir.top/categories/nosql/"> Nosql </a>
             
           </div>
-        <span class="more-meta"> 约 7494 字 </span>
+        <span class="more-meta"> 约 7492 字 </span>
           <span class="more-meta"> 预计阅读 15 分钟 </span>
 
         
@@ -389,7 +389,7 @@
 <p>1.配置文件 unit单位对大小写不敏感；</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -408,28 +408,28 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 1) The server is not binding explicitly to a set of addresses using the</span>
-<span class="c1">#    &#34;bind&#34; directive.</span>
-<span class="c1"># 2) No password is configured.</span>
-<span class="c1">#</span>
-<span class="c1"># The server only accepts connections from clients connecting from the</span>
-<span class="c1"># IPv4 and IPv6 loopback addresses 127.0.0.1 and ::1, and from Unix domain</span>
-<span class="c1"># sockets.</span>
-<span class="c1">#</span>
-<span class="c1"># By default protected mode is enabled. You should disable it only if</span>
-<span class="c1"># you are sure you want clients from other hosts to connect to Redis</span>
-<span class="c1"># even if no authentication is configured, nor a specific set of interfaces</span>
-<span class="c1"># are explicitly listed using the &#34;bind&#34; directive.</span>
-<span class="c1"># protected-mode yes</span>
-protected-mode no
-<span class="c1"># Accept connections on the specified port, default is 6379 (IANA #815344).</span>
-<span class="c1"># If port 0 is specified Redis will not listen on a TCP socket.</span>
-port <span class="m">6379</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 1) The server is not binding explicitly to a set of addresses using the</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    &#34;bind&#34; directive.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2) No password is configured.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># The server only accepts connections from clients connecting from the</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># IPv4 and IPv6 loopback addresses 127.0.0.1 and ::1, and from Unix domain</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sockets.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># By default protected mode is enabled. You should disable it only if</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># you are sure you want clients from other hosts to connect to Redis</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># even if no authentication is configured, nor a specific set of interfaces</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># are explicitly listed using the &#34;bind&#34; directive.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># protected-mode yes</span>
+</span></span><span class="line"><span class="cl">protected-mode no
+</span></span><span class="line"><span class="cl"><span class="c1"># Accept connections on the specified port, default is 6379 (IANA #815344).</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># If port 0 is specified Redis will not listen on a TCP socket.</span>
+</span></span><span class="line"><span class="cl">port <span class="m">6379</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -453,41 +453,39 @@ port <span class="m">6379</span>
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
-</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">// 配置文件中， 一些配置项说明
-
-<span class="nb">bind</span> 127.0.0.1   <span class="c1"># 绑定的ip</span>
-protected-mode yes  <span class="c1"># 保护模式</span>
-port <span class="m">6379</span>  <span class="c1"># 端口设置</span>
-
-daemonize yes  <span class="c1"># 以守护进程的方式运行，默认是no, 我们需要自己的开启为yes</span>
-pidfile /var/run/redis_6379_pid   <span class="c1"># 如果是以后台方式运行， 我们就需要指定一个pid文件</span>
-
-<span class="c1"># 日志</span>
-<span class="c1"># Specify the server verbosity level.</span>
-<span class="c1"># This can be one of:</span>
-<span class="c1"># debug (a lot of information, useful for development/testing)</span>
-<span class="c1"># verbose (many rarely useful info, but not a mess like the debug level)</span>
-<span class="c1"># notice (moderately verbose, what you want in production probably)</span>
-<span class="c1"># warning (only very important / critical messages are logged)</span>
-loglevel notice
-logfile /var/log/redis/redis-server.log  <span class="c1"># 日志文件位置名</span>
-
-<span class="c1"># Set the number of databases. The default database is DB 0, you can select</span>
-<span class="c1"># a different one on a per-connection basis using SELECT &lt;dbid&gt; where</span>
-<span class="c1"># dbid is a number between 0 and &#39;databases&#39;-1</span>
-databases <span class="m">16</span>
-always-show-logo yes  <span class="c1"># 是否总是显示logo</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">// 配置文件中， 一些配置项说明
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> 127.0.0.1   <span class="c1"># 绑定的ip</span>
+</span></span><span class="line"><span class="cl">protected-mode yes  <span class="c1"># 保护模式</span>
+</span></span><span class="line"><span class="cl">port <span class="m">6379</span>  <span class="c1"># 端口设置</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">daemonize yes  <span class="c1"># 以守护进程的方式运行，默认是no, 我们需要自己的开启为yes</span>
+</span></span><span class="line"><span class="cl">pidfile /var/run/redis_6379_pid   <span class="c1"># 如果是以后台方式运行， 我们就需要指定一个pid文件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 日志</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Specify the server verbosity level.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># This can be one of:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># debug (a lot of information, useful for development/testing)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># verbose (many rarely useful info, but not a mess like the debug level)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># notice (moderately verbose, what you want in production probably)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># warning (only very important / critical messages are logged)</span>
+</span></span><span class="line"><span class="cl">loglevel notice
+</span></span><span class="line"><span class="cl">logfile /var/log/redis/redis-server.log  <span class="c1"># 日志文件位置名</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Set the number of databases. The default database is DB 0, you can select</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># a different one on a per-connection basis using SELECT &lt;dbid&gt; where</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># dbid is a number between 0 and &#39;databases&#39;-1</span>
+</span></span><span class="line"><span class="cl">databases <span class="m">16</span>
+</span></span><span class="line"><span class="cl">always-show-logo yes  <span class="c1"># 是否总是显示logo</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>快照</strong></p>
 <p>持久化， 在规定的时间内，执行了多少次的操作，则会持久化到文件.rdb, .aof, redis是内存数据库， 如果没有持久化，那么数据是断电即失的；</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -502,43 +500,43 @@ always-show-logo yes  <span class="c1"># 是否总是显示logo</span>
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 如果900s内， 如果至少有一个1 key进行了修改， 我们即进行持久化操作；</span>
-save <span class="m">900</span> <span class="m">1</span>
-<span class="c1"># 如果300s内， 如果至少有一个10 key进行了修改， 我们即进行持久化操作；</span>
-save <span class="m">300</span> <span class="m">10</span>
-<span class="c1"># 如果60s内， 如果至少有一个10000 key进行了修改， 我们即进行持久化操作；</span>
-save <span class="m">60</span> <span class="m">10000</span>
-
-<span class="c1"># 之后持久化，可以自己定义；</span>
-stop-writes-on-bgsave-error yes  <span class="c1"># 如果持久化出错，是否还需要继续工作</span>
-
-rdbcompression yes <span class="c1"># 是否压缩rdb文件，需要消耗一些cpu资源</span>
-rdbchecksum yes  <span class="c1"># 保存rdb文件的时候，进行错误的检查校验</span>
-dir ./  <span class="c1"># rdb 文件保存的目录</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 如果900s内， 如果至少有一个1 key进行了修改， 我们即进行持久化操作；</span>
+</span></span><span class="line"><span class="cl">save <span class="m">900</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果300s内， 如果至少有一个10 key进行了修改， 我们即进行持久化操作；</span>
+</span></span><span class="line"><span class="cl">save <span class="m">300</span> <span class="m">10</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果60s内， 如果至少有一个10000 key进行了修改， 我们即进行持久化操作；</span>
+</span></span><span class="line"><span class="cl">save <span class="m">60</span> <span class="m">10000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 之后持久化，可以自己定义；</span>
+</span></span><span class="line"><span class="cl">stop-writes-on-bgsave-error yes  <span class="c1"># 如果持久化出错，是否还需要继续工作</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">rdbcompression yes <span class="c1"># 是否压缩rdb文件，需要消耗一些cpu资源</span>
+</span></span><span class="line"><span class="cl">rdbchecksum yes  <span class="c1"># 保存rdb文件的时候，进行错误的检查校验</span>
+</span></span><span class="line"><span class="cl">dir ./  <span class="c1"># rdb 文件保存的目录</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Replication 复制</strong></p>
 <p><strong>Security</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">config <span class="nb">set</span> reqiurepass
-
-config get reqiurepass
-
-auth <span class="m">123456</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">config <span class="nb">set</span> reqiurepass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">config get reqiurepass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">auth <span class="m">123456</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>限制Clients</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -546,13 +544,13 @@ auth <span class="m">123456</span>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">maxclients <span class="m">10000</span>  <span class="c1"># 设置能连接上redis的最大客户端的数量</span>
-maxmemory &lt;bytes&gt; <span class="c1"># redis配置最大的内存容量</span>
-axmemory-policy noeviction  <span class="c1"># 内存达到上限之后的处理策略</span>
-
-<span class="c1"># 移除一些过期的key</span>
-<span class="c1"># 报错</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">maxclients <span class="m">10000</span>  <span class="c1"># 设置能连接上redis的最大客户端的数量</span>
+</span></span><span class="line"><span class="cl">maxmemory &lt;bytes&gt; <span class="c1"># redis配置最大的内存容量</span>
+</span></span><span class="line"><span class="cl">axmemory-policy noeviction  <span class="c1"># 内存达到上限之后的处理策略</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 移除一些过期的key</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 报错</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>​	     当实际内存超出 maxmemory 时，Redis 提供了几种可选策略 (maxmemory-policy) 来让用户自己决定该如何腾出新的空间以继续提供读写服务。</p>
 <ul>
@@ -580,7 +578,7 @@ axmemory-policy noeviction  <span class="c1"># 内存达到上限之后的处理
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -588,13 +586,13 @@ axmemory-policy noeviction  <span class="c1"># 内存达到上限之后的处理
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">appendonly no  <span class="c1"># 默认是不开启aof模式， 默认是使用rdb方式持久化的，在大部分的情况下，rdb够用</span>
-appendfilename <span class="s2">&#34;appendonly.aof&#34;</span> <span class="c1"># 持久化的文件的名字   .rdb</span>
-
-appendfsync always  <span class="c1"># 每次修改都会sync, 消耗性能</span>
-appendfsync everysec  <span class="c1"># 每秒执行一次sync, 可能会丢失这1s的数据</span>
-appendfsync everysec  <span class="c1"># 不执行sync, 这个时候操作系统自己会同步数据，速度最快</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">appendonly no  <span class="c1"># 默认是不开启aof模式， 默认是使用rdb方式持久化的，在大部分的情况下，rdb够用</span>
+</span></span><span class="line"><span class="cl">appendfilename <span class="s2">&#34;appendonly.aof&#34;</span> <span class="c1"># 持久化的文件的名字   .rdb</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">appendfsync always  <span class="c1"># 每次修改都会sync, 消耗性能</span>
+</span></span><span class="line"><span class="cl">appendfsync everysec  <span class="c1"># 每秒执行一次sync, 可能会丢失这1s的数据</span>
+</span></span><span class="line"><span class="cl">appendfsync everysec  <span class="c1"># 不执行sync, 这个时候操作系统自己会同步数据，速度最快</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="redis持久化">Redis持久化</h2>
 <p>面试和工作， 持久化是重点;</p>
@@ -656,7 +654,7 @@ AOF是文件的无限追加，所以有一个重写机制来保证aof文件不�
 <p><strong>订阅者</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -667,27 +665,25 @@ AOF是文件的无限追加，所以有一个重写机制来保证aof文件不�
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; subscribe kuangshenshuo 
-Reading messages... <span class="o">(</span>press Ctrl-C to quit<span class="o">)</span>
-1<span class="o">)</span> <span class="s2">&#34;subscribe&#34;</span>
-2<span class="o">)</span> <span class="s2">&#34;kuangshenshuo&#34;</span>
-3<span class="o">)</span> <span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-1<span class="o">)</span> <span class="s2">&#34;message&#34;</span>
-2<span class="o">)</span> <span class="s2">&#34;kuangshenshuo&#34;</span>
-3<span class="o">)</span> <span class="s2">&#34;hello,kuangshen&#34;</span>
-1<span class="o">)</span> <span class="s2">&#34;message&#34;</span>
-2<span class="o">)</span> <span class="s2">&#34;kuangshenshuo&#34;</span>
-3<span class="o">)</span> <span class="s2">&#34;hello,redis&#34;</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">127.0.0.1:6379&gt; subscribe kuangshenshuo 
+</span></span><span class="line"><span class="cl">Reading messages... <span class="o">(</span>press Ctrl-C to quit<span class="o">)</span>
+</span></span><span class="line"><span class="cl">1<span class="o">)</span> <span class="s2">&#34;subscribe&#34;</span>
+</span></span><span class="line"><span class="cl">2<span class="o">)</span> <span class="s2">&#34;kuangshenshuo&#34;</span>
+</span></span><span class="line"><span class="cl">3<span class="o">)</span> <span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">1<span class="o">)</span> <span class="s2">&#34;message&#34;</span>
+</span></span><span class="line"><span class="cl">2<span class="o">)</span> <span class="s2">&#34;kuangshenshuo&#34;</span>
+</span></span><span class="line"><span class="cl">3<span class="o">)</span> <span class="s2">&#34;hello,kuangshen&#34;</span>
+</span></span><span class="line"><span class="cl">1<span class="o">)</span> <span class="s2">&#34;message&#34;</span>
+</span></span><span class="line"><span class="cl">2<span class="o">)</span> <span class="s2">&#34;kuangshenshuo&#34;</span>
+</span></span><span class="line"><span class="cl">3<span class="o">)</span> <span class="s2">&#34;hello,redis&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>发送端</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -697,15 +693,15 @@ Reading messages... <span class="o">(</span>press Ctrl-C to quit<span class="o">
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">bomir@morn:~$ redis-cli
-127.0.0.1:6379&gt; ping
-PONG
-127.0.0.1:6379&gt; publish kuangshenshuo <span class="s2">&#34;hello,kuangshen&#34;</span>
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-127.0.0.1:6379&gt; publish kuangshenshuo <span class="s2">&#34;hello,redis&#34;</span>
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-127.0.0.1:6379&gt; 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">bomir@morn:~$ redis-cli
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; ping
+</span></span><span class="line"><span class="cl">PONG
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; publish kuangshenshuo <span class="s2">&#34;hello,kuangshen&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; publish kuangshenshuo <span class="s2">&#34;hello,redis&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Redis是使用C实现的，通过分析Redis源码里面的pubsub.c文件，即可了解发布和订阅机制的底层实现。</p>
 <p>Redis是通过PUBLISH、SUBSCRIBE、PSUBCRIBE等命令实现发布和订阅功能</p>
@@ -732,7 +728,7 @@ PONG
 从容量上，单个redis服务器容量有限，一般来说，单台redis的最大使用内存不应该超过20G；</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -747,20 +743,20 @@ PONG
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># info</span>
-
-<span class="c1"># Replication</span>
-role:master
-connected_slaves:0
-master_replid:9514b713962669e9679d1de62c2ef2fd56d1d19b
-master_replid2:0000000000000000000000000000000000000000
-master_repl_offset:0
-second_repl_offset:-1
-repl_backlog_active:0
-repl_backlog_size:1048576
-repl_backlog_first_byte_offset:0
-repl_backlog_histlen:0
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># info</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Replication</span>
+</span></span><span class="line"><span class="cl">role:master
+</span></span><span class="line"><span class="cl">connected_slaves:0
+</span></span><span class="line"><span class="cl">master_replid:9514b713962669e9679d1de62c2ef2fd56d1d19b
+</span></span><span class="line"><span class="cl">master_replid2:0000000000000000000000000000000000000000
+</span></span><span class="line"><span class="cl">master_repl_offset:0
+</span></span><span class="line"><span class="cl">second_repl_offset:-1
+</span></span><span class="line"><span class="cl">repl_backlog_active:0
+</span></span><span class="line"><span class="cl">repl_backlog_size:1048576
+</span></span><span class="line"><span class="cl">repl_backlog_first_byte_offset:0
+</span></span><span class="line"><span class="cl">repl_backlog_histlen:0
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -800,7 +796,7 @@ repl_backlog_histlen:0
 <p>从机只能读，不能写，主机可读可写但是多用于写</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -812,17 +808,17 @@ repl_backlog_histlen:0
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">127.0.0.1:6381&gt; <span class="nb">set</span> name sakura <span class="c1"># 从机6381写入失败</span>
-<span class="o">(</span>error<span class="o">)</span> READONLY You can<span class="s1">&#39;t write against a read only replica.
-</span><span class="s1">
-</span><span class="s1">127.0.0.1:6380&gt; set name sakura # 从机6380写入失败
-</span><span class="s1">(error) READONLY You can&#39;</span>t write against a <span class="nb">read</span> only replica.
-
-127.0.0.1:6379&gt; <span class="nb">set</span> name sakura
-OK
-127.0.0.1:6379&gt; get name
-<span class="s2">&#34;sakura&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">127.0.0.1:6381&gt; <span class="nb">set</span> name sakura <span class="c1"># 从机6381写入失败</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>error<span class="o">)</span> READONLY You can<span class="s1">&#39;t write against a read only replica.
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">127.0.0.1:6380&gt; set name sakura # 从机6380写入失败
+</span></span></span><span class="line"><span class="cl"><span class="s1">(error) READONLY You can&#39;</span>t write against a <span class="nb">read</span> only replica.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; <span class="nb">set</span> name sakura
+</span></span><span class="line"><span class="cl">OK
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; get name
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;sakura&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>

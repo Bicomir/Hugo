@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/rabbit-go-2/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -69,7 +69,7 @@
 <meta itemprop="name" content="RabbitMQ入门之Go语言教程-(2)">
 <meta itemprop="description" content="RabbitMQ官网的消息模型的第二种-Work Queue（工作队列）； 第二种模型（Work Queue） 介绍 Work queues, 也被称为(Task queues), 任务模型"><meta itemprop="datePublished" content="2020-08-11T21:19:05+00:00" />
 <meta itemprop="dateModified" content="2020-08-11T21:19:05+00:00" />
-<meta itemprop="wordCount" content="4396">
+<meta itemprop="wordCount" content="4394">
 <meta itemprop="keywords" content="RabbitMQ," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="RabbitMQ入门之Go语言教程-(2)"/>
 <meta name="twitter:description" content="RabbitMQ官网的消息模型的第二种-Work Queue（工作队列）； 第二种模型（Work Queue） 介绍 Work queues, 也被称为(Task queues), 任务模型"/>
@@ -344,7 +344,7 @@
             <a href="https://bomir.top/categories/messagequeue/"> MessageQueue </a>
             
           </div>
-        <span class="more-meta"> 约 4396 字 </span>
+        <span class="more-meta"> 约 4394 字 </span>
           <span class="more-meta"> 预计阅读 9 分钟 </span>
 
         
@@ -402,7 +402,7 @@
 <p>​	依旧是对send.go进行改造，以允许从命令行发送任意消息。该程序会将任务安排到我们的工作队列中。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -420,28 +420,28 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="c1">// 从命令行参数中获取要发送的消息正文
-</span><span class="c1"></span>	<span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
-		<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">//exchange
-</span><span class="c1"></span>		<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// routing key
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//mandatory
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//immediate
-</span><span class="c1"></span>		<span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
-			<span class="nx">DeliveryMode</span><span class="p">:</span><span class="nx">amqp</span><span class="p">.</span><span class="nx">Persistent</span><span class="p">,</span>
-			<span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
-			<span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
-		<span class="p">},</span>
-	<span class="p">)</span>
-
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to publish a message&#34;</span><span class="p">)</span>
-	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [x] Sent %s&#34;</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="c1">// 从命令行参数中获取要发送的消息正文
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">//exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//mandatory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//immediate
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">DeliveryMode</span><span class="p">:</span><span class="nx">amqp</span><span class="p">.</span><span class="nx">Persistent</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">Body</span><span class="p">:</span>        <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to publish a message&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [x] Sent %s&#34;</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中， bodyFrom的实现如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -452,21 +452,21 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kd">func</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>  <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span><span class="p">{</span>
-		<span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;hello, go rabbit 2nd workqueue test&#34;</span>
-	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-		<span class="nx">s</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="nx">s</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;hello, go rabbit 2nd workqueue test&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">s</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">s</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>改造一下之前的<code>receive.go</code>,  它需要为消息正文中出现的每个<code>.</code>伪造一秒钟的工作。它将从队列中弹出消息并执行任务,</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -493,32 +493,32 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">msgs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Consume</span><span class="p">(</span>
-		<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue
-</span><span class="c1"></span>		<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// consumer
-</span><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>   <span class="c1">// auto-ack
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// exclusive
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-local
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-wait
-</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>    <span class="c1">// arguments
-</span><span class="c1"></span>	<span class="p">)</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to register a consumer&#34;</span><span class="p">)</span>
-
-	<span class="nx">forever</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
-
-	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">for</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">msgs</span> <span class="p">{</span>
-			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Received a message : %s&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
-			<span class="nx">dot_count</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nf">Count</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">))</span>		<span class="c1">// 数一下有几个.
-</span><span class="c1"></span>			<span class="nx">t</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">dot_count</span><span class="p">)</span>
-			<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>  <span class="c1">// 模拟耗时的任务
-</span><span class="c1"></span>			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Done&#34;</span><span class="p">)</span>
-		<span class="p">}</span>
-	<span class="p">}()</span>
-
-	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [*] Waiting for messages, To exit press CTRL+C&#34;</span><span class="p">)</span>
-	<span class="o">&lt;-</span><span class="nx">forever</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">msgs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Consume</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// consumer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>   <span class="c1">// auto-ack
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// exclusive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-local
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>    <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to register a consumer&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">forever</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">msgs</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Received a message : %s&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">dot_count</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nf">Count</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">))</span>		<span class="c1">// 数一下有几个.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">t</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">dot_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>  <span class="c1">// 模拟耗时的任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Done&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [*] Waiting for messages, To exit press CTRL+C&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="o">&lt;-</span><span class="nx">forever</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>注意到这里是用假任务模拟耗时任务的执行时间，</p>
 <p>我们可以打开两个终端， 测试一下看看效果：</p>
@@ -546,7 +546,7 @@
 <p>在本教程中，我们将使用手动消息确认，方法是为“auto-ack”参数传递一个<code>false</code>，然后在完成任务后，使用<code>d.Ack(false)</code>从<code>worker</code>发送一个正确的确认（这将确认一次传递）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -574,33 +574,33 @@
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">msgs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Consume</span><span class="p">(</span>
-		<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue
-</span><span class="c1"></span>		<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// consumer
-</span><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>   <span class="c1">// auto-ack, 这个参数设置为false, 即是关闭消息的自动确认
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// exclusive
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-local
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-wait
-</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>    <span class="c1">// arguments
-</span><span class="c1"></span>	<span class="p">)</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to register a consumer&#34;</span><span class="p">)</span>
-
-	<span class="nx">forever</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
-
-	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">for</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">msgs</span> <span class="p">{</span>
-			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Consumer-1 Received a message : %s&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
-			<span class="nx">dot_count</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nf">Count</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">))</span>		<span class="c1">// 数一下有几个.
-</span><span class="c1"></span>			<span class="nx">t</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">dot_count</span><span class="p">)</span>
-			<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>  <span class="c1">// 模拟耗时的任务
-</span><span class="c1"></span>			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Done&#34;</span><span class="p">)</span>
-			<span class="nx">d</span><span class="p">.</span><span class="nf">Ack</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>	<span class="c1">// 手动传递消息确认
-</span><span class="c1"></span>		<span class="p">}</span>
-	<span class="p">}()</span>
-
-	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [*] Waiting for messages, To exit press CTRL+C&#34;</span><span class="p">)</span>
-	<span class="o">&lt;-</span><span class="nx">forever</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">msgs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Consume</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// consumer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">true</span><span class="p">,</span>   <span class="c1">// auto-ack, 这个参数设置为false, 即是关闭消息的自动确认
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// exclusive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-local
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>    <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to register a consumer&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">forever</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">msgs</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Consumer-1 Received a message : %s&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">dot_count</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nf">Count</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">))</span>		<span class="c1">// 数一下有几个.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">t</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">dot_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>  <span class="c1">// 模拟耗时的任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Done&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">d</span><span class="p">.</span><span class="nf">Ack</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>	<span class="c1">// 手动传递消息确认
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [*] Waiting for messages, To exit press CTRL+C&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="o">&lt;-</span><span class="nx">forever</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用这段代码，我们可以确保即使你在处理消息时使用<code>CTRL+C</code>杀死一个<code>worker</code>，也不会丢失任何内容。在<code>worker</code>死后不久，所有未确认的消息都将被重新发送。</p>
 <p>消息确认必须在接收消息的同一通道（Channel）上发送。尝试使用不同的通道（Channel）进行消息确认将导致通道级协议异常。有关更多信息，请参阅<a href="https://www.rabbitmq.com/confirms.html">确认的文档指南</a>。</p>
@@ -609,7 +609,7 @@
 <p>为了调试这种错误，可以使用rabbitmqctl打印messages_unacknowledged字段：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -620,20 +620,20 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Shell" data-lang="Shell">&gt; sudo rabbitmqctl list_queues name messages_ready messages_unacknowledged
-
-<span class="c1">### 消息持久化</span>
-
-我们已经学会了如何确保即使消费者死亡，任务也不会丢失。但是如果RabbitMQ服务器停止运行，我们的任务仍然会丢失。
-
-当RabbitMQ退出或崩溃时，它将忘记队列和消息，除非您告诉它不要这样做。要确保消息不会丢失，需要做两件事：我们需要将队列和消息都标记为持久的。
-
-首先，我们需要确保队列能够在RabbitMQ节点重新启动后继续运行。为此，我们需要声明它是持久的：
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl">&gt; sudo rabbitmqctl list_queues name messages_ready messages_unacknowledged
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 消息持久化</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">我们已经学会了如何确保即使消费者死亡，任务也不会丢失。但是如果RabbitMQ服务器停止运行，我们的任务仍然会丢失。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">当RabbitMQ退出或崩溃时，它将忘记队列和消息，除非您告诉它不要这样做。要确保消息不会丢失，需要做两件事：我们需要将队列和消息都标记为持久的。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">首先，我们需要确保队列能够在RabbitMQ节点重新启动后继续运行。为此，我们需要声明它是持久的：
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -643,20 +643,20 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
-	<span class="s">&#34;hello&#34;</span><span class="p">,</span> <span class="c1">// name
-</span><span class="c1"></span>	<span class="kc">true</span><span class="p">,</span>    <span class="c1">// 声明为持久队列
-</span><span class="c1"></span>	<span class="kc">false</span><span class="p">,</span>   <span class="c1">// delete when unused
-</span><span class="c1"></span>	<span class="kc">false</span><span class="p">,</span>   <span class="c1">// exclusive
-</span><span class="c1"></span>	<span class="kc">false</span><span class="p">,</span>   <span class="c1">// no-wait
-</span><span class="c1"></span>	<span class="kc">nil</span><span class="p">,</span>     <span class="c1">// arguments
-</span><span class="c1"></span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;hello&#34;</span><span class="p">,</span> <span class="c1">// name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kc">true</span><span class="p">,</span>    <span class="c1">// 声明为持久队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kc">false</span><span class="p">,</span>   <span class="c1">// delete when unused
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kc">false</span><span class="p">,</span>   <span class="c1">// exclusive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kc">false</span><span class="p">,</span>   <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kc">nil</span><span class="p">,</span>     <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>虽然这个命令本身是正确的，但它在我们当前的设置中不起作用。这是因为我们已经定义了一个名为<code>hello</code>的队列，它不是持久的。RabbitMQ不允许你使用不同的参数重新定义现有队列，并将向任何尝试重新定义的程序返回错误。但是有一个快速的解决方法——让我们声明一个具有不同名称的队列，例如<code>work</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -666,19 +666,19 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
-   <span class="s">&#34;work&#34;</span><span class="p">,</span> <span class="c1">//name
-</span><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">//durable
-</span><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">//delete when unused
-</span><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">//exclusive
-</span><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">//no wait
-</span><span class="c1"></span>   <span class="kc">nil</span><span class="p">,</span>    <span class="c1">//arguments
-</span><span class="c1"></span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">   <span class="s">&#34;work&#34;</span><span class="p">,</span> <span class="c1">//name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">//durable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">//delete when unused
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">//exclusive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="kc">false</span><span class="p">,</span>  <span class="c1">//no wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="kc">nil</span><span class="p">,</span>    <span class="c1">//arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -691,18 +691,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
-			<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">//exchange
-</span><span class="c1"></span>			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// routing key
-</span><span class="c1"></span>			<span class="kc">false</span><span class="p">,</span>  <span class="c1">//mandatory  （强制）
-</span><span class="c1"></span>			<span class="kc">false</span><span class="p">,</span>  <span class="c1">//immediate （立即）
-</span><span class="c1"></span>			<span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
-				<span class="nx">DeliveryMode</span><span class="p">:</span> <span class="nx">amqp</span><span class="p">.</span><span class="nx">Persistent</span><span class="p">,</span> <span class="c1">// 持久（交付模式： 瞬态/持久）
-</span><span class="c1"></span>				<span class="nx">ContentType</span><span class="p">:</span>  <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
-				<span class="nx">Body</span><span class="p">:</span>         <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
-			<span class="p">},</span>
-		<span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">			<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">//exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="kc">false</span><span class="p">,</span>  <span class="c1">//mandatory  （强制）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="kc">false</span><span class="p">,</span>  <span class="c1">//immediate （立即）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">DeliveryMode</span><span class="p">:</span> <span class="nx">amqp</span><span class="p">.</span><span class="nx">Persistent</span><span class="p">,</span> <span class="c1">// 持久（交付模式： 瞬态/持久）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="nx">ContentType</span><span class="p">:</span>  <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Body</span><span class="p">:</span>         <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>有关消息持久性的说明</p>
@@ -716,19 +716,19 @@
 <p>为了解决这个问题，我们可以将prefetch(预取计数)设置为1。这告诉 RabbitMQ 一次不要给一个worker多个消息。换句话说，在处理并确认前一条消息之前，不要向worker发送新消息。相反，它会将它分派给下一个不忙的worker。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Qos</span><span class="p">(</span>
-  <span class="mi">1</span><span class="p">,</span>     <span class="c1">// prefetch count, 预取计数
-</span><span class="c1"></span>  <span class="mi">0</span><span class="p">,</span>     <span class="c1">// prefetch size
-</span><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// global
-</span><span class="c1"></span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Qos</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">1</span><span class="p">,</span>     <span class="c1">// prefetch count, 预取计数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="mi">0</span><span class="p">,</span>     <span class="c1">// prefetch size
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kc">false</span><span class="p">,</span> <span class="c1">// global
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>关于队列大小的说明</p>
@@ -738,7 +738,7 @@
 <p><code>producer.go</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -747,18 +747,18 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="c1">// 为了避免到处都是if err != nil的判断， 对错误处理进行了封装
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s:%s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-		<span class="c1">// panic(fmt.Sprintf(&#34;%s:%s&#34;, msg, err))
-</span><span class="c1"></span>	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="c1">// 为了避免到处都是if err != nil的判断， 对错误处理进行了封装
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s:%s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// panic(fmt.Sprintf(&#34;%s:%s&#34;, msg, err))
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -825,83 +825,81 @@
 </span><span class="lnt">65
 </span><span class="lnt">66
 </span><span class="lnt">67
-</span><span class="lnt">68
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;github.com/streadway/amqp&#34;</span>
-	<span class="s">&#34;log&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-	<span class="s">&#34;strconv&#34;</span>
-	<span class="s">&#34;strings&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s:%s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-		<span class="c1">// panic(fmt.Sprintf(&#34;%s:%s&#34;, msg, err))
-</span><span class="c1"></span>	<span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
-		<span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;hello, go rabbit 2nd workqueue test&#34;</span>
-	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-		<span class="nx">s</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="nx">s</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672&#34;</span><span class="p">)</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to connect to RabbitMQ&#34;</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-
-	<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Channel</span><span class="p">()</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to open a channel&#34;</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-
-	<span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
-		<span class="s">&#34;work&#34;</span><span class="p">,</span> <span class="c1">//name
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//durable
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//delete when unused
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//exclusive
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//no wait
-</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>    <span class="c1">//arguments
-</span><span class="c1"></span>	<span class="p">)</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare a queue&#34;</span><span class="p">)</span>
-
-	<span class="c1">// 从命令行参数中获取要发送的消息正文, 这里我造30条消息，看下消费者是如何调度处理消息的
-</span><span class="c1"></span>	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">31</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-		<span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-		<span class="nx">body</span> <span class="p">=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;-&#34;</span> <span class="o">+</span> <span class="nx">body</span>
-		<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
-			<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">//exchange
-</span><span class="c1"></span>			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// routing key
-</span><span class="c1"></span>			<span class="kc">false</span><span class="p">,</span>  <span class="c1">//mandatory
-</span><span class="c1"></span>			<span class="kc">false</span><span class="p">,</span>  <span class="c1">//immediate
-</span><span class="c1"></span>			<span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
-				<span class="nx">DeliveryMode</span><span class="p">:</span> <span class="nx">amqp</span><span class="p">.</span><span class="nx">Persistent</span><span class="p">,</span> <span class="c1">// 持久化
-</span><span class="c1"></span>				<span class="nx">ContentType</span><span class="p">:</span>  <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
-				<span class="nx">Body</span><span class="p">:</span>         <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
-			<span class="p">},</span>
-		<span class="p">)</span>
-
-		<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to publish a message&#34;</span><span class="p">)</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [x] Sent %s&#34;</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span>
-	<span class="p">}</span>
-
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/streadway/amqp&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;strconv&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;strings&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s:%s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// panic(fmt.Sprintf(&#34;%s:%s&#34;, msg, err))
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;hello, go rabbit 2nd workqueue test&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">s</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">s</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to connect to RabbitMQ&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Channel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to open a channel&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;work&#34;</span><span class="p">,</span> <span class="c1">//name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//durable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//delete when unused
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//exclusive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">//no wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>    <span class="c1">//arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to declare a queue&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 从命令行参数中获取要发送的消息正文, 这里我造30条消息，看下消费者是如何调度处理消息的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">31</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">body</span> <span class="o">:=</span> <span class="nf">bodyFrom</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">body</span> <span class="p">=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;-&#34;</span> <span class="o">+</span> <span class="nx">body</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Publish</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">			<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">//exchange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// routing key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="kc">false</span><span class="p">,</span>  <span class="c1">//mandatory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="kc">false</span><span class="p">,</span>  <span class="c1">//immediate
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">amqp</span><span class="p">.</span><span class="nx">Publishing</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">DeliveryMode</span><span class="p">:</span> <span class="nx">amqp</span><span class="p">.</span><span class="nx">Persistent</span><span class="p">,</span> <span class="c1">// 持久化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="nx">ContentType</span><span class="p">:</span>  <span class="s">&#34;text/plain&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Body</span><span class="p">:</span>         <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to publish a message&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [x] Sent %s&#34;</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>consumer.go</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -970,80 +968,78 @@
 </span><span class="lnt">67
 </span><span class="lnt">68
 </span><span class="lnt">69
-</span><span class="lnt">70
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;bytes&#34;</span>
-	<span class="s">&#34;github.com/streadway/amqp&#34;</span>
-	<span class="s">&#34;log&#34;</span>
-	<span class="s">&#34;time&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s:%s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-		<span class="c1">// panic(fmt.Sprintf(&#34;%s:%s&#34;, msg, err))
-</span><span class="c1"></span>	<span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672&#34;</span><span class="p">)</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to connect to RabbitMQ&#34;</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-
-	<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Channel</span><span class="p">()</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to open a channel&#34;</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-
-	<span class="c1">// declare a queue
-</span><span class="c1"></span>	<span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
-		<span class="s">&#34;work&#34;</span><span class="p">,</span>
-		<span class="kc">true</span><span class="p">,</span>	<span class="c1">// 声明为持久队列
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>
-		<span class="kc">false</span><span class="p">,</span>
-		<span class="kc">false</span><span class="p">,</span>
-		<span class="kc">nil</span><span class="p">,</span>
-	<span class="p">)</span>
-	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Qos</span><span class="p">(</span>
-		<span class="mi">1</span><span class="p">,</span>
-		<span class="mi">0</span><span class="p">,</span>
-		<span class="kc">false</span><span class="p">)</span>
-
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;ch.Qos() failed&#34;</span><span class="p">)</span>
-
-	<span class="c1">// 立即返回一个Delivery的通道
-</span><span class="c1"></span>	<span class="nx">msgs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Consume</span><span class="p">(</span>
-		<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue
-</span><span class="c1"></span>		<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// consumer
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>   <span class="c1">// auto-ack, 注意到这里需要传false， 代表关闭自动消息确认
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// exclusive
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-local
-</span><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-wait
-</span><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>    <span class="c1">// arguments
-</span><span class="c1"></span>	<span class="p">)</span>
-	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to register a consumer&#34;</span><span class="p">)</span>
-
-	<span class="nx">forever</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
-
-	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">for</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">msgs</span> <span class="p">{</span>
-			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Consumer-2 Received a message : %s&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
-			<span class="nx">dot_count</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nf">Count</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">))</span> <span class="c1">// 数一下有几个.
-</span><span class="c1"></span>			<span class="nx">t</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">dot_count</span><span class="p">)</span>
-			<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span> <span class="c1">// 模拟耗时的任务
-</span><span class="c1"></span>			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Done&#34;</span><span class="p">)</span>
-			<span class="nx">d</span><span class="p">.</span><span class="nf">Ack</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>	<span class="c1">// 手动传递消息确认
-</span><span class="c1"></span>		<span class="p">}</span>
-	<span class="p">}()</span>
-
-	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [*] Waiting for messages, To exit press CTRL+C&#34;</span><span class="p">)</span>
-	<span class="o">&lt;-</span><span class="nx">forever</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;bytes&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/streadway/amqp&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;time&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;%s:%s&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// panic(fmt.Sprintf(&#34;%s:%s&#34;, msg, err))
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;amqp://admin:admin@localhost:5672&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to connect to RabbitMQ&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Channel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to open a channel&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// declare a queue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">q</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">QueueDeclare</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;work&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="kc">true</span><span class="p">,</span>	<span class="c1">// 声明为持久队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="kc">nil</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="p">=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Qos</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="kc">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;ch.Qos() failed&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 立即返回一个Delivery的通道
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">msgs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nf">Consume</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">q</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="c1">// queue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="s">&#34;&#34;</span><span class="p">,</span>     <span class="c1">// consumer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>   <span class="c1">// auto-ack, 注意到这里需要传false， 代表关闭自动消息确认
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// exclusive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-local
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">false</span><span class="p">,</span>  <span class="c1">// no-wait
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kc">nil</span><span class="p">,</span>    <span class="c1">// arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">failOnError</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;Failed to register a consumer&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">forever</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">msgs</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Consumer-2 Received a message : %s&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">dot_count</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nf">Count</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">Body</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">))</span> <span class="c1">// 数一下有几个.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">t</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">dot_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span> <span class="c1">// 模拟耗时的任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Done&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">d</span><span class="p">.</span><span class="nf">Ack</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>	<span class="c1">// 手动传递消息确认
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34; [*] Waiting for messages, To exit press CTRL+C&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="o">&lt;-</span><span class="nx">forever</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="参考资料">参考资料</h2>
 <ol>

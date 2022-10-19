@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0" />
+<meta name="generator" content="Hugo 0.104.0" />
 
 
 <link rel="canonical" href="https://bomir.top/post/python-common-questions/" />
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css" integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -69,7 +69,7 @@
 <meta itemprop="name" content="Python常见题">
 <meta itemprop="description" content="(1)Python常见面试题1 1.Python是如何进行内存管理的？ 三个方面来回答这个问题； ①对象的引用计数机制 ②垃圾回收机制 ③内存池机制 ("><meta itemprop="datePublished" content="2019-08-08T14:45:16+00:00" />
 <meta itemprop="dateModified" content="2019-08-08T14:45:16+00:00" />
-<meta itemprop="wordCount" content="9807">
+<meta itemprop="wordCount" content="9819">
 <meta itemprop="keywords" content="面试题," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python常见题"/>
 <meta name="twitter:description" content="(1)Python常见面试题1 1.Python是如何进行内存管理的？ 三个方面来回答这个问题； ①对象的引用计数机制 ②垃圾回收机制 ③内存池机制 ("/>
@@ -344,7 +344,7 @@
             <a href="https://bomir.top/categories/python/"> Python </a>
             
           </div>
-        <span class="more-meta"> 约 9807 字 </span>
+        <span class="more-meta"> 约 9819 字 </span>
           <span class="more-meta"> 预计阅读 20 分钟 </span>
 
         
@@ -455,7 +455,7 @@
 <p>下面举例说明:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -480,30 +480,30 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">
-<span class="kn">import</span> <span class="nn">copy</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="c1">#引用，除非直接给a重新赋值，否则a变则b变，b变则a变</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="c1">#浅拷贝，只会拷贝父对象， 不会拷贝父对象中的子对象，所以若a的子对象变则c 变,但是父对象变c不会变</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#深拷贝，完全拷贝，完全独立于原对象，a变它也不变</span>
-<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">#改变父对象</span>
-<span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="c1">#改变父对象中的 [&#39;a&#39;, &#39;b&#39;]子对象</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#a = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;],5]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1">#b = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;],5]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1">#c = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1">#d = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;]]</span>
-
-
-<span class="s1">&#39;&#39;&#39;
-</span><span class="s1">再谈一下=，copy和deepcopy,浅拷贝和深拷贝.
-</span><span class="s1">应该这样来说copy是浅拷贝，oringin如果改变，那么copy就随之改变。
-</span><span class="s1">而deepcopy并没有变，更加我们对复制的直觉定义。
-</span><span class="s1">原理上解释:
-</span><span class="s1">Python 存储变量的方法跟其他 OOP 语言不同。它与其说是把值赋给变量，不如说是给变量建立了一个到具体值的 reference。
-</span><span class="s1">参考链接:https://blog.csdn.net/qq_32907349/article/details/52190796
-</span><span class="s1">&#39;&#39;&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">copy</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="c1">#引用，除非直接给a重新赋值，否则a变则b变，b变则a变</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#浅拷贝，只会拷贝父对象， 不会拷贝父对象中的子对象，所以若a的子对象变则c 变,但是父对象变c不会变</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#深拷贝，完全拷贝，完全独立于原对象，a变它也不变</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">#改变父对象</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="c1">#改变父对象中的 [&#39;a&#39;, &#39;b&#39;]子对象</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#a = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;],5]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1">#b = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;],5]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1">#c = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1">#d = [1,2,3,4,[&#39;a&#39;,&#39;b&#39;]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">再谈一下=，copy和deepcopy,浅拷贝和深拷贝.
+</span></span></span><span class="line"><span class="cl"><span class="s1">应该这样来说copy是浅拷贝，oringin如果改变，那么copy就随之改变。
+</span></span></span><span class="line"><span class="cl"><span class="s1">而deepcopy并没有变，更加我们对复制的直觉定义。
+</span></span></span><span class="line"><span class="cl"><span class="s1">原理上解释:
+</span></span></span><span class="line"><span class="cl"><span class="s1">Python 存储变量的方法跟其他 OOP 语言不同。它与其说是把值赋给变量，不如说是给变量建立了一个到具体值的 reference。
+</span></span></span><span class="line"><span class="cl"><span class="s1">参考链接:https://blog.csdn.net/qq_32907349/article/details/52190796
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>7.介绍一下except的用法和作用？</strong></p>
 <p>答：try&hellip;except&hellip;except&hellip;[else&hellip;][finally&hellip;]</p>
@@ -549,7 +549,7 @@
 <p>这两个输出的结果都是一样的，实际上有很多不同，range会直接生成一个list对象:</p>
 <p>&gt;&raquo; a = range(0,100)</p>
 <p>&gt;&raquo; print(type(a))</p>
-<p>&lt;type &lsquo;list&rsquo;&gt;</p>
+<p>&lt;type &rsquo;list'&gt;</p>
 <p>&gt;&raquo; print a</p>
 <p>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]</p>
 <p>&gt;&raquo; print a[0],a[1]</p>
@@ -571,7 +571,7 @@
 <p>格式:sub(replacement, string[,count=0])（replacement是被替换成的文本，string是需要被替换的文本，count是一个可选参数，指最大被替换的数量）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -581,15 +581,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">re</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;blue|white|red&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span><span class="s1">&#39;blue socks and red shoes&#39;</span><span class="p">))</span>
-<span class="n">color</span> <span class="n">socks</span> <span class="ow">and</span> <span class="n">color</span> <span class="n">shoes</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span><span class="s1">&#39;blue socks and red shoes&#39;</span><span class="p">,</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">color</span> <span class="n">socks</span> <span class="ow">and</span> <span class="n">red</span> <span class="n">shoes</span>
-<span class="o">&gt;&gt;&gt;</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;blue|white|red&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span><span class="s1">&#39;blue socks and red shoes&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">color</span> <span class="n">socks</span> <span class="ow">and</span> <span class="n">color</span> <span class="n">shoes</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span><span class="s1">&#39;blue socks and red shoes&#39;</span><span class="p">,</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">color</span> <span class="n">socks</span> <span class="ow">and</span> <span class="n">red</span> <span class="n">shoes</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>subn()方法执行的效果跟sub()一样，不过它会返回一个二维数组，包括替换后的新字符串和总共替换的数量。</p>
 <p>11.Python里面match()和search()的区别？</p>
@@ -597,7 +597,7 @@
 <p>re模块中re.search(pattern,string[,flags]),，在string搜索pattern的第一个搜索值。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -605,13 +605,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;super&#39;</span><span class="p">,</span><span class="s1">&#39;superstition&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
-<span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;super&#39;</span><span class="p">,</span><span class="s1">&#39; insuperable&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
-<span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;super&#39;</span><span class="p">,</span><span class="s1">&#39;insuperable&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
-<span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;super&#39;</span><span class="p">,</span><span class="s1">&#39;superstition&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;super&#39;</span><span class="p">,</span><span class="s1">&#39; insuperable&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;super&#39;</span><span class="p">,</span><span class="s1">&#39;insuperable&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>12.用python匹配HTML tag的时候，&lt;.*&gt;和&lt;.*?&gt;有什么区别？</strong></p>
 <p>答：术语叫贪婪匹配(&lt;.*&gt;)和非贪婪匹配(&lt;.*?&gt;)</p>
@@ -639,14 +639,14 @@
 <p>​    global x</p>
 <p><strong>16.单引号，双引号，三引号的区别</strong></p>
 <p>答：单引号和双引号是等待的，如果要换行，需要符号(\),三引号则可以直接换行，并且可以包含注释。</p>
-<p>如果要表示Let'  s  go这个字符串</p>
-<p>单引号:s4 = &lsquo;Let\&rsquo;  s go'</p>
+<p>如果要表示Let&rsquo;  s  go这个字符串</p>
+<p>单引号:s4 = &lsquo;Let\&rsquo;  s go&rsquo;</p>
 <p>双引号:s5 =  “Let’ s go”</p>
 <p>s6 = ‘I realy like“python”!’</p>
 <p>这就是单引号和双引号都可以表示字符串的原因了。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -657,16 +657,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">s4</span> <span class="o">=</span> <span class="s1">&#39;Let</span><span class="se">\&#39;</span><span class="s1">s  go&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">s4</span>
-<span class="s2">&#34;Let&#39;s  go&#34;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">s5</span> <span class="o">=</span> <span class="s2">&#34;Let&#39; s go&#34;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">s5</span>
-<span class="s2">&#34;Let&#39; s go&#34;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">s6</span> <span class="o">=</span> <span class="s1">&#39;I really like &#34;python&#34; !&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">s6</span>
-<span class="s1">&#39;I really like &#34;python&#34; !&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">s4</span> <span class="o">=</span> <span class="s1">&#39;Let</span><span class="se">\&#39;</span><span class="s1">s  go&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">s4</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;Let&#39;s  go&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">s5</span> <span class="o">=</span> <span class="s2">&#34;Let&#39; s go&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">s5</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;Let&#39; s go&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">s6</span> <span class="o">=</span> <span class="s1">&#39;I really like &#34;python&#34; !&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">s6</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;I really like &#34;python&#34; !&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="2python常见面试题2">(2)Python常见面试题2</h4>
 <p><strong>1.到底什么是Python，你可以在回答中与其他技术进行对比。</strong></p>
@@ -728,7 +728,7 @@
 <p><strong>1.补充缺失的代码</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -737,18 +737,18 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">print_directory_contents</span><span class="p">(</span><span class="n">sPath</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    1.这个函数接受文件夹的名称作为输入参数
-</span><span class="s2">    2.返回该文件夹中的路径
-</span><span class="s2">    3.以及其包含文件夹中文件的路径
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="c1"># 补充代码</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">print_directory_contents</span><span class="p">(</span><span class="n">sPath</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    1.这个函数接受文件夹的名称作为输入参数
+</span></span></span><span class="line"><span class="cl"><span class="s2">    2.返回该文件夹中的路径
+</span></span></span><span class="line"><span class="cl"><span class="s2">    3.以及其包含文件夹中文件的路径
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 补充代码</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -765,22 +765,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*-</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="k">def</span> <span class="nf">print_directory_contents</span><span class="p">(</span><span class="n">sPath</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">sChild</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">sPath</span><span class="p">):</span>
-        <span class="n">sChildPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sPath</span><span class="p">,</span><span class="n">sChild</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">sChildPath</span><span class="p">):</span>
-            <span class="n">print_directory_contents</span><span class="p">(</span><span class="n">sChildPath</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">sChildPath</span><span class="p">)</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">print_directory_contents</span><span class="p">(</span><span class="s2">&#34;E:\TestWork&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">print_directory_contents</span><span class="p">(</span><span class="n">sPath</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">sChild</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">sPath</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sChildPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sPath</span><span class="p">,</span><span class="n">sChild</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">sChildPath</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">print_directory_contents</span><span class="p">(</span><span class="n">sChildPath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">sChildPath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">print_directory_contents</span><span class="p">(</span><span class="s2">&#34;E:\TestWork&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>特别要注意以下几个点:</p>
 <ul>
@@ -794,7 +794,7 @@
 <p><strong>2.阅读下列代码，写出A0，A1至An的最终值</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -803,17 +803,17 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">A0</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">((</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)))</span>
-<span class="n">A1</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">A2</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A0</span><span class="p">]</span>
-<span class="n">A3</span> <span class="o">=</span> <span class="p">[</span><span class="n">A0</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">A0</span><span class="p">]</span>
-<span class="n">A4</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A3</span><span class="p">]</span>
-<span class="n">A5</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span><span class="p">]</span>
-<span class="n">A6</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">A0</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">((</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">A1</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">A2</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">A3</span> <span class="o">=</span> <span class="p">[</span><span class="n">A0</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">A0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">A4</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">A5</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">A6</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A1</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>答案:</p>
-<p>A0 = {&lsquo;a&rsquo;: 1, &lsquo;c&rsquo;: 3, &lsquo;b&rsquo;: 2, &lsquo;e&rsquo;: 5, &rsquo;d': 4}</p>
+<p>A0 = {&lsquo;a&rsquo;: 1, &lsquo;c&rsquo;: 3, &lsquo;b&rsquo;: 2, &rsquo;e&rsquo;: 5, &rsquo;d&rsquo;: 4}</p>
 <p>A1 = [0,1,2,3,4,5,6,7,8,9]</p>
 <p>A2 = []</p>
 <p>A3 = [1,3,2,5,4]</p>
@@ -831,7 +831,7 @@
 <p><strong>5.下面代码会输出什么？</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -841,15 +841,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">l</span><span class="o">=</span><span class="p">[]):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="n">l</span>
-
-<span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">l</span><span class="o">=</span><span class="p">[]):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">l</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>答案:</p>
 <p>&gt;&raquo; f(2)</p>
@@ -864,7 +864,7 @@
 <p>改写成下面的代码运行下或许尝试着理解哈：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -888,29 +888,29 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">l_mem</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="n">l_mem</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
-<span class="p">[]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
-	<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
-
-    
-<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
-<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-	<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
-
-	
-<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
-<span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="n">l_mem</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
-<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">l_mem</span>
-<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">l_mem</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="n">l_mem</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
+</span></span><span class="line"><span class="cl"><span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="n">l_mem</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">l</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">l_mem</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>6.&ldquo;猴子补丁&rdquo;(monkey patching)指的是什么？这种做法好吗？</strong></p>
 <p>答案:</p>
@@ -923,7 +923,7 @@
 <p>举一比较实用的例子：很多代码用到import json，后来发现ujson性能更高，如果觉得把每个文件的import json改换成import ujson as json的成本较高，或者说想测试一下用ujson替换json是否符合预期，只需要在入口加上:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -936,30 +936,30 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># main.py</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">ujson</span>
-<span class="k">def</span> <span class="nf">monkey_patch_json</span><span class="p">():</span>
-    <span class="n">json</span><span class="o">.</span><span class="n">__name</span> <span class="o">=</span> <span class="s1">&#39;ujson&#39;</span>
-    <span class="n">json</span><span class="o">.</span><span class="n">dumps</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">dumps</span>
-    <span class="n">json</span><span class="o">.</span><span class="n">loads</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">loads</span>
-
-<span class="n">monkey_patch_json</span><span class="p">()</span>
-<span class="nb">print</span> <span class="s1">&#39;main.py&#39;</span><span class="p">,</span><span class="n">json</span><span class="o">.</span><span class="vm">__name__</span>
-<span class="kn">import</span> <span class="nn">sub</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># main.py</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">ujson</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">monkey_patch_json</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">json</span><span class="o">.</span><span class="n">__name</span> <span class="o">=</span> <span class="s1">&#39;ujson&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">json</span><span class="o">.</span><span class="n">dumps</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">dumps</span>
+</span></span><span class="line"><span class="cl">    <span class="n">json</span><span class="o">.</span><span class="n">loads</span> <span class="o">=</span> <span class="n">ujson</span><span class="o">.</span><span class="n">loads</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">monkey_patch_json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s1">&#39;main.py&#39;</span><span class="p">,</span><span class="n">json</span><span class="o">.</span><span class="vm">__name__</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sub</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
-<span class="nb">print</span> <span class="s1">&#39;sub.py&#39;</span><span class="p">,</span><span class="n">json__name__</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s1">&#39;sub.py&#39;</span><span class="p">,</span><span class="n">json__name__</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>运行main.py可以看到的都是输出&rsquo;ujson',说明后面impor的json是被patch了的。</p>
+</div><p>运行main.py可以看到的都是输出&rsquo;ujson&rsquo;,说明后面impor的json是被patch了的。</p>
 <p>只需要将以上的一个patch写在一个文件里自己再import一次，便可实现自己想要的功能，这是非常方便的。</p>
 <p>可以知道猴子补丁的主要功能便是在不去改变源码的情况下而对功能进行追加和变更；对于编程过程中使用一些第三方的需求的情况下，使用猴子补丁都是十分方便的。</p>
 <p><a href="https://www.jianshu.com/p/f1060b22aab8">猴子补丁</a></p>
